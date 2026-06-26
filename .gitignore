@@ -1,6 +1,8 @@
-__pycache__/
-*.pyc
-.env
 *.env
-.DS_Store
+*.pyc
 *.zip
+.DS_Store
+.env
+__pycache__/
+monitor/live/us_session.log
+monitor/live/us_snapshot.json
