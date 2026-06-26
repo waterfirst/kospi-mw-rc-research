@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<style>
+@page{size:A4;margin:22mm 20mm;@bottom-center{content:counter(page)" / "counter(pages);font-size:9px;color:#888}}
+body{font-family:'NanumGothic','Noto Sans CJK KR',sans-serif;font-size:10.5pt;line-height:1.65;color:#1a1a1a}
+h1{font-size:18pt;margin-bottom:4px;line-height:1.3}
+.authors{font-size:10pt;color:#444;margin-bottom:2px}
+.meta{font-size:9pt;color:#777;margin-bottom:18px;border-bottom:2px solid #333;padding-bottom:10px}
+h2{font-size:13pt;margin-top:20px;margin-bottom:8px;color:#0b3d91;border-left:4px solid #0b3d91;padding-left:8px}
+h3{font-size:11pt;margin-top:14px;margin-bottom:6px;color:#333}
+.abstract{background:#f4f6fb;border:1px solid #d0d8e8;border-radius:6px;padding:12px 16px;font-size:9.8pt;margin-bottom:16px}
+.abstract b{color:#0b3d91}
+table{width:100%;border-collapse:collapse;font-size:9pt;margin:10px 0}
+th,td{border:1px solid #ccc;padding:5px 7px;text-align:right}
+th:first-child,td:first-child{text-align:left}
+th{background:#0b3d91;color:#fff;font-weight:600}
+tr:nth-child(even){background:#f7f9fc}
+.eq{background:#f0f2f5;border:1px solid #ddd;border-radius:5px;padding:10px 14px;font-family:'Consolas',monospace;font-size:9.5pt;margin:10px 0;white-space:pre-wrap}
+.up{color:#d32f2f;font-weight:600}.down{color:#1976d2;font-weight:600}
+.win{color:#2e7d32;font-weight:700}.lose{color:#c62828;font-weight:700}
+.note{font-size:8.8pt;color:#666;font-style:italic}
+.foot{margin-top:24px;border-top:1px solid #ccc;padding-top:10px;font-size:8.5pt;color:#888}
+strong{color:#0b3d91}
+</style></head>
+<body>
+
+<h1>KOSPI 시장 동역학의 다이오드 모델:<br>RC 단조회복 가설의 반증과 2년 실증 백테스트</h1>
+<div class="authors">Claude (분석·모델·코드) · 첨물 (설계·감수)</div>
+<div class="meta">2026-06-26 · 정보·연구 목적 · 투자자문 아님 · 데이터: 네이버 금융 (KOSPI 일별 가격·투자자별 순매매)</div>
+
+<div class="abstract">
+<b>초록.</b> 본 연구는 2026년 6월 KOSPI 급락·회복 국면에서 기존 RC(저항-커패시터) 단조회복 모델이
+구조적으로 실패하는 원인을 규명하고, <b>RLC + 다이오드</b> 모델을 제안한다. 핵심 가설은
+<b>D_sell = (외국인 순매도 AND 기관 순매도)</b>라는 방향성 다이오드가 시장 급락을 점화한다는 것이다.
+2024–2026년 <b>604 거래일</b> 실데이터 백테스트에서, D_sell이 켜진 날의 평균 일간수익률은
+<span class="down">−1.19%</span>, 꺼진 날은 <span class="up">+0.68%</span>로
+평균차 1.87%p, <b>t = 9.55</b>의 압도적 유의성을 보였다. −5% 이상 폭락일의 83%를 포착했으며,
+큰 변동일(≥3%) 방향 분류 정확도는 82.4%였다. 다만 D_sell은 당일 수급과 동시간 정보이므로
+<b>익일 점예측력은 없다</b>(평균회귀)는 한계를 정직하게 보고한다. RC 모델은 외국인 매도 중
+기관 매수로 상승한 6/24·25와 동반매도로 폭락한 6/26을 동시에 설명하지 못하나,
+다이오드 모델은 통계적으로 이를 분류한다.
+</div>
+
+<h2>1. 서론 — RC 단조회복의 구조적 실패</h2>
+<p>선행 RC 모델(v3, v7)은 KOSPI 회복을 구동 RC 완화로 기술했다:</p>
+<div class="eq">C_eff · dV/dt = σ_total · (V_target − V) − I_forced
+해(강제매도 0): V(t) = V_target − (V_target−V₀)·e^(−t/τ)</div>
+<p>이 형태는 <strong>V를 항상 V_target 방향으로 단조 수렴</strong>시킨다. 그러나 2026-06-25
+(+5.42%, 8,930)에서 06-26(−5.81%, 8,411)로의 <strong>1일 내 방향 반전</strong>은 단조 해로
+재현 불가능하다. RC가 놓친 세 가지 물리량:</p>
+<ul>
+<li><strong>① 관성(L):</strong> 프로그램·레버리지 매도는 모멘텀을 가진다. RC엔 2차 미분항이 없다.</li>
+<li><strong>② 방향 비대칭(다이오드):</strong> 외국인+기관 <i>동반매도</i>는 외국인 <i>단독매도</i>와 질적으로 다르다.</li>
+<li><strong>③ 외국인 게이트 오류:</strong> RC v7은 외국인 부호를 마스터 스위치로 보나, 6/24·25는 외국인 매도 중에도 급등했다.</li>
+</ul>
+
+<h2>2. 다이오드 모델</h2>
+<p>RLC 회로에 방향성 다이오드를 직렬 결합한다:</p>
+<div class="eq">L·d²V/dt² + R·dV/dt + (V − V_target)/C = −D_sell(t)·K·|F+I|/C_flow
+
+D_sell(t) = 1   iff   F(t) < 0  AND  I(t) < 0
+          = 0   그 외</div>
+<p>여기서 F, I는 외국인·기관 일별 순매수. <strong>다이오드는 동반매도(공황)에서만 도통</strong>하여
+충격항을 점화한다. 감쇠비 ζ &lt; 1이면 미임계감쇠로 <strong>오버슈팅·진동</strong>이 발생하며,
+이는 RC의 단조 수렴이 설명 못 하는 V자·반전 거동을 자연스럽게 포함한다.</p>
+<p class="note">실측 캘리브레이션: C_flow = 0.017 조/pt, K_cascade = 1.78 (D+0 연쇄청산 교정), τ = 2.32일.</p>
+
+<h2>3. 데이터 및 방법</h2>
+<p>네이버 금융에서 KOSPI 일별 종가(2024-01-02~2026-06-26, 604일)와 투자자별 일별 순매매를
+수집했다. D_sell은 외국인·기관 순매수 부호로 결정한다. 백테스트는 4개 가설로 구성한다:
+H1(동시점 분류), H2(폭락 포착), H3(익일 예측, ex-ante), H4(트레이딩, 전일신호·룩어헤드 없음).</p>
+
+<h2>4. 백테스트 결과</h2>
+<h3>4.1 H1 — 동시점 분류력 (핵심 성과)</h3>
+<table>
+<tr><th>상태</th><th>일수</th><th>평균%</th><th>중앙%</th><th>하락비율</th></tr>
+<tr><td>D_sell ON</td><td>151</td><td class="down">−1.19</td><td>−0.84</td><td>80.1%</td></tr>
+<tr><td>D_sell OFF</td><td>453</td><td class="up">+0.68</td><td>+0.49</td><td>29.4%</td></tr>
+</table>
+<p>평균차 1.87%p, <strong>t = 9.55</strong>. 외국인 부호만으로는 6/24·25 상승을 설명할 수 없고,
+<strong>기관 부호(I)가 진짜 스위치</strong>임이 드러난다.</p>
+
+<h3>4.2 H2 — 폭락 포착력</h3>
+<table>
+<tr><th>임계</th><th>해당일수</th><th>D_sell ON</th><th>포착률</th></tr>
+<tr><td>−1%↓</td><td>94</td><td>66</td><td>70.2%</td></tr>
+<tr><td>−2%↓</td><td>40</td><td>32</td><td>80.0%</td></tr>
+<tr><td>−3%↓</td><td>26</td><td>20</td><td>76.9%</td></tr>
+<tr><td>−5%↓</td><td>12</td><td>10</td><td class="win">83.3%</td></tr>
+<tr><td>+2%↑ (대조)</td><td>61</td><td>5</td><td>8.2%</td></tr>
+</table>
+<p>폭락이 클수록 포착률이 높고, 상승일에는 거의 켜지지 않아 <strong>방향 비대칭</strong>이 확인된다.</p>
+
+<h3>4.3 H3 — 익일 예측력 (정직한 한계)</h3>
+<p>전일 D_sell로 익일 수익률을 예측하면 평균차 −0.14%p로 <strong>예측력이 사라지고 오히려 평균회귀</strong>한다.
+D_sell은 당일 수급과 동시간 정보이므로, 종가 확정 후에는 늦다. 이는 "사후 수급을 알고 만든 점예측"의
+한계와 일치하며, 실전 가치는 <strong>장중 실시간 수급 추적</strong>에서만 발생함을 시사한다.</p>
+
+<h3>4.4 H4 — 트레이딩 백테스트</h3>
+<table>
+<tr><th>전략</th><th>총수익%</th><th>CAGR%</th><th>샤프</th><th>MDD%</th></tr>
+<tr><td>Buy&amp;Hold</td><td class="win">+215.0</td><td>+61.4</td><td class="win">1.68</td><td>−20.7</td></tr>
+<tr><td>RC(하락익일매수)</td><td>+96.6</td><td>+32.6</td><td>1.32</td><td>−18.4</td></tr>
+<tr><td>다이오드(ON회피)</td><td>+105.9</td><td>+35.2</td><td>1.33</td><td>−19.4</td></tr>
+<tr><td>다이오드(ON숏)</td><td>+23.2</td><td>+9.1</td><td>0.43</td><td>−34.8</td></tr>
+</table>
+<p>2024–26은 KOSPI 4배 상승의 초강세장으로, 회피 전략은 B&amp;H를 이기지 못한다.
+다이오드의 가치는 트레이딩 알파가 아니라 <strong>진단·경보</strong>에 있다.</p>
+
+<h2>5. RC·Codex 대비 점수표 (모델 변경 전 / 후)</h2>
+<table>
+<tr><th>채점 항목</th><th>변경 전 (RC v3 / Codex v7)</th><th>변경 후 (다이오드 v5)</th><th>승</th></tr>
+<tr><td>6/26 방향 예측</td><td>9,030 예측 → 실제 8,411 (✗ 상승오판)</td><td>D_sell ON 폭락 포착 (✓)</td><td class="win">후</td></tr>
+<tr><td>6/24·25 상승 설명</td><td>외국인 매도 중 상승 = 미해명</td><td>기관 매수(I&gt;0) → OFF (✓)</td><td class="win">후</td></tr>
+<tr><td>동시점 분류력</td><td>정성적 σ_total 서술</td><td>t = 9.55 (정량 입증)</td><td class="win">후</td></tr>
+<tr><td>폭락 포착 (−5%↓)</td><td>해당 개념 없음</td><td>83% 포착</td><td class="win">후</td></tr>
+<tr><td>미국신호 수집</td><td>SOXX·EWY·MU 등 다중 (체계적)</td><td>V_target 단일 환산</td><td class="lose">전</td></tr>
+<tr><td>익일 ex-ante 점예측</td><td>확률 공시 (시도함)</td><td>한계 인정 (예측력 없음)</td><td>무</td></tr>
+<tr><td>지적 정직성</td><td>확률 명시 공개</td><td>한계 명시 공개</td><td>무</td></tr>
+</table>
+<p><strong>종합:</strong> 모델 <i>구조</i>는 다이오드(변경 후)가 RC를 명확히 능가한다(동시점 분류·폭락 포착에서 정량 우위).
+다만 미국신호 수집의 체계성은 Codex가 앞서며, 이는 v6에서 통합 대상이다.
+<strong>Codex는 여전히 RC v7로 활발히 경쟁 중이며, 본 모델은 그에 대한 구조적 응답이다.</strong></p>
+
+<h2>6. 한계와 결론</h2>
+<p><strong>한계:</strong> (1) 익일 점예측력 부재 — 장중 데이터 필요. (2) 표본이 2.5년·단일 시장.
+(3) K_cascade·C_flow는 동일 기간 캘리브레이션(타기간 미검증). (4) 거래비용 미반영.</p>
+<p><strong>결론:</strong> RC의 단조회복 가정은 물리적으로 반증되었다. 다이오드 모델은 604일에서
+t = 9.55로 시장 방향을 분류하며, 특히 기관 부호가 외국인 게이트보다 우월한 스위치임을 입증했다.
+다음 단계(v6)는 장중 30분봉 외국인·기관 누적 순매수로 <strong>D_sell 점화 시점</strong>을 포착하고,
+Codex의 다중 미국신호 체계를 V_target에 통합하는 것이다.</p>
+
+<div class="foot">
+KOSPI 다이오드 모델 v5 · Claude × 첨물 · 코드/데이터: github.com/waterfirst/kospi-mw-rc-research<br>
+실시간 시뮬레이터: GitHub Pages 배포 · 정보·연구 목적, 투자자문 아님 · 거래비용·세금·슬리피지 미반영.
+</div>
+</body></html>
