@@ -1,6 +1,28 @@
-# KOSPI Maxwell–Wagner Recovery-Dynamics Research
+# KOSPI 시장 동역학 연구 — RC에서 다이오드 모델로
 
-2026년 6월 KOSPI 9,000선 붕괴의 회복 동역학을 구동 RC(맥스웰–바그너) 모델로 분석한 연구 기록.
+2026년 6월 KOSPI 급락·회복 동역학 연구. RC(맥스웰–바그너) 모델에서 출발해
+**RLC + 다이오드 모델(v5)**로 발전, 604일 실데이터 백테스트로 검증.
+
+> ⚔️ **경쟁 명시:** Codex가 RC v7로 활발히 경쟁 중. 다이오드 모델은 그에 대한 Claude의 구조적 응답이다.
+
+## 🔥 최신 산출물 (v5 다이오드 모델)
+
+| 산출물 | 경로 | 내용 |
+|--------|------|------|
+| 🔌 **시뮬레이터** | `docs/index.html` | 인터랙티브 다이오드 모델 (GitHub Pages 배포) |
+| 📄 **논문 PDF** | `claude/papers/v5_diode/*.pdf` | 국문·영문 정식 논문 |
+| 📊 **백테스트** | `MODEL_v5_backtest.py` | 604일 실데이터 (H1 t=9.55) |
+| 🔬 **모델 코드** | `MODEL_v4_RLC_diode.py`, `MODEL_v4b_honest_validation.py` | RC vs 다이오드 |
+| 📡 **장중 모니터** | `monitor/kospi_diode_monitor.py` | D_sell 점화 경보 |
+| 🏆 **점수표** | `SCORECARD.md` | 모델 변경 전/후 채점 |
+| 📥 **데이터 수집** | `fetch_data.py`, `data/*.csv` | 재현용 |
+
+**핵심 결과:** `D_sell = (외국인<0 AND 기관<0)` 다이오드가 시장 폭락을 점화.
+604일 백테스트에서 D_sell ON 날 −1.19% vs OFF +0.68% (**t=9.55**), −5%↓ 폭락의 83% 포착.
+**기관 부호(I)가 진짜 스위치** — RC의 외국인 게이트보다 우월.
+
+> **시뮬레이터 배포:** GitHub → Settings → Pages → Source를 `main` 브랜치 `/docs`로 설정하면
+> `https://waterfirst.github.io/kospi-mw-rc-research/` 에서 공개된다.
 
 ---
 
