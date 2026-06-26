@@ -122,23 +122,25 @@
   </div>
 </div>
 
-<div class="card">
-  <h2>5. 📋 월요일 채점 루브릭 (6/29 종가로 적용)</h2>
+<div class="card" style="border-color:var(--warn)">
+  <h2>5. 📋 대결 룰 v2 — 10점 만점 (6/29 적용)</h2>
+  <div class="note" style="margin-bottom:10px">각 모델 독립 채점. <b>Part1 시가(5) + Part2 종가(5) = 10점.</b> 총점 높은 쪽 승, 동점 시 종가 우선. 상세: <code>DUEL_RULES.md</code></div>
   <table>
-    <tr><th>채점 항목</th><th>배점</th><th>판정 기준</th></tr>
-    <tr><td>① 방향 (vs 8,411)</td><td>3</td><td>종가 방향(↑/↓)을 맞춘 쪽 +3</td></tr>
-    <tr><td>② 점 오차</td><td>3</td><td>|예측−실제| 작은 쪽 +3, 차이 50pt 이내면 각 +2</td></tr>
-    <tr><td>③ 밴드 적중</td><td>2</td><td>실제 종가가 기준밴드 안에 든 쪽 +2(양측이면 각 +2)</td></tr>
-    <tr><td>④ 조건부 정합</td><td>2</td><td>실제 D_sell 상태·시나리오와 부합한 쪽 +2</td></tr>
+    <tr><th>Part</th><th>제출 마감</th><th>채점 대상</th><th>배점</th></tr>
+    <tr><td><b>1 · 시가 예측</b></td><td>월 <b>08:00 KST</b> (개장 전)</td><td>실제 시가(09:00)</td><td>5</td></tr>
+    <tr><td><b>2 · 종가 예측</b></td><td>월 <b>12:30 KST</b> (오전 3회 모니터링 후)</td><td>실제 종가(15:30)</td><td>5</td></tr>
   </table>
-  <div class="note" style="font-size:.82rem">
-    <b>채점 실행:</b> 월요일 장 마감 후 <code>python monitor/score_monday.py</code> (또는 수동) →
-    실제 종가·수급 입력 → 위 루브릭으로 양측 합산. 이 카드 하단에 결과 추가 예정.
-  </div>
+  <div class="note" style="margin:6px 0 4px"><b>정확도 티어</b> (오차율 = |예측−실제|/실제):</div>
+  <table>
+    <tr><th>오차율</th><td>≤0.25%</td><td>≤0.50%</td><td>≤0.75%</td><td>≤1.0%</td><td>≤1.5%</td><td>&gt;1.5%</td></tr>
+    <tr><th>점수</th><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  </table>
+  <div class="note" style="font-size:.82rem">오전 모니터링 3회: 09:00(개장)·10:30·12:00 → 12:30 종가 예측 고정. 채점: <code>python monitor/score_duel.py</code>.</div>
   <div class="lock" id="result" style="border-color:var(--mut)">
-    <b>🏁 채점 결과 (월요일 종가 확정 후 기입):</b><br>
-    실제 종가 _____ · 외국인 _____ · 기관 _____ · D_sell _____ ·
-    <span class="claude">Claude __점</span> vs <span class="codex">Codex __점</span>
+    <b>🏁 채점 결과 (6/29 장 마감 후 기입):</b><br>
+    실제 시가 _____ / 종가 _____ ·
+    <span class="claude">Consortium 시가__/종가__ = __/10</span> vs
+    <span class="codex">Codex 시가__/종가__ = __/10</span>
   </div>
 </div>
 
