@@ -86,21 +86,29 @@
     <b>공통 한계:</b> 양측 모두 금요일 미 종가 미확정 상태의 <b>조건부</b> 예측. 월요일 종가로 채점.
   </div>
   <div class="lock" style="border-color:var(--codex)">
-    <b>📡 미 세션 실측 (6/26 11:49 ET, 직접 폴링):</b>
-    <span class="down">SOX −4.18%</span> · <span class="up">S&amp;P +0.38%</span> ·
-    <span class="up">나스닥 +0.37%</span> · <span class="up">다우 +0.33%</span><br>
-    → <b>반도체 특정 매도</b>(광범위 지수는 녹색). KOSPI 반도체 비중↑라 SOX는 악재지만,
-    패닉형 광범위 risk-off는 아님 → 과매도 반등 우위 유지(점추정만 8,520→8,460 하향).
+    <b>📡 미 금요일 최종 종가 (확정, 직접 폴링):</b>
+    <span class="down">SOX −5.29%</span> · <span class="down">S&amp;P −0.05%</span> ·
+    <span class="down">나스닥 −0.24%</span> · <span class="down">다우 −0.09%</span><br>
+    → <b>반도체만 −5.29% 붕괴</b>(장중 −4.2%→저점마감), 광범위 지수는 보합.
+    V_target 환산 <b>8,206</b>, 다이오드 D_sell OFF 기계 baseline <b>8,323</b>.
+  </div>
+  <div class="lock" style="border-color:var(--warn)">
+    <b>⚠️ 시장구조 (퀀트 인풋):</b> <b>VKOSPI 92.17</b> → 일중 내재 변동 <b>±5.8%(±488pt)</b>.
+    레버리지 ETF 강제매도 ~<b>$45B</b> 취약(6/5 기술주매도 시 $60B 디레버리징 선례),
+    신규 +2x DRAM ETF 'RAM' 첫날 $4억 — <b>반도체 레버리지 캐스케이드 가열</b>.<br>
+    → 이 강제매도·레버리지 모멘텀이 곧 다이오드 모델의 <b>L_program(관성)+I_shock(강제전류)</b> 항.
+    <b>Codex 1차 RC엔 L이 없어 이 캐스케이드를 구조적으로 못 담는다</b>(모델 검증 포인트).
   </div>
   <table>
     <tr><th></th><th><span class="pill c">Claude 다이오드</span></th><th><span class="pill x">Codex MW-RC</span></th></tr>
-    <tr><td><b>방향 콜</b></td><td class="claude up">반등(UP)</td><td class="codex down">방어/하락 우위</td></tr>
-    <tr><td><b>기준 밴드</b></td><td>8,330 – 8,640</td><td>8,250 – 8,430</td></tr>
-    <tr><td><b>점 추정</b></td><td class="big claude">8,460</td><td class="big codex">8,340</td></tr>
-    <tr><td><b>핵심 논리</b></td><td><b>실측 base rate:</b> −5%↓ 폭락 다음 거래일 <b>82%(9/11)가 반등</b>, 평균 <b>+1.77%</b>(→8,560). 게다가 금요일 폭락은 미 SOX +3.59% 강세에도 발생한 <b>국내 동반매도(D_sell) 사건</b>이라 미국과 디커플 → 과매도 반등 우위. <u>단, 월말(6/30) 외국인 리밸런싱·미 반도체 급락 시 둔화</u>.</td><td>미 risk-off(SOXX −3%대) 지속 시 8,250~8,430 재시험. 8,400 회복 실패면 8,200대.</td></tr>
-    <tr><td><b>조정 규칙</b></td><td>SOX 금요일 종가 +/보합 → 8,550–8,700 / SOX −2%↓ → 8,420–8,520(여전히 보합~소폭상승)</td><td>Bear 8,250–8,380 / Base 8,330–8,470 / Recovery 8,450–8,580</td></tr>
+    <tr><td><b>방향 콜</b></td><td class="claude up">약한 반등(UP) 우위 · 신뢰 ~55%</td><td class="codex down">방어/하락 우위</td></tr>
+    <tr><td><b>기준 밴드</b></td><td>8,150 – 8,720</td><td>8,250 – 8,430</td></tr>
+    <tr><td><b>점 추정</b></td><td class="big claude">8,430</td><td class="big codex">8,340</td></tr>
+    <tr><td><b>핵심 논리</b></td><td><b>base rate:</b> −5%↓ 폭락 다음날 <b>82%(9/11) 반등</b>(위기국면 표본 포함: 6/08 −8.3%→+8.2%). <b>도메스틱플로우 논제:</b> KOSPI는 US레벨이 아닌 국내수급(D_sell)이 주동인(금요일이 증명). 그래서 SOX −5.29%에도 기계적 하락 적용 안 함. <u>단 신뢰는 낮음(~55%)</u>.</td><td>미 반도체 risk-off 지속 → 8,250~8,430 재시험. 8,400 회복 실패면 8,200대.</td></tr>
+    <tr><td><b>결정 변수</b></td><td><b>월요일 개장 기관 수급(D_sell 스위치).</b> 기관이 반도체 저점매수(I&gt;0)→ 8,500–8,700 반등 / 외+기 동반매도(D_sell ON)→ 8,100–8,300 연속하락</td><td>SOX 약세 지속 가정 일변도(국내 기관 스위치 미반영)</td></tr>
   </table>
-  <div class="note">핵심 대립: <b>Claude=과매도 반등(UP, base rate 82%) / Codex=risk-off 방어(DOWN)</b>. 월요일 종가 8,411 위면 Claude 방향승, 아래면 Codex 방향승. <b>Codex의 허점: 금요일 폭락을 미국신호 탓으로 보지만, 실제론 미 반도체 강세 중 발생한 국내 수급사건 → US-driven RC가 오진할 위험.</b></div>
+  <div class="note">핵심 대립: <b>Claude=과매도 반등(UP, 신뢰55%) / Codex=risk-off 방어(DOWN)</b>. 종가 8,411 위=Claude 방향승, 아래=Codex 방향승.
+  <b>정직한 인정:</b> 미 반도체 −5.29% 확정 후 양측 점추정이 8,430 vs 8,340으로 수렴 — 콜이 가까워졌다. 차별점은 <b>방향 부호(UP vs DOWN)와 "기관 스위치" 조건부 정밀도</b>다. Codex의 허점은 여전: 금요일 폭락을 US 탓으로 보지만 실제론 국내수급 사건이었고, 레버리지 캐스케이드를 1차 RC로는 못 담는다.</div>
 </div>
 
 <div class="card">
@@ -124,7 +132,7 @@
 </div>
 
 <div class="foot">
-  다이오드(Claude) vs MW-RC(Codex) 비교·채점 · 2026-06-26 고정 · 데이터: 네이버 금융<br>
+  다이오드(Claude) vs MW-RC(Codex) 비교·채점 · 2026-06-27 미 종가 확정 반영 · 데이터: 네이버 금융<br>
   ⚔️ 양측 모두 honest 경쟁 중. 구조는 다이오드, 신호수집·운영은 MW-RC가 앞선다. 월요일 실측이 가른다.<br>
   정보·연구 목적. 투자자문 아님.
 </div>
