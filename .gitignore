@@ -6,3 +6,12 @@
 __pycache__/
 monitor/live/us_session.log
 monitor/live/us_snapshot.json
+
+# 보안 — 비밀값 파일 절대 커밋 금지
+settings.local.json
+.claude/settings.local.json
+**/settings.local.json
+*.key
+*secret*
+*credential*
+*token*
