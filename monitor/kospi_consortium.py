@@ -81,6 +81,39 @@ def call_orchestra(command, text):
         return f"(orchestra {command} 불가: {e})"
 
 
+# ── GLM 직결 폴백 (CLAUDE.md §2/§9: localhost 금지, host 후보 + Haiku 폴백) ──
+GLM_TIMEOUT = 30.0
+OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "glm4:9b")
+# 우선순위: 명시 호스트 → 윈도우 직접실행(localhost) → 샌드박스용 후보
+OLLAMA_HOSTS = ([os.environ["OLLAMA_HOST"]] if os.environ.get("OLLAMA_HOST") else []) + \
+    ["http://localhost:11434", "http://host.docker.internal:11434",
+     "http://172.17.0.1:11434", "http://192.168.65.1:11434"]
+
+
+def ask_glm_direct(prompt):
+    """Ollama GLM4:9b 직결. 호스트 후보 순회 → 실패 시 Claude Haiku → 내장 폴백."""
+    for host in OLLAMA_HOSTS:
+        try:
+            r = requests.post(f"{host}/api/generate",
+                              json={"model": OLLAMA_MODEL, "prompt": prompt, "stream": False},
+                              timeout=GLM_TIMEOUT)
+            if r.ok:
+                return r.json().get("response", "").strip()
+        except Exception:
+            continue
+    key = os.environ.get("ANTHROPIC_API_KEY", "")
+    if key:
+        try:
+            import anthropic
+            m = anthropic.Anthropic(api_key=key).messages.create(
+                model="claude-haiku-4-5-20251001", max_tokens=300,
+                messages=[{"role": "user", "content": prompt}])
+            return m.content[0].text.strip()
+        except Exception as e:
+            return f"(GLM·Haiku 폴백 실패: {e})"
+    return "(GLM 미연결 — 내장 폴백: 다이오드 baseline만 사용)"
+
+
 def extract_number(text):
     nums = re.findall(r"\b([78]\d{3})(?:\.\d+)?\b", (text or "").replace(",", ""))
     return float(nums[0]) if nums else None
@@ -97,12 +130,20 @@ def main():
 
     opinions = []
     if "quant" in USE_AGENTS:
-        opinions.append(("quant(GLM+local)", call_orchestra("quant", q)))
+        out = call_orchestra("quant", q)
+        if "불가" in out:                      # orchestra 없으면 GLM 직결 폴백
+            out = ask_glm_direct(q)
+            opinions.append(("GLM직결(glm4:9b)", out))
+        else:
+            opinions.append(("quant(GLM+local)", out))
     if "ask-local" in USE_AGENTS:
-        opinions.append(("local(glm4 GPU)", call_orchestra("ask-local", q)))
+        out = call_orchestra("ask-local", q)
+        if "불가" not in out:
+            opinions.append(("local(glm4 GPU)", out))
     if "research" in USE_AGENTS:
-        opinions.append(("research(Gemini)",
-                         call_orchestra("research", "오늘 미국 반도체/엔비디아/KOSPI 최신 뉴스 3줄 요약")))
+        out = call_orchestra("research", "오늘 미국 반도체/엔비디아/KOSPI 최신 뉴스 3줄 요약")
+        if "불가" not in out:
+            opinions.append(("research(Gemini)", out))
 
     pts = [base] + [extract_number(o) for _, o in opinions]
     pts = [p for p in pts if p]
