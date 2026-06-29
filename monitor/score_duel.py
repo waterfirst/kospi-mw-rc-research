@@ -22,9 +22,13 @@ HEAD = {"User-Agent": "Mozilla/5.0", "Referer": "https://finance.naver.com/"}
 
 # ── 예측 입력란 (월요일에 고정) ────────────────────────────────
 # open_pred = 08:00 KST 제출 시가 / close_pred = 12:30 KST 제출 종가
+#
+# ⚠️ 6/29: 공식 시가/종가 분리 제출은 미실행(PC 미가동→오전 모니터링 부재).
+#    아래는 *사전 고정된 단일 ex-ante 콜*을 시가·종가에 동일 대입한 대용 채점.
+#    (Claude 8,470 = score_monday.py ex-ante / Codex 8,340)
 PRED = {
-    "Claude Consortium": {"open_pred": None, "close_pred": None},
-    "Codex MW-RC":       {"open_pred": None, "close_pred": None},
+    "Claude Consortium": {"open_pred": 8470, "close_pred": 8470},
+    "Codex MW-RC":       {"open_pred": 8340, "close_pred": 8340},
 }
 # ──────────────────────────────────────────────────────────────
 
