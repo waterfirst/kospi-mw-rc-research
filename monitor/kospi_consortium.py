@@ -15,7 +15,7 @@ KOSPI 컨소시엄 예측 — 첨물 PC의 orchestra.py 연동판
   4) [Claude] 머릿말로 텔레그램 발송
 
 【설정 (환경변수)】
-  ORCHESTRA_PY  = '<ai-env python> <orchestra.py 경로>'
+  ORCHESTRA_PY  = 'D:\\nakcho\\python\\orchestra\\orchestra.bat' (정식 진입점, 같은폴더 README.md)
   TELEGRAM_TOKEN, TELEGRAM_CHAT_ID
   USE_AGENTS    = 'quant,ask-local,research'  (부를 명령만 쉼표구분)
 
@@ -27,10 +27,10 @@ import requests
 
 H = {"User-Agent": "Mozilla/5.0", "Referer": "https://finance.naver.com/"}
 
-# 첨물 PC 기본 경로 (환경변수 ORCHESTRA_PY로 덮어쓰기 권장)
+# 첨물 PC 정식 진입점: orchestra.bat (사용법은 같은 폴더 README.md)
+# 환경변수 ORCHESTRA_PY로 덮어쓰기 가능.
 ORCHESTRA_PY = os.environ.get(
-    "ORCHESTRA_PY",
-    "D:/nakcho/python/ai-env/Scripts/python.exe D:/nakcho/python/orchestra/orchestra.py")
+    "ORCHESTRA_PY", r"D:\nakcho\python\orchestra\orchestra.bat")
 USE_AGENTS = os.environ.get("USE_AGENTS", "quant,ask-local,research").split(",")
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN", "")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
@@ -72,10 +72,11 @@ def diode_baseline(d):
 
 
 def call_orchestra(command, text):
+    """orchestra.bat <command> "<text>" 실행. (Windows 경로 백슬래시 보존: posix=False)"""
     try:
-        argv = shlex.split(ORCHESTRA_PY) + [command, text]
+        argv = shlex.split(ORCHESTRA_PY, posix=False) + [command, text]
         r = subprocess.run(argv, capture_output=True, text=True, timeout=180,
-                           encoding="utf-8", errors="replace")
+                           encoding="utf-8", errors="replace", shell=False)
         return (r.stdout or "").strip() or (r.stderr or "").strip()
     except Exception as e:
         return f"(orchestra {command} 불가: {e})"
