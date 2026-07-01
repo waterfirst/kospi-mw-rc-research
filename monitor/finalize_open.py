@@ -59,7 +59,8 @@ def main():
     co = prev * (1 + 0.42 * bc)
     # 종합: 7월 진입 월말드래그 완화 -> Diode 0.55 / Codex 0.45, 외인 강매도 지속 시 소폭 하향
     final = 0.55 * do + 0.45 * co
-    if F <= -30000:
+    # 교훈(7/1): EWY>=+1.5%면 외인선호 -> 풀갭업, trim 해제(raw 사용)
+    if us.get("EWY", 0) < 1.5 and F <= -30000:
         final *= 0.9985
     final = round(final)
     direction = "UP(갭업)" if final >= prev else "DOWN(갭다운)"
