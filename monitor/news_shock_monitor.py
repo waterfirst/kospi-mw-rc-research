@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""
-Continuous public-news shock monitor for KOSPI semiconductor regimes.
-
-Polls Google News RSS for hyperscaler / AI-capex / semiconductor narrative
-shocks and sends Telegram alerts with a [Codex] prefix. This is a public-news
-proxy, not direct SNS/X monitoring.
-"""
-
 from __future__ import annotations
 
 import argparse

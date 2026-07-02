@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex 최종 KOSPI 회로 모델</title>
+  <style>
+    :root{color-scheme:dark;--bg:#071018;--panel:#0d1722;--line:#26384a;--text:#e8eef7;--muted:#9fb0c3;--blue:#58a6ff;--yellow:#e3b341}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:"Malgun Gothic","Noto Sans KR",Arial,sans-serif;line-height:1.55}
+    main{width:min(1280px,calc(100vw - 36px));margin:0 auto;padding:36px 0 56px}
+    h1{margin:0 0 8px;font-size:32px;letter-spacing:0}
+    h2{margin:34px 0 12px;font-size:22px}
+    p{margin:0 0 12px;color:var(--muted)}
+    img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#071018}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{border:1px solid var(--line);padding:10px 12px;vertical-align:top}
+    th{background:#111d2b}
+    td{color:#cbd7e4}
+    code{color:#d7e7ff;background:#0a1320;border:1px solid #213044;border-radius:5px;padding:1px 5px}
+    .meta{color:var(--muted);font-size:14px}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Codex 최종 KOSPI Global Gate-RC 회로 vFinal</h1>
+  <p class="meta">2026-07-02 KST · Claude Fable 5/Mythos 대결용 최종 운영 모델</p>
+  <img src="assets/codex_final_global_gate_rc_vfinal.svg" alt="Codex final Global Gate-RC circuit">
+
+  <h2>핵심 구조</h2>
+  <table>
+    <tr><th>회로 소자</th><th>시장 의미</th><th>예측 역할</th></tr>
+    <tr><td><code>V_US</code></td><td>SOX, EWY, MU, NVDA, META, S&amp;P, Nasdaq</td><td>오버나잇 기본 방향 전압원</td></tr>
+    <tr><td><code>R_fx_rate(t)</code></td><td>USD/KRW, DXY, US10Y</td><td>미국 강세가 한국에 전달되는 정도를 감쇠</td></tr>
+    <tr><td><code>L_program</code></td><td>프로그램 매매 관성</td><td>장중 추세 지속/강제 매도 압력</td></tr>
+    <tr><td><code>D_panic</code></td><td>Meta AI capacity, HBM, CPI/FOMC 같은 쇼크 게이트</td><td>뉴스 충격 시 평균회귀를 끊고 하방 전도</td></tr>
+    <tr><td><code>I_flow(t)</code></td><td>외국인, 패시브, ETF, MSCI/월말 리밸런싱</td><td>거대자금 강제 전류원</td></tr>
+    <tr><td><code>C_domestic</code></td><td>개인/기관 흡수력</td><td>낙폭 흡수와 반등 지속력 판단</td></tr>
+    <tr><td><code>Intraday Feedback ADC</code></td><td>09:05, 10:30, 12:30 실측</td><td>시가 모델과 종가 모델을 분리해 재보정</td></tr>
+  </table>
+
+  <h2>Claude Fable 5 대응 포인트</h2>
+  <p>Claude가 서사를 더 잘 읽는다면 Codex는 회로의 센서층을 더 촘촘히 둔다. 뉴스 쇼크는 <code>S_regime</code>으로, 수급 충격은 <code>I_flow</code>로, 환율/금리는 <code>R_fx_rate</code>로 분리한다. 이렇게 하면 한 신호가 틀려도 전체 회로가 한 방향으로 과적합되는 것을 줄인다.</p>
+  <p>최종 제출값은 회로의 출력 <code>V_KOSPI(t)</code>지만, 승부의 실제 핵심은 출력값 옆에 붙는 regime label이다. 점예측은 노이즈가 있고, regime은 학습 가능하다.</p>
+</main>
+</body>
+</html>
