@@ -9,4 +9,8 @@ REM (선택) Claude 자연어 분석:
 REM set ANTHROPIC_API_KEY=여기에_API키
 
 cd /d "%~dp0"
-python morning_monitor.py %1
+if /I "%1"=="FINALIZE" (
+  python finalize_open.py
+) else (
+  python morning_monitor.py %1
+)

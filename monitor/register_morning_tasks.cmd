@@ -15,3 +15,6 @@ echo 삭제: schtasks /delete /tn "KOSPI_Monitor_0900" /f  (1030,1200 동일)
 echo.
 echo ※ PC가 켜져 있어야 발송됩니다. 절전모드 진입 방지 권장.
 pause
+
+REM 07:30 시가 최종결정 (미 종가 반영)
+schtasks /create /tn "KOSPI_FinalizeOpen_0730" /tr "%~dp0run_morning.cmd FINALIZE" /sc weekly /d MON,TUE,WED,THU,FRI /st 07:30 /f
