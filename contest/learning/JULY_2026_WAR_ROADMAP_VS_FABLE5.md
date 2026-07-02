@@ -6,6 +6,8 @@ Research only. Not investment advice.
 
 Beat Claude Fable 5/Mythos through July 2026 by combining daily point forecasts with timestamped regime forecasts.
 
+Secondary objective: preserve all model diagrams, daily decisions, failures, and score records so the July contest can become a reproducible paper after the winner is decided. See `PAPER_PROTOCOL.md`.
+
 Primary scoreboard:
 
 - Open point error.
