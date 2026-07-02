@@ -20,6 +20,7 @@
 | **v7 변압기+애벌란치** | `docs/circuit_v7.html` (Fig.3) | **T_EWY(k=0.58)·D_av 항복·G_inst/R_eff(τ) 가변·SW_hyper** | 7/1~2 실전 패배 |
 | Codex 측 | `docs/codex_final_circuit.html`, `codex/` | MW-RC 병렬전도→Gate-RC Hybrid | 비교군 |
 | 역설계 | `monitor/codex_mwrc.py` | Codex 에뮬레이터(6/30 콜 재현) | 상대 전술 분석 |
+| **대면 분석 (Fig.4)** | `CIRCUIT_FACEOFF_v7_vs_vFinal.md` | v7 vs Gate-RC vFinal: 5소자 수렴 + T_EWY/G_inst/트리거 차이 | 7/2 밤 |
 
 ## 3. 일일 전투 기록 (논문 Table 1 원본)
 | 날짜 | 실제 시가/종가 | Claude(점) | Codex(점) | 일승자 | 상세 |
