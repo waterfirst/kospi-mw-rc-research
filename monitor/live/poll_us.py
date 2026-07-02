@@ -4,6 +4,7 @@ import requests, datetime, json, time, sys
 
 H = {"User-Agent": "Mozilla/5.0"}
 SYMS = [(".SOX", "SOX"), (".INX", "S&P"), (".IXIC", "NASDAQ"), (".DJI", "DOW")]
+STOCKS = [("EWY", "EWY"), ("MU", "MU")]
 LOG = "monitor/live/us_session.log"
 SNAP = "monitor/live/us_snapshot.json"
 
@@ -23,6 +24,15 @@ def poll():
                          "chg": f(b.get("fluctuationsRatio")),
                          "status": b.get("marketStatus", ""),
                          "at": b.get("localTradedAt", "")}
+        except Exception as e:
+            out[name] = {"err": str(e)}
+    for tk, name in STOCKS:
+        try:
+            b = requests.get(f"https://api.stock.naver.com/stock/{tk}/basic",
+                             headers=H, timeout=12).json()
+            out[name] = {"close": f(b.get("closePrice")),
+                         "chg": f(b.get("fluctuationsRatio")),
+                         "status": b.get("marketStatus", "")}
         except Exception as e:
             out[name] = {"err": str(e)}
     return out
