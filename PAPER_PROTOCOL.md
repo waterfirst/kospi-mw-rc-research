@@ -35,6 +35,7 @@ Core diagrams:
 - Codex final page: `docs/codex_final_circuit.html`
 - Three-model comparison: `docs/three_model_circuit_comparison.html`
 - Claude v6 reference: `docs/assets/claude_circuit_v6.png`
+- Claude v7 reference: `docs/assets/claude_circuit_v7.png`
 - Codex earlier global-flow diagram: `docs/assets/codex_global_flow_v1.png`
 
 Any structural model change must add a new diagram or explicit diff note.
@@ -45,6 +46,7 @@ Any structural model change must add a new diagram or explicit diff note.
 2. Claude Diode/RLC v5-v6 benchmark.
 3. Codex Global Flow Circuit v1.
 4. Codex Global Gate-RC vFinal.
+5. Claude v7 EWY transformer + avalanche diode counter-model.
 
 Lineage notes must explain why a change was made:
 
