@@ -1,0 +1,425 @@
+{
+  "created_at_kst": "2026-07-02T22:05:55+09:00",
+  "alerts": [
+    {
+      "query": "Meta AI compute capacity Nvidia HBM memory stocks",
+      "title": "Is Meta’s AI Capacity Monetization Signaling a Peak in Semiconductor Demand? - The Globe and Mail",
+      "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNR1VaTzNGOFc3aGhPVkVLY2ZHaENDRnc0THptcWl0ajZiUGZ2NWZ3MG9sSk9USGE0dHBZcGpqRExUaURvWElYam5VTm53N3NKYzAtUmVjeUNxQ0NESkhvbUZRMm9SODFudDVmNE4zd3gzQTl6MnloTDZuOTJSRU44dzBSMnA3OXFRZnUwZmluTzRVWlI3Nk1CQzRNWmszMjZMYVFjemhtR2ViZ1lvTDlYN3hON3B3eEhjNlFCZGFSeEdISWtXZU94OXgtRHR2SWdjRVdSWFl2Q2ZkZTJPQTFhTDlSYllYV1Awb1NqYmpnTnE?oc=5",
+      "pubDate": "Wed, 01 Jul 2026 19:21:25 GMT",
+      "classification": {
+        "negative_hits": [
+          "capacity"
+        ],
+        "positive_hits": [],
+        "names": [
+          "meta",
+          "semiconductor"
+        ],
+        "score": 6,
+        "severity": "HIGH"
+      }
+    },
+    {
+      "query": "Meta AI compute capacity Nvidia HBM memory stocks",
+      "title": "The myth that 'computing power is perpetually scarce' has been debunked! Meta (META.US) reselling computing capacity has triggered a 'bullwhip effect,' prompting speculation that the AI bull market may face a 'mid-game pause' style reshuffle? - Moomoo",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPUXpSUmpfcGdnX0pqSVhRLVpKWVk0clEza3dxYTNPZ2ZnZHpkWko4MFdtaEluWFlZTGs2RkJGUTJ5cU1HdHNmTUIzNjNRd3NJS3BrNU9aV0t4LTJuSkJmaWZFeWp5OEx1aF80STdGcWpCY1M5aEhyLTFreVZGVmxQUUtGN2ZqZVhRdW5RYXhfLXl0YWtNa3F0Z1Y1a2tEUzlKaUhnVw?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 06:15:17 GMT",
+      "classification": {
+        "negative_hits": [
+          "capacity"
+        ],
+        "positive_hits": [],
+        "names": [
+          "meta"
+        ],
+        "score": 6,
+        "severity": "HIGH"
+      }
+    },
+    {
+      "query": "Samsung SK Hynix shares Meta AI compute selloff",
+      "title": "(2nd LD) Seoul shares plunge nearly 8 pct on tech sell-off amid renewed AI concerns - Yonhap News Agency",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBKRXllTUhib3VWM2ZMTlh0UVFKNjQ5QWVJOFpIUnBWZGcxcy1PWTFHbDFrc1ZtU3M5dTRRUzdzc0gwWV9LOGw1a0p2ZFhuUzFmS0dQSXd0RnFjZw?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 07:40:46 GMT",
+      "classification": {
+        "negative_hits": [
+          "plunge"
+        ],
+        "positive_hits": [],
+        "names": [],
+        "score": 2,
+        "severity": "MEDIUM"
+      }
+    }
+  ],
+  "items": [
+    {
+      "query": "Meta excess AI compute cloud business semiconductor stocks",
+      "title": "Meta's AI Cloud Entry Triggers Semiconductor Stock Drop - 조선일보",
+      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOaS1rVzRZdFhfbVZCOU8wbkUxTWQ2V0lHZkZIMGNGbTd2SkVXT0dxN0hEZFBfQm1IVVVKU3VhQTNoaEN0WFF0ZGY1UnZBN2N0dHYyWDNzV29oal91b25tZGVOWUY5aHQ2VEU0b0dfT296TXM1S2wySS1FNW85SU92ZkZsMTI5allrU0Q1QnV3?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 08:26:32 GMT"
+    },
+    {
+      "query": "Meta excess AI compute cloud business semiconductor stocks",
+      "title": "Meta Compute Launch Sends AI Compute Stocks Tumbling Globally - Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOcnJDdXRDX1pjdWp0UEJXV0VpTThtbHRfUGJiT1BLdGU5S0ljTjR1b3YyekZzd1AyUFAzU2hDTEFGVHJkZ29FSGNZdlpYYnlpWVNDb01kUXdHY0NXNkhxRm1WM1VtNFhNd01aUkVFdF9pbVZHUlVELTRZcFVQaTRHd1RsblV5TVkwUEx5V2hQMjVTMlFsUm1Z?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 01:52:00 GMT"
+    },
+    {
+      "query": "Meta excess AI compute cloud business semiconductor stocks",
+      "title": "AI infrastructure, chip stocks fall after report Meta building cloud business for excess AI compute - Seeking Alpha",
+      "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPMHlxMGZKM0V0NWdPQ29WMEQ2QXN5SEZ4ZF9Fb0ZONWtreHBkdW5XRi1uMEk0MkRWaDBWa2UzM0NWaXVGX19Td1VWNmk5emR0SUliTzJCUUIzX0dLSElhcFJqWmlhSU9Td2tXcDVwdy1vYkV5N3YwbzFrcmVCSmhFYnpxa0lfS1dpNGdOekZVZ2lWbDU5S1Zhdno3M2pZZlNJUU1QLTRiV0pOVExqTlVFdTc0QmFrNHJGeFRPQ2ZTNDgyWW05aHNheHl3RUl3N29pVnc?oc=5",
+      "pubDate": "Wed, 01 Jul 2026 14:28:13 GMT"
+    },
+    {
+      "query": "Meta excess AI compute cloud business semiconductor stocks",
+      "title": "[Meta Soars, AI Infrastructure Stocks Plunge] A Buying Opportunity for the Medium to Long Term? Examining Meta's True Intent Behind Its 'Cloud Entry' and Affected Stocks - Moomoo",
+      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPSG9LRGpNOUhfa0hxcklnb3FNV2VXQ1p5WldEOUVJS001MzFrSzJrVnktNmExcWc2MUFuWERCcTQ5SkgzUmpycmd2UzhqZUZRVlJJekVoZmtZamNJY1ZvcGRSOFZKUzZkbnFyczBrVXBabWZic3JjOFNENzJLQUtSWDgtVzExQ3N3aEpjR1BULTZISUg4TE5KQjFjdDhWTDZ0d1lET1hTZWs3SVQyTk5LRDlGNA?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 09:23:19 GMT"
+    },
+    {
+      "query": "Meta excess AI compute cloud business semiconductor stocks",
+      "title": "Meta Cloud Report Hits AI Infrastructure Stocks - TradingView",
+      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQdjJ0S29uWWtSVFZlbnBsbTVrSVJxTHdCT1FsRVotSnA2Q3hsWldkR0xkZXNoVzF5dGVHTmRzbDJXeEUxM0VIVWlYdG9hQkRnTWVWMEJkV294T1dLVE5SSFdaSTRYb2poS2FJN2ZkUzN4ZHJHR0lLRS1kemg0SllyQWZ1WGJZdzNuVElNLURMcUhUTG9DSVhpeEt1cWtYcmRLUkVWMTZJRDVTUEE?oc=5",
+      "pubDate": "Wed, 01 Jul 2026 20:02:37 GMT"
+    },
+    {
+      "query": "Meta excess AI compute cloud business semiconductor stocks",
+      "title": "Meta surges on report it’s starting a cloud business to sell excess AI compute - Sherwood News",
+      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPSnNNTTY3N1lKNnhHVFdmeGRRenhYX1p5TXA5OFNPcWZOOXFpbjJNQTN6b3M4RldDellKcXROTFZNS09Qc29lYldGQTg3dGF0aTVzX09KVHRBRFpmTVlid3k1WmhIdFZRSXR5aldNcGozVkwzeTlsdTg2M2RBbTA3NFRjS0VtNEV5WERhQnA2OUxNTkFFODNWZg?oc=5",
+      "pubDate": "Wed, 01 Jul 2026 14:03:12 GMT"
+    },
+    {
+      "query": "Meta excess AI compute cloud business semiconductor stocks",
+      "title": "Meta Is About to Make Its Next Billion-Dollar Bet. Wall Street Thinks It Could Be Huge - 24/7 Wall St.",
+      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQM1I4d3BGMUJuMXlLOTZMNlNrWVBtY2lra2ljbzBuZ0M2Q1FWNFZZYjNJZmMwRTlHSXBsRVBtdDJrV1FXSGNnaUprRzQ2Wng1eWdaWGVYRWlfMWJMYUkyTGJOZFNkOWJ3Wl91c1NNZDM5TXNSM3ROS2NpYnM0dUtiQlJwbkoyTHZTTmRIVnlTZjJGYmw3TldtTVBhOVFNV0tNa1QzTHh0Ym84LUJVQkh4UTdidTFFTGZ6WTVwaVE3OUlGZW82OG9SRw?oc=5",
+      "pubDate": "Wed, 01 Jul 2026 13:32:28 GMT"
+    },
+    {
+      "query": "Meta excess AI compute cloud business semiconductor stocks",
+      "title": "Meta Shares Jump 10% After Cloud Business to Offload Idle AI Capacity - Briefs Finance",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOOWdTZGpjcW9tSExWTjc4RGRobGxkemU5X29KTjdocV96cXR1UG5FZW51UjFQb3BDcjBKS3FzUGwtQnFkVkJZMUhMOEYwdjBmVEd3OG1UZ3JkeEJfT1RwM0lBVzQ4TVJEQXpiMVFIcVRmUUs0dzM4LWZjQV9kaE9zSHFja3hzQmV1MXhaREFHb0dWNlBESWVQZU0yb2k?oc=5",
+      "pubDate": "Wed, 01 Jul 2026 14:13:45 GMT"
+    },
+    {
+      "query": "Meta AI compute capacity Nvidia HBM memory stocks",
+      "title": "[Meta Soars, AI Infrastructure Stocks Plunge] A Buying Opportunity for the Medium to Long Term? Examining Meta's True Intent Behind Its 'Cloud Entry' and Affected Stocks - Moomoo",
+      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPSG9LRGpNOUhfa0hxcklnb3FNV2VXQ1p5WldEOUVJS001MzFrSzJrVnktNmExcWc2MUFuWERCcTQ5SkgzUmpycmd2UzhqZUZRVlJJekVoZmtZamNJY1ZvcGRSOFZKUzZkbnFyczBrVXBabWZic3JjOFNENzJLQUtSWDgtVzExQ3N3aEpjR1BULTZISUg4TE5KQjFjdDhWTDZ0d1lET1hTZWs3SVQyTk5LRDlGNA?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 09:23:19 GMT"
+    },
+    {
+      "query": "Meta AI compute capacity Nvidia HBM memory stocks",
+      "title": "AI infrastructure, chip stocks fall after report Meta building cloud business for excess AI compute - Seeking Alpha",
+      "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPMHlxMGZKM0V0NWdPQ29WMEQ2QXN5SEZ4ZF9Fb0ZONWtreHBkdW5XRi1uMEk0MkRWaDBWa2UzM0NWaXVGX19Td1VWNmk5emR0SUliTzJCUUIzX0dLSElhcFJqWmlhSU9Td2tXcDVwdy1vYkV5N3YwbzFrcmVCSmhFYnpxa0lfS1dpNGdOekZVZ2lWbDU5S1Zhdno3M2pZZlNJUU1QLTRiV0pOVExqTlVFdTc0QmFrNHJGeFRPQ2ZTNDgyWW05aHNheHl3RUl3N29pVnc?oc=5",
+      "pubDate": "Wed, 01 Jul 2026 14:28:13 GMT"
+    },
+    {
+      "query": "Meta AI compute capacity Nvidia HBM memory stocks",
+      "title": "Is Meta’s AI Capacity Monetization Signaling a Peak in Semiconductor Demand? - The Globe and Mail",
+      "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNR1VaTzNGOFc3aGhPVkVLY2ZHaENDRnc0THptcWl0ajZiUGZ2NWZ3MG9sSk9USGE0dHBZcGpqRExUaURvWElYam5VTm53N3NKYzAtUmVjeUNxQ0NESkhvbUZRMm9SODFudDVmNE4zd3gzQTl6MnloTDZuOTJSRU44dzBSMnA3OXFRZnUwZmluTzRVWlI3Nk1CQzRNWmszMjZMYVFjemhtR2ViZ1lvTDlYN3hON3B3eEhjNlFCZGFSeEdISWtXZU94OXgtRHR2SWdjRVdSWFl2Q2ZkZTJPQTFhTDlSYllYV1Awb1NqYmpnTnE?oc=5",
+      "pubDate": "Wed, 01 Jul 2026 19:21:25 GMT",
+      "classification": {
+        "negative_hits": [
+          "capacity"
+        ],
+        "positive_hits": [],
+        "names": [
+          "meta",
+          "semiconductor"
+        ],
+        "score": 6,
+        "severity": "HIGH"
+      }
+    },
+    {
+      "query": "Meta AI compute capacity Nvidia HBM memory stocks",
+      "title": "Meta Charges Into Cloud, Triggering AI Compute Repricing; Emerging AI Infrastructure Stocks Plunge 17% in Single Day - finance.biggo.com",
+      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9GdDlrM2dVYUcyZEVqYWhHNkdGSTduTGNWRkVuVXFIUFpTWXRRT2dTdUdEak5BYk1Vbmo0VlpiNUs2T1ZySWk1aUU3ZDhTNG9MRGpUaUpBOW9pb3VZUE5XY0FFd1pxMFV5QWdVQ2tqeDZubm1YOHc?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 01:45:00 GMT"
+    },
+    {
+      "query": "Meta AI compute capacity Nvidia HBM memory stocks",
+      "title": "The myth that 'computing power is perpetually scarce' has been debunked! Meta (META.US) reselling computing capacity has triggered a 'bullwhip effect,' prompting speculation that the AI bull market may face a 'mid-game pause' style reshuffle? - Moomoo",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPUXpSUmpfcGdnX0pqSVhRLVpKWVk0clEza3dxYTNPZ2ZnZHpkWko4MFdtaEluWFlZTGs2RkJGUTJ5cU1HdHNmTUIzNjNRd3NJS3BrNU9aV0t4LTJuSkJmaWZFeWp5OEx1aF80STdGcWpCY1M5aEhyLTFreVZGVmxQUUtGN2ZqZVhRdW5RYXhfLXl0YWtNa3F0Z1Y1a2tEUzlKaUhnVw?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 06:15:17 GMT",
+      "classification": {
+        "negative_hits": [
+          "capacity"
+        ],
+        "positive_hits": [],
+        "names": [
+          "meta"
+        ],
+        "score": 6,
+        "severity": "HIGH"
+      }
+    },
+    {
+      "query": "Meta AI compute capacity Nvidia HBM memory stocks",
+      "title": "Micron Stock Analysis 2026: AI Memory Supercycle Investment Outlook - Intellectia AI",
+      "link": "https://news.google.com/rss/articles/CBMickFVX3lxTFBLa0sxN1hCSEdKTUl3WE1nb0swN1VvLVd2ZEhubG1kclhvREhjdmFtUFRuOUYyUjVrSVNqNGRXcFJCeW01SVRqbEIyYkNMS0F6bDYwOUZSRmpXVHh1NjJieV9sQTU5aWotcHhFSXNLVHkwQQ?oc=5",
+      "pubDate": "Fri, 26 Jun 2026 14:15:59 GMT"
+    },
+    {
+      "query": "Meta AI compute capacity Nvidia HBM memory stocks",
+      "title": "Micron reassures the market with record forecast and long-term contracts - Techzine Global",
+      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOSWhJYTRxeVd4ZmdlUDNRQ1R4UzBPZkQ1SUdjdTdmV05Xb2lhV01vTFJ0OEFubDVxekh6aVlLRE1HZ0FSY2w0cm1McEp2blJOdjlOOXoxaDB0UzdUU3FGREtFdjdHaUhUNnVTSW9EenI4WFUteEdNaV9RUEtLbm82SEMyaGYwWWtWRE9qWm00ZFhLbG93eGVrQ29PY3IxUktuS19Ebk1ydEpKWWlPN1ZwSXFyZnFTQkVBcmZsbVF0THFYUQ?oc=5",
+      "pubDate": "Thu, 25 Jun 2026 09:44:00 GMT"
+    },
+    {
+      "query": "Meta AI compute capacity Nvidia HBM memory stocks",
+      "title": "NVIDIA vs Micron: Which Stock Will The Market Reward - 24/7 Wall St.",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNN2N2UmFXRDRKTkZTUWlQWFpKcm9rbkJIV3BycXVwSVE4REhLdklUMHMwOG9tVXhHQzI4U2VzZ2xCNndBQlN1UGUyc0pXbFRFaDNScV9tdFhBS2lCcWdRX3J1N2ZFUWFEOUdKc29nbmJSdk81THdwMy1WNWVtbmhPZnNXbjdmV3lnb1J1UVFpQ2dRUTlmQ1JsbS0xNA?oc=5",
+      "pubDate": "Thu, 25 Jun 2026 15:11:18 GMT"
+    },
+    {
+      "query": "AI infrastructure oversupply semiconductor selloff",
+      "title": "Smart Moove | Meta Soars 9% on Cloud Plans as Memory Stocks and AI Plays Sell Off - Moomoo",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQMTIyRG82MUl1eEVpRlN0cEdONWJDWllxeGthc2E0eTU2bTZqRl9Wc0ltZjU0OHlkWm9FSHhFRnFLMGpVeGc1aVcydE1iYnZDRWQ3X252RkRLVDdMeUFtckJnY2hteFd0cXB5cXlZZUNKWVhDUGZ5RGVTZTVMOTVxc3dUeUx2V0FjRk9fY1NDQzVmUDJnV3E3UHktQkZVTl9PQ3R0R0h3?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 10:29:34 GMT"
+    },
+    {
+      "query": "AI infrastructure oversupply semiconductor selloff",
+      "title": "Collapse of the belief in AI compute scarcity! Meta's move to 'sell computing power' triggers a global chip selloff, with South Korean stocks plunging 8%—hitting circuit breakers—and foreign investors pulling out over 5 trillion KRW in a single day. - 富途牛牛",
+      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNYmNVY1VxbjQ1TTZHUFBFbWZ3TDlEdzN4REw4WjFjd2VYQ1d2NXNhbjFMT2UyTFp6Y1F0S1RiZzdXQm91V0NOUVVGb014elR4ai00ekx5cGR4N3ozTW9WUXU4UEd2YWwzcE5UdkZaaEpEaFZqOTdIVDF6NVFONDh5M1RsTVBLVkJFTmdJSi1YNnlUOHhXSDNQVg?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 12:07:07 GMT"
+    },
+    {
+      "query": "AI infrastructure oversupply semiconductor selloff",
+      "title": "Samsung, SK Hynix Plunge 7% as Chip Selloff Goes Global - The Tech Buzz",
+      "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQelU3SF81YUItd0tvVF9PZnlMcFZscmZJWmt5Umdfa2JtOEZmM1VEbWlDdUV5RnBIVndhUGV0ZTEzWmxfaWlPZzF3aTlMdS0tVXFTYnhjRkNKZFJ0Q2R6RGYwdmlCVWFwVm5HNW1GTUJsZVJ4LU16RkNDUVFsdmd1enZxdXBfTzNzT0pEQTlEZw?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 04:11:00 GMT"
+    },
+    {
+      "query": "AI infrastructure oversupply semiconductor selloff",
+      "title": "AI infrastructure, chip stocks fall after report Meta building cloud business for excess AI compute - Seeking Alpha",
+      "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPMHlxMGZKM0V0NWdPQ29WMEQ2QXN5SEZ4ZF9Fb0ZONWtreHBkdW5XRi1uMEk0MkRWaDBWa2UzM0NWaXVGX19Td1VWNmk5emR0SUliTzJCUUIzX0dLSElhcFJqWmlhSU9Td2tXcDVwdy1vYkV5N3YwbzFrcmVCSmhFYnpxa0lfS1dpNGdOekZVZ2lWbDU5S1Zhdno3M2pZZlNJUU1QLTRiV0pOVExqTlVFdTc0QmFrNHJGeFRPQ2ZTNDgyWW05aHNheHl3RUl3N29pVnc?oc=5",
+      "pubDate": "Wed, 01 Jul 2026 14:28:13 GMT"
+    },
+    {
+      "query": "AI infrastructure oversupply semiconductor selloff",
+      "title": "Meta's Cloud Push Triggers Semiconductor Sell-Off as Wall Street Starts Q3 on Shaky Ground - finance.biggo.com",
+      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1hbG5wVnhjbV9Lb0dVQ3E5bXcwZFdwQVNpQXlBRDFSMzlMelhFNlV0RXJSbUdoMV9Tc2xSbTJNMExnd2d1SzJMQlNDT0dBU3ZDVHJNMFRub1loNlJlN3hTR2ZKaVAzMDVxTjF3anpyVnZJNndpNkE?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 00:07:00 GMT"
+    },
+    {
+      "query": "AI infrastructure oversupply semiconductor selloff",
+      "title": "Meta, Palantir 3x DLCs Jump while Micron Falls Sharply; Gold Holds Near 4,000 Support - Moomoo",
+      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNY0J0SGd6MjB0a2lYSmpxaUJNMTA0bGdPT1liVTZJQ3dUbTdEclZxLTdxVkJEaXBIVGUwQXJCSkxMRmFEcDB5aXZNbm1hcVpRa1l3WGVBU0FpRzAzeDVsak9teFZhdnI0dE5rTm0tVWFNOThqMS1aNU83Uk03Z3FxWll6UktaTU9PU0h0cWp5R09oVkpNc2pxNDRpdzNEV25UV0hHN0oyQmhNNmlWVk1rZ3F3?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 05:58:37 GMT"
+    },
+    {
+      "query": "AI infrastructure oversupply semiconductor selloff",
+      "title": "Another near-collapse! Panic over AI computing capacity glut triggered a sell-off in chip stocks, sending South Korean equities plunging 7% intraday. - 富途牛牛",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQNlE3OUJSMEpiVXNmLXdZSDFXT2NzcDVJaEdEMDRKZXkwQXJUNWYzak1Wemo3SzZCQWc5TUM1bWVnTWRxSFpWS0ViRmNWWmF5UzRuclIzSU1SQ3M4dC1kbUxfT0czb3VpVE16RHpJaWQ2RWxoMUE0UU4xSjFIMkFJcUduclhmS2pnRGZoOWhDc2FPTkVuSjhSZGt2ZlF3dGhEZEtENkZjZmRBdUJWVGdz?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 02:17:32 GMT"
+    },
+    {
+      "query": "AI infrastructure oversupply semiconductor selloff",
+      "title": "Micron’s 12% Sell-Off Is a Gift. AI’s Memory Crisis Makes It a Long-Term Buy - 24/7 Wall St.",
+      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOaWZVRFJSdVpSd3pDOHZmeHpQV2l0Mk5pRUFpME53UEtxTDhxY0FVd2ZVZDRhWDhPNGxtUXo1NVZFSzZYLTBfdnZoWHFWOVkzTzloSWlDZUFlLXpvazhaVVZMSVVSX2Y3d0xVNldHYzQtSnNuQTRtZHNBck9VT0hIT2NlWFRNZWtjTlFSay1VUFZhdUJscURlMHBMdWNZeGpMYVhvUTVUTVV1alI4M29jT3p2bXQ5cHc?oc=5",
+      "pubDate": "Tue, 23 Jun 2026 07:00:00 GMT"
+    },
+    {
+      "query": "hyperscaler capex cuts Nvidia HBM Samsung SK Hynix",
+      "title": "The AI Memory Shortage Just Entered Year Two and These 3 ETFs Own Every Layer From DRAM to HBM - 24/7 Wall St.",
+      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNaFN6U0tVelBWV01rSFFzU2RhZHZOUHFaeFFkS1JpWnpRbzZOZXNlR0ctcUNYdUE2QjIxMEpfSXI3MV9lVlhuVlp3M0ZsQTJ2R2Q0NFQxQ2Q1cDcxaFpnRHBOYlI2a0tQMG9HOUdlaEJUNm1nVGVFUmZxRnB5SjZJZVhhQW42bTNPUEgyNnhWcTBxZVRQZnp0LTJQM0V1NTNBRTlNOGdoeHpVQWVmNGlhX3V5SnN0TGk0TlFrWDg4MVFYb2EzZVBzcW5odW9fc0NWQWxyaw?oc=5",
+      "pubDate": "Wed, 01 Jul 2026 18:24:18 GMT"
+    },
+    {
+      "query": "hyperscaler capex cuts Nvidia HBM Samsung SK Hynix",
+      "title": "Micron Up 900%: Why AI Memory Trade Still Has Upside - Beth Kindig – Medium",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOZkRFYUFpOGY2Q3dnX19nbVZGX3I4TFl1N2lITmNaUDhfaVlZMTFsUDY1R3FzQTBKWTA0RGhkS3dwTG9LNF9YclR3T0xwcktheWExR19OSHprcWZROG5XbFR0bm1HSWJDUk1xVVNSS2RRVTUxblk2aFhReEtJWjV0dVUtaHBMZkF6X095S3VSQUJhdkF3LVFZYkNB?oc=5",
+      "pubDate": "Tue, 30 Jun 2026 21:02:45 GMT"
+    },
+    {
+      "query": "hyperscaler capex cuts Nvidia HBM Samsung SK Hynix",
+      "title": "The AI Memory Shortage Just Entered Year Two and These 3 ETFs Own Every Layer From DRAM to HBM - AOL.com",
+      "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOcXRKWkxGM1lqMkVVbGNHMThyNk1XWVNJeFdJNVA2LXBNc1lVTm05SGIzamF0VnJhdnJmRGZLLTA4c05GNWg5a0RtclVqc3JGLUxRYkJscC1aeklteFAyTi1PMU5XRmxkZjVOZTBmSWtBTHNCR01jUmtnMFphejRpeg?oc=5",
+      "pubDate": "Tue, 30 Jun 2026 07:00:00 GMT"
+    },
+    {
+      "query": "hyperscaler capex cuts Nvidia HBM Samsung SK Hynix",
+      "title": "Micron: Memory Downcycle Sooner Than Expected (NASDAQ:MU) - Seeking Alpha",
+      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOb2Y5MnZKUlRfQUtCbUthdVZrQlZSYkZ6bnpjUXdKQ3drU2dodnlDREJWeVgtOC0xeWx1TUJzR1V2eTJXWW50SkNFWHZXaDJpTnIwVmhWa1dZSWlzaDNaZDU2NmlUMnp0ZmVTT2JwcFluOWVKb19oVmc5UjF4WEdETm52WDQwZWRlN2g5ZEdB?oc=5",
+      "pubDate": "Mon, 16 Mar 2026 07:00:00 GMT"
+    },
+    {
+      "query": "hyperscaler capex cuts Nvidia HBM Samsung SK Hynix",
+      "title": "The Great AI Silicon Shortage - SemiAnalysis",
+      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE12U0FjQmc4WG9Hel9oLWJlaEFYZEZfeVRfTExLUmREQTlZWVlrZ1J1LUE4THJoVi04SURWUkhhVk1WTXFldFBmN2gxYkNqYTdOQVhMcEVTcU1ZVFBuMTc1U2xIV3RZNnZyQTYyeXdTeDVLTlY2Nmc?oc=5",
+      "pubDate": "Thu, 12 Mar 2026 07:00:00 GMT"
+    },
+    {
+      "query": "hyperscaler capex cuts Nvidia HBM Samsung SK Hynix",
+      "title": "Memory will consume 30% of hyperscaler AI data center spending this year, a 4X increase over 2023 — Nvidia gets preferential supply terms well below standard market rates, says analyst firm - Tom's Hardware",
+      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOZ0J1M2plYkJGZUtoN3luOHZ1LXZfQ2ZGdklXWmNRWmVHaUs5aEl1SkJFZVhmQjZ5VEQ0NmtoZEgxZ3RqMnlxbUJGTFpBUTMyeVdNX1BEaE1KRENyajJUU0VSbHN4ZDlxemlqdzRNam5PV0ZiT0NMakF6NXNYa3c3eHR5a2k3XzFKektHN2F3dERwZWEyU3pERzFfeEgzOHhsM0JyVTVfUTFhWGs?oc=5",
+      "pubDate": "Fri, 03 Apr 2026 07:00:00 GMT"
+    },
+    {
+      "query": "hyperscaler capex cuts Nvidia HBM Samsung SK Hynix",
+      "title": "Samsung's $73B Semiconductor Investment 2026: AI Chip Strategy - tech-insider.org",
+      "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9lLW5YQ2R0aGlTQlNnc1VTQmJLOVRpSmxTV1ZwcDNVdUdUWUd4aEh0OTZ1bHRZTTF1RDFueEhId1JwNWs3Tk8ybXVhYkZfdEVBS0JBUXBQd3lFUXV0cWFSd3ZxUnJkMVZZLXNuU0Fkakw2Q1pPUHQ5MGFVb0F2UUk?oc=5",
+      "pubDate": "Wed, 25 Mar 2026 07:00:00 GMT"
+    },
+    {
+      "query": "hyperscaler capex cuts Nvidia HBM Samsung SK Hynix",
+      "title": "The ‘Buy Everything AI’ Strategy: Is AIQ Your Ticket to the $2.5 Trillion Supercycle? - 24/7 Wall St.",
+      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNQk43bWRnSEgtSkoyTzdvWU9wT3NEV2poZTNiZ2xTUk9PRC1rSzVtcW5ibG5VVldtcElZRWxWX0N6ZFJ3MU55R0trZ0dCczdEWjBhT0h6Z2tUcVZ1TWE2YkRhUGVXWW0wVDgwbzlJNDNvaFAtMUFkYlJySFpyaER3ellxVjdwbDczOGJ3S3cwbFFLRVUyb0REbXRSX2FXYkxlS3lVUDVxSWhkXzg0aWNmeThHZl8yUW11WG4xR0N0QmNMUQ?oc=5",
+      "pubDate": "Thu, 11 Jun 2026 07:00:00 GMT"
+    },
+    {
+      "query": "Microsoft Google Amazon Meta AI capex Nvidia memory",
+      "title": "Skyrocketing component prices push Big Tech capex to record $725 billion — Microsoft alone attributes $25 billion of AI budget to increased memory and chip costs - Tom's Hardware",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQWmJ3SzNCSjBYWnZjXzJVQjhCUDRFYUlUTEtzbUxpb1BJR3IxbTN2cmUxV3NyRm9zeVNrSEJPdXA0YXJON0hxUjg2Q3l2YXhpcjREbnhXUmhHVTNFb1lsMHBmVnFsdWNHYk9tQjNrekh5dFhJdjE4NnVBcS10SndIc3lWYjdtRW5qNGRjZEd2UnRrOXhZd1I5MlF3bjhIR2ctQjY4Q3JRcWpRQlRoa1BHSXdyWW5SeUxWcHMySWRvYzVibHluWGxR?oc=5",
+      "pubDate": "Fri, 01 May 2026 07:00:00 GMT"
+    },
+    {
+      "query": "Microsoft Google Amazon Meta AI capex Nvidia memory",
+      "title": "Investors still trust Google more than Meta when it comes to spending their money on AI - CNBC",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPYVptcXRPZ1E4ZGlTQ20teF8tMjFNZVQwc0JPbnJNdG16emxLZ2lTVzFabTF2VjlGeENza2V1WnE5eDhkQ2ppNEhCeU1WT1EyblRuZkRhM0RJSkFQekl1RnN5RlozWklFLXVLMnNCWHBpSFdfQWNha3ZiSVA5ZkVCTllBbWhISk02TXJndjdvazMxOGhTVWNFcy1ibWtaX1BjUjV2RnpB0gGrAUFVX3lxTE9BTEo5dE1UbTg1dk1INENCWWk0V3dLaVFhTHpUMHR0WUxZSVlJRFphRG9pVXpFWEdmeFBBbmh0ZlY5QWdCcmRySXRleld2Sm1Tem9LS3dLOFpnY1JUc3hISlZnVFYyRk5BM1dXWmJtanNOQ0FQMDVzZ0c4Vm0wekt5VTZ2Vi1YUVIyXzhES3JnMmwySTRLS1hwcUxrUjBNV3hmSU01QTRqdzlzQQ?oc=5",
+      "pubDate": "Wed, 29 Apr 2026 07:00:00 GMT"
+    },
+    {
+      "query": "Microsoft Google Amazon Meta AI capex Nvidia memory",
+      "title": "Microsoft, Meta, and Google just announced billions more in AI spending—and only one got punished - Fortune",
+      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQV1Z2NVFlZThxV1RYTDVBUjUteno3U2FtenBjWW1hWVYyeXRNUHZjeEZ6STVtdGFtY1FzWGVUVU9fb1gwVmR2NXZqSWxST2FlWWlzU2lHbTVUOE5ZQUQ4OUNuemN4Nm1iUkdQMzdLdW10RWx5SzNOYzlETjRsVzRxWnJFeGxOODg?oc=5",
+      "pubDate": "Wed, 29 Apr 2026 07:00:00 GMT"
+    },
+    {
+      "query": "Microsoft Google Amazon Meta AI capex Nvidia memory",
+      "title": "Tech stocks today: Nvidia stock drops 6% in ugly day for chip stocks - Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNMERtLU0wVHdSb1dicTdabW5QU05YSElsaDVMcnU5UUFETFg4OVRPTWNTSUtfczJTREwwaWRuT1BWNHBBWVlMNldtbHlXeWR4Snc4bS1JaDZvUFdBWFF3Z250RFJNbDUyekRZZDRYLWp6eVdzQ2kybjRsS3R2dV9wWWR5RkNOaEloTlVLUWx1MENUWFpFLUNUWXBzQ3RsaHVudHFMLVJhNFJMV2laa2U4OHBYdGo0TGxFekM0S1FTVjdMbUM1WnhEQVFYbw?oc=5",
+      "pubDate": "Fri, 05 Jun 2026 07:00:00 GMT"
+    },
+    {
+      "query": "Microsoft Google Amazon Meta AI capex Nvidia memory",
+      "title": "Amazon, Google, Microsoft, Meta Q1 earnings: AI profits are here, custom silicon is winning - UncoverAlpha",
+      "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTFA2MXN2QmFUOWpOTFZJbXJ6czVEVUFPcXpjWEppMldUS3pabmVlT0E1bW12ZlE3dk1xWXZGdmRsb0MtZ1k1bHJ5Uk52alJoMEpaYVpaSlktN09ldmxFa210NGNsNWxsRzBWS1FDZ0tvUm9kWTIwT2FsRFBvRQ?oc=5",
+      "pubDate": "Thu, 30 Apr 2026 07:00:00 GMT"
+    },
+    {
+      "query": "Microsoft Google Amazon Meta AI capex Nvidia memory",
+      "title": "Big Tech is spending up to $725 billion on AI. This chart shows how they stack up. - Business Insider",
+      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNNFVQbUU4OWZCQWNHQkVxTEotY2dRZzRVR2FiTVVWMHVXV1EzZXRjVTZoMjctX0RDd2kxak5NRjhqLUdPRC1zZ2JSb19sLTV6bGo1RzY2WHMtMFc4OS1MV3BXVGNfVUR3S21JbTlSVjVxZmQwMm9hUXRKTVkzdmZ6eVBDR2lfZldxOU9uQ0otVXR5ZjNBcVE?oc=5",
+      "pubDate": "Wed, 29 Apr 2026 07:00:00 GMT"
+    },
+    {
+      "query": "Microsoft Google Amazon Meta AI capex Nvidia memory",
+      "title": "Meta, Amazon, and Goolge Lead a $700 Billion Capex Wave: What Stocks Win Beyond NVIDIA? - 24/7 Wall St.",
+      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPblJkdnRzeGs2U3BUSk0xQUx1RXhscDFsRklGbGszV09QSnFxSWRiUkNXZG5hcVh1M2xHekt3RFBkSEppM3F5ZHN3U2FFTUtaYUJkTEZwaU5BSjk0SlVNbTVnQVZtaG95VER3ZGhkb08zNGg5VnpUTGQ3Mi01RmlkSnJOTWp1b0UySFpLUS1Odm54bjhEN3BWT0FpekdWLWpzREtBektNZlU0WDFPWkVBWWZ3QzQzdDNxcWhoZUE1dU9qb19I?oc=5",
+      "pubDate": "Fri, 13 Feb 2026 08:00:00 GMT"
+    },
+    {
+      "query": "Microsoft Google Amazon Meta AI capex Nvidia memory",
+      "title": "Alphabet Drops 10% on AI Capex Fears: Memory Chip Rally Reveals a Split Market - Tech Times",
+      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOU3RlREt0bUw0ekVSamR2YWV2eTZfbFRjMGJWQ1lXTjJ2WS1GYmFDSzVjWGRGWlpIQmZaVDBkUndQZDdzT2wtemRvdkl1Y1d6TXRmZXVOY19DdUd6a0JzWHN2dE12UTNiX0dOZWwzQVV1bjRvRnFvTGZCc19NQmtmRkF3bkE2emZ6b0xGREZyMVR2VUJPeTNRNGhWcGhtTnVpYjZMd0VRakhuR0V4WnJtdXltY3AxTnNQS1RJaF9lM0lTVlEw?oc=5",
+      "pubDate": "Tue, 23 Jun 2026 09:28:43 GMT"
+    },
+    {
+      "query": "Samsung SK Hynix shares Meta AI compute selloff",
+      "title": "South Korean Stocks Tumble 6% as AI Jitters Hurt Chipmakers - Bloomberg",
+      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNdlRjYVBnTVlSOV9ldUNNWWhvTlNNaC1XbzJtQlZMb3hDRUZsdENfNjZvR0dwMC0tOGJYR3dabUtIQVU4OWlNaUdpSG9wV2xyOWlWbjRja1Y5RWZ1ejV2SmMyS29KZkU1Qm1LamJnM2x3LVlDWTNRM21zV09ZYW5rWW0yNDY2cnk3MjZCTG5xQ3dYTTItZV9iamhRcHBtZGtIMk8xelVuYVc3SHpQUGc?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 07:46:45 GMT"
+    },
+    {
+      "query": "Samsung SK Hynix shares Meta AI compute selloff",
+      "title": "Meta's AI pivot triggers global chip sell-off, sending Kospi below 8,000 - The Korea Economic Daily Global Edition",
+      "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1LMXlPUFotUER0aGJJb1hMN3RFYWY2NFcxcV9rR0hBTW1ZeVFXalBwZkJHLVBSUTJONnA1elVTNkxXd2tZWE5NbEs0NjYyR2drNVItR2YzVXlIOWZmRGRxbVZ1NWwtTkNPTVJBckZnQUpjejNqbWlYZERn?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 11:32:59 GMT"
+    },
+    {
+      "query": "Samsung SK Hynix shares Meta AI compute selloff",
+      "title": "SK Hynix to spend $64 billion on flash memory chip plants under broader AI investment plan - WTAQ",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOZHd5NWJUeUgtdFdCdlZ5UVVlOEZVcUE0ZldvYTlFbGlvVldPTzFRWlhzX001MjR3ekVZdFlNdXltci1SNG1uODl0ZzdveE1ETERmVnUzU2xzNTg5MFFseDRta2tUUkV6OWRiTXZDMTN0QVRCSFktb0RaX1g0SFVsa0xQTkRwTUloYWQxenZRbm5GcVBl?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 07:34:04 GMT"
+    },
+    {
+      "query": "Samsung SK Hynix shares Meta AI compute selloff",
+      "title": "Meta Compute Plan Hits AI Stocks As Global Chip Selloff Deepens - Yellow.com",
+      "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE80MnhsLUM5WGxFLVVNak5oMndqTHVtOEltQWJaTE5OWkhDRDZ3OEVFbk93NzFpQy00Q0lwdHRGT28wZVBoV2RWdS1TVVZFbExkWXpIbmJ1MkVfbmhJTzBMQQ?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 04:20:13 GMT"
+    },
+    {
+      "query": "Samsung SK Hynix shares Meta AI compute selloff",
+      "title": "Meta Compute Launch Sends AI Compute Stocks Tumbling Globally - BeInCrypto",
+      "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5HdENKRmxiVFRDa200ZHBsU21GS2lNUmdEVGd0UDdZazNPRjNvN2hiTHlIQ0VvZ3NKeENta1FCX2c2QW93cXplc2tqOUltNjg1bmRKZWpTUk9UQ3F5SDAwS2duVVBJUQ?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 01:52:00 GMT"
+    },
+    {
+      "query": "Samsung SK Hynix shares Meta AI compute selloff",
+      "title": "Samsung Elec, SK hynix plunge on overnight U.S. tech sell-off - 매일경제",
+      "link": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9nVGJMZXpURnJMSFk2ZXFXbzJneUNycGdSUldDYkdWdU9SZC1fcURlZkFmT3FSTklLcFdoUWo3YWIxaDJnQ3RTS2R2aHl5MnF0MDdEM1V6aw?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 05:21:34 GMT"
+    },
+    {
+      "query": "Samsung SK Hynix shares Meta AI compute selloff",
+      "title": "Kospi tumbles 8% as AI demand fears hit chip stocks - theinvestor.co.kr",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFA1TXV0U1hvTjJTa2ppTGpWeHZmWVVmdlRLN0R1eW5Lb0k0Nk5SY3NPZmNxU3dsQWEyLUY4UzVUN05DalRucUhXcVVtSjY4R2xSRmhGZnVvZ1pmUQ?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 08:51:52 GMT"
+    },
+    {
+      "query": "Samsung SK Hynix shares Meta AI compute selloff",
+      "title": "(2nd LD) Seoul shares plunge nearly 8 pct on tech sell-off amid renewed AI concerns - Yonhap News Agency",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBKRXllTUhib3VWM2ZMTlh0UVFKNjQ5QWVJOFpIUnBWZGcxcy1PWTFHbDFrc1ZtU3M5dTRRUzdzc0gwWV9LOGw1a0p2ZFhuUzFmS0dQSXd0RnFjZw?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 07:40:46 GMT",
+      "classification": {
+        "negative_hits": [
+          "plunge"
+        ],
+        "positive_hits": [],
+        "names": [],
+        "score": 2,
+        "severity": "MEDIUM"
+      }
+    },
+    {
+      "query": "KOSPI semiconductor foreign selling program trading",
+      "title": "Kospi tumbles 8% as AI demand fears hit chip stocks - theinvestor.co.kr",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFA1TXV0U1hvTjJTa2ppTGpWeHZmWVVmdlRLN0R1eW5Lb0k0Nk5SY3NPZmNxU3dsQWEyLUY4UzVUN05DalRucUhXcVVtSjY4R2xSRmhGZnVvZ1pmUQ?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 08:51:52 GMT"
+    },
+    {
+      "query": "KOSPI semiconductor foreign selling program trading",
+      "title": "Kospi slides over 7% as investors dump chip stocks on concerns of excess AI capacity - Korea JoongAng Daily",
+      "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNWDlMbFN1eEtTbkNqWnVQOU9aSjlsN1hScG9hQzY5WWw5YnBHRk9SZ1pDUzZQSDd4MjVUZDNtbjhSRDJjQ2ZRS0VBbzJtcHdUY2dFTWh6RDR2eHlpLWVaYVZTTVBvV3BCTDhZWmZxcDBmMTZHbVdabjNaVk1FcHFYV0JHZUw5UnZTUnFWSGVjaXBYTzhYNVI4bHQyMklXM3dvU0Utb1Rnalo5eXhWY2h0Yl9lclBtS19TdzlBc3R2dWE1R3NJRVVGLW41RW1feW5qelE?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 08:57:08 GMT"
+    },
+    {
+      "query": "KOSPI semiconductor foreign selling program trading",
+      "title": "Seoul shares sharply down late Thu. morning on tech sell-off - Yonhap News Agency",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9BcGF1T3Y1RWVIbi12R3lOR0ZXWnZmN3dMX0pWX0lLSHZTT0lEZ2RyTWM2bXBtaFVWUjhhU1E5SnZFTGdrQkhUZUQyeUl6R3RUay14cnhsNGZjZw?oc=5",
+      "pubDate": "Thu, 02 Jul 2026 02:30:50 GMT"
+    },
+    {
+      "query": "KOSPI semiconductor foreign selling program trading",
+      "title": "Kospi slides 8% on US chip sell-off - The Korea Herald",
+      "link": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9fWThYbUhDOUtuQXNodUFuOVR5djl1N1c2R3RQQVh5bHczZ09Ed3RSQmd1SWpKUGlES19mak52MzJGSkZwdU9sdEdaWkNHTDNRY0lWUWl2aw?oc=5",
+      "pubDate": "Mon, 08 Jun 2026 07:00:00 GMT"
+    },
+    {
+      "query": "KOSPI semiconductor foreign selling program trading",
+      "title": "Korean markets tumble, analysts see buying opportunity - The Korea Economic Daily Global Edition",
+      "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9DUDA1TFhsbmZqaUFhSWd6ZWZKYUhWemk2UnhPbElIeDNEekZBdTdFTHl6OUtyalhfaFJjWEJpNm1UckxhdHRwUkJBenZlQ3hqdzh4V3BGbzFMU1ZqYXJVdUJ5WXhoXzlaVXdRZkhtVTc5Ym5aakoyS213?oc=5",
+      "pubDate": "Mon, 08 Jun 2026 07:00:00 GMT"
+    },
+    {
+      "query": "KOSPI semiconductor foreign selling program trading",
+      "title": "Foreign, institutional selling drives KOSPI plunge, triggers sidecar in Korea - CHOSUNBIZ - Chosunbiz",
+      "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNd0tpbDNqd3luNEE3M09HRXhuU0hyY2RjbFpleV9LdndXN2RMbXhNSVNjZEhSZFp1R1ZQRVpKbDZ1cGdNQWEzc05ISW91WXQ4WGhWWEhHQ3FyTnNXUzMzalp6eVBkQ2RvdmlwVE5MZWxnRllIMHE0dTNyTzdFR1VrZtIBlAFBVV95cUxOSk1sdVRLVzRvaUFXeFdienBLdTM3M2dzUmRZcXRoZ0FnZ2tRVDIxNFJPMm1qMTREcjRNT1dKMFBGVWYtM3ZURlBtdzJ4cEh3cWZjdjM5aUdwZjVqR0xvMktPRmxxUmRERHlEOFBJaHo2c2h0cXExX29scHQtbXl5SHF6cmhTQ3U2bjdad3lVM3NkSkRZ?oc=5",
+      "pubDate": "Fri, 26 Jun 2026 02:19:00 GMT"
+    },
+    {
+      "query": "KOSPI semiconductor foreign selling program trading",
+      "title": "KOSPI Plunges Over 8%, Triggering Circuit Breaker Amid Sharp Market Sell-off - Businesskorea",
+      "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9PVkRVNHloaldzeTJWZWVvS05hZHRkT0pzdHRXZ2pTNzJuRkNzSU5oc2k1OWVFRVFFb3pyQk9TNVJCNnBOOGxhR1JIQ21VcEdqd0FBaTJMVE5JZERWeHJHQVBIaXJBcHlvUVpqZ0VHbWk5bVUz?oc=5",
+      "pubDate": "Mon, 08 Jun 2026 07:00:00 GMT"
+    },
+    {
+      "query": "KOSPI semiconductor foreign selling program trading",
+      "title": "Seoul stocks, won hammered by massive foreign selling - The Korea Times",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOWdVQzlvdzRtcFY1M3BLNHQyeTdQLU80M1RTekg3YTRjeFNqVHR3eTlBQ1NELXFSVlR1VWZXS2xOZFJMNk1IdkZXeldRQ2hDNDVvMW9PWXJITERHZUNlN2tmY1JvdWRranp4dm5KbXRRdTcyNU9QTmpOaHZMLV9DY3NmX0FEUU5xcVlhQlFEaDlKdkVKRkxKWFRpMzRsMUHSAaQBQVVfeXFMTkcwVW1ZQXp6WWE0VDhZNTFQclBJTzhQT0U0R0xKWGV3T2xJajZjYzN1Ml9jYmJWUEdQV3pwaWJxNWhjVk8tNjFKcndycE41THJMUlVXZGtlYWdXZEk2R3oyZDBINW9sLTVuSGtJZG5HZE9idTg5SlpTc2sycE14LWc5cXIxVjdaTHFPN29RWVhkWmR1RWZBek9aSkpfQ2JjN0lJNGM?oc=5",
+      "pubDate": "Fri, 05 Jun 2026 07:00:00 GMT"
+    }
+  ]
+}
