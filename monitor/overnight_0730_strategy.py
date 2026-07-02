@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""
-07:30 KST KOSPI open forecaster with overnight US, domestic damage, public news,
-and local GLM audit.
-
-This script is intentionally low-token. News/SNS is approximated through public
-Google News RSS because private X/Telegram/social APIs are not connected here.
-"""
-
 from __future__ import annotations
 
 import argparse

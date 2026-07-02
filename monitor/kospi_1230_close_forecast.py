@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""
-Robust 12:30 KOSPI close forecaster.
-
-Uses Naver realtime/integration endpoints that expose current index, open/high/low,
-flows, program trend, and key enrolled stocks. Designed for low-token operation:
-deterministic forecast first, optional local GLM audit second.
-"""
-
 from __future__ import annotations
 
 import argparse
