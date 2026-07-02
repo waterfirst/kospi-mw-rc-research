@@ -46,6 +46,10 @@ def predict_close(open_,cur,hi,lo,F,I,P=0):
     gap_fail = cur < open_ - 80
     bearish = (F < -10000) or (P < -8000)
     strong_inst = I > 15000
+    # 7/2 교훈: 외인 초대량매도는 기관매수를 압도 -> panic 지속(반등은 함정)
+    panic = (F <= -30000) and ((F + I) <= -20000)
+    if panic:
+        return round(min(cur, lo) - 0.5*(cur - lo)), "panic지속(외인압도)", True, True
     if gap_fail and bearish:
         close = cur - 0.40*(cur - lo); mode="gap실패+매도우위(하방)"
     elif (not gap_fail) and strong_inst:
