@@ -1,0 +1,250 @@
+{
+  "snapshot": {
+    "created_at_kst": "2026-07-02T21:42:01+09:00",
+    "us": {
+      "SP500": {
+        "symbol": ".INX",
+        "close": 7483.23,
+        "change_pct": -0.22,
+        "status": "CLOSE",
+        "traded_at": "2026-07-01T17:00:58-04:00"
+      },
+      "NASDAQ": {
+        "symbol": ".IXIC",
+        "close": 26040.03,
+        "change_pct": -0.66,
+        "status": "CLOSE",
+        "traded_at": "2026-07-01T17:15:59-04:00"
+      },
+      "SOX": {
+        "symbol": ".SOX",
+        "close": 13353.28,
+        "change_pct": -6.27,
+        "status": "CLOSE",
+        "traded_at": "2026-07-01T17:15:59-04:00"
+      },
+      "DOW": {
+        "symbol": ".DJI",
+        "close": 52305.24,
+        "change_pct": -0.03,
+        "status": "CLOSE",
+        "traded_at": "2026-07-01T17:00:59-04:00"
+      }
+    },
+    "kospi_day": {
+      "rows": [
+        {
+          "date": "20260625",
+          "open": 8703.42,
+          "high": 9044.04,
+          "low": 8693.62,
+          "close": 8930.3,
+          "volume": 456880.0
+        },
+        {
+          "date": "20260626",
+          "open": 8813.18,
+          "high": 8861.7,
+          "low": 8126.84,
+          "close": 8411.21,
+          "volume": 518473.0
+        },
+        {
+          "date": "20260629",
+          "open": 8334.28,
+          "high": 8525.53,
+          "low": 8127.99,
+          "close": 8394.65,
+          "volume": 371223.0
+        },
+        {
+          "date": "20260630",
+          "open": 8416.7,
+          "high": 8667.73,
+          "low": 8220.8,
+          "close": 8476.48,
+          "volume": 449824.0
+        },
+        {
+          "date": "20260701",
+          "open": 8591.5,
+          "high": 8620.15,
+          "low": 8143.33,
+          "close": 8303.41,
+          "volume": 468193.0
+        },
+        {
+          "date": "20260702",
+          "open": 7933.1,
+          "high": 8136.28,
+          "low": 7616.33,
+          "close": 7648.09,
+          "volume": 505157.0
+        }
+      ],
+      "last": {
+        "date": "20260702",
+        "open": 7933.1,
+        "high": 8136.28,
+        "low": 7616.33,
+        "close": 7648.09,
+        "volume": 505157.0
+      },
+      "prev": {
+        "date": "20260701",
+        "open": 8591.5,
+        "high": 8620.15,
+        "low": 8143.33,
+        "close": 8303.41,
+        "volume": 468193.0
+      }
+    },
+    "domestic": {
+      "prev_close": 8303.41,
+      "open": 7933.1,
+      "high": 8136.28,
+      "low": 7616.33,
+      "deal": {
+        "date": "20260702",
+        "personal": 62413.0,
+        "foreign": -43706.0,
+        "institution": -20825.0
+      },
+      "program": {
+        "date": "20260702",
+        "total": -22447.0,
+        "index": 4859.0,
+        "non_index": -27306.0
+      },
+      "updown": {
+        "rise": 280,
+        "fall": 616,
+        "upper": 4,
+        "lower": 1
+      },
+      "stocks": {
+        "삼성전자": {
+          "close": 286000.0,
+          "change_pct": -9.06,
+          "delta": -28500.0
+        },
+        "SK하이닉스": {
+          "close": 2187000.0,
+          "change_pct": -14.57,
+          "delta": -373000.0
+        }
+      }
+    },
+    "news": {
+      "items": [
+        {
+          "query": "Meta excess AI compute cloud business semiconductor stocks",
+          "title": "Meta's AI Cloud Entry Triggers Semiconductor Stock Drop - 조선일보",
+          "pubDate": "Thu, 02 Jul 2026 08:26:32 GMT"
+        },
+        {
+          "query": "Meta excess AI compute cloud business semiconductor stocks",
+          "title": "Meta Compute Launch Sends AI Compute Stocks Tumbling Globally - Yahoo Finance",
+          "pubDate": "Thu, 02 Jul 2026 01:52:00 GMT"
+        },
+        {
+          "query": "Meta excess AI compute cloud business semiconductor stocks",
+          "title": "AI infrastructure, chip stocks fall after report Meta building cloud business for excess AI compute - Seeking Alpha",
+          "pubDate": "Wed, 01 Jul 2026 14:28:13 GMT"
+        },
+        {
+          "query": "Meta AI compute capacity chip stocks Nvidia memory",
+          "title": "AI infrastructure, chip stocks fall after report Meta building cloud business for excess AI compute - Seeking Alpha",
+          "pubDate": "Wed, 01 Jul 2026 14:28:13 GMT"
+        },
+        {
+          "query": "Meta AI compute capacity chip stocks Nvidia memory",
+          "title": "Meta Compute Plan Hits AI Stocks As Global Chip Selloff Deepens - Yellow.com",
+          "pubDate": "Thu, 02 Jul 2026 04:20:13 GMT"
+        },
+        {
+          "query": "Meta AI compute capacity chip stocks Nvidia memory",
+          "title": "Is the ‘biggest negative’ for chip stocks finally here? Will Meta be the ‘first big tech company’ to cut capital expenditures? - Binance",
+          "pubDate": "Thu, 02 Jul 2026 03:16:37 GMT"
+        },
+        {
+          "query": "AI infrastructure oversupply semiconductor selloff Meta",
+          "title": "Smart Moove | Meta Soars 9% on Cloud Plans as Memory Stocks and AI Plays Sell Off - Moomoo",
+          "pubDate": "Thu, 02 Jul 2026 10:29:34 GMT"
+        },
+        {
+          "query": "AI infrastructure oversupply semiconductor selloff Meta",
+          "title": "Collapse of the belief in AI compute scarcity! Meta's move to 'sell computing power' triggers a global chip selloff, with South Korean stocks plunging 8%—hitting circuit breakers—and foreign investors pulling out over 5 trillion KRW in a single day. - 富途牛牛",
+          "pubDate": "Thu, 02 Jul 2026 12:07:07 GMT"
+        },
+        {
+          "query": "AI infrastructure oversupply semiconductor selloff Meta",
+          "title": "AI infrastructure, chip stocks fall after report Meta building cloud business for excess AI compute - Seeking Alpha",
+          "pubDate": "Wed, 01 Jul 2026 14:28:13 GMT"
+        },
+        {
+          "query": "Samsung Electronics HBM Nvidia",
+          "title": "HBC and HBF Emerge as Next-Gen Memories Following HBM - 조선일보",
+          "pubDate": "Wed, 01 Jul 2026 20:13:50 GMT"
+        },
+        {
+          "query": "Samsung Electronics HBM Nvidia",
+          "title": "Qualcomm challenges Nvidia's AI grip with chip that ditches HBM - Nikkei Asia",
+          "pubDate": "Wed, 01 Jul 2026 03:13:00 GMT"
+        },
+        {
+          "query": "Samsung Electronics HBM Nvidia",
+          "title": "Samsung Says Nvidia Partnership Extends Beyond HBM to Foundry Collaboration - thelec.net",
+          "pubDate": "Tue, 09 Jun 2026 07:00:00 GMT"
+        }
+      ],
+      "positive_hits": [
+        "record",
+        "nvidia",
+        "hbm",
+        "ai"
+      ],
+      "negative_hits": [
+        "selloff",
+        "yield"
+      ],
+      "source": "Google News RSS public search; SNS proxy only"
+    },
+    "macro": {
+      "usdkrw": 1552.98,
+      "dxy": 101.36,
+      "us10y": 4.365
+    }
+  },
+  "forecast": {
+    "open": 7494,
+    "range": [
+      7439,
+      7559
+    ],
+    "regime": "domestic_damage_continuation",
+    "prob_gap_up": 0.32,
+    "inputs": {
+      "close": 7648.09,
+      "us_impulse": -2.772,
+      "raw_gap": -0.0107,
+      "domestic_damage": 0.0183,
+      "fx_drag": 0.0055,
+      "news_tilt": 0.001,
+      "foreign": -43706.0,
+      "institution": -20825.0,
+      "program": -22447.0,
+      "defense_strength": -65125.0,
+      "samsung_pct": -9.06,
+      "hynix_pct": -14.57
+    }
+  },
+  "glm_audit": {
+    "response": "\n```json\n{\n  \"task\": \"Audit KOSPI open forecast. Return delta only.\",\n  \"forecast\": {\n    \"open\": 7494,\n    \"range\": [7439, 7559],\n    \"regime\": \"domestic_damage_continuation\",\n    \"prob_gap_up\": 0.32,\n    \"inputs\": {\n      \"close\": 7648.09,\n      \"us_impulse\": -2.772,\n",
+    "parsed": null,
+    "valid": false,
+    "prompt_eval_count": 593,
+    "eval_count": 100
+  },
+  "message": "[Codex] 21:42 KST KOSPI 07:30 open monitor\nUS S&P -0.22% / Nasdaq -0.66% / SOX -6.27%\nKOSPI close 7,648.09 / foreign -43,706 / inst -20,825 / program -22,447\ndamage 0.0183 / fx_drag 0.0055 / defense -65,125\nOpen forecast 7,494 range 7,439~7,559 regime domestic_damage_continuation\nResearch only. Not investment advice."
+}

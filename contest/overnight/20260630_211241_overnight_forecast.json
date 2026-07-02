@@ -1,0 +1,168 @@
+{
+  "created_at_kst": "2026-06-30T21:12:37+09:00",
+  "snapshot": {
+    "created_at_kst": "2026-06-30T21:12:37+09:00",
+    "us": {
+      "SP500": {
+        "symbol": ".INX",
+        "close": 7440.43,
+        "change_pct": 1.18,
+        "market_status": "CLOSE",
+        "local_traded_at": "2026-06-29T17:42:03-04:00"
+      },
+      "NASDAQ": {
+        "symbol": ".IXIC",
+        "close": 25820.14,
+        "change_pct": 2.07,
+        "market_status": "CLOSE",
+        "local_traded_at": "2026-06-29T17:15:59-04:00"
+      },
+      "SOX": {
+        "symbol": ".SOX",
+        "close": 13709.66,
+        "change_pct": 3.83,
+        "market_status": "CLOSE",
+        "local_traded_at": "2026-06-29T17:15:59-04:00"
+      },
+      "DOW": {
+        "symbol": ".DJI",
+        "close": 52182.74,
+        "change_pct": 0.59,
+        "market_status": "CLOSE",
+        "local_traded_at": "2026-06-29T17:41:19-04:00"
+      }
+    },
+    "kospi": {
+      "rows": [
+        {
+          "date": "20260622",
+          "open": 8954.43,
+          "high": 9253.0,
+          "low": 8900.68,
+          "close": 9114.55,
+          "volume": 381081.0
+        },
+        {
+          "date": "20260623",
+          "open": 9083.54,
+          "high": 9175.45,
+          "low": 8203.84,
+          "close": 8203.84,
+          "volume": 488742.0
+        },
+        {
+          "date": "20260624",
+          "open": 8356.79,
+          "high": 8577.52,
+          "low": 8080.99,
+          "close": 8471.02,
+          "volume": 418169.0
+        },
+        {
+          "date": "20260625",
+          "open": 8703.42,
+          "high": 9044.04,
+          "low": 8693.62,
+          "close": 8930.3,
+          "volume": 456880.0
+        },
+        {
+          "date": "20260626",
+          "open": 8813.18,
+          "high": 8861.7,
+          "low": 8126.84,
+          "close": 8411.21,
+          "volume": 518473.0
+        },
+        {
+          "date": "20260629",
+          "open": 8334.28,
+          "high": 8525.53,
+          "low": 8127.99,
+          "close": 8394.65,
+          "volume": 371223.0
+        },
+        {
+          "date": "20260630",
+          "open": 8416.7,
+          "high": 8667.73,
+          "low": 8220.8,
+          "close": 8476.48,
+          "volume": 449824.0
+        }
+      ],
+      "last": {
+        "date": "20260630",
+        "open": 8416.7,
+        "high": 8667.73,
+        "low": 8220.8,
+        "close": 8476.48,
+        "volume": 449824.0
+      },
+      "prev": {
+        "date": "20260629",
+        "open": 8334.28,
+        "high": 8525.53,
+        "low": 8127.99,
+        "close": 8394.65,
+        "volume": 371223.0
+      }
+    },
+    "flow": {
+      "date": "20260630",
+      "individual_million_krw": 8401,
+      "foreign_million_krw": -37992,
+      "institution_million_krw": 29332,
+      "d_sell": false
+    },
+    "macro": {
+      "usdkrw": 1552.98,
+      "dxy": 101.36,
+      "us10y": 4.365,
+      "forced_outflow_risk": true,
+      "source": "evening_research_override; refresh before final call"
+    }
+  },
+  "forecast": {
+    "regime": "fade-risk",
+    "us_strength": 2.507,
+    "codex": {
+      "open": 8502,
+      "close": 8369,
+      "prob_up": 0.5,
+      "confidence": 0.54
+    },
+    "claude_tactic_estimate": {
+      "open": 8487,
+      "close": 8364,
+      "note": "trim US momentum when local foreign-selling/fade risk is high"
+    },
+    "inputs": {
+      "kospi_close": 8476.48,
+      "kospi_high": 8667.73,
+      "kospi_low": 8220.8,
+      "foreign_million_krw": -37992.0,
+      "institution_million_krw": 29332.0,
+      "d_sell": false,
+      "sp500_pct": 1.18,
+      "nasdaq_pct": 2.07,
+      "sox_pct": 3.83,
+      "foreign_penalty": 0.011,
+      "macro_drag": 0.007500000000000001,
+      "macro": {
+        "usdkrw": 1552.98,
+        "dxy": 101.36,
+        "us10y": 4.365,
+        "forced_outflow_risk": true,
+        "source": "evening_research_override; refresh before final call"
+      }
+    }
+  },
+  "local_glm_check": {
+    "model": "glm4:9b",
+    "response": "{\"forecast\": {\"open\": 8502, \"close\": 8369}}",
+    "eval_count": 19,
+    "eval_duration": 392510000
+  },
+  "message": "[21:12 KST 7/1 KOSPI 예측]\nUS: S&P +1.18%, Nasdaq +2.07%, SOX +3.83%\nKOSPI: 종가 8,476.48, 외국인 -37,992, 기관 29,332, D_sell=False\nRegime: fade-risk, us_strength=2.507\n\nCodex: 시가 8,502, 종가 8,369, 상승 50%, 신뢰 0.54\nClaude 전술 추정: 시가 8,487, 종가 8,364\n\n07:30 최종 고정값은 이 파일 기준. 정보·연구 목적, 투자자문 아님."
+}

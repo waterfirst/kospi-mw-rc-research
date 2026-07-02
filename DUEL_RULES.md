@@ -4,7 +4,7 @@
 
 ## 참가
 - 🤝 **Claude Consortium** = Claude(두뇌) + Gemini(검색) + Z.ai GLM-5.2(정량) + Ollama glm4(로컬)
-- 🔴 **Codex MW-RC** = Codex 단독
+- 🔴 **Codex Consortium** = Codex(최종판단) + Ollama glm4:9b(로컬 압축) + GPT API(검증) + Z.ai GLM 5.2(정량) + Gemini(교차검증)
 
 ## 채점 (각 모델 독립, 10점 만점)
 
@@ -34,6 +34,10 @@
 ## 무결성
 - 시가 예측은 08:00 이전, 종가 예측은 12:30 이전에 **고정 후 변경 불가**.
 - 양측 동일 시각 기준으로 제출. 채점은 `python monitor/score_duel.py` (네이버 금융 실측).
+- Gemini/Z.ai 출력은 보조 의견이며, 최종 제출값은 각 모델이 책임진다.
+- Codex는 원본 스냅샷을 저장하되, GPT/Z.ai/Gemini에는 로컬 GLM이 압축한 compact digest를 보내 토큰을 절약한다.
+- 모든 숫자는 수집 스냅샷 또는 명시된 결측값에서만 나온다. 없는 시세·수급·뉴스를 추정해 사실처럼 쓰지 않는다.
+- 장마감 채점 결과는 `python monitor/score_duel.py --telegram`으로 텔레그램 발송한다.
 
 ## 타임라인 (월 6/29)
 | 시각(KST) | 행동 |

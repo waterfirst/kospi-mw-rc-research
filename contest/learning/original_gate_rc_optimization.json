@@ -1,0 +1,44 @@
+{
+  "n_rows": 10,
+  "warning": "Only one trading day is scored; raw optimum is overfit. Use conservative recommendation until >=5 days.",
+  "original_v1": {
+    "mae": 113.00729999999949,
+    "params": {
+      "w_diode": 0.35,
+      "w_mwrc": 0.6,
+      "w_naive": 0.05,
+      "trim_base": 0,
+      "foreign_trim": 0,
+      "breach_trim": 0,
+      "fade_alpha": 0
+    }
+  },
+  "raw_best_fit": {
+    "mae": 45.33450000000012,
+    "params": {
+      "w_diode": 0.55,
+      "w_mwrc": 0.2,
+      "w_naive": 0.25,
+      "trim_base": 30,
+      "foreign_trim": 60,
+      "breach_trim": 0,
+      "fade_alpha": 0.0
+    }
+  },
+  "conservative_recommendation": {
+    "mae": 57.7997000000003,
+    "params": {
+      "w_diode": 0.5,
+      "w_mwrc": 0.3,
+      "w_naive": 0.2,
+      "trim_base": 10,
+      "foreign_trim": 20,
+      "breach_trim": 20,
+      "fade_alpha": 0.05
+    }
+  },
+  "interpretation": {
+    "claude_differentiator": "trim layer: lower mechanical circuit output when foreign selling, intraday low breach, or fade risk appears",
+    "keep_original_model": "RC/Diode blend stays; only blend weights and trim/fade knobs are tuned"
+  }
+}
