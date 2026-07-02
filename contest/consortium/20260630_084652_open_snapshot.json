@@ -1,0 +1,140 @@
+{
+  "contestant": "Codex",
+  "mode": "open",
+  "created_at_kst": "2026-06-30T08:46:51+09:00",
+  "kospi_daily": {
+    "source": "naver_siseJson_KOSPI_day",
+    "rows": [
+      {
+        "date": "20260616",
+        "open": 8696.55,
+        "high": 8753.82,
+        "low": 8540.41,
+        "close": 8726.6,
+        "volume": 586337.0
+      },
+      {
+        "date": "20260617",
+        "open": 8622.13,
+        "high": 8872.18,
+        "low": 8605.66,
+        "close": 8864.24,
+        "volume": 571194.0
+      },
+      {
+        "date": "20260618",
+        "open": 8884.92,
+        "high": 9106.07,
+        "low": 8867.34,
+        "close": 9063.84,
+        "volume": 510940.0
+      },
+      {
+        "date": "20260619",
+        "open": 9288.89,
+        "high": 9385.59,
+        "low": 8831.72,
+        "close": 9052.42,
+        "volume": 517248.0
+      },
+      {
+        "date": "20260622",
+        "open": 8954.43,
+        "high": 9253.0,
+        "low": 8900.68,
+        "close": 9114.55,
+        "volume": 381081.0
+      },
+      {
+        "date": "20260623",
+        "open": 9083.54,
+        "high": 9175.45,
+        "low": 8203.84,
+        "close": 8203.84,
+        "volume": 488742.0
+      },
+      {
+        "date": "20260624",
+        "open": 8356.79,
+        "high": 8577.52,
+        "low": 8080.99,
+        "close": 8471.02,
+        "volume": 418169.0
+      },
+      {
+        "date": "20260625",
+        "open": 8703.42,
+        "high": 9044.04,
+        "low": 8693.62,
+        "close": 8930.3,
+        "volume": 456880.0
+      },
+      {
+        "date": "20260626",
+        "open": 8813.18,
+        "high": 8861.7,
+        "low": 8126.84,
+        "close": 8411.21,
+        "volume": 518473.0
+      },
+      {
+        "date": "20260629",
+        "open": 8334.28,
+        "high": 8525.53,
+        "low": 8127.99,
+        "close": 8394.65,
+        "volume": 371223.0
+      }
+    ]
+  },
+  "kospi_realtime": {
+    "source": "naver_realtime_KOSPI",
+    "close": 0.0,
+    "open": 0.0,
+    "high": 0.0,
+    "low": 0.0,
+    "change_pct": 0.0,
+    "market_status": null,
+    "local_traded_at": null,
+    "raw_keys": []
+  },
+  "flow": {
+    "source": "naver_investorDealTrendDay",
+    "date": "20260629",
+    "individual_million_krw": 45975,
+    "foreign_million_krw": -77332,
+    "institution_million_krw": 29327
+  },
+  "us_market": {
+    "SOX": {
+      "symbol": ".SOX",
+      "close": 13709.66,
+      "change_pct": 3.83,
+      "market_status": "CLOSE",
+      "local_traded_at": "2026-06-29T17:15:59-04:00"
+    },
+    "SP500": {
+      "symbol": ".INX",
+      "close": 7440.43,
+      "change_pct": 1.18,
+      "market_status": "CLOSE",
+      "local_traded_at": "2026-06-29T17:42:03-04:00"
+    },
+    "NASDAQ": {
+      "symbol": ".IXIC",
+      "close": 25820.14,
+      "change_pct": 2.07,
+      "market_status": "CLOSE",
+      "local_traded_at": "2026-06-29T17:15:59-04:00"
+    },
+    "DOW": {
+      "symbol": ".DJI",
+      "close": 52182.74,
+      "change_pct": 0.59,
+      "market_status": "CLOSE",
+      "local_traded_at": "2026-06-29T17:41:19-04:00"
+    }
+  },
+  "errors": [],
+  "snapshot_hash": "e1bd8ca1e1dd57ff"
+}

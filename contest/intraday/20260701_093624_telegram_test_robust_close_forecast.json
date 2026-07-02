@@ -1,0 +1,165 @@
+{
+  "snapshot": {
+    "created_at_kst": "2026-07-01T09:36:17+09:00",
+    "realtime": {
+      "close": 8456.76,
+      "open": 8591.5,
+      "high": 8620.15,
+      "low": 8420.5,
+      "change_pct": -0.23,
+      "prev_delta": -19.72,
+      "volume_raw": 117790000.0,
+      "trading_value_raw": 8109684000000.0,
+      "market_status": "OPEN",
+      "local_traded_at": "2026-07-01T09:36:16+09:00"
+    },
+    "integration": {
+      "prev_close": 8476.48,
+      "open": 8591.5,
+      "high": 8620.15,
+      "low": 8420.5,
+      "deal": {
+        "personal": 1089.0,
+        "foreign": -5109.0,
+        "institution": 4326.0
+      },
+      "program": {
+        "index_diff": 410.0,
+        "non_index_diff": -6294.0,
+        "total": -5884.0
+      },
+      "updown": {
+        "upper": 4,
+        "rise": 739,
+        "lower": 1,
+        "fall": 133,
+        "steady": 38
+      },
+      "stocks": {
+        "삼성전자": {
+          "code": "005930",
+          "close": 329000.0,
+          "change_pct": -1.5,
+          "delta": -5000.0
+        },
+        "SK하이닉스": {
+          "code": "000660",
+          "close": 2610000.0,
+          "change_pct": -1.51,
+          "delta": -40000.0
+        },
+        "SK스퀘어": {
+          "code": "402340",
+          "close": 1619000.0,
+          "change_pct": -4.6,
+          "delta": -78000.0
+        },
+        "삼성전기": {
+          "code": "009150",
+          "close": 2255000.0,
+          "change_pct": 3.25,
+          "delta": 71000.0
+        },
+        "삼성전자우": {
+          "code": "005935",
+          "close": 209500.0,
+          "change_pct": -1.18,
+          "delta": -2500.0
+        },
+        "현대차": {
+          "code": "005380",
+          "close": 498500.0,
+          "change_pct": 0.71,
+          "delta": 3500.0
+        },
+        "LG에너지솔루션": {
+          "code": "373220",
+          "close": 355500.0,
+          "change_pct": -1.8,
+          "delta": -6500.0
+        },
+        "삼성생명": {
+          "code": "032830",
+          "close": 396000.0,
+          "change_pct": -1.25,
+          "delta": -5000.0
+        },
+        "삼성물산": {
+          "code": "028260",
+          "close": 444500.0,
+          "change_pct": -5.12,
+          "delta": -24000.0
+        },
+        "삼성바이오로직스": {
+          "code": "207940",
+          "close": 1375000.0,
+          "change_pct": -1.15,
+          "delta": -16000.0
+        }
+      }
+    },
+    "us": {
+      "SP500": {
+        "close": 7499.36,
+        "change_pct": 0.79,
+        "market_status": "CLOSE"
+      },
+      "NASDAQ": {
+        "close": 26213.72,
+        "change_pct": 1.52,
+        "market_status": "CLOSE"
+      },
+      "SOX": {
+        "close": 14246.96,
+        "change_pct": 3.92,
+        "market_status": "CLOSE"
+      },
+      "DOW": {
+        "close": 52319.2,
+        "change_pct": 0.26,
+        "market_status": "CLOSE"
+      }
+    }
+  },
+  "forecast": {
+    "forecast_close": 8417,
+    "range": [
+      8362,
+      8477
+    ],
+    "confidence": 0.52,
+    "risk_flags": [
+      "gap_failed",
+      "foreign_sell",
+      "program_sell",
+      "samsung_weak",
+      "broad_market_strong"
+    ],
+    "components": {
+      "current": 8456.76,
+      "prev_close": 8476.48,
+      "open": 8591.5,
+      "high": 8620.15,
+      "low": 8420.5,
+      "gap_fail": 134.74,
+      "low_recovery": 36.26,
+      "breadth": 0.695,
+      "semis_pct_proxy": -1.505,
+      "flow_score": -0.05,
+      "breadth_score": 24.32,
+      "semi_score": -27.08,
+      "us_score": 7.49,
+      "gap_fail_penalty": 51.2,
+      "recovery_credit": 6.53,
+      "raw": 8416.77
+    }
+  },
+  "glm_audit": {
+    "response": "\n```json\n{\n  \"task\": \"Audit KOSPI close forecast.\",\n  \"snapshot\": {\n    \"realtime\": {\n      \"close\": 8456.76,\n      \"open\": 8591.5,\n      \"high\": 8620.15,\n      \"low\": 8420.5,\n      \"change_pct\": -0.23,\n      \"prev_delta\": -19.72,\n      \"volume_raw\": 117790000.0,\n      \"trading_value_raw\": 8109684000000",
+    "valid": false,
+    "error": "no_json_object_in_response",
+    "prompt_eval_count": 523,
+    "eval_count": 120,
+    "total_duration": 4509321300
+  }
+}
