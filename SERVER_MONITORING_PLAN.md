@@ -13,6 +13,27 @@ Current Codex monitoring runs on the local Windows PC:
 
 If the PC sleeps or powers off, these processes stop.
 
+## Can Codex Run On A Server?
+
+There are two different meanings:
+
+1. Codex Desktop session:
+   - this interactive desktop session depends on the local PC.
+   - if the PC is off, this session cannot keep operating.
+
+2. Codex-built monitoring system:
+   - the Python monitors, scoring scripts, GitHub logging, and Telegram alerts can run on any always-on server.
+   - this is the correct architecture for the July contest.
+
+Recommended approach:
+
+- run deterministic monitoring on EC2,
+- keep prompts small,
+- use Telegram/GitHub as the interface,
+- only call a remote LLM/API when a narrative summary is needed.
+
+Do not use a GPU EC2 instance for the base monitor. It is too expensive for polling and scoring. Use CPU EC2 first.
+
 ## Target Architecture
 
 Use an always-on Linux server as the execution host.
@@ -38,6 +59,30 @@ Telegram + GitHub artifacts
 - Git.
 - Network access to Naver Finance, Google News RSS, Telegram API, GitHub.
 - Timezone: `Asia/Seoul`.
+
+## AWS EC2 Recommendation
+
+Use AWS EC2 if there is no other always-on Linux host.
+
+Minimum July contest setup:
+
+- instance: `t3.micro`, `t3.small`, or `t4g.small` if ARM compatibility is acceptable.
+- storage: 20-30 GB gp3.
+- OS: Ubuntu LTS.
+- uptime: 24/7 through July.
+- cost profile: low enough for polling, JSON logging, Telegram, GitHub push.
+
+Avoid:
+
+- GPU EC2 for routine monitoring.
+- local Ollama/GLM on EC2 unless there is a clear accuracy gain.
+- long LLM prompts inside scheduled jobs.
+
+If local LLM audit is required:
+
+- use the PC while it is on, or
+- use API-based small model calls from EC2, or
+- reserve GPU only for specific backtests.
 
 ## Directory Layout
 
