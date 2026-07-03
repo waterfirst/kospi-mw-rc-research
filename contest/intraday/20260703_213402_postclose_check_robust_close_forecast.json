@@ -1,0 +1,155 @@
+{
+  "snapshot": {
+    "created_at_kst": "2026-07-03T21:34:00+09:00",
+    "realtime": {
+      "close": 8088.34,
+      "open": 7739.75,
+      "high": 8136.28,
+      "low": 7378.1,
+      "change_pct": 5.76,
+      "prev_delta": 440.25,
+      "volume_raw": 465821000.0,
+      "trading_value_raw": 45492055000000.0,
+      "market_status": "CLOSE",
+      "local_traded_at": "2026-07-03T18:59:00+09:00"
+    },
+    "integration": {
+      "prev_close": 7648.09,
+      "open": 7739.75,
+      "high": 8136.28,
+      "low": 7378.1,
+      "deal": {
+        "personal": -22942.0,
+        "foreign": -21750.0,
+        "institution": 44079.0
+      },
+      "program": {
+        "index_diff": 3347.0,
+        "non_index_diff": -12714.0,
+        "total": -9367.0
+      },
+      "updown": {
+        "upper": 2,
+        "rise": 589,
+        "lower": 1,
+        "fall": 297,
+        "steady": 27
+      },
+      "stocks": {
+        "삼성전자": {
+          "code": "005930",
+          "close": 309500.0,
+          "change_pct": 8.22,
+          "delta": 23500.0
+        },
+        "SK하이닉스": {
+          "code": "000660",
+          "close": 2425000.0,
+          "change_pct": 10.88,
+          "delta": 238000.0
+        },
+        "SK스퀘어": {
+          "code": "402340",
+          "close": 1589000.0,
+          "change_pct": 4.2,
+          "delta": 64000.0
+        },
+        "삼성전자우": {
+          "code": "005935",
+          "close": 208000.0,
+          "change_pct": 10.23,
+          "delta": 19300.0
+        },
+        "삼성전기": {
+          "code": "009150",
+          "close": 1989000.0,
+          "change_pct": 3.27,
+          "delta": 63000.0
+        },
+        "현대차": {
+          "code": "005380",
+          "close": 492000.0,
+          "change_pct": 2.07,
+          "delta": 10000.0
+        },
+        "LG에너지솔루션": {
+          "code": "373220",
+          "close": 362500.0,
+          "change_pct": 2.4,
+          "delta": 8500.0
+        },
+        "삼성생명": {
+          "code": "032830",
+          "close": 383000.0,
+          "change_pct": 3.37,
+          "delta": 12500.0
+        },
+        "삼성물산": {
+          "code": "028260",
+          "close": 433500.0,
+          "change_pct": 6.64,
+          "delta": 27000.0
+        },
+        "삼성바이오로직스": {
+          "code": "207940",
+          "close": 1421000.0,
+          "change_pct": 1.07,
+          "delta": 15000.0
+        }
+      }
+    },
+    "us": {
+      "SP500": {
+        "close": 7483.24,
+        "change_pct": 0.0,
+        "market_status": "CLOSE"
+      },
+      "NASDAQ": {
+        "close": 25832.67,
+        "change_pct": -0.8,
+        "market_status": "CLOSE"
+      },
+      "SOX": {
+        "close": 12626.22,
+        "change_pct": -5.45,
+        "market_status": "CLOSE"
+      },
+      "DOW": {
+        "close": 52900.07,
+        "change_pct": 1.14,
+        "market_status": "CLOSE"
+      }
+    }
+  },
+  "forecast": {
+    "forecast_close": 7808,
+    "range": [
+      7753,
+      7868
+    ],
+    "confidence": 0.58,
+    "risk_flags": [
+      "foreign_sell",
+      "program_sell"
+    ],
+    "components": {
+      "current": 8088.34,
+      "prev_close": 7648.09,
+      "open": 7739.75,
+      "high": 8136.28,
+      "low": 7378.1,
+      "gap_fail": 0.0,
+      "low_recovery": 710.24,
+      "breadth": 0.33,
+      "semis_pct_proxy": 9.417,
+      "flow_score": 0.09,
+      "breadth_score": 11.53,
+      "semi_score": 169.51,
+      "us_score": -9.36,
+      "gap_fail_penalty": 0.0,
+      "recovery_credit": 127.84,
+      "raw": 8387.95,
+      "crash_continuation": false
+    }
+  }
+}
