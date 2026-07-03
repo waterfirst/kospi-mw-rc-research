@@ -17,6 +17,7 @@ import json, re, sys, datetime
 import requests
 H={"User-Agent":"Mozilla/5.0","Referer":"https://finance.naver.com/"}
 K_EWY=0.58
+R_RESID=0.5  # 잔차 되돌림(7/3 소급 0.9, n=1이라 보수적 0.5)
 
 def f(x):
     try:return float(str(x).replace(",",""))
@@ -39,9 +40,13 @@ def overnight():
         out["EWY"]=0.0
     return out
 
-def predict_open(prev,us,hyper_bear=False):
+def predict_open(prev,us,hyper_bear=False,prev_kospi_ret=None,prev_ewy=None):
     ewy=us["EWY"]; sox=us["SOX"]
     gap=K_EWY*ewy
+    # 잔차항(7/3 교훈): 전일 KOSPI가 EWY-내재를 초과/미달하면 되돌림
+    if prev_kospi_ret is not None and prev_ewy is not None:
+        overshoot=prev_kospi_ret-K_EWY*prev_ewy
+        gap+= -R_RESID*overshoot
     # SOX 교차검증: 방향 불일치+큰 괴리면 절충
     sox_gap=0.5*sox
     if abs(gap-sox_gap)>2.0:
@@ -68,14 +73,19 @@ def intraday():
             F,I=int(c[2]),int(c[3]);break
     return o,cur,hi,lo,F,I
 
-def predict_close(o,cur,hi,lo,F,I,P=0):
+def predict_close(o,cur,hi,lo,F,I,P=0,I_prev=0):
+    # 하방 애벌란치
     if F<=-30000 and (F+I)<=-20000:
         return round(min(cur,lo)-0.5*(cur-lo)),"panic지속(외인압도)"
+    # 상방 애벌란치 (7/3 교훈): 기관 폭주+가속 -> 고가캡 없이 모멘텀 연장
+    if I>=20000 and I>=2*max(I_prev,1):
+        return round(cur+0.8*(cur-o)),"기관폭주 상방연장(고가캡 해제)"
     if cur<o-80 and ((F<-10000) or (P<-8000)):
         return round(cur-0.40*(cur-lo)),"gap실패+매도(하방)"
     if cur>=o-80 and I>15000:
-        return round(cur+0.25*(hi-cur)),"강기관 되돌림"
-    return round(cur),"중립(현수준)"
+        return round(cur+0.35*(cur-o)),"강기관 드리프트 연장"
+    # 고변동 레짐: 현재가 앵커 폐지 -> 장중 드리프트 1/4 연장
+    return round(cur+0.25*(cur-o)),"드리프트 연장(앵커 폐지)"
 
 if __name__=="__main__":
     mode=sys.argv[1] if len(sys.argv)>1 else "open"
