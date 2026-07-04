@@ -26,3 +26,8 @@
 - Secrets are not stored in the repository.
 - This local scheduled task does not survive a powered-off PC. The home server plan remains the reliable production path.
 
+## Telegram Status
+
+- 2026-07-04: Windows user environment variables were configured locally.
+- Telegram test message succeeded.
+- Token and chat id are intentionally not recorded in GitHub.
