@@ -132,8 +132,6 @@ def deterministic_forecast(snapshot: dict[str, Any]) -> dict[str, Any]:
     sox = us.get("SOX", {}).get("change_pct", 0.0) or 0.0
     nasdaq = us.get("NASDAQ", {}).get("change_pct", 0.0) or 0.0
 
-    # Morning structure: big gap that failed quickly is bearish for the close
-    # unless foreign/program flow turns strongly positive.
     gap_fail = max(0.0, open_ - close)
     low_recovery = close - low
     semis = 0.55 * samsung_pct + 0.45 * hynix_pct
@@ -144,6 +142,14 @@ def deterministic_forecast(snapshot: dict[str, Any]) -> dict[str, Any]:
     us_score = 8.0 * us_tailwind
     gap_fail_penalty = 0.38 * gap_fail
     recovery_credit = 0.18 * low_recovery
+    inst_absorption = inst >= 30000 and breadth >= 0.25 and close > open_ and close >= (high + low) / 2
+    avalanche = foreign <= -30000 and program_total <= -20000 and not inst_absorption
+    if inst_absorption:
+        flow_score += 0.000006 * inst
+        recovery_credit += 0.30 * max(0.0, high - close)
+        gap_fail_penalty *= 0.55
+    if avalanche:
+        recovery_credit *= 0.45
 
     raw = (
         close
@@ -155,13 +161,13 @@ def deterministic_forecast(snapshot: dict[str, Any]) -> dict[str, Any]:
         + flow_score
     )
 
-    # Clamp: normal days should not overreact to one print, but crash-continuation
-    # days must be allowed to move far below the previous close.
     crash_continuation = (
-        close <= prev * 0.97
+        (close <= prev * 0.97 and not inst_absorption)
         or (foreign <= -25000 and program_total <= -15000)
         or low <= prev * 0.94
     )
+    if inst_absorption and close > open_:
+        crash_continuation = False
     if crash_continuation:
         lower = low - 45
         upper = min(high + 20, prev + 40)
@@ -183,6 +189,10 @@ def deterministic_forecast(snapshot: dict[str, Any]) -> dict[str, Any]:
         risk_flags.append("broad_market_strong")
     if crash_continuation:
         risk_flags.append("crash_continuation")
+    if inst_absorption:
+        risk_flags.append("institution_absorption")
+    if avalanche:
+        risk_flags.append("avalanche_sell")
 
     return {
         "forecast_close": forecast,
@@ -205,6 +215,8 @@ def deterministic_forecast(snapshot: dict[str, Any]) -> dict[str, Any]:
             "us_score": round(us_score, 2),
             "gap_fail_penalty": round(gap_fail_penalty, 2),
             "recovery_credit": round(recovery_credit, 2),
+            "inst_absorption": inst_absorption,
+            "avalanche": avalanche,
             "raw": round(raw, 2),
             "crash_continuation": crash_continuation,
         },

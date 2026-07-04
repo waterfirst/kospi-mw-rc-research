@@ -54,6 +54,18 @@ def fetch_us() -> dict[str, Any]:
             }
         except Exception as exc:
             out[name] = {"symbol": symbol, "error": repr(exc)}
+    for symbol in ["EWY", "MU", "NVDA", "META"]:
+        try:
+            b = requests.get(f"https://api.stock.naver.com/stock/{symbol}/basic", headers=HEAD, timeout=15).json()
+            out[symbol] = {
+                "symbol": symbol,
+                "close": num(b.get("closePrice")),
+                "change_pct": num(b.get("fluctuationsRatio")),
+                "status": b.get("marketStatus"),
+                "traded_at": b.get("localTradedAt"),
+            }
+        except Exception as exc:
+            out[symbol] = {"symbol": symbol, "error": repr(exc)}
     return out
 
 
@@ -167,8 +179,14 @@ def forecast(snapshot: dict[str, Any]) -> dict[str, Any]:
     spx = us.get("SP500", {}).get("change_pct", 0.0) or 0.0
     nasdaq = us.get("NASDAQ", {}).get("change_pct", 0.0) or 0.0
     sox = us.get("SOX", {}).get("change_pct", 0.0) or 0.0
-    us_impulse = 0.30 * spx + 0.30 * nasdaq + 0.40 * sox
+    ewy = us.get("EWY", {}).get("change_pct", 0.0) or 0.0
+    mu = us.get("MU", {}).get("change_pct", 0.0) or 0.0
+    nvda = us.get("NVDA", {}).get("change_pct", 0.0) or 0.0
+    meta = us.get("META", {}).get("change_pct", 0.0) or 0.0
+    semi_impulse = 0.45 * sox + 0.25 * mu + 0.20 * nvda + 0.10 * meta
+    us_impulse = 0.20 * spx + 0.20 * nasdaq + 0.30 * semi_impulse + 0.30 * ewy
     raw_gap = max(-0.020, min(0.020, us_impulse / 260.0))
+    ewy_gap = max(-0.025, min(0.025, 0.58 * ewy / 100.0))
 
     foreign = domestic["deal"]["foreign"]
     inst = domestic["deal"]["institution"]
@@ -198,14 +216,27 @@ def forecast(snapshot: dict[str, Any]) -> dict[str, Any]:
     news_tilt = 0.0005 * len(news.get("positive_hits", [])) - 0.0005 * len(news.get("negative_hits", []))
     news_tilt = max(-0.002, min(0.002, news_tilt))
 
+    prev_day = snapshot["kospi_day"].get("prev") or {}
+    prev_close = prev_day.get("close") or 0.0
+    prior_ret = (close / prev_close - 1.0) if prev_close else 0.0
+    post_crash_relief = prior_ret <= -0.05 and ewy > -3.5 and len(news.get("negative_hits", [])) <= 2
+
+    if post_crash_relief:
+        domestic_damage *= 0.55
+        raw_gap = 0.35 * raw_gap + 0.65 * ewy_gap
+    else:
+        raw_gap = 0.65 * raw_gap + 0.35 * ewy_gap
+
     open_ret = raw_gap - 0.45 * domestic_damage - 0.40 * fx_drag + news_tilt
-    # If overnight semis are very strong, do not over-trim, but still keep
-    # prior domestic damage in the model.
     if sox >= 3.5 and us.get("NASDAQ", {}).get("change_pct", 0) >= 1.0:
         open_ret = max(open_ret, 0.010 - 0.25 * domestic_damage - 0.20 * fx_drag)
+    if post_crash_relief:
+        open_ret = max(open_ret, -0.015)
     open_pred = round(close * (1 + open_ret))
 
-    if domestic_damage >= 0.012 and raw_gap <= 0.002:
+    if post_crash_relief:
+        regime = "post_crash_relief_possible"
+    elif domestic_damage >= 0.012 and raw_gap <= 0.002:
         regime = "domestic_damage_continuation"
     elif raw_gap > domestic_damage + fx_drag:
         regime = "overnight_relief"
@@ -220,7 +251,12 @@ def forecast(snapshot: dict[str, Any]) -> dict[str, Any]:
         "inputs": {
             "close": close,
             "us_impulse": round(us_impulse, 3),
+            "semi_impulse": round(semi_impulse, 3),
+            "ewy": round(ewy, 3),
+            "ewy_gap": round(ewy_gap, 4),
             "raw_gap": round(raw_gap, 4),
+            "prior_ret": round(prior_ret, 4),
+            "post_crash_relief": post_crash_relief,
             "domestic_damage": round(domestic_damage, 4),
             "fx_drag": round(fx_drag, 4),
             "news_tilt": round(news_tilt, 4),
