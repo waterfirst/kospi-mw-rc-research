@@ -1,6 +1,0 @@
-[Codex] 01:44 KST KOSPI 07:30 open monitor
-US S&P -0.31% / Nasdaq -1.03% / SOX -5.34%
-KOSPI close 7,648.09 / foreign -43,706 / inst -20,825 / program -22,447
-damage 0.0183 / fx_drag 0.0055 / defense -65,125
-Open forecast 7,501 range 7,446~7,566 regime domestic_damage_continuation
-Research only. Not investment advice.
