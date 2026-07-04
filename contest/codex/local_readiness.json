@@ -1,0 +1,29 @@
+{
+  "cpu": {
+    "Name": "AMD Ryzen 7 260 w/ Radeon 780M Graphics",
+    "NumberOfCores": 8,
+    "NumberOfLogicalProcessors": 16,
+    "MaxClockSpeed": 3801
+  },
+  "memory_gb": 31.3,
+  "gpus": [
+    {
+      "Name": "AMD Radeon 780M Graphics",
+      "AdapterRAM": 536870912,
+      "DriverVersion": "32.0.22032.6002"
+    },
+    {
+      "Name": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "AdapterRAM": 4293918720,
+      "DriverVersion": "32.0.15.7705"
+    }
+  ],
+  "nvidia_smi": "NVIDIA GeForce RTX 5060 Laptop GPU, 5244, 8151, 0, 50",
+  "ollama_list": "NAME       ID              SIZE      MODIFIED    \nglm4:9b    5b699761eca5    5.5 GB    9 hours ago",
+  "ollama_ps": "NAME       ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nglm4:9b    5b699761eca5    5.4 GB    100% GPU     4096       4 minutes from now",
+  "codex_local_model": "glm4:9b",
+  "readiness": {
+    "ollama_glm_installed": true,
+    "ollama_glm_on_gpu": true
+  }
+}

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOSPI 다이오드 모델 — 회로도 &amp; 백테스트</title>
+<style>
+  :root{--bg:#0e1117;--card:#161b22;--bd:#30363d;--fg:#e6edf3;--mut:#8b949e;
+        --on:#f85149;--off:#3fb950;--accent:#58a6ff;--warn:#d29922;--wire:#c9d1d9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--fg);font-family:'Segoe UI',-apple-system,'NanumGothic',sans-serif;
+       line-height:1.6;padding:20px;max-width:1080px;margin:0 auto}
+  h1{font-size:1.7rem;margin-bottom:4px}
+  .sub{color:var(--mut);font-size:.9rem;margin-bottom:8px}
+  .nav{margin:10px 0 22px;font-size:.85rem}
+  .nav a{color:var(--accent);text-decoration:none;margin-right:14px}
+  .card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:20px;margin-bottom:18px}
+  .card h2{font-size:1.15rem;margin-bottom:14px;color:var(--accent);border-left:4px solid var(--accent);padding-left:10px}
+  .card h3{font-size:1rem;margin:16px 0 8px;color:var(--fg)}
+  .eq{background:#0d1117;border:1px solid var(--bd);border-radius:6px;padding:12px 16px;
+      font-family:'Consolas',monospace;font-size:.95rem;margin:12px 0;overflow-x:auto;color:#79c0ff}
+  table{width:100%;border-collapse:collapse;font-size:.85rem;margin:10px 0}
+  th,td{padding:7px 9px;text-align:right;border-bottom:1px solid var(--bd)}
+  th:first-child,td:first-child{text-align:left}
+  th{color:var(--mut);font-weight:600;background:#0d1117}
+  .up{color:var(--off);font-weight:600}.down{color:var(--on);font-weight:600}
+  .win{color:var(--off);font-weight:700}.lose{color:var(--on);font-weight:700}
+  .note{font-size:.82rem;color:var(--mut);margin-top:10px;line-height:1.55}
+  .comp{display:grid;grid-template-columns:90px 1fr;gap:10px 16px;align-items:start;margin:8px 0;font-size:.88rem}
+  .comp .sym{font-weight:800;color:var(--warn);text-align:center;font-family:monospace}
+  .foot{color:var(--mut);font-size:.75rem;margin-top:24px;text-align:center;line-height:1.6}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.8rem;color:var(--mut);margin-top:12px}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .dot{width:12px;height:3px;display:inline-block;border-radius:2px}
+  svg{width:100%;height:auto;background:#0d1117;border:1px solid var(--bd);border-radius:8px;margin-top:6px}
+  .badge{display:inline-block;padding:2px 9px;border-radius:10px;font-size:.78rem;font-weight:700}
+  .badge.on{background:rgba(248,81,73,.18);color:var(--on)}
+  .badge.off{background:rgba(63,185,80,.18);color:var(--off)}
+  .star{color:var(--warn)}
+</style>
+</head>
+<body>
+<h1>🔌 KOSPI 다이오드 모델 — 회로도 &amp; 백테스트</h1>
+<div class="sub">RLC + 스위칭 다이오드 시장 동역학 · 실데이터 604일 검증 (2024–2026) · Claude × 첨물</div>
+<div class="nav">
+  <a href="index.html">▶ 인터랙티브 시뮬레이터</a>
+  <a href="#circuit">▶ 회로도</a>
+  <a href="#ode">▶ 지배방정식</a>
+  <a href="#backtest">▶ 백테스트</a>
+</div>
+
+<!-- ════════════ 회로도 ════════════ -->
+<div class="card" id="circuit">
+  <h2>1. 등가 회로도 (Equivalent Circuit)</h2>
+  <p class="note" style="font-size:.9rem;color:var(--fg)">
+    KOSPI 지수 V(t)를 RLC 회로의 노드 전압으로 모델링한다. 미국시장 균형가 V_target이
+    전원, 복원·관성·탄성이 R·L·C, 그리고 <b>외국인·기관 동반매도가 점화하는 스위칭 다이오드 D_sell</b>이
+    공황 충격 전류원을 도통시킨다.
+  </p>
+
+  <svg viewBox="0 0 920 420" xmlns="http://www.w3.org/2000/svg" font-family="monospace">
+    <!-- 배경 그리드 생략, 깔끔하게 -->
+    <defs>
+      <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#f85149"/>
+      </marker>
+    </defs>
+
+    <!-- ===== 상단 메인 루프 wire ===== -->
+    <!-- 좌측 세로 (V_target +) -->
+    <line x1="70" y1="90" x2="70" y2="330" stroke="#c9d1d9" stroke-width="2.5"/>
+    <!-- 상단 가로 -->
+    <line x1="70" y1="90" x2="820" y2="90" stroke="#c9d1d9" stroke-width="2.5"/>
+    <!-- 우측 세로 (출력노드 V로) -->
+    <line x1="820" y1="90" x2="820" y2="200" stroke="#c9d1d9" stroke-width="2.5"/>
+    <!-- 하단 가로 (ground return) -->
+    <line x1="70" y1="330" x2="820" y2="330" stroke="#c9d1d9" stroke-width="2.5"/>
+    <!-- 우측 세로 하단 -->
+    <line x1="820" y1="260" x2="820" y2="330" stroke="#c9d1d9" stroke-width="2.5"/>
+
+    <!-- ===== V_target 전원 (좌측, 배터리) ===== -->
+    <line x1="55" y1="195" x2="85" y2="195" stroke="#58a6ff" stroke-width="3"/>
+    <line x1="62" y1="210" x2="78" y2="210" stroke="#58a6ff" stroke-width="3"/>
+    <line x1="55" y1="225" x2="85" y2="225" stroke="#58a6ff" stroke-width="3"/>
+    <line x1="62" y1="240" x2="78" y2="240" stroke="#58a6ff" stroke-width="3"/>
+    <text x="38" y="200" fill="#58a6ff" font-size="15" text-anchor="end">+</text>
+    <text x="98" y="218" fill="#58a6ff" font-size="13">V_target</text>
+    <text x="98" y="236" fill="#8b949e" font-size="11">미국시장 균형가</text>
+    <text x="98" y="251" fill="#8b949e" font-size="11">(S&amp;P·SOX·EWY)</text>
+
+    <!-- ===== R_restore (저항, 지그재그) 상단 좌 ===== -->
+    <text x="190" y="72" fill="#d29922" font-size="13" text-anchor="middle">R_restore</text>
+    <polyline points="150,90 162,90 168,78 180,102 192,78 204,102 216,78 222,90 234,90"
+      fill="none" stroke="#d29922" stroke-width="2.5"/>
+    <text x="190" y="120" fill="#8b949e" font-size="10.5" text-anchor="middle">복원 저항 (병렬 전도)</text>
+
+    <!-- ===== L_program (인덕터, 코일) 상단 중 ===== -->
+    <text x="400" y="72" fill="#a371f7" font-size="13" text-anchor="middle">L_program</text>
+    <path d="M340,90 q12,-22 24,0 q12,-22 24,0 q12,-22 24,0 q12,-22 24,0"
+      fill="none" stroke="#a371f7" stroke-width="2.5"/>
+    <line x1="436" y1="90" x2="460" y2="90" stroke="#c9d1d9" stroke-width="2.5"/>
+    <line x1="316" y1="90" x2="340" y2="90" stroke="#c9d1d9" stroke-width="2.5"/>
+    <text x="400" y="120" fill="#8b949e" font-size="10.5" text-anchor="middle">프로그램·레버리지 관성</text>
+
+    <!-- ===== D_sell (다이오드, 삼각형+바) 상단 우 ===== -->
+    <text x="620" y="72" fill="#f85149" font-size="13" text-anchor="middle">D_sell ▶|</text>
+    <line x1="560" y1="90" x2="600" y2="90" stroke="#c9d1d9" stroke-width="2.5"/>
+    <polygon points="600,78 600,102 624,90" fill="#f85149"/>
+    <line x1="624" y1="76" x2="624" y2="104" stroke="#f85149" stroke-width="3"/>
+    <line x1="624" y1="90" x2="664" y2="90" stroke="#c9d1d9" stroke-width="2.5"/>
+    <text x="620" y="120" fill="#8b949e" font-size="10.5" text-anchor="middle">F&lt;0 AND I&lt;0 → 도통</text>
+
+    <!-- ===== C (커패시터, 평행판) 중앙 세로 가지 ===== -->
+    <!-- 노드: 상단 와이어 중앙(x=490)에서 분기해 아래로 -->
+    <line x1="490" y1="90" x2="490" y2="180" stroke="#c9d1d9" stroke-width="2.5"/>
+    <line x1="468" y1="180" x2="512" y2="180" stroke="#3fb950" stroke-width="3"/>
+    <line x1="468" y1="196" x2="512" y2="196" stroke="#3fb950" stroke-width="3"/>
+    <line x1="490" y1="196" x2="490" y2="330" stroke="#c9d1d9" stroke-width="2.5"/>
+    <text x="525" y="184" fill="#3fb950" font-size="13">C_individual</text>
+    <text x="525" y="200" fill="#8b949e" font-size="10.5">개인 커패시터 (방전)</text>
+
+    <!-- ===== 공황 전류원 I_shock (다이오드 아래 분기) ===== -->
+    <circle cx="700" cy="225" r="26" fill="none" stroke="#f85149" stroke-width="2.5"/>
+    <line x1="700" y1="210" x2="700" y2="240" stroke="#f85149" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <line x1="700" y1="90" x2="700" y2="199" stroke="#c9d1d9" stroke-width="2.5"/>
+    <line x1="700" y1="251" x2="700" y2="330" stroke="#c9d1d9" stroke-width="2.5"/>
+    <text x="738" y="222" fill="#f85149" font-size="12">I_shock</text>
+    <text x="738" y="238" fill="#8b949e" font-size="10.5">K·|F+I|/C_flow</text>
+
+    <!-- ===== 출력 노드 V (KOSPI) 우측 ===== -->
+    <circle cx="820" cy="230" r="6" fill="#58a6ff"/>
+    <text x="838" y="226" fill="#58a6ff" font-size="15" font-weight="bold">V(t)</text>
+    <text x="838" y="244" fill="#8b949e" font-size="11">KOSPI 지수</text>
+
+    <!-- ===== Ground ===== -->
+    <line x1="445" y1="330" x2="445" y2="352" stroke="#c9d1d9" stroke-width="2.5"/>
+    <line x1="425" y1="352" x2="465" y2="352" stroke="#c9d1d9" stroke-width="2.5"/>
+    <line x1="431" y1="360" x2="459" y2="360" stroke="#c9d1d9" stroke-width="2.5"/>
+    <line x1="437" y1="368" x2="453" y2="368" stroke="#c9d1d9" stroke-width="2.5"/>
+    <text x="445" y="388" fill="#8b949e" font-size="10.5" text-anchor="middle">기준전위 (시장 바닥)</text>
+
+    <!-- 전류 방향 화살표 (상단) -->
+    <text x="270" y="86" fill="#8b949e" font-size="14">→</text>
+  </svg>
+
+  <div class="legend">
+    <span><span class="dot" style="background:#58a6ff"></span> 전원 V_target (미국신호)</span>
+    <span><span class="dot" style="background:#d29922"></span> R_restore 복원저항</span>
+    <span><span class="dot" style="background:#a371f7"></span> L_program 관성</span>
+    <span><span class="dot" style="background:#3fb950"></span> C_individual 커패시터</span>
+    <span><span class="dot" style="background:#f85149"></span> D_sell 다이오드 + 공황전류</span>
+  </div>
+</div>
+
+<!-- ════════════ 소자 의미 ════════════ -->
+<div class="card">
+  <h2>2. 소자별 물리적 의미</h2>
+  <div class="comp">
+    <div class="sym" style="color:#58a6ff">V_target</div>
+    <div><b>전원 (균형 전압)</b> — 전일 미국시장(S&amp;P500·필라델피아반도체·EWY)을 KOSPI 균형가로 환산. 시장이 수렴하려는 목표 전위.</div>
+    <div class="sym">R_restore</div>
+    <div><b>복원 저항</b> — 기관·개인·ETF/ADR·프로그램·라운드넘버의 병렬 저저항 매수 경로. 작을수록 회복이 빠름 (τ = RC).</div>
+    <div class="sym" style="color:#a371f7">L_program</div>
+    <div><b>관성 인덕터</b> — 프로그램매매·레버리지 청산의 운동량. 2차 미분항을 만들어 <b>오버슈트·진동</b>을 가능케 함 (RC엔 없음).</div>
+    <div class="sym" style="color:#3fb950">C_individual</div>
+    <div><b>개인 커패시터</b> — 개인 투자자의 축적된 매수 여력. 충전·방전으로 시정수 τ를 결정.</div>
+    <div class="sym" style="color:#f85149">D_sell</div>
+    <div><b>스위칭 다이오드</b> — <span class="badge on">F&lt;0 AND I&lt;0</span> 일 때만 도통. 외국인·기관 <b>동반매도</b>에서만 공황 전류원 I_shock을 흐르게 함. 단방향성(비대칭).</div>
+  </div>
+</div>
+
+<!-- ════════════ 지배방정식 ════════════ -->
+<div class="card" id="ode">
+  <h2>3. 지배방정식 (Governing ODE)</h2>
+  <div class="eq">L·d²V/dt²  +  R·dV/dt  +  (V − V_target)/C  =  −D_sell(t)·K·|F+I| / C_flow</div>
+  <div class="eq">D_sell(t) = 1   iff   F(t) &lt; 0  AND  I(t) &lt; 0     (외국인 AND 기관 동반매도)
+          = 0   otherwise                          (다이오드 차단 → 순수 RLC 복원)</div>
+  <h3>키르히호프 해석</h3>
+  <p class="note" style="font-size:.88rem;color:var(--fg)">
+    다이오드 <b>차단(OFF)</b> 시 우변=0 → 감쇠비 ζ&lt;1이면 <b>저감쇠 RLC</b>로 V_target을 향해 진동 감쇠하며 수렴.
+    다이오드 <b>도통(ON)</b> 시 우변에 공황 전류원이 주입 → 하락 방향 충격. 순수 RC(1차)는 단조수렴만 가능해
+    6/26 같은 <b>+5.4% → −5.8% 반전</b>을 재현 불가. L(관성)과 D_sell(비대칭)이 핵심.
+  </p>
+  <h3>실측 파라미터 (604일 캘리브레이션)</h3>
+  <table>
+    <tr><th>파라미터</th><th>값</th><th>의미</th></tr>
+    <tr><td>C_flow</td><td>0.017 조/pt</td><td>능동 커패시턴스 (수급충격 환산)</td></tr>
+    <tr><td>K_cascade</td><td>1.784</td><td>캐스케이드 증폭 (D+0 점화 적합)</td></tr>
+    <tr><td>τ (시정수)</td><td>2.319 일</td><td>복원 시정수 RC</td></tr>
+  </table>
+</div>
+
+<!-- ════════════ 백테스트 ════════════ -->
+<div class="card" id="backtest">
+  <h2>4. 백테스트 결과 (604 거래일, 2024–2026 실데이터)</h2>
+
+  <h3>H1 — 동시점 분류력 (핵심 결과)</h3>
+  <table>
+    <tr><th>상태</th><th>일수</th><th>평균 수익률</th><th>중앙값</th><th>하락일 비율</th></tr>
+    <tr><td><span class="badge on">D_sell ON</span></td><td>151</td><td class="down">−1.19%</td><td>−0.84%</td><td>80.1%</td></tr>
+    <tr><td><span class="badge off">D_sell OFF</span></td><td>453</td><td class="up">+0.68%</td><td>+0.49%</td><td>29.4%</td></tr>
+  </table>
+  <p class="note">평균차 <b>1.87%p</b>, <b style="color:var(--warn)">t = 9.55</b> (압도적 유의). 외국인 부호만으로는 6/24·25 상승을 설명 못 함 — <b>기관 부호(I)가 진짜 스위치</b>.</p>
+
+  <h3>H2 — 폭락 포착</h3>
+  <table>
+    <tr><th>임계값</th><th>해당일</th><th>D_sell ON</th><th>포착률</th></tr>
+    <tr><td>≤ −1%</td><td>94</td><td>66</td><td>70.2%</td></tr>
+    <tr><td>≤ −2%</td><td>40</td><td>32</td><td>80.0%</td></tr>
+    <tr><td>≤ −3%</td><td>26</td><td>20</td><td>76.9%</td></tr>
+    <tr><td>≤ −5%</td><td>12</td><td>10</td><td class="win">83.3%</td></tr>
+    <tr><td>≥ +2% (대조군)</td><td>61</td><td>5</td><td>8.2%</td></tr>
+  </table>
+  <p class="note">큰 폭락일수록 포착률↑. 상승일엔 거의 점화 안 함 → <b>방향 비대칭성</b> 입증.</p>
+
+  <h3>H3 — 익일 예측 (정직한 한계)</h3>
+  <p class="note" style="font-size:.86rem">전일 D_sell로 익일 수익률 예측 시 격차 <b>−0.14%p</b> — <span class="lose">예측력 소멸·평균회귀</span>. D_sell은 당일 종가와 동시간 정보라 종가 확정 후엔 늦다. 실전 가치는 <b>장중 30분봉 누적 수급</b>의 조기 점화 포착에 있다.</p>
+
+  <h3>H4 — 트레이딩 백테스트</h3>
+  <table>
+    <tr><th>전략</th><th>총수익</th><th>CAGR</th><th>샤프</th><th>MDD</th></tr>
+    <tr><td>Buy &amp; Hold</td><td class="win">+215.0%</td><td>+61.4%</td><td class="win">1.68</td><td>−20.7%</td></tr>
+    <tr><td>RC (급락 다음날 매수)</td><td>+96.6%</td><td>+32.6%</td><td>1.32</td><td>−18.4%</td></tr>
+    <tr><td>다이오드 (ON일 회피)</td><td>+105.9%</td><td>+35.2%</td><td>1.33</td><td>−19.4%</td></tr>
+    <tr><td>다이오드 (ON일 숏)</td><td>+23.2%</td><td>+9.1%</td><td>0.43</td><td>−34.8%</td></tr>
+  </table>
+  <p class="note">2024–26은 4배 강세장이라 회피 전략은 B&amp;H를 못 이긴다. 다이오드의 가치는 <b>진단·경보</b>이지 트레이딩 알파가 아니다.</p>
+</div>
+
+<!-- ════════════ 결론 ════════════ -->
+<div class="card">
+  <h2>5. 결론</h2>
+  <div class="eq" style="color:#e6edf3">모델 구조      : 다이오드 &gt; RC          [입증: t=9.55, 폭락 83% 포착]
+점예측(익일)   : 한계 인정 (평균회귀)    [장중 실시간 수급 필요 — v6]
+확률예측(공정) : 다이오드 &gt; Codex       [Brier 0.42 &lt; 1.00]
+신호 수집      : Codex &gt; 다이오드        [다중 미국지표 — v6 통합 예정]</div>
+  <p class="note" style="font-size:.86rem;color:var(--fg)">
+    RC 단조회복 가정은 물리적으로 반증됐다. 다이오드 모델은 604일에 걸쳐 t=9.55로 시장 방향을 분류하며,
+    <b>기관 부호가 외국인 게이트보다 우월한 스위치</b>임을 입증한다.
+    ⚔️ Codex가 RC v7로 경쟁 중이며, 다음 라운드(v6)는 장중 실시간 + 다중신호 통합에서 갈린다.
+  </p>
+</div>
+
+<div class="foot">
+  KOSPI 다이오드 모델 v5 · Claude × 첨물 · 데이터: 네이버 금융 (가격·투자자별 순매매)<br>
+  코드·논문: github.com/waterfirst/kospi-mw-rc-research · 정보·연구 목적, 투자자문 아님.
+</div>
+</body>
+</html>

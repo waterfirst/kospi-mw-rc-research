@@ -1,0 +1,77 @@
+{
+  "snapshot_hash": "9e469d85acdc4858",
+  "mode": "open",
+  "created_at_kst": "2026-06-27T16:30:00+09:00",
+  "kospi_last": {
+    "date": "20260626",
+    "open": 8813.18,
+    "high": 8861.7,
+    "low": 8126.84,
+    "close": 8411.21,
+    "volume": 518473.0
+  },
+  "kospi_prev": {
+    "date": "20260625",
+    "open": 8703.42,
+    "high": 9044.04,
+    "low": 8693.62,
+    "close": 8930.3,
+    "volume": 456880.0
+  },
+  "kospi_realtime": {
+    "close": 0.0,
+    "open": 0.0,
+    "high": 0.0,
+    "low": 0.0,
+    "change_pct": 0.0,
+    "market_status": null,
+    "local_traded_at": null,
+    "missing": [
+      "close",
+      "open",
+      "high",
+      "low",
+      "change_pct",
+      "market_status"
+    ]
+  },
+  "flow": {
+    "date": "20260626",
+    "individual_million_krw": 81919,
+    "foreign_million_krw": -42906,
+    "institution_million_krw": -41224,
+    "d_sell": true,
+    "error": null
+  },
+  "us_market": {
+    "SOX": {
+      "symbol": ".SOX",
+      "close": 13203.57,
+      "change_pct": -5.29,
+      "market_status": "CLOSE",
+      "local_traded_at": "2026-06-26T17:15:59-04:00"
+    },
+    "SP500": {
+      "symbol": ".INX",
+      "close": 7354.02,
+      "change_pct": -0.05,
+      "market_status": "CLOSE",
+      "local_traded_at": "2026-06-26T17:07:00-04:00"
+    },
+    "NASDAQ": {
+      "symbol": ".IXIC",
+      "close": 25297.62,
+      "change_pct": -0.24,
+      "market_status": "CLOSE",
+      "local_traded_at": "2026-06-26T17:15:59-04:00"
+    },
+    "DOW": {
+      "symbol": ".DJI",
+      "close": 51876.11,
+      "change_pct": -0.09,
+      "market_status": "CLOSE",
+      "local_traded_at": "2026-06-26T17:11:58-04:00"
+    }
+  },
+  "source_errors": []
+}

@@ -253,12 +253,12 @@ for label, target in DEADLINES.items():
 
 ## 8. v8 우선 구현 체크리스트
 
-- [ ] `D_rev` 역방향 다이오드 로직 추가 (monitor/kospi_consortium.py)
-- [ ] `G_inst` 크기 임계 3단계 코드화 (30k/15k/0k)
+- [x] `D_rev` 역방향 다이오드 1차 로직 추가: `post_crash_relief_possible`
+- [x] `G_inst` 1차 크기 법칙 추가: `institution_absorption`
 - [ ] `W_vol` 거래대금 가속 게이트 추가
 - [ ] `ADC_1400` 14:00 내부 표본기 (제출 변경 없이 내부 정확도 추적)
-- [ ] 워치독: 07:30 + 12:30 제출 파일 확인 + 폴백
-- [ ] 뉴스 쿼리 추가: "Meta cloud capacity", "AWS Azure AI compute", "hyperscaler AI demand"
-- [ ] EWY 프리마켓 데이터 수집 루틴 (US 장 마감 후 → KST 06:00~07:00)
+- [x] 워치독: 07:30 + 12:30 제출 파일 확인 + 폴백 스크립트 추가
+- [x] 뉴스 쿼리 추가: "Meta cloud capacity", "AWS Azure AI compute", "hyperscaler AI demand"
+- [x] EWY 데이터 수집 루틴 추가
 
 *정보·연구 목적. 투자자문 아님.*

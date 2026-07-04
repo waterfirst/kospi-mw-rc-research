@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Consortium vs Codex Consortium — 비교 &amp; 월요일 채점표</title>
+<style>
+  :root{--bg:#0e1117;--card:#161b22;--bd:#30363d;--fg:#e6edf3;--mut:#8b949e;
+        --on:#f85149;--off:#3fb950;--accent:#58a6ff;--warn:#d29922;--codex:#a371f7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--fg);font-family:'Segoe UI','NanumGothic',sans-serif;
+       line-height:1.6;padding:20px;max-width:980px;margin:0 auto}
+  h1{font-size:1.55rem;margin-bottom:4px}
+  .sub{color:var(--mut);font-size:.85rem;margin-bottom:14px}
+  .nav{margin-bottom:18px;font-size:.85rem}
+  .nav a{color:var(--accent);text-decoration:none;margin-right:14px}
+  .card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:18px;margin-bottom:16px}
+  .card h2{font-size:1.1rem;color:var(--accent);margin-bottom:12px;border-left:4px solid var(--accent);padding-left:9px}
+  table{width:100%;border-collapse:collapse;font-size:.84rem;margin:8px 0}
+  th,td{padding:7px 9px;text-align:left;border-bottom:1px solid var(--bd);vertical-align:top}
+  th{color:var(--mut);background:#0d1117}
+  .claude{color:var(--accent);font-weight:600}
+  .codex{color:var(--codex);font-weight:600}
+  .up{color:var(--off);font-weight:600}.down{color:var(--on);font-weight:600}
+  .win{color:var(--off);font-weight:700}.lose{color:var(--on);font-weight:700}
+  .note{font-size:.8rem;color:var(--mut);line-height:1.55;margin-top:8px}
+  .lock{background:rgba(210,153,34,.1);border:1px solid var(--warn);border-radius:8px;padding:14px;margin:12px 0}
+  .lock b{color:var(--warn)}
+  .big{font-size:1.3rem;font-weight:800}
+  .foot{color:var(--mut);font-size:.72rem;text-align:center;margin-top:20px;line-height:1.6}
+  .pill{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.75rem;font-weight:700}
+  .pill.c{background:rgba(88,166,255,.18);color:var(--accent)}
+  .pill.x{background:rgba(163,113,247,.18);color:var(--codex)}
+  .circuit-img{display:block;width:100%;height:auto;border:1px solid var(--bd);border-radius:8px;background:#0d1117;margin-top:10px}
+</style>
+</head>
+<body>
+<h1>⚔️ Claude Consortium 다이오드 vs Codex Consortium MW-RC</h1>
+<div class="sub">🤝 Claude+Gemini+GLM-5.2+Ollama vs Codex+Ollama+GPT+Z.ai+Gemini · 월요일(2026-06-29) 10점 채점표 · 정보·연구용, 투자자문 아님</div>
+<div class="nav">
+  <a href="index.html">시뮬레이터</a><a href="circuit.html">회로도</a><a href="monday_forecast.html">월요일 예측</a>
+</div>
+
+<div class="card">
+  <h2>0. 등가 회로도 — Claude vs Codex</h2>
+  <img class="circuit-img" alt="Claude Diode RLC model and Codex MW-RC parallel conductance equivalent circuit" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNDAwIDc2MCI+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5iZ3tmaWxsOiMwZDExMTd9LnBhbmVse2ZpbGw6IzE2MWIyMjtzdHJva2U6IzMwMzYzZDtzdHJva2Utd2lkdGg6Mn0ud2lyZXtzdHJva2U6I2M5ZDFkOTtzdHJva2Utd2lkdGg6NTtmaWxsOm5vbmU7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kfS50eHR7ZmlsbDojZTZlZGYzO2ZvbnQtZmFtaWx5OlNlZ29lIFVJLEFyaWFsLHNhbnMtc2VyaWZ9Lm11dHtmaWxsOiM4Yjk0OWU7Zm9udC1mYW1pbHk6U2Vnb2UgVUksQXJpYWwsc2Fucy1zZXJpZn0uYmx1ZXtzdHJva2U6IzU4YTZmZjtmaWxsOm5vbmV9LmJsdWVme2ZpbGw6IzU4YTZmZn0ucmVke3N0cm9rZTojZjg1MTQ5O2ZpbGw6bm9uZX0ucmVkZntmaWxsOiNmODUxNDl9LmdyZWVue3N0cm9rZTojM2ZiOTUwO2ZpbGw6bm9uZX0uZ3JlZW5me2ZpbGw6IzNmYjk1MH0ucHVycGxle3N0cm9rZTojYTM3MWY3O2ZpbGw6bm9uZX0ucHVycGxlZntmaWxsOiNhMzcxZjd9LnllbGxvd3tzdHJva2U6I2QyOTkyMjtmaWxsOm5vbmV9LnllbGxvd2Z7ZmlsbDojZDI5OTIyfS5sYWJlbHtmb250LXNpemU6MjhweDtmb250LXdlaWdodDo3MDB9LnNtYWxse2ZvbnQtc2l6ZToxOXB4fS5taW5pe2ZvbnQtc2l6ZToxNnB4fS50aXRsZXtmb250LXNpemU6MzRweDtmb250LXdlaWdodDo4MDB9Lm5vZGV7ZmlsbDojMGQxMTE3O3N0cm9rZTojNThhNmZmO3N0cm9rZS13aWR0aDo1fQogICAgPC9zdHlsZT4KICAgIDxtYXJrZXIgaWQ9ImFycm93UmVkIiBtYXJrZXJXaWR0aD0iMTIiIG1hcmtlckhlaWdodD0iMTIiIHJlZlg9IjkiIHJlZlk9IjQiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAsMCBMMTAsNCBMMCw4IFoiIGZpbGw9IiNmODUxNDkiLz48L21hcmtlcj4KICAgIDxtYXJrZXIgaWQ9ImFycm93Qmx1ZSIgbWFya2VyV2lkdGg9IjEyIiBtYXJrZXJIZWlnaHQ9IjEyIiByZWZYPSI5IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wLDAgTDEwLDQgTDAsOCBaIiBmaWxsPSIjNThhNmZmIi8+PC9tYXJrZXI+CiAgPC9kZWZzPgogIDxyZWN0IGNsYXNzPSJiZyIgeD0iMCIgeT0iMCIgd2lkdGg9IjE0MDAiIGhlaWdodD0iNzYwIiByeD0iMCIvPgogIDx0ZXh0IGNsYXNzPSJ0eHQgdGl0bGUiIHg9IjcwMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPktPU1BJIE1hcmtldCBFcXVpdmFsZW50IENpcmN1aXRzPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJtdXQgc21hbGwiIHg9IjcwMCIgeT0iOTEiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNsYXVkZSBEaW9kZS9STEMgbW9kZWwgdnMgQ29kZXggTVctUkMgcGFyYWxsZWwgY29uZHVjdGFuY2UgbW9kZWw8L3RleHQ+CgogIDxyZWN0IGNsYXNzPSJwYW5lbCIgeD0iNTUiIHk9IjEyNSIgd2lkdGg9IjYxMCIgaGVpZ2h0PSI1NjUiIHJ4PSIxNiIvPgogIDxyZWN0IGNsYXNzPSJwYW5lbCIgeD0iNzM1IiB5PSIxMjUiIHdpZHRoPSI2MTAiIGhlaWdodD0iNTY1IiByeD0iMTYiLz4KCiAgPHRleHQgY2xhc3M9ImJsdWVmIHRpdGxlIiB4PSIzNjAiIHk9IjE3NSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Q2xhdWRlIERpb2RlIHY1PC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJtdXQgc21hbGwiIHg9IjM2MCIgeT0iMjA1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4ybmQtb3JkZXIgUkxDICsgbm9ubGluZWFyIHNlbGwgZGlvZGU8L3RleHQ+CgogIDx0ZXh0IGNsYXNzPSJwdXJwbGVmIHRpdGxlIiB4PSIxMDQwIiB5PSIxNzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNvZGV4IE1XLVJDIHY3PC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJtdXQgc21hbGwiIHg9IjEwNDAiIHk9IjIwNSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MXN0LW9yZGVyIFJDIHdpdGggcGFyYWxsZWwgY29uZHVjdGFuY2U8L3RleHQ+CgogIDwhLS0gQ2xhdWRlIGNpcmN1aXQgLS0+CiAgPGxpbmUgY2xhc3M9IndpcmUiIHgxPSIxMjAiIHkxPSIzMTAiIHgyPSI2MDAiIHkyPSIzMTAiLz4KICA8bGluZSBjbGFzcz0id2lyZSIgeDE9IjEyMCIgeTE9IjU2MCIgeDI9IjYwMCIgeTI9IjU2MCIvPgogIDxsaW5lIGNsYXNzPSJ3aXJlIiB4MT0iMTIwIiB5MT0iMzEwIiB4Mj0iMTIwIiB5Mj0iNTYwIi8+CiAgPGxpbmUgY2xhc3M9IndpcmUiIHgxPSI2MDAiIHkxPSIzMTAiIHgyPSI2MDAiIHkyPSI1NjAiLz4KCiAgPCEtLSBCYXR0ZXJ5IC0tPgogIDxsaW5lIGNsYXNzPSJibHVlIiB4MT0iOTgiIHkxPSI0MTAiIHgyPSIxNDIiIHkyPSI0MTAiIHN0cm9rZS13aWR0aD0iNiIvPgogIDxsaW5lIGNsYXNzPSJibHVlIiB4MT0iMTA4IiB5MT0iNDMyIiB4Mj0iMTMyIiB5Mj0iNDMyIiBzdHJva2Utd2lkdGg9IjYiLz4KICA8bGluZSBjbGFzcz0iYmx1ZSIgeDE9Ijk4IiB5MT0iNDU0IiB4Mj0iMTQyIiB5Mj0iNDU0IiBzdHJva2Utd2lkdGg9IjYiLz4KICA8dGV4dCBjbGFzcz0iYmx1ZWYgbGFiZWwiIHg9IjE1NSIgeT0iNDIwIj5WX3RhcmdldDwvdGV4dD4KICA8dGV4dCBjbGFzcz0ibXV0IG1pbmkiIHg9IjE1NSIgeT0iNDQ1Ij5VUyBlcXVpbGlicml1bTwvdGV4dD4KCiAgPCEtLSBSZXNpc3RvciAtLT4KICA8cG9seWxpbmUgY2xhc3M9InllbGxvdyIgcG9pbnRzPSIxOTUsMzEwIDIxMCwzMTAgMjIwLDI4OCAyNDAsMzMyIDI2MCwyODggMjgwLDMzMiAzMDAsMjg4IDMxMCwzMTAgMzI1LDMxMCIgc3Ryb2tlLXdpZHRoPSI1Ii8+CiAgPHRleHQgY2xhc3M9InllbGxvd2Ygc21hbGwiIHg9IjI2MCIgeT0iMjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5SX3Jlc3RvcmU8L3RleHQ+CgogIDwhLS0gSW5kdWN0b3IgLS0+CiAgPHBhdGggY2xhc3M9InB1cnBsZSIgZD0iTTM2NSAzMTAgcTE1IC0zOCAzMCAwIHExNSAtMzggMzAgMCBxMTUgLTM4IDMwIDAiIHN0cm9rZS13aWR0aD0iNSIvPgogIDx0ZXh0IGNsYXNzPSJwdXJwbGVmIHNtYWxsIiB4PSI0MTAiIHk9IjI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TF9wcm9ncmFtPC90ZXh0PgoKICA8IS0tIERpb2RlIC0tPgogIDxsaW5lIGNsYXNzPSJ3aXJlIiB4MT0iNDkwIiB5MT0iMzEwIiB4Mj0iNTE1IiB5Mj0iMzEwIi8+CiAgPHBvbHlnb24gcG9pbnRzPSI1MTUsMjg1IDUxNSwzMzUgNTU1LDMxMCIgY2xhc3M9InJlZGYiLz4KICA8bGluZSBjbGFzcz0icmVkIiB4MT0iNTU3IiB5MT0iMjgyIiB4Mj0iNTU3IiB5Mj0iMzM4IiBzdHJva2Utd2lkdGg9IjYiLz4KICA8dGV4dCBjbGFzcz0icmVkZiBzbWFsbCIgeD0iNTM1IiB5PSIyNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkRfc2VsbDwvdGV4dD4KICA8dGV4dCBjbGFzcz0ibXV0IG1pbmkiIHg9IjUzNSIgeT0iMzYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GJmx0OzAgQU5EIEkmbHQ7MDwvdGV4dD4KCiAgPCEtLSBDYXBhY2l0b3IgYnJhbmNoIC0tPgogIDxsaW5lIGNsYXNzPSJ3aXJlIiB4MT0iMzY1IiB5MT0iMzEwIiB4Mj0iMzY1IiB5Mj0iNDA1Ii8+CiAgPGxpbmUgY2xhc3M9ImdyZWVuIiB4MT0iMzMwIiB5MT0iNDA1IiB4Mj0iNDAwIiB5Mj0iNDA1IiBzdHJva2Utd2lkdGg9IjYiLz4KICA8bGluZSBjbGFzcz0iZ3JlZW4iIHgxPSIzMzAiIHkxPSI0MzAiIHgyPSI0MDAiIHkyPSI0MzAiIHN0cm9rZS13aWR0aD0iNiIvPgogIDxsaW5lIGNsYXNzPSJ3aXJlIiB4MT0iMzY1IiB5MT0iNDMwIiB4Mj0iMzY1IiB5Mj0iNTYwIi8+CiAgPHRleHQgY2xhc3M9ImdyZWVuZiBzbWFsbCIgeD0iNDA4IiB5PSI0MTUiPkNfaW5kaXZpZHVhbDwvdGV4dD4KICA8dGV4dCBjbGFzcz0ibXV0IG1pbmkiIHg9IjQwOCIgeT0iNDM4Ij5yZXRhaWwgY2FwYWNpdG9yPC90ZXh0PgoKICA8IS0tIFNob2NrIHNvdXJjZSAtLT4KICA8bGluZSBjbGFzcz0id2lyZSIgeDE9IjU0MCIgeTE9IjMxMCIgeDI9IjU0MCIgeTI9IjQwNyIvPgogIDxjaXJjbGUgY3g9IjU0MCIgY3k9IjQ1NSIgcj0iMzkiIGNsYXNzPSJyZWQiIHN0cm9rZS13aWR0aD0iNSIvPgogIDxsaW5lIGNsYXNzPSJyZWQiIHgxPSI1NDAiIHkxPSI0MjUiIHgyPSI1NDAiIHkyPSI0ODUiIHN0cm9rZS13aWR0aD0iNSIgbWFya2VyLWVuZD0idXJsKCNhcnJvd1JlZCkiLz4KICA8bGluZSBjbGFzcz0id2lyZSIgeDE9IjU0MCIgeTE9IjQ5NCIgeDI9IjU0MCIgeTI9IjU2MCIvPgogIDx0ZXh0IGNsYXNzPSJyZWRmIHNtYWxsIiB4PSI0ODUiIHk9IjUxMCI+SV9zaG9jazwvdGV4dD4KICA8dGV4dCBjbGFzcz0ibXV0IG1pbmkiIHg9IjQ0NSIgeT0iNTM1Ij5LfEYrSXwvQ19mbG93PC90ZXh0PgoKICA8IS0tIE91dHB1dCBub2RlIC0tPgogIDxjaXJjbGUgY2xhc3M9Im5vZGUiIGN4PSI2MDAiIGN5PSI0MzUiIHI9IjkiLz4KICA8dGV4dCBjbGFzcz0iYmx1ZWYgbGFiZWwiIHg9IjYyMCIgeT0iNDI4Ij5WKHQpPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJtdXQgbWluaSIgeD0iNjIwIiB5PSI0NTIiPktPU1BJPC90ZXh0PgoKICA8dGV4dCBjbGFzcz0idHh0IHNtYWxsIiB4PSIzNjAiIHk9IjYyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+S2V5OiBtYXJrZXQgcmV2ZXJzYWwgbmVlZHMgaW5lcnRpYSBMIGFuZCBzZWxsLXNpZGUgZGlvZGUgYXN5bW1ldHJ5LjwvdGV4dD4KICA8dGV4dCBjbGFzcz0ibXV0IG1pbmkiIHg9IjM2MCIgeT0iNjQ2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5EX3NlbGwgT04gaW5qZWN0cyBhIGRpc2NvbnRpbnVvdXMgcGFuaWMgY3VycmVudDsgT0ZGIGFsbG93cyBSTEMgcmVzdG9yYXRpb24uPC90ZXh0PgoKICA8IS0tIENvZGV4IGNpcmN1aXQgLS0+CiAgPGxpbmUgY2xhc3M9IndpcmUiIHgxPSI4MDAiIHkxPSIzMTAiIHgyPSIxMjgwIiB5Mj0iMzEwIi8+CiAgPGxpbmUgY2xhc3M9IndpcmUiIHgxPSI4MDAiIHkxPSI1NjAiIHgyPSIxMjgwIiB5Mj0iNTYwIi8+CiAgPGxpbmUgY2xhc3M9IndpcmUiIHgxPSI4MDAiIHkxPSIzMTAiIHgyPSI4MDAiIHkyPSI1NjAiLz4KICA8bGluZSBjbGFzcz0id2lyZSIgeDE9IjEyODAiIHkxPSIzMTAiIHgyPSIxMjgwIiB5Mj0iNTYwIi8+CgogIDwhLS0gYmF0dGVyeSAtLT4KICA8bGluZSBjbGFzcz0iYmx1ZSIgeDE9Ijc3OCIgeTE9IjQxMCIgeDI9IjgyMiIgeTI9IjQxMCIgc3Ryb2tlLXdpZHRoPSI2Ii8+CiAgPGxpbmUgY2xhc3M9ImJsdWUiIHgxPSI3ODgiIHkxPSI0MzIiIHgyPSI4MTIiIHkyPSI0MzIiIHN0cm9rZS13aWR0aD0iNiIvPgogIDxsaW5lIGNsYXNzPSJibHVlIiB4MT0iNzc4IiB5MT0iNDU0IiB4Mj0iODIyIiB5Mj0iNDU0IiBzdHJva2Utd2lkdGg9IjYiLz4KICA8dGV4dCBjbGFzcz0iYmx1ZWYgbGFiZWwiIHg9IjgzNSIgeT0iNDIwIj5WX3RhcmdldDwvdGV4dD4KICA8dGV4dCBjbGFzcz0ibXV0IG1pbmkiIHg9IjgzNSIgeT0iNDQ1Ij5tdWx0aS1VUyBzaWduYWw8L3RleHQ+CgogIDwhLS0gcGFyYWxsZWwgY29uZHVjdGFuY2VzIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDkzMCwwKSI+CiAgICA8bGluZSBjbGFzcz0id2lyZSIgeDE9IjAiIHkxPSIzMTAiIHgyPSIwIiB5Mj0iMzYwIi8+CiAgICA8cG9seWxpbmUgY2xhc3M9InllbGxvdyIgcG9pbnRzPSIwLDM2MCAwLDM3MiAtMTgsMzgyIDE4LDM5OCAtMTgsNDE0IDE4LDQzMCAwLDQ0MCAwLDQ1MCIgc3Ryb2tlLXdpZHRoPSI0Ii8+CiAgICA8bGluZSBjbGFzcz0id2lyZSIgeDE9IjAiIHkxPSI0NTAiIHgyPSIwIiB5Mj0iNTYwIi8+CiAgICA8dGV4dCBjbGFzcz0ieWVsbG93ZiBtaW5pIiB4PSIwIiB5PSI1OTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkdfZm9yZWlnbjwvdGV4dD4KICA8L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAxNSwwKSI+CiAgICA8bGluZSBjbGFzcz0id2lyZSIgeDE9IjAiIHkxPSIzMTAiIHgyPSIwIiB5Mj0iMzYwIi8+CiAgICA8cG9seWxpbmUgY2xhc3M9ImdyZWVuIiBwb2ludHM9IjAsMzYwIDAsMzcyIC0xOCwzODIgMTgsMzk4IC0xOCw0MTQgMTgsNDMwIDAsNDQwIDAsNDUwIiBzdHJva2Utd2lkdGg9IjQiLz4KICAgIDxsaW5lIGNsYXNzPSJ3aXJlIiB4MT0iMCIgeTE9IjQ1MCIgeDI9IjAiIHkyPSI1NjAiLz4KICAgIDx0ZXh0IGNsYXNzPSJncmVlbmYgbWluaSIgeD0iMCIgeT0iNTk1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5HX2luc3Q8L3RleHQ+CiAgPC9nPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDExMDAsMCkiPgogICAgPGxpbmUgY2xhc3M9IndpcmUiIHgxPSIwIiB5MT0iMzEwIiB4Mj0iMCIgeTI9IjM2MCIvPgogICAgPHBvbHlsaW5lIGNsYXNzPSJibHVlIiBwb2ludHM9IjAsMzYwIDAsMzcyIC0xOCwzODIgMTgsMzk4IC0xOCw0MTQgMTgsNDMwIDAsNDQwIDAsNDUwIiBzdHJva2Utd2lkdGg9IjQiLz4KICAgIDxsaW5lIGNsYXNzPSJ3aXJlIiB4MT0iMCIgeTE9IjQ1MCIgeDI9IjAiIHkyPSI1NjAiLz4KICAgIDx0ZXh0IGNsYXNzPSJibHVlZiBtaW5pIiB4PSIwIiB5PSI1OTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkdfcmV0YWlsPC90ZXh0PgogIDwvZz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMTg1LDApIj4KICAgIDxsaW5lIGNsYXNzPSJ3aXJlIiB4MT0iMCIgeTE9IjMxMCIgeDI9IjAiIHkyPSIzNjAiLz4KICAgIDxwb2x5bGluZSBjbGFzcz0icHVycGxlIiBwb2ludHM9IjAsMzYwIDAsMzcyIC0xOCwzODIgMTgsMzk4IC0xOCw0MTQgMTgsNDMwIDAsNDQwIDAsNDUwIiBzdHJva2Utd2lkdGg9IjQiLz4KICAgIDxsaW5lIGNsYXNzPSJ3aXJlIiB4MT0iMCIgeTE9IjQ1MCIgeDI9IjAiIHkyPSI1NjAiLz4KICAgIDx0ZXh0IGNsYXNzPSJwdXJwbGVmIG1pbmkiIHg9IjAiIHk9IjU5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+R19wcm9nPC90ZXh0PgogIDwvZz4KCiAgPCEtLSBjYXBhY2l0b3IgLS0+CiAgPGxpbmUgY2xhc3M9IndpcmUiIHgxPSIxMjQ1IiB5MT0iMzEwIiB4Mj0iMTI0NSIgeTI9IjQwNSIvPgogIDxsaW5lIGNsYXNzPSJncmVlbiIgeDE9IjEyMTUiIHkxPSI0MDUiIHgyPSIxMjc1IiB5Mj0iNDA1IiBzdHJva2Utd2lkdGg9IjYiLz4KICA8bGluZSBjbGFzcz0iZ3JlZW4iIHgxPSIxMjE1IiB5MT0iNDMwIiB4Mj0iMTI3NSIgeTI9IjQzMCIgc3Ryb2tlLXdpZHRoPSI2Ii8+CiAgPGxpbmUgY2xhc3M9IndpcmUiIHgxPSIxMjQ1IiB5MT0iNDMwIiB4Mj0iMTI0NSIgeTI9IjU2MCIvPgogIDx0ZXh0IGNsYXNzPSJncmVlbmYgc21hbGwiIHg9IjEyMDUiIHk9IjM4OCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Q19lZmY8L3RleHQ+CgogIDwhLS0gZm9yY2VkIGN1cnJlbnQgc2luayAtLT4KICA8Y2lyY2xlIGN4PSI4ODAiIGN5PSI0NTUiIHI9IjM4IiBjbGFzcz0icmVkIiBzdHJva2Utd2lkdGg9IjUiLz4KICA8bGluZSBjbGFzcz0icmVkIiB4MT0iODgwIiB5MT0iNDI1IiB4Mj0iODgwIiB5Mj0iNDg1IiBzdHJva2Utd2lkdGg9IjUiIG1hcmtlci1lbmQ9InVybCgjYXJyb3dSZWQpIi8+CiAgPGxpbmUgY2xhc3M9IndpcmUiIHgxPSI4ODAiIHkxPSIzMTAiIHgyPSI4ODAiIHkyPSI0MTciLz4KICA8bGluZSBjbGFzcz0id2lyZSIgeDE9Ijg4MCIgeTE9IjQ5MyIgeDI9Ijg4MCIgeTI9IjU2MCIvPgogIDx0ZXh0IGNsYXNzPSJyZWRmIHNtYWxsIiB4PSI4NDIiIHk9IjUxMCI+SV9mb3JjZWQ8L3RleHQ+CgogIDxjaXJjbGUgY2xhc3M9Im5vZGUiIGN4PSIxMjgwIiBjeT0iNDM1IiByPSI5Ii8+CiAgPHRleHQgY2xhc3M9ImJsdWVmIGxhYmVsIiB4PSIxMjk4IiB5PSI0MjgiPlYodCk8L3RleHQ+CiAgPHRleHQgY2xhc3M9Im11dCBtaW5pIiB4PSIxMjk4IiB5PSI0NTIiPktPU1BJPC90ZXh0PgoKICA8dGV4dCBjbGFzcz0idHh0IHNtYWxsIiB4PSIxMDQwIiB5PSI2MjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPktleTogcmVjb3Zlcnkgc3BlZWQgaXMgdGF1ID0gQ19lZmYgLyBzaWdtYV90b3RhbC48L3RleHQ+CiAgPHRleHQgY2xhc3M9Im11dCBtaW5pIiB4PSIxMDQwIiB5PSI2NDYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlBhcmFsbGVsIHBhdGhzIHJlZHVjZSByZXNpc3RhbmNlOyBtb2RlbCBpcyBtb3N0bHkgbW9ub3RvbmUgUkMgcmVzdG9yYXRpb24uPC90ZXh0Pgo8L3N2Zz4=">
+  <div class="note">왼쪽은 Claude의 RLC+다이오드 구조, 오른쪽은 Codex의 MW-RC 병렬전도 구조다. 같은 시장 전압 V(t)를 두고, 한쪽은 비선형 점화와 관성을, 다른 쪽은 병렬 전도도와 복원 시정수를 전면에 둔다.</div>
+</div>
+
+<div class="card">
+  <h2>0-B. Codex 로컬 추론 장비</h2>
+  <table>
+    <tr><th>항목</th><th>사양</th><th>대결에서 쓰는 역할</th></tr>
+    <tr><td>CPU</td><td>AMD Ryzen 7 260, 8코어 / 16스레드, 기본 3.80GHz</td><td>데이터 수집, 검증, 채점, 보조 파싱</td></tr>
+    <tr><td>메모리</td><td>31.3GB</td><td>시장 스냅샷, 다중 모델 출력 로그 보관</td></tr>
+    <tr><td>GPU 0</td><td>NVIDIA GeForce RTX 5060 Laptop GPU</td><td><b class="codex">Ollama glm4:9b 로컬 추론</b></td></tr>
+    <tr><td>GPU 1</td><td>AMD Radeon 780M Graphics</td><td>내장 그래픽 / 화면 출력 보조</td></tr>
+    <tr><td>Ollama</td><td><code>glm4:9b</code>, 100% GPU 로딩 확인</td><td>Codex 보조 정량 판단. JSON 검증 통과 시에만 앙상블 반영</td></tr>
+  </table>
+  <div class="note">로컬 GLM은 Gemini/Z.ai와 동등한 보조 의견으로 기록되지만, 최종 제출값은 Codex가 책임진다. 없는 시세나 수급을 만들어내지 못하도록 JSON 스키마 검증을 통과한 출력만 사용한다.</div>
+</div>
+
+<div class="card">
+  <h2>0-C. Codex 에이전트 역할 분담</h2>
+  <table>
+    <tr><th>에이전트</th><th>실행 위치</th><th>역할</th></tr>
+    <tr><td>Local compressor</td><td>Ollama <code>glm4:9b</code> / NVIDIA GPU</td><td>원본 스냅샷을 compact digest로 압축, 보수적 후보 예측</td></tr>
+    <tr><td>GPT verifier</td><td>GPT API</td><td>숫자 일관성, 결측값, 할루시네이션 위험 검증</td></tr>
+    <tr><td>Z.ai quant</td><td>Z.ai GLM 5.2 API</td><td>점추정, 상승/하락 확률, 리스크 밸런스</td></tr>
+    <tr><td>Gemini cross-check</td><td>Gemini API</td><td>스냅샷 근거와 시나리오 교차검증</td></tr>
+    <tr><td>Codex finalizer</td><td>Codex</td><td>JSON 스키마 검증, 앙상블, 제출값 고정, 텔레그램 발송</td></tr>
+  </table>
+  <div class="note">토큰 절약 전략: 원본 시장 데이터는 파일로만 저장하고, API 모델에는 짧은 compact digest만 보낸다. 검증을 통과한 JSON 출력만 앙상블에 반영한다.</div>
+</div>
+
+<div class="card">
+  <h2>1. 모델 구조 비교</h2>
+  <table>
+    <tr><th>항목</th><th><span class="pill c">Claude 다이오드 v5</span></th><th><span class="pill x">Codex MW-RC v7</span></th></tr>
+    <tr><td><b>회로 차수</b></td><td class="claude">2차 RLC + 스위칭 다이오드</td><td class="codex">1차 RC (병렬전도)</td></tr>
+    <tr><td><b>관성(L)</b></td><td class="claude">L_program 있음 → 오버슈트·진동</td><td>없음 (단조 수렴만)</td></tr>
+    <tr><td><b>비선형 스위치</b></td><td class="claude">D_sell = (F&lt;0 AND I&lt;0) 다이오드</td><td>없음 (연속 전류싱크 I_forced)</td></tr>
+    <tr><td><b>전도 모델</b></td><td>R_restore 단일 복원</td><td class="codex">σ_total 5병렬(외/기/개/프로그램/라운드)</td></tr>
+    <tr><td><b>미국신호</b></td><td>단일 V_target (SOX·S&amp;P·나스닥 가중)</td><td class="codex">다중(S&amp;P·QQQ·SOXX·EWY·MU·NVDA)+뉴스출처</td></tr>
+    <tr><td><b>핵심 주장</b></td><td class="claude">기관 부호(I)가 폭락 스위치</td><td class="codex">σ_total로 회복속도 τ 결정</td></tr>
+  </table>
+  <div class="note">근본 불일치: Codex는 <b>RC 단조회복</b>을 유지, Claude는 6/26의 +5.4%→−5.8% 반전이 RC로 재현 불가하므로 <b>L+다이오드</b>가 필수라 주장. → 이 불일치를 월요일 실측으로 가린다.</div>
+</div>
+
+
+<div class="card">
+  <h2>2. 백테스트 방법론 비교</h2>
+  <table>
+    <tr><th>항목</th><th><span class="pill c">Claude</span></th><th><span class="pill x">Codex</span></th></tr>
+    <tr><td>표본</td><td>604일 (2024–26)</td><td>476 walk-forward</td></tr>
+    <tr><td>핵심 지표</td><td class="claude">D_sell 분류 t=9.55, 폭락포착 83%</td><td class="codex">방향적중 64%(08:00)~80%(12:00), RMSE 163~197bps</td></tr>
+    <tr><td>익일 ex-ante</td><td>한계 인정(−0.14%p, 평균회귀)</td><td>08:00 sp500 64%, risk_pack 64%</td></tr>
+    <tr><td>장중 proxy</td><td>v6 과제(미구현)</td><td class="codex">10:30·12:00 proxy(상한, 정직 명시)</td></tr>
+    <tr><td>실시간 점수표</td><td>없음(신규)</td><td class="codex">3채점, 방향적중 33%, 중앙오차 78bps</td></tr>
+  </table>
+  <div class="note">방법론 차이: Claude는 <b>다이오드 가설 검정</b>(이 신호가 폭락을 점화하나?)에 집중, Codex는 <b>예측 정확도</b>(세션별 방향·RMSE)에 집중. 둘은 보완적. Codex의 walk-forward·세션분리·뉴스소싱이 더 운영지향적.</div>
+</div>
+
+<div class="card">
+  <h2>3. 정직한 강·약점 평가</h2>
+  <table>
+    <tr><th>차원</th><th>우위</th><th>근거</th></tr>
+    <tr><td>모델 구조(반전 포착)</td><td class="claude">Claude</td><td>RC 단조론은 +5.4%→−5.8% 반전 재현 불가. L+다이오드가 물리적으로 우월.</td></tr>
+    <tr><td>동시점 분류 통계</td><td class="claude">Claude</td><td>t=9.55, 폭락 83% — 정량 입증.</td></tr>
+    <tr><td>미국신호 수집</td><td class="codex">Codex</td><td>다중지표+선물+뉴스출처. Claude는 단일환산. (v5에서 이미 인정)</td></tr>
+    <tr><td>운영 체계</td><td class="codex">Codex</td><td>세션별 모델·실시간 점수표·스케줄러 등록까지 구현.</td></tr>
+    <tr><td>익일 예측 정직성</td><td>대등</td><td>Claude=평균회귀 한계 인정, Codex=proxy 상한 명시. 양측 honest.</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>4. 🔒 월요일(6/29) 예측 고정 — 같은 시점, 채점 대상</h2>
+  <div class="lock">
+    <b>고정 시각:</b> 2026-06-26 ~22:1x KST (미 정규장 개장 전).<br>
+    <b>공통 한계:</b> 양측 모두 금요일 미 종가 미확정 상태의 <b>조건부</b> 예측. 월요일 종가로 채점.
+  </div>
+  <table>
+    <tr><th></th><th><span class="pill c">Claude 다이오드</span></th><th><span class="pill x">Codex MW-RC</span></th></tr>
+    <tr><td><b>방향 콜</b></td><td class="claude up">완만한 회복(반등 편향)</td><td class="codex down">방어/하락 우위</td></tr>
+    <tr><td><b>기준 밴드</b></td><td>8,320 – 8,620</td><td>8,250 – 8,430</td></tr>
+    <tr><td><b>점 추정</b></td><td class="big claude">8,470</td><td class="big codex">8,340</td></tr>
+    <tr><td><b>핵심 논리</b></td><td>−5.81% 폭락 = 과매도. 익일 평균회귀(H3)로 반등 편향. <u>단, 월말(6/30) 외국인 리밸런싱이 동반매도 재점화하면 하락</u>.</td><td>미 risk-off(SOXX −3%대) 지속 시 8,250~8,430 재시험. 8,400 회복 실패면 8,200대.</td></tr>
+    <tr><td><b>조건부 분기</b></td><td>D_sell ON(외+기 동반매도)→ 8,280–8,420 / OFF(기관매수)→ 8,520–8,660</td><td>Bear 8,250–8,380 / Base 8,330–8,470 / Recovery 8,450–8,580</td></tr>
+  </table>
+  <div class="note">핵심 대립: <b>Claude=과매도 반등(UP) / Codex=risk-off 방어(DOWN)</b>. 월요일 종가가 8,411보다 위면 Claude 방향승, 아래면 Codex 방향승.</div>
+</div>
+
+<div class="card" style="border-color:var(--accent)">
+  <h2>4-B. 🤝 Claude Consortium 정밀 콜 — 6/27(토) 미 종가 확정 후</h2>
+  <div class="note" style="margin-bottom:10px">
+    <b>컨소시엄 구성:</b> 🧠 Claude(두뇌) + 🔍 Gemini(실시간검색) + ✍️ Z.ai GLM-5.2(정량모델) + 🖥️ Ollama glm4(로컬).
+    Codex도 Gemini+Z.ai+로컬 Ollama glm4:9b를 보조로 사용한다. <b>무결성:</b> 위 §4 고정 ex-ante(8,470)는 채점용으로 보존 — 본 카드는 금요일 미 종가 확정 후 <b>2단계 정밀화</b>(점수 소급 없음).
+  </div>
+  <table>
+    <tr><th>새 증거 (Gemini 실측)</th><th>내용</th></tr>
+    <tr><td>금요일 미 광범위 지수</td><td><span class="up">보합</span> — 나스닥 −0.2%, S&amp;P −0.05%, 다우 −0.1% → <b>패닉 아님 → Codex의 'risk-off 지속' 전제 반증</b></td></tr>
+    <tr><td>반도체</td><td>약세지만 저점 회복 — NVDA −1.6%($191.22→$192.53), MU −4%(초반 −7%), AVGO −3.7%</td></tr>
+    <tr><td>🚀 월요일 당일 호재</td><td><b>삼성 ~1,000조원 AI반도체 투자 + SK하이닉스 $29~38B 미 상장 발표 (6/29)</b> — KOSPI 반도체 30%+에 직접 상승 모멘텀</td></tr>
+  </table>
+  <table>
+    <tr><th></th><th><span class="pill c">🤝 Claude Consortium</span></th><th><span class="pill x">Codex MW-RC</span></th></tr>
+    <tr><td><b>방향</b></td><td class="claude up">반등 UP</td><td class="codex down">방어 DOWN</td></tr>
+    <tr><td><b>점 추정</b></td><td class="big claude">8,540</td><td class="big codex">8,340</td></tr>
+    <tr><td><b>밴드</b></td><td>8,410 – 8,680</td><td>8,250 – 8,430</td></tr>
+    <tr><td><b>P(상승)</b></td><td class="claude">~78%</td><td>—</td></tr>
+  </table>
+  <div class="note">
+    GLM-5.2는 UP·85%·<b>8,620</b>(+2.5%)을 냈으나, Claude(두뇌)가 반도체 적색 마감(NVDA −1.6%·AVGO −3.7%)을 반영해 <b>8,540으로 트림</b>. 베이스율 앵커(−5%↓ 후 +1.77% → 8,560)와 섹터 드래그의 절충.
+    <br><b>판정선 8,411</b> — 컨소시엄 1σ 하단(8,410)이 거의 판정선이라 <b>완만한 반등만으로도 방향승</b>.
+    상세: <code>claude/CONSORTIUM_forecast_20260627.md</code>
+  </div>
+</div>
+
+<div class="card" style="border-color:var(--warn)">
+  <h2>5. 📋 대결 룰 v2 — 10점 만점 (6/29 적용)</h2>
+  <div class="note" style="margin-bottom:10px">각 모델 독립 채점. <b>Part1 시가(5) + Part2 종가(5) = 10점.</b> 총점 높은 쪽 승, 동점 시 종가 우선. 상세: <code>DUEL_RULES.md</code></div>
+  <table>
+    <tr><th>Part</th><th>제출 마감</th><th>채점 대상</th><th>배점</th></tr>
+    <tr><td><b>1 · 시가 예측</b></td><td>월 <b>08:00 KST</b> (개장 전)</td><td>실제 시가(09:00)</td><td>5</td></tr>
+    <tr><td><b>2 · 종가 예측</b></td><td>월 <b>12:30 KST</b> (오전 3회 모니터링 후)</td><td>실제 종가(15:30)</td><td>5</td></tr>
+  </table>
+  <div class="note" style="margin:6px 0 4px"><b>정확도 티어</b> (오차율 = |예측−실제|/실제):</div>
+  <table>
+    <tr><th>오차율</th><td>≤0.25%</td><td>≤0.50%</td><td>≤0.75%</td><td>≤1.0%</td><td>≤1.5%</td><td>&gt;1.5%</td></tr>
+    <tr><th>점수</th><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  </table>
+  <div class="note" style="font-size:.82rem">오전 모니터링 3회: 09:00(개장)·10:30·12:00 → 12:30 종가 예측 고정. 채점: <code>python monitor/score_duel.py</code>.</div>
+  <div class="lock" id="result" style="border-color:var(--mut)">
+    <b>🏁 채점 결과 (6/29 장 마감 후 기입):</b><br>
+    실제 시가 _____ / 종가 _____ ·
+    <span class="claude">Consortium 시가__/종가__ = __/10</span> vs
+    <span class="codex">Codex 시가__/종가__ = __/10</span>
+  </div>
+</div>
+
+<div class="foot">
+  Claude Consortium vs Codex Consortium 비교·채점 · ex-ante 2026-06-26 고정 · 컨소시엄 정밀화 2026-06-27 · 데이터: Gemini/Z.ai/Ollama 보조·네이버 금융<br>
+  ⚔️ 양측 모두 honest 경쟁 중. 컨소시엄(Claude+Gemini+GLM-5.2+Ollama)이 6/27 미 종가·국내 캐탈리스트로 UP 8,540 정밀화. 월요일 실측이 가른다.<br>
+  정보·연구 목적. 투자자문 아님.
+</div>
+</body>
+</html>
+

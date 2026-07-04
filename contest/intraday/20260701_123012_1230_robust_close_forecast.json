@@ -1,0 +1,165 @@
+{
+  "snapshot": {
+    "created_at_kst": "2026-07-01T12:30:00+09:00",
+    "realtime": {
+      "close": 8314.86,
+      "open": 8591.5,
+      "high": 8620.15,
+      "low": 8143.33,
+      "change_pct": -1.91,
+      "prev_delta": -161.62,
+      "volume_raw": 323187000.0,
+      "trading_value_raw": 24480972000000.0,
+      "market_status": "OPEN",
+      "local_traded_at": "2026-07-01T12:29:59+09:00"
+    },
+    "integration": {
+      "prev_close": 8476.48,
+      "open": 8591.5,
+      "high": 8620.15,
+      "low": 8143.33,
+      "deal": {
+        "personal": 17082.0,
+        "foreign": -16333.0,
+        "institution": -783.0
+      },
+      "program": {
+        "index_diff": -1628.0,
+        "non_index_diff": -14176.0,
+        "total": -15804.0
+      },
+      "updown": {
+        "upper": 8,
+        "rise": 707,
+        "lower": 1,
+        "fall": 187,
+        "steady": 22
+      },
+      "stocks": {
+        "삼성전자": {
+          "code": "005930",
+          "close": 319000.0,
+          "change_pct": -4.49,
+          "delta": -15000.0
+        },
+        "SK하이닉스": {
+          "code": "000660",
+          "close": 2563000.0,
+          "change_pct": -3.28,
+          "delta": -87000.0
+        },
+        "SK스퀘어": {
+          "code": "402340",
+          "close": 1721000.0,
+          "change_pct": 1.41,
+          "delta": 24000.0
+        },
+        "삼성전자우": {
+          "code": "005935",
+          "close": 203000.0,
+          "change_pct": -4.25,
+          "delta": -9000.0
+        },
+        "삼성전기": {
+          "code": "009150",
+          "close": 2168000.0,
+          "change_pct": -0.73,
+          "delta": -16000.0
+        },
+        "현대차": {
+          "code": "005380",
+          "close": 484000.0,
+          "change_pct": -2.22,
+          "delta": -11000.0
+        },
+        "LG에너지솔루션": {
+          "code": "373220",
+          "close": 349500.0,
+          "change_pct": -3.45,
+          "delta": -12500.0
+        },
+        "삼성생명": {
+          "code": "032830",
+          "close": 384000.0,
+          "change_pct": -4.24,
+          "delta": -17000.0
+        },
+        "삼성물산": {
+          "code": "028260",
+          "close": 430000.0,
+          "change_pct": -8.22,
+          "delta": -38500.0
+        },
+        "삼성바이오로직스": {
+          "code": "207940",
+          "close": 1368000.0,
+          "change_pct": -1.65,
+          "delta": -23000.0
+        }
+      }
+    },
+    "us": {
+      "SP500": {
+        "close": 7499.36,
+        "change_pct": 0.79,
+        "market_status": "CLOSE"
+      },
+      "NASDAQ": {
+        "close": 26213.72,
+        "change_pct": 1.52,
+        "market_status": "CLOSE"
+      },
+      "SOX": {
+        "close": 14246.96,
+        "change_pct": 3.92,
+        "market_status": "CLOSE"
+      },
+      "DOW": {
+        "close": 52319.2,
+        "change_pct": 0.26,
+        "market_status": "CLOSE"
+      }
+    }
+  },
+  "forecast": {
+    "forecast_close": 8316,
+    "range": [
+      8261,
+      8376
+    ],
+    "confidence": 0.52,
+    "risk_flags": [
+      "gap_failed",
+      "foreign_sell",
+      "program_sell",
+      "samsung_weak",
+      "broad_market_strong"
+    ],
+    "components": {
+      "current": 8314.86,
+      "prev_close": 8476.48,
+      "open": 8591.5,
+      "high": 8620.15,
+      "low": 8143.33,
+      "gap_fail": 276.64,
+      "low_recovery": 171.53,
+      "breadth": 0.582,
+      "semis_pct_proxy": -3.946,
+      "flow_score": -0.25,
+      "breadth_score": 20.36,
+      "semi_score": -71.02,
+      "us_score": 7.49,
+      "gap_fail_penalty": 105.12,
+      "recovery_credit": 30.88,
+      "raw": 8197.19
+    }
+  },
+  "glm_audit": {
+    "response": "\n```json\n{\n  \"task\": \"Audit KOSPI close forecast.\",\n  \"snapshot\": {\n    \"realtime\": {\n      \"close\": 8314.86,\n      \"open\": 8591.5,\n      \"high\": 8620.15,\n      \"low\": 8143.33,\n      \"change_pct\": -1.91,\n      \"prev_delta\": -161.62,\n      \"volume_raw\": 323187000.0,\n      \"trading_value_raw\": 24480972000000",
+    "valid": false,
+    "error": "no_json_object_in_response",
+    "prompt_eval_count": 520,
+    "eval_count": 120,
+    "total_duration": 10261063800
+  }
+}
