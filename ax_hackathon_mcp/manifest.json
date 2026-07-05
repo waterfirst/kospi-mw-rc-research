@@ -1,0 +1,15 @@
+{
+  "name": "kakaopay-kospi-regime-mcp",
+  "version": "0.1.0",
+  "description": "Explainable KOSPI open/close regime analysis MCP for KakaoPay Securities scenarios",
+  "entry": "python -m kakaopay_kospi_regime_mcp.server",
+  "tools": [
+    "forecast_open",
+    "forecast_close",
+    "explain_regime",
+    "score_prediction",
+    "submission_answers"
+  ],
+  "disclaimer": "Research and information only. Not investment advice."
+}
+

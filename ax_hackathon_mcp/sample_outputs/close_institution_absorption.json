@@ -1,0 +1,17 @@
+{
+  "input": {
+    "current": 7953.86,
+    "open": 7933.10,
+    "high": 8136.28,
+    "low": 7723.57,
+    "prev_close": 7648.09,
+    "foreign": -22123,
+    "institution": 44451,
+    "program": -12000,
+    "rise_count": 589,
+    "fall_count": 297,
+    "trading_value_acceleration": true
+  },
+  "expected_regime": "institution_absorption"
+}
+
