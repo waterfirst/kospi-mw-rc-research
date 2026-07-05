@@ -4,6 +4,22 @@
 
 투자 추천이나 자동매매가 아니라, 미국장·EWY·반도체주·뉴스·수급을 전기회로 모델로 변환해 시가/종가 레짐과 근거를 설명합니다.
 
+AX 해커톤 제출용 독립 repository입니다.
+
+## 한 문장 요약
+
+KOSPI 시장을 전기회로처럼 해석해 “왜 오늘 시장이 갭업/급락/반등/횡보 레짐인지”를 설명하는 카카오페이증권용 MCP입니다.
+
+## 제출 정보
+
+| 항목 | 내용 |
+|---|---|
+| 서비스 대상 | 카카오페이증권 앱 사용자, 리서치/콘텐츠 운영자 |
+| 핵심 가치 | 단순 예측값이 아니라 시장 레짐과 근거를 설명 |
+| 제출 ZIP | `dist/kakaopay_kospi_regime_mcp.zip` |
+| 제출 답변 | `SUBMISSION_ANSWERS.md` |
+| 주의 | 정보·연구·설명 보조 목적, 투자자문 아님 |
+
 ## 문제
 
 개인 투자자는 밤사이 미국장, EWY, SOX, MU, NVDA, META, 환율, 뉴스, 외국인/기관/프로그램 수급을 한 번에 해석하기 어렵습니다. 증권사 운영자도 고객에게 “왜 오늘 시장이 이렇게 움직였는가”를 빠르게 설명해야 합니다.
@@ -28,6 +44,26 @@
 | `explain_regime` | 입력 신호를 회로 소자로 해석 |
 | `score_prediction` | 예측값과 실측값의 오차·점수 계산 |
 | `submission_answers` | AX 해커톤 제출 문항 답변 반환 |
+
+## 폴더 구조
+
+```text
+.
+├─ README.md
+├─ SUBMISSION_ANSWERS.md
+├─ manifest.json
+├─ requirements.txt
+├─ DISCLAIMER.md
+├─ kakaopay_kospi_regime_mcp/
+│  ├─ server.py
+│  ├─ core.py
+│  └─ submission.py
+├─ sample_outputs/
+├─ tests/
+├─ assets/
+└─ dist/
+   └─ kakaopay_kospi_regime_mcp.zip
+```
 
 ## 설치
 
@@ -104,6 +140,19 @@ MCP 클라이언트 설정 예:
 ## 회로도
 
 `assets/codex_final_global_gate_rc_vfinal.svg`에 최종 Gate-RC 회로도를 포함했습니다.
+
+## 테스트
+
+```bash
+set PYTHONPATH=%CD%
+python -m pytest tests -q
+```
+
+기대 결과:
+
+```text
+3 passed
+```
 
 ## 주의
 
