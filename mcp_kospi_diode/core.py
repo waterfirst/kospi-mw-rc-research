@@ -110,7 +110,8 @@ def predict_close(
         return _close_result(pred, "D_av 하방항복(외인압도, 기관무관)", "avalanche_down",
                              foreign, inst, net)
     # 2. 상방 애벌란치: 기관 폭주+가속 → 고가캡 해제, 모멘텀 연장
-    if inst >= UP_INST and inst >= 2 * max(inst_prev, 1):
+    #    inst_prev(전일 기관)가 있어야 '배증(가속)'을 확인 가능. 없으면 오발화 방지로 미발화.
+    if inst >= UP_INST and inst_prev > 0 and inst >= 2 * inst_prev:
         pred = round(current + 0.8 * (current - open_price))
         return _close_result(pred, "D_av 상방항복(기관폭주 배증, 고가캡 해제)", "avalanche_up",
                              foreign, inst, net)
