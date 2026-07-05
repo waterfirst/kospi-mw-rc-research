@@ -1,4 +1,4 @@
-from kakaopay_kospi_regime_mcp.core import forecast_close_model, forecast_open_model, score_model
+from kakaopay_kospi_regime_mcp.core import daily_workflow_model, forecast_close_model, forecast_open_model, score_model
 
 
 def test_open_relief():
@@ -33,3 +33,9 @@ def test_close_absorption():
 def test_score():
     out = score_model(8525, 8591.5)
     assert out["tier_score"] == 3
+
+
+def test_daily_workflow():
+    out = daily_workflow_model()
+    assert out["schedule_kst"][0]["time"] == "07:30"
+    assert out["schedule_kst"][-1]["step"] == "score_and_postmortem"

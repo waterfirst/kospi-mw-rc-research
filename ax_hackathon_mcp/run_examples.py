@@ -1,6 +1,6 @@
 import json
 
-from kakaopay_kospi_regime_mcp.core import explain_model, forecast_close_model, forecast_open_model, score_model
+from kakaopay_kospi_regime_mcp.core import daily_workflow_model, explain_model, forecast_close_model, forecast_open_model, score_model
 
 
 open_input = {
@@ -34,5 +34,6 @@ print(json.dumps({
     "forecast_close": forecast_close_model(close_input),
     "explain_regime": explain_model(close_input),
     "score_prediction": score_model(8525, 8591.5),
+    "daily_workflow": daily_workflow_model(),
 }, ensure_ascii=False, indent=2))
 

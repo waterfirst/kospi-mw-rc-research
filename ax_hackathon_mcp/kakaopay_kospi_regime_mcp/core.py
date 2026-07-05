@@ -210,3 +210,47 @@ def score_model(predicted: float, actual: float) -> dict[str, Any]:
         tier = 0
     return {"predicted": p, "actual": a, "error_points": round(err, 2), "error_pct": round(pct * 100, 3), "tier_score": tier}
 
+
+def daily_workflow_model() -> dict[str, Any]:
+    return {
+        "purpose": "Explainable KOSPI daily regime monitoring workflow",
+        "messenger_integration": {
+            "kakaopay_securities": "app push, KakaoTalk channel, internal research bot",
+            "prototype": "Telegram was used during model validation; production can replace it with KakaoTalk or app notifications",
+        },
+        "schedule_kst": [
+            {
+                "time": "07:30",
+                "step": "open_forecast",
+                "tool": "forecast_open",
+                "message": "장전 시가 레짐, 예상 범위, 핵심 근거 발송",
+            },
+            {
+                "time": "09:05",
+                "step": "open_score_and_first_monitor",
+                "tool": "forecast_close",
+                "message": "시가 채점, 갭 성공/실패, 초기 수급 레짐 발송",
+            },
+            {
+                "time": "10:30",
+                "step": "second_monitor",
+                "tool": "forecast_close",
+                "message": "외국인/기관/프로그램 변화와 종가 예비 레짐 발송",
+            },
+            {
+                "time": "12:30",
+                "step": "final_close_forecast",
+                "tool": "forecast_close",
+                "message": "종가 예측 고정, confidence, 리스크 플래그 발송",
+            },
+            {
+                "time": "15:40",
+                "step": "score_and_postmortem",
+                "tool": "score_prediction",
+                "message": "실측 대비 오차, 점수, 틀린 원인, 다음 모델 수정 방향 발송",
+            },
+        ],
+        "design_choice": "The MCP exposes the workflow and message payloads, while scheduling and KakaoTalk delivery should be handled by the host application.",
+        "disclaimer": "Research and information only. Not investment advice.",
+    }
+

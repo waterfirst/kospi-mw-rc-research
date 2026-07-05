@@ -8,6 +8,7 @@
     "forecast_close",
     "explain_regime",
     "score_prediction",
+    "daily_workflow",
     "submission_answers"
   ],
   "disclaimer": "Research and information only. Not investment advice."

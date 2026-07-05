@@ -4,7 +4,7 @@ from typing import Any
 
 from mcp.server.fastmcp import FastMCP
 
-from .core import explain_model, forecast_close_model, forecast_open_model, score_model
+from .core import daily_workflow_model, explain_model, forecast_close_model, forecast_open_model, score_model
 from .submission import ANSWERS
 
 
@@ -29,6 +29,11 @@ def explain_regime(snapshot: dict[str, Any]) -> dict[str, Any]:
 @mcp.tool()
 def score_prediction(predicted: float, actual: float) -> dict[str, Any]:
     return score_model(predicted, actual)
+
+
+@mcp.tool()
+def daily_workflow() -> dict[str, Any]:
+    return daily_workflow_model()
 
 
 @mcp.tool()
