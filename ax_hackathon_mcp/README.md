@@ -4,6 +4,16 @@
 
 투자 추천이나 자동매매가 아니라, 미국장·EWY·반도체주·뉴스·수급을 전기회로 모델로 변환해 시가/종가 레짐과 근거를 설명합니다.
 
+관련하여 NotebookLM으로 제작 과정을 정리했습니다.
+
+[NotebookLM 제작 과정 보기](https://notebooklm.google.com/notebook/bd87958e-bdc5-4823-9403-f436c91176ee/artifact/4774e368-71e3-4411-9116-5ed9d271b97f?utm_source=nlm_web_share&utm_medium=google_oo&utm_campaign=art_share_1&utm_content=&utm_smc=nlm_web_share_google_oo_art_share_1)
+
+## 최종 회로 모델
+
+아래 회로는 MCP가 시장 신호를 해석하는 방식입니다. 미국장·EWY·반도체주·뉴스는 입력 전압, 환율·금리는 저항, 외국인/프로그램 매도는 하방 다이오드, 기관 매수는 흡수 커패시터로 처리합니다.
+
+![Codex Final Global Gate-RC Circuit](assets/codex_final_global_gate_rc_vfinal.svg)
+
 AX 해커톤 제출용 독립 repository입니다.
 
 ## 한 문장 요약
