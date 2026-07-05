@@ -1,0 +1,16 @@
+{
+  "input": {
+    "prev_close": 7648.09,
+    "prev_prev_close": 8303.41,
+    "ewy_pct": -2.8,
+    "sox_pct": -5.45,
+    "mu_pct": -4.2,
+    "nvda_pct": -1.8,
+    "meta_pct": 1.1,
+    "usdkrw": 1368,
+    "negative_news_count": 1,
+    "fresh_negative_news": false
+  },
+  "expected_regime": "post_crash_relief_possible"
+}
+
