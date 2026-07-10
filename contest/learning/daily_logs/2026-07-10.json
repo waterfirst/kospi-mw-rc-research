@@ -1,7 +1,7 @@
 {
-  "date": "YYYY-MM-DD",
-  "model_version": "vX.Y-name",
-  "regime": "other",
+  "date": "2026-07-10",
+  "model_version": "v0.1-orchestrator",
+  "regime": "panic|rebound|trend|gap_up_exhaustion|other",
   "inputs": {
     "sp500_pct": 0.0,
     "nasdaq_pct": 0.0,
@@ -30,7 +30,7 @@
   },
   "failure_tags": [],
   "reflection": {
-    "summary": "",
+    "summary": "orchestrator initialized in full mode",
     "next_candidates": []
   }
 }
