@@ -1,0 +1,12 @@
+{
+  "generated": "2026-07-10",
+  "engine": "kospi_diode_claude core.predict_open (deployed)",
+  "open_sample": 602,
+  "open_MAE_pct": 0.853,
+  "open_median_pct": 0.625,
+  "open_dir_acc_pct": 67.9,
+  "open_hit_le0.5pct": 42.4,
+  "open_hit_le1.0pct": 69.6,
+  "baseline_MAE_pct": 0.84,
+  "open_avg_tier": 2.759
+}
