@@ -23,6 +23,14 @@
     .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--sub);margin:8px 0 0}.dot{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
     .figure-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.figure-card{border:1px solid #efe7d8;border-radius:18px;padding:14px;background:#fffdf9}
     .timeline-item{padding:10px 0;border-bottom:1px solid #efe7d8}
+    .zoomable{cursor:zoom-in;transition:transform .15s ease, box-shadow .15s ease}
+    .zoomable:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(120,90,20,.10)}
+    .chart-note{margin-top:8px;font-size:12px;color:var(--sub)}
+    .modal{position:fixed;inset:0;background:rgba(20,28,40,.72);display:none;align-items:center;justify-content:center;padding:16px;z-index:9999}
+    .modal.open{display:flex}
+    .modal-card{width:min(1100px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:24px;padding:18px;border:1px solid #eadfca;box-shadow:0 20px 48px rgba(0,0,0,.28)}
+    .modal-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+    .modal-close{border:none;background:#fff3cf;color:#8a5b00;border-radius:999px;padding:8px 12px;font-weight:700;cursor:pointer}
     svg{max-width:100%;height:auto;display:block}
     a{color:#2563eb}
     @media(max-width:900px){.third,.half{grid-column:span 12}.figure-grid{grid-template-columns:1fr}table{font-size:12px}}
@@ -79,6 +87,70 @@
             </g>
             <g fill="#6a7586" font-size="10"><text x="65" y="240">6/29</text><text x="113" y="240">6/30</text><text x="161" y="240">7/1</text><text x="209" y="240">7/2</text><text x="257" y="240">7/3</text><text x="305" y="240">7/6</text><text x="353" y="240">7/7</text><text x="401" y="240">7/8</text><text x="449" y="240">7/9</text><text x="497" y="240">7/10</text></g>
           </svg>
+        </div>
+      </section>
+
+      <section class="card full">
+        <h2>실측값 vs 예측값 시계열 그래프</h2>
+        <p class="small">전문가 리포트 스타일로, 7/6~7/10의 실제 시가/종가와 양 모델의 예측값을 직접 비교한다. 그래프를 클릭하면 확대된다.</p>
+        <div class="figure-grid">
+          <div class="figure-card zoomable" data-zoom-title="시가 시계열 확대">
+            <h3>시가: Actual vs Codex vs Claude</h3>
+            <div class="legend">
+              <span><span class="dot" style="background:var(--green)"></span>Actual Open</span>
+              <span><span class="dot" style="background:var(--blue)"></span>Codex Open</span>
+              <span><span class="dot" style="background:var(--orange)"></span>Claude Open</span>
+            </div>
+            <svg viewBox="0 0 720 320" aria-label="시가 시계열">
+              <rect width="720" height="320" fill="#fffdf9"/>
+              <line x1="60" y1="250" x2="680" y2="250" stroke="#d9ceb9"/><line x1="60" y1="40" x2="60" y2="250" stroke="#d9ceb9"/>
+              <g stroke="#efe7d8">
+                <line x1="60" y1="210" x2="680" y2="210"/><line x1="60" y1="170" x2="680" y2="170"/><line x1="60" y1="130" x2="680" y2="130"/><line x1="60" y1="90" x2="680" y2="90"/>
+              </g>
+              <g fill="#7d8796" font-size="11">
+                <text x="20" y="254">7200</text><text x="20" y="214">7450</text><text x="20" y="174">7700</text><text x="20" y="134">7950</text><text x="20" y="94">8200</text>
+              </g>
+              <polyline fill="none" stroke="#2eae6b" stroke-width="4" points="90,81 235,124 380,199 525,194 670,183"/>
+              <polyline fill="none" stroke="#4e79ff" stroke-width="4" points="90,122 235,79 380,204 525,231 670,215"/>
+              <polyline fill="none" stroke="#f28b44" stroke-width="4" points="90,119 235,77 380,182 525,227 670,217"/>
+              <g fill="#2eae6b"><circle cx="90" cy="81" r="5"/><circle cx="235" cy="124" r="5"/><circle cx="380" cy="199" r="5"/><circle cx="525" cy="194" r="5"/><circle cx="670" cy="183" r="5"/></g>
+              <g fill="#4e79ff"><circle cx="90" cy="122" r="5"/><circle cx="235" cy="79" r="5"/><circle cx="380" cy="204" r="5"/><circle cx="525" cy="231" r="5"/><circle cx="670" cy="215" r="5"/></g>
+              <g fill="#f28b44"><circle cx="90" cy="119" r="5"/><circle cx="235" cy="77" r="5"/><circle cx="380" cy="182" r="5"/><circle cx="525" cy="227" r="5"/><circle cx="670" cy="217" r="5"/></g>
+              <g fill="#6a7586" font-size="11">
+                <text x="78" y="274">7/6</text><text x="223" y="274">7/7</text><text x="368" y="274">7/8</text><text x="513" y="274">7/9</text><text x="658" y="274">7/10</text>
+              </g>
+            </svg>
+            <div class="chart-note">시가에서는 Codex가 7/8, 7/10 같은 반도체/갭 구조일 때 상대적으로 더 근접하는 모습이 보인다.</div>
+          </div>
+
+          <div class="figure-card zoomable" data-zoom-title="종가 시계열 확대">
+            <h3>종가: Actual vs Codex vs Claude</h3>
+            <div class="legend">
+              <span><span class="dot" style="background:var(--green)"></span>Actual Close</span>
+              <span><span class="dot" style="background:var(--blue)"></span>Codex Close</span>
+              <span><span class="dot" style="background:var(--orange)"></span>Claude Close</span>
+            </div>
+            <svg viewBox="0 0 720 320" aria-label="종가 시계열">
+              <rect width="720" height="320" fill="#fffdf9"/>
+              <line x1="60" y1="250" x2="680" y2="250" stroke="#d9ceb9"/><line x1="60" y1="40" x2="60" y2="250" stroke="#d9ceb9"/>
+              <g stroke="#efe7d8">
+                <line x1="60" y1="210" x2="680" y2="210"/><line x1="60" y1="170" x2="680" y2="170"/><line x1="60" y1="130" x2="680" y2="130"/><line x1="60" y1="90" x2="680" y2="90"/>
+              </g>
+              <g fill="#7d8796" font-size="11">
+                <text x="20" y="254">7200</text><text x="20" y="214">7425</text><text x="20" y="174">7650</text><text x="20" y="134">7875</text><text x="20" y="94">8100</text>
+              </g>
+              <polyline fill="none" stroke="#2eae6b" stroke-width="4" points="90,79 235,153 380,231 525,223 670,188"/>
+              <polyline fill="none" stroke="#4e79ff" stroke-width="4" points="90,131 235,205 380,160 525,237 670,151"/>
+              <polyline fill="none" stroke="#f28b44" stroke-width="4" points="90,111 235,186 380,164 525,237 670,160"/>
+              <g fill="#2eae6b"><circle cx="90" cy="79" r="5"/><circle cx="235" cy="153" r="5"/><circle cx="380" cy="231" r="5"/><circle cx="525" cy="223" r="5"/><circle cx="670" cy="188" r="5"/></g>
+              <g fill="#4e79ff"><circle cx="90" cy="131" r="5"/><circle cx="235" cy="205" r="5"/><circle cx="380" cy="160" r="5"/><circle cx="525" cy="237" r="5"/><circle cx="670" cy="151" r="5"/></g>
+              <g fill="#f28b44"><circle cx="90" cy="111" r="5"/><circle cx="235" cy="186" r="5"/><circle cx="380" cy="164" r="5"/><circle cx="525" cy="237" r="5"/><circle cx="670" cy="160" r="5"/></g>
+              <g fill="#6a7586" font-size="11">
+                <text x="78" y="274">7/6</text><text x="223" y="274">7/7</text><text x="368" y="274">7/8</text><text x="513" y="274">7/9</text><text x="658" y="274">7/10</text>
+              </g>
+            </svg>
+            <div class="chart-note">종가에서는 breadth·기관 수급을 강하게 믿은 Codex의 상단 과대평가가 7/10에서 특히 드러난다.</div>
+          </div>
         </div>
       </section>
 
@@ -161,5 +233,40 @@
       </section>
     </div>
   </div>
+  <div class="modal" id="zoomModal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h2 id="zoomTitle">그래프 확대</h2>
+        <button class="modal-close" id="zoomClose">닫기</button>
+      </div>
+      <div id="zoomContent"></div>
+    </div>
+  </div>
+  <script>
+    const modal = document.getElementById('zoomModal');
+    const zoomContent = document.getElementById('zoomContent');
+    const zoomTitle = document.getElementById('zoomTitle');
+    document.querySelectorAll('.zoomable').forEach(card => {
+      card.addEventListener('click', () => {
+        const svg = card.querySelector('svg');
+        zoomTitle.textContent = card.dataset.zoomTitle || '그래프 확대';
+        zoomContent.innerHTML = svg ? svg.outerHTML : '';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    });
+    document.getElementById('zoomClose').addEventListener('click', () => {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      zoomContent.innerHTML = '';
+    });
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        zoomContent.innerHTML = '';
+      }
+    });
+  </script>
 </body>
 </html>
