@@ -1,0 +1,36 @@
+{
+  "date": "YYYY-MM-DD",
+  "model_version": "vX.Y-name",
+  "regime": "panic|rebound|trend|gap_up_exhaustion|other",
+  "inputs": {
+    "sp500_pct": 0.0,
+    "nasdaq_pct": 0.0,
+    "sox_pct": 0.0,
+    "ewy_pct": 0.0,
+    "usdkrw_pct": 0.0,
+    "foreign_flow_krw_bn": 0.0,
+    "inst_flow_krw_bn": 0.0,
+    "program_flow_krw_bn": 0.0
+  },
+  "flags": [],
+  "predictions": {
+    "open": 0.0,
+    "close": 0.0
+  },
+  "actuals": {
+    "open": 0.0,
+    "close": 0.0
+  },
+  "scores": {
+    "open": 0,
+    "close": 0,
+    "direction": 0,
+    "regime": 0,
+    "total": 0
+  },
+  "failure_tags": [],
+  "reflection": {
+    "summary": "",
+    "next_candidates": []
+  }
+}
