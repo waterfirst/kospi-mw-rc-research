@@ -16,3 +16,5 @@ settings.local.json
 *secret*
 *credential*
 *token*
+
+.venv_backtest/
