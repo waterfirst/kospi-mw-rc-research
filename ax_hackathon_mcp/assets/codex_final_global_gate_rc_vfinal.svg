@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .bg{fill:#071018}
+      .panel{fill:#0d1722;stroke:#26384a;stroke-width:2}
+      .wire{stroke:#c8d6e5;stroke-width:6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+      .thin{stroke:#8fa3b8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+      .dash{stroke:#e3b341;stroke-width:3;fill:none;stroke-dasharray:8 8}
+      .blue{stroke:#58a6ff;fill:none}
+      .green{stroke:#59d884;fill:none}
+      .yellow{stroke:#e3b341;fill:none}
+      .red{stroke:#ff6b63;fill:none}
+      .purple{stroke:#a475ff;fill:none}
+      .t{font-family:Malgun Gothic,Noto Sans KR,Arial,sans-serif;fill:#e8eef7;font-size:28px}
+      .s{font-family:Malgun Gothic,Noto Sans KR,Arial,sans-serif;fill:#9fb0c3;font-size:20px}
+      .xs{font-family:Malgun Gothic,Noto Sans KR,Arial,sans-serif;fill:#9fb0c3;font-size:16px}
+      .lab{font-family:Consolas,Malgun Gothic,monospace;fill:#e8eef7;font-size:24px}
+      .bluet{fill:#58a6ff}
+      .greent{fill:#59d884}
+      .yellowt{fill:#e3b341}
+      .redt{fill:#ff6b63}
+      .purplet{fill:#a475ff}
+    </style>
+    <marker id="arrow-red" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#ff6b63"/>
+    </marker>
+    <marker id="arrow-yellow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#e3b341"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#58a6ff"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="900"/>
+  <text class="t" x="800" y="58" text-anchor="middle">Codex 최종 KOSPI Global Gate-RC 회로 vFinal</text>
+  <text class="s" x="800" y="90" text-anchor="middle">US/SOX/EWY + FX/금리 + 뉴스 쇼크 + 외국인/프로그램 수급 + 장중 피드백</text>
+
+  <rect class="panel" x="80" y="140" width="1440" height="580" rx="12"/>
+  <line class="wire" x1="185" y1="300" x2="1370" y2="300"/>
+  <line class="wire" x1="185" y1="620" x2="1370" y2="620"/>
+  <line class="wire" x1="185" y1="300" x2="185" y2="620"/>
+  <line class="wire" x1="1370" y1="300" x2="1370" y2="620"/>
+
+  <line class="blue" x1="150" y1="392" x2="220" y2="392" stroke-width="6"/>
+  <line class="blue" x1="165" y1="420" x2="205" y2="420" stroke-width="6"/>
+  <line class="blue" x1="150" y1="448" x2="220" y2="448" stroke-width="6"/>
+  <text class="lab bluet" x="95" y="410">V_US</text>
+  <text class="s" x="92" y="440">SOX/EWY/MU/NVDA</text>
+  <text class="s" x="92" y="468">S&amp;P/Nasdaq/META</text>
+
+  <polyline class="yellow" points="310,300 335,260 365,340 395,260 425,340 455,260 485,300" stroke-width="6"/>
+  <text class="lab yellowt" x="325" y="245">R_fx_rate(t)</text>
+  <text class="s" x="318" y="370">USD/KRW · DXY · US10Y</text>
+
+  <path class="purple" d="M610 300 q25 -55 50 0 q25 -55 50 0 q25 -55 50 0 q25 -55 50 0" stroke-width="6"/>
+  <text class="lab purplet" x="635" y="245">L_program</text>
+  <text class="s" x="620" y="370">프로그램 매도 관성</text>
+
+  <line class="wire" x1="880" y1="300" x2="880" y2="620"/>
+  <line class="green" x1="830" y1="430" x2="930" y2="430" stroke-width="6"/>
+  <line class="green" x1="830" y1="470" x2="930" y2="470" stroke-width="6"/>
+  <text class="lab greent" x="905" y="455">C_domestic</text>
+  <text class="s" x="905" y="485">개인/기관 흡수</text>
+
+  <circle cx="1085" cy="455" r="72" fill="none" stroke="#ff6b63" stroke-width="6"/>
+  <line x1="1085" y1="405" x2="1085" y2="500" stroke="#ff6b63" stroke-width="6" marker-end="url(#arrow-red)"/>
+  <text class="lab redt" x="1175" y="445">I_flow(t)</text>
+  <text class="s" x="1175" y="475">외국인 · 패시브 · ETF</text>
+
+  <polygon points="1010,300 1065,270 1065,330" fill="#ff6b63"/>
+  <line class="red" x1="1075" y1="268" x2="1075" y2="332" stroke-width="6"/>
+  <text class="lab redt" x="1002" y="245">D_panic</text>
+  <text class="s" x="995" y="370">쇼크 시 하방 전도</text>
+
+  <circle cx="1370" cy="455" r="13" fill="#58a6ff"/>
+  <text class="lab bluet" x="1400" y="438">V_KOSPI(t)</text>
+  <text class="s" x="1400" y="468">시가/종가 출력</text>
+
+  <rect x="510" y="135" width="570" height="94" rx="10" fill="#101d2a" stroke="#e3b341" stroke-width="2"/>
+  <text class="lab yellowt" x="795" y="170" text-anchor="middle">S_regime: News Shock Gate</text>
+  <text class="s" x="795" y="202" text-anchor="middle">Meta/AI capacity · HBM · earnings · CPI/FOMC · BOK</text>
+  <path class="dash" d="M795 230 C860 255,925 255,1010 300" marker-end="url(#arrow-yellow)"/>
+  <path class="dash" d="M690 230 C630 250,560 255,455 300" marker-end="url(#arrow-yellow)"/>
+
+  <rect x="450" y="650" width="680" height="115" rx="10" fill="#101d2a" stroke="#58a6ff" stroke-width="2"/>
+  <text class="lab bluet" x="790" y="686" text-anchor="middle">Intraday Feedback ADC</text>
+  <text class="s" x="790" y="718" text-anchor="middle">09:05 open score · 10:30 flow · 12:30 final close</text>
+  <text class="xs" x="790" y="746" text-anchor="middle">Updates R_eff, I_flow, C_domestic, D_panic without post-hoc credit</text>
+  <path class="thin blue" d="M790 650 C780 565,805 525,880 470" marker-end="url(#arrow-blue)"/>
+  <path class="thin blue" d="M790 650 C870 565,960 525,1085 505" marker-end="url(#arrow-blue)"/>
+
+  <rect x="110" y="750" width="1380" height="95" rx="10" fill="#0d1722" stroke="#26384a" stroke-width="2"/>
+  <text class="s" x="140" y="785">회로 해석:</text>
+  <text class="xs" x="140" y="815">1) V_US가 기본 방향을 만든다. 2) R_fx_rate가 환율/금리 저항으로 미국 신호를 깎는다. 3) L_program과 I_flow가 강제 수급을 만든다.</text>
+  <text class="xs" x="140" y="840">4) S_regime/D_panic은 뉴스 쇼크 때 일반 RC 평균회귀를 끊고 하방 전도 모드로 전환한다. 5) 장중 ADC가 종가 회로를 재보정한다.</text>
+</svg>
