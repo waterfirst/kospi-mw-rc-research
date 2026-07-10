@@ -158,20 +158,79 @@
         <h2>회로도 변화 과정</h2>
         <div class="figure-grid">
           <div class="figure-card">
-            <h3>변화과정 인포그래픽</h3>
-            <svg viewBox="0 0 760 420">
-              <rect width="760" height="420" fill="#fffdf9"/>
-              <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#9aa3b2"/></marker></defs>
-              <rect x="30" y="40" width="150" height="80" rx="18" fill="#eef3ff" stroke="#c9d8ff"/><text x="105" y="70" font-size="16" text-anchor="middle" fill="#23324d" font-weight="700">초기형</text><text x="105" y="94" font-size="12" text-anchor="middle" fill="#5f6b7a">EWY 중심</text><text x="105" y="112" font-size="12" text-anchor="middle" fill="#5f6b7a">단순 갭/드리프트</text>
-              <rect x="215" y="40" width="150" height="80" rx="18" fill="#fff1e8" stroke="#ffd5bd"/><text x="290" y="70" font-size="16" text-anchor="middle" fill="#23324d" font-weight="700">7/2 충격장</text><text x="290" y="94" font-size="12" text-anchor="middle" fill="#5f6b7a">panic override 필요</text>
-              <rect x="400" y="40" width="150" height="80" rx="18" fill="#ecfbf3" stroke="#c9f0da"/><text x="475" y="70" font-size="16" text-anchor="middle" fill="#23324d" font-weight="700">7/3 반등장</text><text x="475" y="94" font-size="12" text-anchor="middle" fill="#5f6b7a">기관 흡수</text>
-              <rect x="585" y="40" width="145" height="80" rx="18" fill="#fff7df" stroke="#f4ddb3"/><text x="657" y="70" font-size="16" text-anchor="middle" fill="#23324d" font-weight="700">7/7~7/8</text><text x="657" y="94" font-size="12" text-anchor="middle" fill="#5f6b7a">완충 + 반등 함정</text>
-              <rect x="120" y="210" width="170" height="88" rx="18" fill="#eef3ff" stroke="#c9d8ff"/><text x="205" y="238" font-size="16" text-anchor="middle" fill="#23324d" font-weight="700">7/9 수급 교정</text><text x="205" y="261" font-size="12" text-anchor="middle" fill="#5f6b7a">억원 단위 정정</text>
-              <rect x="315" y="210" width="170" height="88" rx="18" fill="#fff1e8" stroke="#ffd5bd"/><text x="400" y="238" font-size="16" text-anchor="middle" fill="#23324d" font-weight="700">7/10 시가 진화</text><text x="400" y="261" font-size="12" text-anchor="middle" fill="#5f6b7a">semi_lead_gap_up</text>
-              <rect x="510" y="210" width="170" height="88" rx="18" fill="#ecfbf3" stroke="#c9f0da"/><text x="595" y="238" font-size="16" text-anchor="middle" fill="#23324d" font-weight="700">7/10 종가 진화</text><text x="595" y="261" font-size="12" text-anchor="middle" fill="#5f6b7a">gap_up_exhaustion_risk</text>
-              <rect x="280" y="330" width="220" height="56" rx="18" fill="#fff7df" stroke="#f4ddb3"/><text x="390" y="356" font-size="16" text-anchor="middle" fill="#23324d" font-weight="700">현재 구조</text><text x="390" y="376" font-size="12" text-anchor="middle" fill="#5f6b7a">EWY + 반도체 + 수급 + 충격 + 피로도</text>
-              <line x1="180" y1="80" x2="215" y2="80" stroke="#9aa3b2" stroke-width="3" marker-end="url(#arrow)"/><line x1="365" y1="80" x2="400" y2="80" stroke="#9aa3b2" stroke-width="3" marker-end="url(#arrow)"/><line x1="550" y1="80" x2="585" y2="80" stroke="#9aa3b2" stroke-width="3" marker-end="url(#arrow)"/><line x1="657" y1="120" x2="595" y2="210" stroke="#9aa3b2" stroke-width="3" marker-end="url(#arrow)"/><line x1="290" y1="120" x2="205" y2="210" stroke="#9aa3b2" stroke-width="3" marker-end="url(#arrow)"/><line x1="475" y1="120" x2="400" y2="210" stroke="#9aa3b2" stroke-width="3" marker-end="url(#arrow)"/><line x1="400" y1="298" x2="390" y2="330" stroke="#9aa3b2" stroke-width="3" marker-end="url(#arrow)"/><line x1="595" y1="298" x2="470" y2="330" stroke="#9aa3b2" stroke-width="3" marker-end="url(#arrow)"/><line x1="205" y1="298" x2="310" y2="330" stroke="#9aa3b2" stroke-width="3" marker-end="url(#arrow)"/>
+            <h3>단계별 전기회로 진화도</h3>
+            <svg viewBox="0 0 760 500">
+              <rect width="760" height="500" fill="#fffdf9"/>
+              <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#7b8796"/>
+                </marker>
+              </defs>
+
+              <text x="46" y="42" font-size="18" font-weight="700" fill="#23324d">1) 초기형: EWY 단일 앵커</text>
+              <circle cx="86" cy="118" r="28" fill="#eef3ff" stroke="#4e79ff" stroke-width="3"/>
+              <text x="86" y="112" font-size="12" text-anchor="middle" fill="#23324d" font-weight="700">EWY</text>
+              <text x="86" y="128" font-size="11" text-anchor="middle" fill="#5f6b7a">source</text>
+              <line x1="114" y1="118" x2="148" y2="118" stroke="#23324d" stroke-width="3"/>
+              <polyline points="148,118 160,104 172,132 184,104 196,132 208,104 220,118" fill="none" stroke="#23324d" stroke-width="3"/>
+              <text x="184" y="94" font-size="12" text-anchor="middle" fill="#5f6b7a">R_fx</text>
+              <line x1="220" y1="118" x2="264" y2="118" stroke="#23324d" stroke-width="3"/>
+              <rect x="264" y="84" width="146" height="68" rx="16" fill="#eef3ff" stroke="#c9d8ff" stroke-width="2"/>
+              <text x="337" y="112" font-size="15" text-anchor="middle" fill="#23324d" font-weight="700">forecast_open</text>
+              <text x="337" y="132" font-size="12" text-anchor="middle" fill="#5f6b7a">EWY - fx drag</text>
+              <line x1="410" y1="118" x2="468" y2="118" stroke="#7b8796" stroke-width="3" marker-end="url(#arrow)"/>
+              <text x="468" y="101" font-size="12" text-anchor="end" fill="#7b8796">단순 갭 추정</text>
+
+              <text x="46" y="224" font-size="18" font-weight="700" fill="#23324d">2) 7/2~7/3: 충격 + 기관 흡수 도입</text>
+              <circle cx="86" cy="300" r="28" fill="#fff1e8" stroke="#f28b44" stroke-width="3"/>
+              <text x="86" y="294" font-size="12" text-anchor="middle" fill="#23324d" font-weight="700">Shock</text>
+              <text x="86" y="310" font-size="11" text-anchor="middle" fill="#5f6b7a">news pulse</text>
+              <line x1="114" y1="300" x2="150" y2="300" stroke="#23324d" stroke-width="3"/>
+              <polygon points="150,282 182,300 150,318" fill="#ffd9bf" stroke="#23324d" stroke-width="3"/>
+              <line x1="182" y1="282" x2="182" y2="318" stroke="#23324d" stroke-width="3"/>
+              <text x="166" y="268" font-size="12" text-anchor="middle" fill="#5f6b7a">D_panic</text>
+              <line x1="182" y1="300" x2="232" y2="300" stroke="#23324d" stroke-width="3"/>
+              <line x1="232" y1="276" x2="232" y2="324" stroke="#23324d" stroke-width="3"/>
+              <line x1="246" y1="276" x2="246" y2="324" stroke="#23324d" stroke-width="3"/>
+              <line x1="239" y1="324" x2="239" y2="348" stroke="#23324d" stroke-width="3"/>
+              <line x1="220" y1="348" x2="258" y2="348" stroke="#23324d" stroke-width="3"/>
+              <text x="239" y="366" font-size="12" text-anchor="middle" fill="#5f6b7a">C_absorb</text>
+              <line x1="246" y1="300" x2="290" y2="300" stroke="#23324d" stroke-width="3"/>
+              <rect x="290" y="266" width="170" height="68" rx="16" fill="#ecfbf3" stroke="#c9f0da" stroke-width="2"/>
+              <text x="375" y="294" font-size="15" text-anchor="middle" fill="#23324d" font-weight="700">rebound filter</text>
+              <text x="375" y="314" font-size="12" text-anchor="middle" fill="#5f6b7a">panic override + 기관 흡수</text>
+              <line x1="460" y1="300" x2="520" y2="300" stroke="#7b8796" stroke-width="3" marker-end="url(#arrow)"/>
+              <text x="520" y="283" font-size="12" text-anchor="end" fill="#7b8796">폭락 뒤 반등 해석</text>
+
+              <text x="46" y="418" font-size="18" font-weight="700" fill="#23324d">3) 7/8~7/10: 반도체 리더십 + 피로도 + 수급 결합</text>
+              <circle cx="82" cy="454" r="24" fill="#eef3ff" stroke="#4e79ff" stroke-width="3"/>
+              <text x="82" y="458" font-size="11" text-anchor="middle" fill="#23324d" font-weight="700">EWY</text>
+              <circle cx="82" cy="398" r="24" fill="#fff1e8" stroke="#f28b44" stroke-width="3"/>
+              <text x="82" y="402" font-size="11" text-anchor="middle" fill="#23324d" font-weight="700">SOX</text>
+              <line x1="106" y1="398" x2="152" y2="398" stroke="#23324d" stroke-width="3"/>
+              <line x1="106" y1="454" x2="152" y2="454" stroke="#23324d" stroke-width="3"/>
+              <line x1="152" y1="398" x2="152" y2="454" stroke="#23324d" stroke-width="3"/>
+              <line x1="152" y1="426" x2="182" y2="426" stroke="#23324d" stroke-width="3"/>
+              <polygon points="182,408 214,426 182,444" fill="#ffe8a8" stroke="#23324d" stroke-width="3"/>
+              <line x1="214" y1="408" x2="214" y2="444" stroke="#23324d" stroke-width="3"/>
+              <text x="198" y="394" font-size="12" text-anchor="middle" fill="#5f6b7a">D_semi</text>
+              <line x1="214" y1="426" x2="254" y2="426" stroke="#23324d" stroke-width="3"/>
+              <polyline points="254,426 266,412 278,440 290,412 302,440 314,412 326,426" fill="none" stroke="#23324d" stroke-width="3"/>
+              <text x="290" y="396" font-size="12" text-anchor="middle" fill="#5f6b7a">R_flow</text>
+              <line x1="326" y1="426" x2="356" y2="426" stroke="#23324d" stroke-width="3"/>
+              <line x1="356" y1="402" x2="356" y2="450" stroke="#23324d" stroke-width="3"/>
+              <line x1="370" y1="402" x2="370" y2="450" stroke="#23324d" stroke-width="3"/>
+              <line x1="363" y1="450" x2="363" y2="474" stroke="#23324d" stroke-width="3"/>
+              <line x1="344" y1="474" x2="382" y2="474" stroke="#23324d" stroke-width="3"/>
+              <text x="363" y="492" font-size="12" text-anchor="middle" fill="#5f6b7a">C_exhaust</text>
+              <line x1="370" y1="426" x2="414" y2="426" stroke="#23324d" stroke-width="3"/>
+              <rect x="414" y="386" width="214" height="80" rx="18" fill="#fff7df" stroke="#f4ddb3" stroke-width="2"/>
+              <text x="521" y="416" font-size="17" text-anchor="middle" fill="#23324d" font-weight="700">Gate-RC Final Core</text>
+              <text x="521" y="438" font-size="12" text-anchor="middle" fill="#5f6b7a">semi_lead_gap_up + gap_up_exhaustion_risk</text>
+              <line x1="628" y1="426" x2="694" y2="426" stroke="#7b8796" stroke-width="3" marker-end="url(#arrow)"/>
+              <text x="694" y="409" font-size="12" text-anchor="end" fill="#7b8796">현재 시가·종가 엔진</text>
             </svg>
+            <p class="chart-note">박스 다이어그램이 아니라 실제 회로 기호에 가깝게, 입력 전압(EWY/SOX), 저항(R_fx·R_flow), 다이오드(충격·반도체 리더십), 커패시터(기관 흡수·상승 피로도)를 단계적으로 추가한 모습이다.</p>
           </div>
           <div class="figure-card">
             <h3>Codex 최종 Gate-RC 회로도</h3>
