@@ -49,6 +49,25 @@ bash phone_server/sync.sh
 | 대시보드 | http://192.168.0.43:8080 | http://100.71.229.101:8080 |
 | Drop | http://192.168.0.43:8090 | http://100.71.229.101:8090 |
 
+## 접속·공유 방법 3가지 (용도별)
+
+| 용도 | 방법 | 링크 |
+|------|------|------|
+| 🌍 **남한테 공유(카톡 등)** | GitHub Pages (공개 HTTPS) | `https://waterfirst.github.io/kospi-mw-rc-research/spain-trip.html` |
+| 📱 **밖에서 내 기기** | Tailscale 앱(같은 계정·Connect) | `http://100.71.229.101:8095/spain-trip.html` |
+| 🏠 **집에서** | 같은 WiFi | `http://192.168.0.43:8095/spain-trip.html` |
+
+- **폰서버(192.168/100.x)는 사설망 전용** — Tailscale 없는 남의 폰/LTE에선 안 열림. 공유는 GitHub Pages.
+- **다른 기기를 Tailscale로 추가**: 그 기기에 Tailscale 앱 설치 → **노트10과 같은 계정** 로그인 → Connect → 기기목록에 `note10` 보이면 100.x URL 접속 가능. (MagicDNS 켜면 `http://note10:8095/…`)
+- 폰에선 CLI(Funnel/Serve)가 seccomp로 안 돼서, 공개 노출은 GitHub Pages가 정답.
+
+## GitHub Pages (공개 링크) 관리
+
+- 최초 1회 활성화: repo **Settings → Pages → Source: Deploy from a branch → `gh-pages` / (root) → Save**
+- 공개 URL: `https://waterfirst.github.io/kospi-mw-rc-research/spain-trip.html`
+- 콘텐츠 갱신(재배포): `bash phone_server/publish_pages.sh` → `gh-pages` 브랜치에 pages/ 를 다시 올림
+- private repo면 Pages는 GitHub Pro 필요(또는 repo public 전환)
+
 ## 점검 원라이너 (폰)
 ```bash
 git rev-parse --short HEAD                              # 현재 커밋
