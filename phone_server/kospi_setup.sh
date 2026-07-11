@@ -43,6 +43,8 @@ crontab - <<EOF
 */10 * * * * pgrep -f "drop.py" >/dev/null || (cd $REPO/phone_server && $PY drop.py 8090 >> $REPO/logs/drop.log 2>&1 &)
 # pageserve(정적 페이지, 8095) 생존 확인
 */10 * * * * pgrep -f "pageserve.py" >/dev/null || (cd $REPO/phone_server && $PY pageserve.py 8095 >> $REPO/logs/pageserve.log 2>&1 &)
+# GitHub 자동 동기화(5분) — push한 페이지가 폰에 자동 반영
+*/5 * * * * bash $REPO/phone_server/sync.sh >> $REPO/logs/sync.log 2>&1
 EOF
 crontab -l | head -3
 

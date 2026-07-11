@@ -13,17 +13,10 @@ import sys
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8095
-ROOT = os.path.expanduser("~/pages")
+# 기본은 repo의 phone_server/pages/ (git으로 배포됨). PAGES_DIR로 덮어쓰기 가능.
+ROOT = os.environ.get("PAGES_DIR") or \
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "pages")
 os.makedirs(ROOT, exist_ok=True)
-
-# 첫 실행 시 예시 페이지
-_idx = os.path.join(ROOT, "hello.html")
-if not os.path.exists(_idx):
-    with open(_idx, "w", encoding="utf-8") as f:
-        f.write("<!doctype html><meta charset=utf-8><title>hello</title>"
-                "<body style='background:#1e1e2e;color:#fff;font-family:sans-serif;"
-                "text-align:center;padding-top:20%'><h1>📱 폰서버 페이지 호스팅 동작 중</h1>"
-                "<p>~/pages/ 에 HTML을 넣으면 여기 뜹니다.</p></body>")
 
 
 class H(SimpleHTTPRequestHandler):
