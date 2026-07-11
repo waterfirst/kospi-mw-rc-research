@@ -15,15 +15,16 @@ launch() {  # $1=이름/패턴  $2=명령
   cd "$REPO/phone_server"
   setsid $PY $2 </dev/null >>"$REPO/logs/${3}.log" 2>&1 &
 }
-launch "server.py"  "server.py 8080" "dashboard"
-launch "drop.py"    "drop.py 8090"   "drop"
+launch "server.py"    "server.py 8080"   "dashboard"
+launch "drop.py"      "drop.py 8090"     "drop"
+launch "pageserve.py" "pageserve.py 8095" "pageserve"
 
 # 3) crond(자동 재기동 안전망) 살아있는지 확인
 pgrep -x crond >/dev/null || { crond 2>/dev/null && echo "crond 기동"; }
 
 sleep 2
 echo "== 상태 =="
-for p in "server.py" "drop.py" "crond" "tailscaled"; do
+for p in "server.py" "drop.py" "pageserve.py" "crond"; do
   if pgrep -f "$p" >/dev/null; then echo "  ✔ $p"; else echo "  ✘ $p (미실행)"; fi
 done
 IP=$(ifconfig 2>/dev/null | grep -oE 'inet 192\.[0-9.]+' | head -1 | cut -d' ' -f2)
