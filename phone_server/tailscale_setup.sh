@@ -1,57 +1,25 @@
 #!/data/data/com.termux/files/usr/bin/bash
-# Termux(root 없음)에서 Tailscale 설치·기동 — userspace 모드
-# pkg에 tailscale이 없으므로 공식 정적 바이너리(arm64)를 직접 설치.
-# 사용: bash tailscale_setup.sh   (그다음 안내되는 URL로 인증)
+# Tailscale on 노트10.
+#
+# ⚠️ 중요: Termux CLI(정적 바이너리)는 이 폰에서 동작하지 않음.
+#   안드로이드 seccomp가 faccessat2 syscall을 차단 → 공식 정적 바이너리가
+#   'SIGSYS: bad system call'로 즉사함. (Android용 미패치)
+#   → 반드시 Play스토어 'Tailscale' 앱을 사용할 것. 아래는 안내만 출력.
 set -e
-PREFIX=${PREFIX:-/data/data/com.termux/files/usr}
+cat <<'EOF'
+================= Tailscale 설치 안내 (앱 방식) =================
 
-echo "== [1/4] 설치 =="
-if command -v tailscale >/dev/null 2>&1; then
-  echo "  이미 설치됨: $(tailscale version 2>/dev/null | head -1)"
-elif pkg install -y tailscale 2>/dev/null && command -v tailscale >/dev/null; then
-  echo "  pkg 설치 성공"
-else
-  echo "  pkg에 없음 → 공식 정적 바이너리 다운로드"
-  ARCH=arm64
-  case "$(uname -m)" in armv7l|arm) ARCH=arm;; x86_64) ARCH=amd64;; esac
-  VER=$(curl -s 'https://pkgs.tailscale.com/stable/?mode=json' \
-        | python -c "import sys,json;print(json.load(sys.stdin)['Version'])")
-  echo "  버전 $VER ($ARCH) 받는 중..."
-  cd ~
-  curl -fL -o ts.tgz "https://pkgs.tailscale.com/stable/tailscale_${VER}_${ARCH}.tgz"
-  tar xzf ts.tgz
-  install -m755 "tailscale_${VER}_${ARCH}/tailscale"  "$PREFIX/bin/tailscale"
-  install -m755 "tailscale_${VER}_${ARCH}/tailscaled" "$PREFIX/bin/tailscaled"
-  rm -rf ts.tgz "tailscale_${VER}_${ARCH}"
-  echo "  설치 완료: $(tailscale version | head -1)"
-fi
+CLI 정적 바이너리는 Android seccomp(faccessat2 차단)로 SIGSYS 크래시가 남.
+네이티브 앱을 쓰면 이 문제가 전혀 없고 공식 지원됨.
 
-echo "== [2/4] 데몬 기동 (SSH 끊겨도 유지: setsid) =="
-mkdir -p ~/.tailscale
-pkill -f tailscaled 2>/dev/null || true
-sleep 1
-setsid tailscaled --tun=userspace-networking \
-  --state=$HOME/.tailscale/tailscaled.state \
-  </dev/null >~/.tailscale/tailscaled.log 2>&1 &
-sleep 3
-if pgrep -f tailscaled >/dev/null; then
-  echo "  OK: tailscaled 실행 중"
-else
-  echo "  ✘ 데몬 실패. 로그: cat ~/.tailscale/tailscaled.log"; exit 1
-fi
+1) Play스토어에서 'Tailscale' 앱 설치 → 로그인(구글 계정 가능)
+2) 앱에서 Connect 토글 ON → 첫 화면에 100.x.y.z 주소 표시됨
+3) 접속할 노트북/폰에도 같은 계정으로 Tailscale 설치
+4) 이제 집 밖 어디서든:
+     ssh u0_a231@100.x.y.z -p 8022      # 폰 SSH
+     http://100.x.y.z:8080              # 대시보드
+5) (선택) 앱 설정 > MagicDNS 켜면 IP 대신 'note10' 이름으로 접속
 
-echo "== [3/4] 로그인 =="
-echo "  아래에 인증 URL이 나오면 폰 브라우저에서 열어 로그인/승인 하세요."
-tailscale up --hostname=note10
-
-echo "== [4/4] 부여된 주소 =="
-IP=$(tailscale ip -4 2>/dev/null || echo "?")
-echo "  Tailscale IP: $IP"
-echo
-echo "이제 집 밖에서도 접속 가능:"
-echo "  ssh u0_a231@$IP -p 8022"
-echo "  http://$IP:8080   (대시보드)"
-echo
-echo "재부팅에도 유지하려면 Termux:Boot 에 등록:"
-echo "  mkdir -p ~/.termux/boot"
-echo "  cp ~/kospi-mw-rc-research/phone_server/tailscale_boot.sh ~/.termux/boot/"
+※ 앱이 VPN을 유지하므로 Termux 데몬 불필요. 배터리 최적화에서 Tailscale도 '제한 없음' 권장.
+================================================================
+EOF
