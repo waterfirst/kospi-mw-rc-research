@@ -25,6 +25,9 @@
 | 7 | URL에서 카메라 촬영 안 됨 | 카메라는 정상(`termux-camera-photo` CLI로 1.3MB 촬영 성공). **`server.py`가 죽어 있었고**, `~/site/app.py`(옛 앱)가 8080 점유 의심 | `pkill -f app.py` → `server.py 8080` 재기동. cron이 이후 유지 |
 | 8 | 노트북(SSH) 끄면 8080 대시보드가 죽음 | 서버를 SSH 세션 안에서 `&`로 띄워서, SSH 끊기면 SIGHUP으로 자식 프로세스 사망. 화면 꺼지면 wake-lock 없이 Termux 자체가 종료 | **`start_server.sh`**: `termux-wake-lock` + `setsid`로 세션 분리 기동. Termux:Boot로 재부팅 생존 |
 | 9 | Tailscale CLI가 `SIGSYS: bad system call`로 즉사 | `pkg`에 tailscale 없어 공식 정적 바이너리 받았으나, **안드로이드 seccomp가 `faccessat2`(0x1b7) syscall 차단** → Android 미패치 Go 바이너리가 crash. root 없이는 회피 불가 | **CLI 포기. Play스토어 Tailscale 앱 사용**(네이티브라 seccomp 무관, 공식 지원). SSH(8022)·대시보드(8080)는 앱이 주는 100.x IP로 동일하게 접속됨 |
+| 10 | 우분투→폰 Tailscale ping은 되는데 SSH/HTTP는 timeout | Tailscale IP ping은 tailscaled 자체 응답(서비스 접속 보장 아님). 앱이 배터리 절전으로 inbound 안 넘김 | 폰 **설정→앱→Tailscale→배터리→제한 없음**. 그 후 inbound TCP 정상 |
+| 11 | 페이지 push했는데 폰에 404/옛 화면 | pageserve.py 코드를 바꿔도 **실행 중 옛 프로세스는 옛 코드**로 서빙(옛 폴더 등). 콘텐츠만 바뀌면 문제없지만 코드 변경 시 재시작 필요 | `sync.sh`가 `git diff`로 *.py 변경 감지해 **자동 재시작**하도록 개선. 수동은 `pkill -f pageserve.py` 후 재기동 |
+| 12 | `phone_server/sync.sh: No such file` | 폰 repo가 그 커밋을 안 받음(behind) | 수동 복구: `git fetch && git reset --hard origin/<branch>` 후 재시도 |
 
 ## 핵심 교훈
 
