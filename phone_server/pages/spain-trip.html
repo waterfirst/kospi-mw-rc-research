@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🇪🇸 스페인 드림 여행 · 가우디를 찾아서</title>
+<style>
+  :root{
+    --bg:#fbf7f0; --card:#ffffff; --ink:#2b2620; --ink2:#6b6357; --muted:#9a9184;
+    --line:#ece4d6; --terra:#e07a5f; --sea:#3d84a8; --gold:#e6a817; --green:#6a994e;
+    --violet:#8367c7; --shadow:0 6px 24px rgba(120,90,60,.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#1c1a17;--card:#26231f;--ink:#f3eee6;--ink2:#c9c0b2;
+      --muted:#8f877a;--line:#38332c;--shadow:0 6px 24px rgba(0,0,0,.35);}
+  }
+  *{box-sizing:border-box;margin:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);
+    font-family:"Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.6;
+    -webkit-text-size-adjust:100%}
+  .wrap{max-width:860px;margin:0 auto;padding:0 16px}
+  /* nav */
+  nav{position:sticky;top:0;z-index:20;background:rgba(251,247,240,.92);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);overflow-x:auto;
+    white-space:nowrap;-webkit-overflow-scrolling:touch}
+  @media (prefers-color-scheme: dark){nav{background:rgba(28,26,23,.92)}}
+  nav .wrap{display:flex;gap:6px;padding:9px 16px}
+  nav a{color:var(--ink2);text-decoration:none;font-size:13px;padding:5px 11px;
+    border-radius:20px;flex:0 0 auto}
+  nav a:hover{background:var(--line);color:var(--ink)}
+  /* hero */
+  header{background:
+      radial-gradient(120% 90% at 80% 0%, #f3c15a33, transparent 60%),
+      linear-gradient(135deg,#e07a5f 0%,#d1495b 45%,#3d84a8 100%);
+    color:#fff;padding:54px 0 46px;position:relative;overflow:hidden}
+  header .badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;
+    padding:5px 13px;font-size:12px;letter-spacing:.5px;margin-bottom:14px}
+  header h1{font-size:34px;line-height:1.2;font-weight:800;text-shadow:0 2px 12px rgba(0,0,0,.15)}
+  header p{margin-top:10px;font-size:15px;opacity:.95;max-width:560px}
+  .mosaic{position:absolute;right:-30px;bottom:-30px;width:200px;height:200px;opacity:.25;
+    background:
+      conic-gradient(from 0deg,#f2b705,#e07a5f,#3d84a8,#6a994e,#f2b705);
+    border-radius:30% 70% 70% 30%/30% 30% 70% 70%;filter:blur(2px)}
+  /* sections */
+  section{padding:30px 0 6px}
+  h2{font-size:22px;display:flex;align-items:center;gap:9px;margin-bottom:4px}
+  .lead{color:var(--ink2);font-size:14px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+  /* KPI */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px;
+    box-shadow:var(--shadow)}
+  .kpi .v{font-size:24px;font-weight:800;color:var(--terra)}
+  .kpi .l{font-size:12px;color:var(--muted);margin-top:3px}
+  /* day cards */
+  .day{border-left:4px solid var(--terra);padding-left:0}
+  .day .head{display:flex;align-items:baseline;gap:10px;margin-bottom:10px}
+  .day .num{background:var(--terra);color:#fff;font-weight:800;border-radius:10px;
+    padding:3px 11px;font-size:14px}
+  .day .ttl{font-size:17px;font-weight:700}
+  .day.sea{border-color:var(--sea)} .day.sea .num{background:var(--sea)}
+  .day.gold{border-color:var(--gold)} .day.gold .num{background:var(--gold)}
+  .day.green{border-color:var(--green)} .day.green .num{background:var(--green)}
+  .day.violet{border-color:var(--violet)} .day.violet .num{background:var(--violet)}
+  .tl{list-style:none;padding:0;margin:0}
+  .tl li{display:flex;gap:12px;padding:8px 0;border-top:1px dashed var(--line)}
+  .tl li:first-child{border-top:0}
+  .tl .t{flex:0 0 52px;color:var(--sea);font-weight:700;font-size:13px;padding-top:1px}
+  .tl .c b{font-size:15px}
+  .tl .c small{color:var(--muted);display:block;font-size:12.5px}
+  .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;
+    background:var(--line);color:var(--ink2);margin-right:5px;margin-top:4px}
+  .tag.must{background:#e07a5f22;color:var(--terra);font-weight:700}
+  /* gaudi highlight */
+  .gaudi{background:linear-gradient(135deg,#fff8ee,#fdeede);border:1px solid #f0d9bf}
+  @media (prefers-color-scheme: dark){.gaudi{background:linear-gradient(135deg,#2e2820,#31241d);
+    border-color:#4a3d2c}}
+  .gaudi h3{font-size:18px;color:var(--terra);margin-bottom:6px}
+  .glist{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:12px}
+  .g{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .g .n{font-weight:700;font-size:15px;margin-bottom:3px}
+  .g .d{font-size:13px;color:var(--ink2)}
+  .g .meta{font-size:12px;color:var(--muted);margin-top:7px}
+  /* tables */
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:12px}
+  td b{color:var(--ink)}
+  .warn{background:#e6a81718;border:1px solid #e6a81744;border-radius:10px;padding:10px 12px;
+    font-size:13px;color:var(--ink2);margin-top:10px}
+  /* phrases */
+  .ph{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .ph div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+  .ph .ko{font-size:12px;color:var(--muted)}
+  .ph .es{font-size:15px;font-weight:700;color:var(--sea)}
+  .ph .pr{font-size:12px;color:var(--ink2)}
+  /* map */
+  .maprow{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .pin{display:flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--line);
+    border-radius:30px;padding:6px 13px;font-size:13px}
+  .dot{width:11px;height:11px;border-radius:50%}
+  footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0 40px}
+  .chk{list-style:none;padding:0} .chk li{padding:5px 0;font-size:14px}
+  .chk li::before{content:"◻ ";color:var(--terra)}
+  a.link{color:var(--sea);text-decoration:none;font-weight:600}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a href="#top">🏠 개요</a>
+  <a href="#map">🗺 경로</a>
+  <a href="#gaudi">⛪ 가우디</a>
+  <a href="#days">📅 일정</a>
+  <a href="#food">🥘 미식</a>
+  <a href="#move">🚄 교통</a>
+  <a href="#es">💬 회화</a>
+  <a href="#budget">💰 예산</a>
+  <a href="#tips">✨ 팁</a>
+</div></nav>
+
+<header id="top">
+  <div class="wrap">
+    <span class="badge">DREAM TRIP · 언젠가 꼭</span>
+    <h1>가우디를 찾아서,<br>스페인 8일</h1>
+    <p>바르셀로나에서 사그라다 파밀리아를 마주하고, 마드리드와 그라나다 알람브라까지 —
+       친구와 함께 걷는 스페인 완주 계획.</p>
+  </div>
+  <div class="mosaic"></div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <div class="kpis">
+    <div class="kpi"><div class="v">8일</div><div class="l">7박 8일 (봄/가을 추천)</div></div>
+    <div class="kpi"><div class="v">₩250만</div><div class="l">1인 예상 (항공 포함)</div></div>
+    <div class="kpi"><div class="v">3개 도시</div><div class="l">바르셀로나·마드리드·그라나다</div></div>
+    <div class="kpi"><div class="v">14h+</div><div class="l">인천→바르셀로나 (경유)</div></div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <b>한눈에 일정</b>
+    <table style="margin-top:8px">
+      <tr><th>Day</th><th>도시</th><th>핵심</th></tr>
+      <tr><td>1</td><td>바르셀로나</td><td>도착·고딕지구 야경</td></tr>
+      <tr><td>2</td><td>바르셀로나</td><td><b>⛪ 사그라다 파밀리아</b>·카사 바트요/밀라</td></tr>
+      <tr><td>3</td><td>바르셀로나</td><td>구엘 공원·벙커 전망·바르셀로네타</td></tr>
+      <tr><td>4</td><td>몬세라트</td><td>수도원 당일치기·근교</td></tr>
+      <tr><td>5</td><td>마드리드</td><td>AVE 고속열차·프라도 미술관</td></tr>
+      <tr><td>6</td><td>톨레도</td><td>중세도시 당일치기</td></tr>
+      <tr><td>7</td><td>그라나다</td><td><b>🕌 알람브라 궁전</b></td></tr>
+      <tr><td>8</td><td>귀국</td><td>말라가/마드리드 출국</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="map">
+  <h2>🗺 여행 경로</h2>
+  <p class="lead">바르셀로나(4박) → 마드리드(2박) → 그라나다(1박). 도시 간은 AVE 고속열차.</p>
+  <div class="card">
+    <div class="maprow">
+      <span class="pin"><span class="dot" style="background:var(--terra)"></span>바르셀로나 · 가우디</span>
+      <span class="pin"><span class="dot" style="background:var(--green)"></span>몬세라트 · 근교</span>
+      <span class="pin"><span class="dot" style="background:var(--sea)"></span>마드리드 · 예술</span>
+      <span class="pin"><span class="dot" style="background:var(--gold)"></span>톨레도 · 중세</span>
+      <span class="pin"><span class="dot" style="background:var(--violet)"></span>그라나다 · 알람브라</span>
+    </div>
+    <p style="margin-top:12px;font-size:13px;color:var(--ink2)">
+      바르셀로나 ↔ 마드리드: AVE 2시간 30분 · 마드리드 ↔ 그라나다: AVE 3시간 15분.
+      좌석은 <a class="link" href="https://www.renfe.com" target="_blank">Renfe</a>에서 60일 전 예매 시 최대 60% 할인(Promo).</p>
+  </div>
+</section>
+
+<section id="gaudi">
+  <h2>⛪ 가우디 특집</h2>
+  <p class="lead">이번 여행의 심장. 안토니 가우디(1852–1926)의 걸작 7개는 유네스코 세계유산.</p>
+  <div class="card gaudi">
+    <h3>사그라다 파밀리아 (Sagrada Família)</h3>
+    <div class="g d">1882년 착공, 140여 년째 건축 중. <b>2026년은 가우디 서거 100주년</b>으로
+      중앙 예수탑(172.5m)이 완공되어 세계 최고(最高) 성당이 될 예정 — 지금 가면 역사적 순간.</div>
+    <div class="glist">
+      <div class="g"><div class="n">🎟 예약 필수</div><div class="d">현장 구매 거의 불가.
+        공식 사이트에서 <b>2~3주 전</b> 날짜·시간 지정 예매.</div>
+        <div class="meta">기본 €26 · 타워 포함 €36</div></div>
+      <div class="g"><div class="n">🌅 빛의 마법</div><div class="d">스테인드글라스가 최고인 시간:
+        <b>오전(동쪽·푸른빛)</b> 또는 <b>일몰 무렵(서쪽·붉은빛)</b>.</div>
+        <div class="meta">추천: 09:00 입장</div></div>
+      <div class="g"><div class="n">🗼 탑 오르기</div><div class="d">엘리베이터로 탄생/수난 파사드 탑.
+        고소공포 주의, 내려올 땐 좁은 나선계단.</div>
+        <div class="meta">Nativity 파사드 추천</div></div>
+    </div>
+  </div>
+  <div class="glist">
+    <div class="g"><div class="n">🏞 구엘 공원</div><div class="d">트렌카디스(깨진 타일 모자이크)
+      도롱뇽과 물결 벤치. 도시 전망.</div><div class="meta">Monumental Zone €10 · 예약제</div></div>
+    <div class="g"><div class="n">🏠 카사 바트요</div><div class="d">뼈·용 비늘 모티프의 환상적 파사드.
+      해골 발코니.</div><div class="meta">€35 · 파세지 데 그라시아</div></div>
+    <div class="g"><div class="n">🌊 카사 밀라 (라 페드레라)</div><div class="d">물결치는 석조 외벽,
+      투구 쓴 전사 굴뚝의 옥상.</div><div class="meta">€28 · 야간 조명쇼도 有</div></div>
+    <div class="g"><div class="n">⛪ 콜로니아 구엘 성당</div><div class="d">가우디 구조실험의 원형.
+      근교라 한적. 시간 되면.</div><div class="meta">€9 · 근교 FGC 열차</div></div>
+  </div>
+  <div class="warn">⚠️ 가우디 명소는 <b>전부 사전 예약제</b>. 성수기(4~6·9~10월)엔 1~2주 전 매진.
+    사그라다 파밀리아 + 카사 바트요 + 구엘 공원은 여행 확정 즉시 예매하세요.</div>
+</section>
+
+<section id="days">
+  <h2>📅 일자별 상세</h2>
+
+  <div class="card day">
+    <div class="head"><span class="num">DAY 1</span><span class="ttl">바르셀로나 도착 · 고딕지구</span></div>
+    <ul class="tl">
+      <li><span class="t">오후</span><span class="c"><b>엘프라트 공항 도착</b><small>공항버스 Aerobús 또는 R2 기차로 시내 35분</small></span></li>
+      <li><span class="t">저녁</span><span class="c"><b>고딕 지구(Barri Gòtic) 산책</b><small>대성당·왕의 광장, 좁은 중세 골목의 야경</small></span></li>
+      <li><span class="t">밤</span><span class="c"><b>첫 타파스</b><small>El Xampanyet 또는 Bar del Pla에서 여행 개시 건배 🍷</small></span></li>
+    </ul>
+    <span class="tag">체크인</span><span class="tag">시차적응</span><span class="tag must">가볍게</span>
+  </div>
+
+  <div class="card day sea">
+    <div class="head"><span class="num">DAY 2</span><span class="ttl">가우디의 날 ①</span></div>
+    <ul class="tl">
+      <li><span class="t">09:00</span><span class="c"><b>⛪ 사그라다 파밀리아</b><small>2시간. 오전 푸른 스테인드글라스가 백미. 오디오가이드 필수</small></span></li>
+      <li><span class="t">12:00</span><span class="c"><b>파세지 데 그라시아</b><small>카사 바트요 → 카사 밀라, 모더니즘 건축 거리 도보</small></span></li>
+      <li><span class="t">14:00</span><span class="c"><b>점심 · 파에야</b><small>7 Portes(전통) 또는 근처 메르카트에서</small></span></li>
+      <li><span class="t">저녁</span><span class="c"><b>카사 밀라 야간 조명쇼</b><small>"La Pedrera Night Experience" 옥상 라이트&재즈</small></span></li>
+    </ul>
+    <span class="tag must">사그라다 파밀리아</span><span class="tag">모더니즘</span>
+  </div>
+
+  <div class="card day gold">
+    <div class="head"><span class="num">DAY 3</span><span class="ttl">구엘 공원 · 바다</span></div>
+    <ul class="tl">
+      <li><span class="t">09:30</span><span class="c"><b>구엘 공원</b><small>모자이크 도롱뇽·물결 벤치. 오전 입장이 사람 적음</small></span></li>
+      <li><span class="t">12:30</span><span class="c"><b>벙커 델 카르멜 전망대</b><small>360° 바르셀로나 파노라마 (무료·숨은 명소)</small></span></li>
+      <li><span class="t">15:00</span><span class="c"><b>보케리아 시장 · 람블라스</b><small>하몽·과일주스·해산물</small></span></li>
+      <li><span class="t">저녁</span><span class="c"><b>바르셀로네타 해변</b><small>지중해 석양, 해변 xiringuito에서 씨푸드</small></span></li>
+    </ul>
+    <span class="tag must">구엘 공원</span><span class="tag">전망</span><span class="tag">지중해</span>
+  </div>
+
+  <div class="card day green">
+    <div class="head"><span class="num">DAY 4</span><span class="ttl">몬세라트 당일치기</span></div>
+    <ul class="tl">
+      <li><span class="t">오전</span><span class="c"><b>몬세라트 수도원</b><small>기암괴석 위 수도원. 톱니열차/케이블카로 오름</small></span></li>
+      <li><span class="t">낮</span><span class="c"><b>검은 성모상·소년 합창단</b><small>13:00 Escolania 합창(월~금)</small></span></li>
+      <li><span class="t">오후</span><span class="c"><b>산 정상 하이킹</b><small>Sant Jeroni 전망, 카탈루냐 평원 조망</small></span></li>
+      <li><span class="t">저녁</span><span class="c"><b>바르셀로나 복귀 · 마지막 밤</b><small>플라멩코 or 벙커 야경</small></span></li>
+    </ul>
+    <span class="tag">근교</span><span class="tag">자연</span>
+  </div>
+
+  <div class="card day sea">
+    <div class="head"><span class="num">DAY 5</span><span class="ttl">마드리드로 · 예술</span></div>
+    <ul class="tl">
+      <li><span class="t">08:30</span><span class="c"><b>AVE 고속열차</b><small>Sants역 → 마드리드 Atocha, 2시간 30분</small></span></li>
+      <li><span class="t">12:00</span><span class="c"><b>프라도 미술관</b><small>벨라스케스 '시녀들', 고야 '검은 그림'</small></span></li>
+      <li><span class="t">오후</span><span class="c"><b>레티로 공원 · 솔 광장</b><small>크리스탈 궁전, 보트타기</small></span></li>
+      <li><span class="t">저녁</span><span class="c"><b>산 미겔 시장</b><small>미식 타파스 투어</small></span></li>
+    </ul>
+    <span class="tag">AVE</span><span class="tag">프라도</span>
+  </div>
+
+  <div class="card day gold">
+    <div class="head"><span class="num">DAY 6</span><span class="ttl">톨레도 당일치기</span></div>
+    <ul class="tl">
+      <li><span class="t">오전</span><span class="c"><b>톨레도(AVE 33분)</b><small>3문화(기독·이슬람·유대)가 공존한 중세 요새도시</small></span></li>
+      <li><span class="t">낮</span><span class="c"><b>대성당·엘 그레코</b><small>'오르가스 백작의 매장'</small></span></li>
+      <li><span class="t">오후</span><span class="c"><b>미라도르 전망 · 마사판</b><small>타호강 굽이 전망, 아몬드 과자</small></span></li>
+    </ul>
+    <span class="tag">중세</span><span class="tag">세계유산</span>
+  </div>
+
+  <div class="card day violet">
+    <div class="head"><span class="num">DAY 7</span><span class="ttl">그라나다 · 알람브라</span></div>
+    <ul class="tl">
+      <li><span class="t">오전</span><span class="c"><b>AVE로 그라나다</b><small>마드리드 → 그라나다 3시간 15분</small></span></li>
+      <li><span class="t">14:00</span><span class="c"><b>🕌 알람브라 궁전</b><small>나스르 궁·헤네랄리페 정원. <b>시간지정 예약 필수</b></small></span></li>
+      <li><span class="t">저녁</span><span class="c"><b>알바이신 & 미라도르 산 니콜라스</b><small>알람브라 야경 뷰포인트, 플라멩코 동굴(Sacromonte)</small></span></li>
+    </ul>
+    <span class="tag must">알람브라</span><span class="tag">이슬람 건축</span>
+  </div>
+
+  <div class="card day">
+    <div class="head"><span class="num">DAY 8</span><span class="ttl">귀국</span></div>
+    <ul class="tl">
+      <li><span class="t">오전</span><span class="c"><b>여유 산책 · 기념품</b><small>올리브오일·사프란·투론</small></span></li>
+      <li><span class="t">낮</span><span class="c"><b>말라가/마드리드 공항 이동 → 출국</b><small>역산: 국제선 3시간 전 도착</small></span></li>
+    </ul>
+    <span class="tag">체크아웃</span>
+  </div>
+</section>
+
+<section id="food">
+  <h2>🥘 미식</h2>
+  <p class="lead">스페인은 지역마다 색이 다르다. 꼭 먹어볼 것들.</p>
+  <div class="card">
+    <table>
+      <tr><th>메뉴</th><th>설명</th><th>어디서</th></tr>
+      <tr><td><b>파에야</b></td><td>발렌시아식 쌀 요리. 해산물/혼합</td><td>바르셀로나 해변가</td></tr>
+      <tr><td><b>타파스·핀초스</b></td><td>작은 안주 여러 개. 바 순례</td><td>마드리드·산세바스티안</td></tr>
+      <tr><td><b>하몽 이베리코</b></td><td>도토리 먹인 흑돼지 생햄</td><td>어디든 · 시장</td></tr>
+      <tr><td><b>추로스 콘 초콜라테</b></td><td>진한 핫초코에 찍는 추로스</td><td>마드리드 San Ginés</td></tr>
+      <tr><td><b>가스파초</b></td><td>차가운 토마토 수프(여름)</td><td>안달루시아</td></tr>
+      <tr><td><b>상그리아·베르무트</b></td><td>낮술의 정석 🍷</td><td>바르셀로나 베르무테리아</td></tr>
+    </table>
+    <div class="warn">🍽 스페인 점심은 14~16시, 저녁은 21시 이후. 관광객 식당 외엔 그 사이 브레이크. 배고프면 타파스 바로!</div>
+  </div>
+</section>
+
+<section id="move">
+  <h2>🚄 교통</h2>
+  <div class="card">
+    <table>
+      <tr><th>구간</th><th>수단</th><th>시간/비용</th></tr>
+      <tr><td>인천 → 바르셀로나</td><td>항공(경유)</td><td><b>14~16h</b> · 왕복 120~180만</td></tr>
+      <tr><td>공항 → 시내</td><td>Aerobús / R2</td><td>35분 · €5.9 / €4.9</td></tr>
+      <tr><td>바르셀로나 → 마드리드</td><td>AVE 고속열차</td><td><b>2h30</b> · €30~90(조기)</td></tr>
+      <tr><td>마드리드 → 톨레도</td><td>AVE</td><td>33분 · €14</td></tr>
+      <tr><td>마드리드 → 그라나다</td><td>AVE</td><td>3h15 · €30~70</td></tr>
+      <tr><td>시내 이동</td><td>메트로 T-casual</td><td>10회권 €12.15</td></tr>
+    </table>
+    <div class="warn">🎫 AVE는 <a class="link" href="https://www.renfe.com" target="_blank">Renfe</a>에서 <b>60일 전</b> 오픈, Promo/Promo+ 좌석이 가장 쌈. 여권명 그대로 입력.</div>
+  </div>
+</section>
+
+<section id="es">
+  <h2>💬 기본 스페인어</h2>
+  <div class="card">
+    <div class="ph">
+      <div><div class="ko">안녕하세요</div><div class="es">Hola</div><div class="pr">올라</div></div>
+      <div><div class="ko">감사합니다</div><div class="es">Gracias</div><div class="pr">그라시아스</div></div>
+      <div><div class="ko">얼마예요?</div><div class="es">¿Cuánto es?</div><div class="pr">꾸안또 에스</div></div>
+      <div><div class="ko">계산서요</div><div class="es">La cuenta</div><div class="pr">라 꾸엔따</div></div>
+      <div><div class="ko">맛있어요</div><div class="es">Está rico</div><div class="pr">에스따 리꼬</div></div>
+      <div><div class="ko">화장실 어디?</div><div class="es">¿Dónde está el baño?</div><div class="pr">돈데 에스따 엘 바뇨</div></div>
+      <div><div class="ko">영어 되세요?</div><div class="es">¿Habla inglés?</div><div class="pr">아블라 잉글레스</div></div>
+      <div><div class="ko">건배!</div><div class="es">¡Salud!</div><div class="pr">살룻</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="budget">
+  <h2>💰 예산 (1인 · 7박8일)</h2>
+  <div class="card">
+    <table>
+      <tr><th>항목</th><th>내역</th><th>예상</th></tr>
+      <tr><td><b>항공</b></td><td>인천↔바르셀로나 경유 왕복</td><td>₩1,400,000</td></tr>
+      <tr><td><b>숙소</b></td><td>3~4성 7박 (1인 기준 트윈 분담)</td><td>₩700,000</td></tr>
+      <tr><td><b>기차(AVE)</b></td><td>바르셀로나·마드리드·그라나다·톨레도</td><td>₩180,000</td></tr>
+      <tr><td><b>입장료</b></td><td>사그라다·구엘·카사·알람브라·프라도</td><td>₩200,000</td></tr>
+      <tr><td><b>식비</b></td><td>하루 ₩50,000 × 8</td><td>₩400,000</td></tr>
+      <tr><td><b>기타</b></td><td>교통·기념품·비상</td><td>₩120,000</td></tr>
+      <tr><td colspan="2"><b>합계</b></td><td><b>≈ ₩3,000,000</b></td></tr>
+    </table>
+    <div class="warn">💡 항공 특가·조기 기차 예매·게스트하우스 활용 시 <b>₩250만</b>까지 절감 가능.</div>
+  </div>
+</section>
+
+<section id="tips">
+  <h2>✨ 꿀팁 & 준비물</h2>
+  <div class="card">
+    <b>가기 전 예약 체크</b>
+    <ul class="chk">
+      <li>사그라다 파밀리아 (2~3주 전, 타워 포함)</li>
+      <li>알람브라 나스르 궁 (시간지정, 조기 매진 1순위)</li>
+      <li>구엘 공원 · 카사 바트요 · 프라도</li>
+      <li>AVE 고속열차 (60일 전 Promo)</li>
+    </ul>
+    <b style="display:block;margin-top:10px">현지 팁</b>
+    <ul class="chk">
+      <li>소매치기 주의 — 람블라스·메트로·해변. 크로스백 앞으로</li>
+      <li>시에스타로 14~17시 상점 브레이크 많음</li>
+      <li>물은 사서 마시기, 팁은 잔돈 정도</li>
+      <li>유심/eSIM 미리 (Orange·Vodafone)</li>
+      <li>더위 대비 — 여름은 40℃, 봄·가을(4~6·9~10월)이 최적</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  🇪🇸 스페인 드림 여행 · 가우디를 찾아서 &nbsp;·&nbsp; 폰서버에서 호스팅 중<br>
+  <span style="opacity:.7">여행지·일정은 취향대로 자유롭게 수정하세요</span>
+</footer>
+
+<button id="music" title="알함브라 궁전의 추억" style="position:fixed;right:16px;bottom:16px;
+  z-index:40;border:0;border-radius:30px;padding:11px 16px;font-size:14px;cursor:pointer;
+  background:linear-gradient(135deg,#e07a5f,#d1495b);color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.25)">
+  🎵 알함브라의 추억</button>
+
+<script>
+// Recuerdos de la Alhambra (Tárrega, 1899, 퍼블릭도메인) — 트레몰로 근사 연주
+(function(){
+  const F={A2:110,E3:164.81,A3:220,C4:261.63,D4:293.66,E4:329.63,F4:349.23,
+    G4:392.00,'G#4':415.30,A4:440,B4:493.88,C5:523.25,D5:587.33,E5:659.25};
+  // [멜로디음, 베이스아르페지오 4음]  — Am | Am | Dm | Dm | Am | E | Am | E
+  const bars=[
+    ['C5',['A2','E3','A3','C4']], ['B4',['A2','E3','A3','C4']],
+    ['D5',['D4','A3','D4','F4']], ['A4',['D4','A3','D4','F4']],
+    ['C5',['A2','E3','A3','C4']], ['B4',['E3','B4','E4','G#4']],
+    ['A4',['A2','E3','A3','C4']], ['G#4',['E3','E4','B4','E4']],
+  ];
+  let ctx,master,playing=false,timer;
+  const btn=document.getElementById('music');
+  function pluck(freq,t,dur,g){
+    const o=ctx.createOscillator(),a=ctx.createGain();
+    o.type='triangle'; o.frequency.value=freq;
+    a.gain.setValueAtTime(0,t);
+    a.gain.linearRampToValueAtTime(g,t+0.006);
+    a.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+    o.connect(a).connect(master); o.start(t); o.stop(t+dur+0.02);
+  }
+  function playBar(bar,t0){
+    const beat=0.5;              // 한 박
+    const [mel,bass]=bar;
+    // 베이스 아르페지오 (p-a-m-i 느낌)
+    bass.forEach((n,i)=>pluck(F[n]||220, t0+i*beat*0.5, 0.9, 0.05));
+    // 멜로디 트레몰로 (6연타)
+    for(let k=0;k<6;k++) pluck(F[mel]||440, t0+k*(beat*2/6), 0.22, 0.07);
+    return beat*2;               // 한 마디 = 2박
+  }
+  function loop(){
+    let t=ctx.currentTime+0.05;
+    bars.forEach(b=>{ t+=playBar(b,t); });
+    const total=(t-ctx.currentTime)*1000;
+    timer=setTimeout(loop,total-60);
+  }
+  btn.addEventListener('click',()=>{
+    if(!ctx){ ctx=new (window.AudioContext||window.webkitAudioContext)();
+      master=ctx.createGain(); master.gain.value=0.5; master.connect(ctx.destination); }
+    if(playing){ playing=false; clearTimeout(timer); master.gain.value=0;
+      btn.textContent='🎵 알함브라의 추억'; }
+    else{ playing=true; ctx.resume(); master.gain.value=0.5; loop();
+      btn.textContent='⏸ 연주 중…'; }
+  });
+})();
+</script>
+
+</body>
+</html>
