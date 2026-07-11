@@ -128,9 +128,34 @@
   .chk{list-style:none;padding:0} .chk li{padding:5px 0;font-size:14px}
   .chk li::before{content:"◻ ";color:var(--terra)}
   a.link{color:var(--sea);text-decoration:none;font-weight:600}
+  /* splash */
+  #splash{position:fixed;inset:0;z-index:100;background:#14110d;display:flex;
+    align-items:center;justify-content:center;transition:opacity .9s ease;overflow:hidden}
+  #splash img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    opacity:0;transform:scale(1.12);animation:spimg 2.6s ease forwards}
+  #splash .stitle{position:relative;z-index:2;color:#fff;font-size:30px;font-weight:800;
+    letter-spacing:3px;text-shadow:0 3px 20px rgba(0,0,0,.6);opacity:0;
+    animation:sptxt 2.4s ease forwards}
+  #splash .svln{position:relative;z-index:2;display:block;text-align:center;
+    color:#f2b705;font-size:13px;letter-spacing:4px;margin-top:8px;opacity:0;
+    animation:sptxt 2.4s ease .3s forwards}
+  @keyframes spimg{0%{opacity:0;transform:scale(1.12)}40%{opacity:.55}100%{opacity:.4;transform:scale(1)}}
+  @keyframes sptxt{0%{opacity:0;transform:translateY(12px)}30%{opacity:1;transform:none}100%{opacity:1}}
+  #splash.hide{opacity:0;pointer-events:none}
+  /* three.js hero canvas */
+  #gl{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+  header .wrap{position:relative;z-index:2}
 </style>
 </head>
 <body>
+
+<div id="splash">
+  <img src="img/sagrada.jpg" alt="">
+  <div>
+    <div class="stitle">GAUDÍ</div>
+    <span class="svln">가우디를 찾아서</span>
+  </div>
+</div>
 
 <nav><div class="wrap">
   <a href="#top">🏠 개요</a>
@@ -149,6 +174,7 @@
   <img class="hero-img" alt="" onerror="this.style.display='none'"
     src="img/sagrada.jpg">
   <div class="hero-ov"></div>
+  <canvas id="gl"></canvas>
   <div class="wrap" style="position:relative;z-index:2">
     <span class="badge">DREAM TRIP · 언젠가 꼭</span>
     <h1>가우디를 찾아서,<br>스페인 8일</h1>
@@ -393,6 +419,9 @@
         <div class="hd">저항의 상징. 마드리드 기념품샵에서 가면을 구할 수 있어요.</div>
       </div>
     </div>
+    <figure><img class="photo" alt="Banco de España, 마드리드" loading="lazy"
+      onerror="this.style.display='none'" src="img/bancoespana.jpg">
+      <figcaption style="color:#ffd9d0">Banco de España, 마드리드 — 시즌3~4 강도 무대</figcaption></figure>
     <table style="margin-top:6px">
       <tr><th>촬영지</th><th>어디 / 팁</th></tr>
       <tr><td><b>조폐국 (강도 무대)</b></td><td>실제 외관은 마드리드 <b>CSIC</b>(국립연구위원회) 건물 · 메트로 República Argentina</td></tr>
@@ -448,82 +477,90 @@
   <span style="opacity:.7">여행지·일정은 취향대로 자유롭게 수정하세요</span>
 </footer>
 
+<audio id="aAlh" src="audio/alhambra.ogg" loop preload="none"></audio>
+<audio id="aBella" src="audio/bella.ogg" loop preload="none"></audio>
 <div class="musicbar">
   <button id="btnAlh" class="m-alh">🎸 알함브라의 추억</button>
   <button id="btnBella" class="m-bella">✊ 벨라 차오</button>
 </div>
 
 <script>
-// 클래식 기타 발현음 = Karplus-Strong 물리모델(줄 튕김). 외부 파일 없음.
+// 실제 퍼블릭도메인 녹음 재생 — 알함브라(클래식 기타), 벨라차오(기악)
 (function(){
-  const F={E2:82.41,A2:110,B2:123.47,C3:130.81,E3:164.81,'G#3':207.65,A3:220,B3:246.94,
-    C4:261.63,D4:293.66,E4:329.63,'G#4':415.30,A4:440,B4:493.88,C5:523.25,D5:587.33,E5:659.25};
-  let ctx,master,active=null;   // 'alh' | 'bella' | null
-  let timer;
+  const aAlh=document.getElementById('aAlh'), aBella=document.getElementById('aBella');
   const bAlh=document.getElementById('btnAlh'), bBella=document.getElementById('btnBella');
-
-  function ensure(){
-    if(ctx) return;
-    ctx=new (window.AudioContext||window.webkitAudioContext)();
-    master=ctx.createGain(); master.gain.value=0.9;
-    const lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=3600;
-    master.connect(lp).connect(ctx.destination);
-  }
-  // Karplus-Strong 한 음을 버퍼로 합성 → 나일론 줄 발현음
-  function ks(freq,dur,decay){
-    const sr=ctx.sampleRate, N=Math.max(2,Math.floor(sr/freq)), len=Math.floor(sr*dur);
-    const buf=ctx.createBuffer(1,len,sr), d=buf.getChannelData(0);
-    const s=new Float32Array(N); for(let i=0;i<N;i++) s[i]=Math.random()*2-1;
-    let idx=0, prev=0; const dec=decay||0.9965;
-    for(let i=0;i<len;i++){ const cur=s[idx]; const out=(cur+prev)*0.5*dec;
-      d[i]=out; s[idx]=out; prev=out; idx=(idx+1)%N; }
-    return buf;
-  }
-  function pluck(freq,t,dur,g,decay){
-    const src=ctx.createBufferSource(); src.buffer=ks(freq,dur,decay);
-    const a=ctx.createGain(); a.gain.setValueAtTime(g,t);
-    a.gain.exponentialRampToValueAtTime(0.0001,t+dur);
-    src.connect(a).connect(master); src.start(t); src.stop(t+dur+0.02);
-  }
-
-  // ── 알함브라의 추억 (Tárrega) — 트레몰로 ──
-  const alh=[['A4','A2'],['B4','E3'],['C5','A3'],['B4','E2'],['A4','B2'],['G#4','G#3'],
-    ['A4','A2'],['B4','E3'],['C5','A3'],['D5','A2'],['C5','E3'],['B4','A3'],
-    ['A4','E2'],['G#4','B2'],['A4','A2']];
-  function loopAlh(){
-    const beat=0.55; let t=ctx.currentTime+0.06;
-    alh.forEach(([m,b])=>{ pluck(F[b],t,beat*1.9,0.5,0.997);
-      for(let k=0;k<4;k++) pluck(F[m],t+k*beat/4,0.5,0.34,0.996); t+=beat; });
-    if(active==='alh') timer=setTimeout(loopAlh,(t-ctx.currentTime)*1000-70);
-  }
-
-  // ── 벨라 차오 (전통, 퍼블릭도메인) — "Una mattina" 선율 (Am) ──
-  // [음, 길이(박)]  베이스는 마디별 Am/E7 루트
-  const bella=[['E4',.5],['A4',.5],['A4',.5],['A4',.75],['B4',.25],['C5',.5],['B4',.5],
-    ['A4',1],['E4',.5],['A4',.5],['A4',.5],['A4',.75],['B4',.25],['C5',.5],['B4',.5],
-    ['A4',1],['E4',.5],['A4',.5],['A4',.5],['A4',.75],['B4',.25],['C5',.5],['B4',.5],
-    ['A4',.75],['B4',.25],['C5',1],['B4',.5],['A4',.5],['B4',.5],['G#4',.5],['A4',1.5]];
-  const bellaBass=['A2','A2','E2','E2','A2','A2','E2','A2'];
-  function loopBella(){
-    const beat=0.42; let t=ctx.currentTime+0.06; let bi=0, acc=0;
-    bella.forEach(([n,len])=>{
-      if(acc%1===0){ pluck(F[bellaBass[bi%bellaBass.length]],t,beat*1.6,0.42,0.997); bi++; }
-      pluck(F[n],t,Math.max(0.3,len*beat*1.1),0.4,0.995);
-      t+=len*beat; acc+=len;
-    });
-    if(active==='bella') timer=setTimeout(loopBella,(t-ctx.currentTime)*1000-60);
-  }
-
-  function stop(){ active=null; clearTimeout(timer);
-    bAlh.classList.remove('on'); bBella.classList.remove('on');
+  aAlh.volume=0.85; aBella.volume=0.85;
+  function reset(){ bAlh.classList.remove('on'); bBella.classList.remove('on');
     bAlh.textContent='🎸 알함브라의 추억'; bBella.textContent='✊ 벨라 차오'; }
-  function toggle(which,btn,label,loop){
-    ensure(); ctx.resume();
-    if(active===which){ stop(); return; }
-    stop(); active=which; btn.classList.add('on'); btn.textContent='⏸ '+label; loop();
+  function toggle(a,b,other){
+    other.pause();
+    if(!a.paused){ a.pause(); reset(); return; }
+    reset();
+    a.play().then(()=>{ b.classList.add('on'); b.textContent='⏸ 재생 중…'; })
+            .catch(()=>{ b.textContent='재생 실패(브라우저)'; });
   }
-  bAlh.addEventListener('click',()=>toggle('alh',bAlh,'연주 중…',loopAlh));
-  bBella.addEventListener('click',()=>toggle('bella',bBella,'연주 중…',loopBella));
+  bAlh.addEventListener('click',()=>toggle(aAlh,bAlh,aBella));
+  bBella.addEventListener('click',()=>toggle(aBella,bBella,aAlh));
+})();
+
+// 스플래시: 가우디 이미지 보였다가 사라짐
+(function(){
+  const sp=document.getElementById('splash');
+  setTimeout(()=>{ sp.classList.add('hide'); setTimeout(()=>sp.remove(),1000); }, 2200);
+})();
+</script>
+
+<script src="lib/three.min.js"></script>
+<script>
+// three.js 히어로 — 가우디 트렌카디스(모자이크) 색의 파티클 성좌
+(function(){
+  const canvas=document.getElementById('gl');
+  if(!window.THREE||!canvas) return;
+  let renderer;
+  try{ renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true}); }
+  catch(e){ return; }   // WebGL 미지원 시 조용히 스킵(그라데이션 유지)
+  const header=canvas.parentElement;
+  function size(){ return [header.clientWidth, header.clientHeight]; }
+  let [W,H]=size();
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setSize(W,H,false);
+  const scene=new THREE.Scene();
+  const cam=new THREE.PerspectiveCamera(60,W/H,0.1,200); cam.position.z=42;
+
+  const COLORS=[0xf2b705,0xe07a5f,0x3d84a8,0x6a994e,0xd1495b,0x8367c7].map(c=>new THREE.Color(c));
+  const N=550, pos=new Float32Array(N*3), col=new Float32Array(N*3);
+  for(let i=0;i<N;i++){
+    const r=18+Math.random()*22, th=Math.random()*Math.PI*2, ph=Math.acos(2*Math.random()-1);
+    pos[i*3]  =r*Math.sin(ph)*Math.cos(th);
+    pos[i*3+1]=r*Math.sin(ph)*Math.sin(th)*0.6;
+    pos[i*3+2]=r*Math.cos(ph);
+    const c=COLORS[i%COLORS.length]; col[i*3]=c.r; col[i*3+1]=c.g; col[i*3+2]=c.b;
+  }
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  geo.setAttribute('color',new THREE.BufferAttribute(col,3));
+  const mat=new THREE.PointsMaterial({size:0.9,vertexColors:true,transparent:true,
+    opacity:0.9,depthWrite:false,blending:THREE.AdditiveBlending});
+  const pts=new THREE.Points(geo,mat); scene.add(pts);
+
+  let mx=0,my=0;
+  addEventListener('mousemove',e=>{ mx=(e.clientX/innerWidth-0.5); my=(e.clientY/innerHeight-0.5); });
+  addEventListener('deviceorientation',e=>{ if(e.gamma!=null){mx=e.gamma/45; my=e.beta/90;} });
+  addEventListener('resize',()=>{ [W,H]=size(); cam.aspect=W/H; cam.updateProjectionMatrix();
+    renderer.setSize(W,H,false); });
+
+  let running=true;
+  document.addEventListener('visibilitychange',()=>{ running=!document.hidden; if(running)tick(); });
+  function tick(){
+    if(!running) return;
+    pts.rotation.y+=0.0016; pts.rotation.x+=0.0007;
+    cam.position.x+=((mx*10)-cam.position.x)*0.05;
+    cam.position.y+=((-my*8)-cam.position.y)*0.05;
+    cam.lookAt(0,0,0);
+    renderer.render(scene,cam);
+    requestAnimationFrame(tick);
+  }
+  tick();
 })();
 </script>
 
