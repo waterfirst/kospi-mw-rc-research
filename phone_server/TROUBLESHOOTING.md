@@ -23,6 +23,7 @@
 | 5 | 날씨 카드 이모지가 □로 깨짐 | NanumGothic 등 폰트에 컬러 이모지 글리프 없음 | 날씨 아이콘을 **PIL 벡터로 직접 그림**(폰트 무관) |
 | 6 | "텔레그램 안 옴" | `git pull` 미완료로 옛 `kospi_setup.sh` 실행(날씨 cron 없음). 성공한 메시지는 `[5/5]` 가동테스트였음 | `git pull` 후 `weather_card.py --telegram` 직접 실행으로 확인 |
 | 7 | URL에서 카메라 촬영 안 됨 | 카메라는 정상(`termux-camera-photo` CLI로 1.3MB 촬영 성공). **`server.py`가 죽어 있었고**, `~/site/app.py`(옛 앱)가 8080 점유 의심 | `pkill -f app.py` → `server.py 8080` 재기동. cron이 이후 유지 |
+| 8 | 노트북(SSH) 끄면 8080 대시보드가 죽음 | 서버를 SSH 세션 안에서 `&`로 띄워서, SSH 끊기면 SIGHUP으로 자식 프로세스 사망. 화면 꺼지면 wake-lock 없이 Termux 자체가 종료 | **`start_server.sh`**: `termux-wake-lock` + `setsid`로 세션 분리 기동. Termux:Boot로 재부팅 생존 |
 
 ## 핵심 교훈
 
