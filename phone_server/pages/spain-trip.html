@@ -42,6 +42,14 @@
     background:
       conic-gradient(from 0deg,#f2b705,#e07a5f,#3d84a8,#6a994e,#f2b705);
     border-radius:30% 70% 70% 30%/30% 30% 70% 70%;filter:blur(2px)}
+  /* images */
+  .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45}
+  .hero-ov{position:absolute;inset:0;
+    background:linear-gradient(135deg,#e07a5fdd 0%,#d1495bcc 45%,#3d84a8dd 100%)}
+  .photo{width:100%;height:200px;object-fit:cover;border-radius:12px;display:block;
+    margin:2px 0 6px;background:var(--line)}
+  .photo.sm{height:150px}
+  figure{margin:0} figcaption{font-size:11.5px;color:var(--muted);margin-top:4px;text-align:right}
   /* sections */
   section{padding:30px 0 6px}
   h2{font-size:22px;display:flex;align-items:center;gap:9px;margin-bottom:4px}
@@ -101,6 +109,21 @@
   .pin{display:flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--line);
     border-radius:30px;padding:6px 13px;font-size:13px}
   .dot{width:11px;height:11px;border-radius:50%}
+  /* heist */
+  .heist{background:linear-gradient(135deg,#c1121f,#7a0e18);color:#fff;border:0}
+  .heist th{color:#ffd9d0} .heist td{border-color:#ffffff22}
+  .heist td b{color:#fff}
+  .hrow{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+  .hmask{font-size:44px;line-height:1}
+  .ht{font-weight:800;font-size:16px} .hd{font-size:13px;opacity:.9}
+  .bella{margin-top:12px;background:#00000030;border-radius:10px;padding:10px 12px;font-size:13px}
+  /* music widget */
+  .musicbar{position:fixed;right:14px;bottom:14px;z-index:40;display:flex;flex-direction:column;gap:8px}
+  .musicbar button{border:0;border-radius:30px;padding:10px 15px;font-size:13px;cursor:pointer;
+    color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.28);font-family:inherit}
+  .m-alh{background:linear-gradient(135deg,#e07a5f,#d1495b)}
+  .m-bella{background:linear-gradient(135deg,#c1121f,#7a0e18)}
+  .musicbar button.on{outline:2px solid #fff}
   footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0 40px}
   .chk{list-style:none;padding:0} .chk li{padding:5px 0;font-size:14px}
   .chk li::before{content:"◻ ";color:var(--terra)}
@@ -117,12 +140,16 @@
   <a href="#food">🥘 미식</a>
   <a href="#move">🚄 교통</a>
   <a href="#es">💬 회화</a>
+  <a href="#heist">🎭 종이의집</a>
   <a href="#budget">💰 예산</a>
   <a href="#tips">✨ 팁</a>
 </div></nav>
 
 <header id="top">
-  <div class="wrap">
+  <img class="hero-img" alt="" onerror="this.style.display='none'"
+    src="img/sagrada.jpg">
+  <div class="hero-ov"></div>
+  <div class="wrap" style="position:relative;z-index:2">
     <span class="badge">DREAM TRIP · 언젠가 꼭</span>
     <h1>가우디를 찾아서,<br>스페인 8일</h1>
     <p>바르셀로나에서 사그라다 파밀리아를 마주하고, 마드리드와 그라나다 알람브라까지 —
@@ -177,6 +204,9 @@
   <h2>⛪ 가우디 특집</h2>
   <p class="lead">이번 여행의 심장. 안토니 가우디(1852–1926)의 걸작 7개는 유네스코 세계유산.</p>
   <div class="card gaudi">
+    <figure><img class="photo" alt="사그라다 파밀리아" loading="lazy" onerror="this.style.display='none'"
+      src="img/sagrada.jpg">
+      <figcaption>사그라다 파밀리아 · Barcelona</figcaption></figure>
     <h3>사그라다 파밀리아 (Sagrada Família)</h3>
     <div class="g d">1882년 착공, 140여 년째 건축 중. <b>2026년은 가우디 서거 100주년</b>으로
       중앙 예수탑(172.5m)이 완공되어 세계 최고(最高) 성당이 될 예정 — 지금 가면 역사적 순간.</div>
@@ -193,9 +223,13 @@
     </div>
   </div>
   <div class="glist">
-    <div class="g"><div class="n">🏞 구엘 공원</div><div class="d">트렌카디스(깨진 타일 모자이크)
+    <div class="g"><img class="photo sm" alt="구엘 공원" loading="lazy" onerror="this.style.display='none'"
+      src="img/parkguell.jpg">
+      <div class="n">🏞 구엘 공원</div><div class="d">트렌카디스(깨진 타일 모자이크)
       도롱뇽과 물결 벤치. 도시 전망.</div><div class="meta">Monumental Zone €10 · 예약제</div></div>
-    <div class="g"><div class="n">🏠 카사 바트요</div><div class="d">뼈·용 비늘 모티프의 환상적 파사드.
+    <div class="g"><img class="photo sm" alt="카사 바트요" loading="lazy" onerror="this.style.display='none'"
+      src="img/casabatllo.jpg">
+      <div class="n">🏠 카사 바트요</div><div class="d">뼈·용 비늘 모티프의 환상적 파사드.
       해골 발코니.</div><div class="meta">€35 · 파세지 데 그라시아</div></div>
     <div class="g"><div class="n">🌊 카사 밀라 (라 페드레라)</div><div class="d">물결치는 석조 외벽,
       투구 쓴 전사 굴뚝의 옥상.</div><div class="meta">€28 · 야간 조명쇼도 有</div></div>
@@ -243,6 +277,8 @@
 
   <div class="card day green">
     <div class="head"><span class="num">DAY 4</span><span class="ttl">몬세라트 당일치기</span></div>
+    <img class="photo" alt="몬세라트" loading="lazy" onerror="this.style.display='none'"
+      src="img/montserrat.jpg">
     <ul class="tl">
       <li><span class="t">오전</span><span class="c"><b>몬세라트 수도원</b><small>기암괴석 위 수도원. 톱니열차/케이블카로 오름</small></span></li>
       <li><span class="t">낮</span><span class="c"><b>검은 성모상·소년 합창단</b><small>13:00 Escolania 합창(월~금)</small></span></li>
@@ -265,6 +301,8 @@
 
   <div class="card day gold">
     <div class="head"><span class="num">DAY 6</span><span class="ttl">톨레도 당일치기</span></div>
+    <img class="photo" alt="톨레도" loading="lazy" onerror="this.style.display='none'"
+      src="img/toledo.jpg">
     <ul class="tl">
       <li><span class="t">오전</span><span class="c"><b>톨레도(AVE 33분)</b><small>3문화(기독·이슬람·유대)가 공존한 중세 요새도시</small></span></li>
       <li><span class="t">낮</span><span class="c"><b>대성당·엘 그레코</b><small>'오르가스 백작의 매장'</small></span></li>
@@ -275,6 +313,8 @@
 
   <div class="card day violet">
     <div class="head"><span class="num">DAY 7</span><span class="ttl">그라나다 · 알람브라</span></div>
+    <img class="photo" alt="알람브라 궁전" loading="lazy" onerror="this.style.display='none'"
+      src="img/alhambra.jpg">
     <ul class="tl">
       <li><span class="t">오전</span><span class="c"><b>AVE로 그라나다</b><small>마드리드 → 그라나다 3시간 15분</small></span></li>
       <li><span class="t">14:00</span><span class="c"><b>🕌 알람브라 궁전</b><small>나스르 궁·헤네랄리페 정원. <b>시간지정 예약 필수</b></small></span></li>
@@ -342,6 +382,27 @@
   </div>
 </section>
 
+<section id="heist">
+  <h2>🎭 종이의 집 · La Casa de Papel</h2>
+  <p class="lead">스페인 하면 떠오르는 넷플릭스 명작. OST <b>벨라 차오(Bella Ciao)</b>와 함께 촬영지를 밟아보자.</p>
+  <div class="card heist">
+    <div class="hrow">
+      <div class="hmask">🎭</div>
+      <div>
+        <div class="ht">달리 가면 + 빨간 점프수트</div>
+        <div class="hd">저항의 상징. 마드리드 기념품샵에서 가면을 구할 수 있어요.</div>
+      </div>
+    </div>
+    <table style="margin-top:6px">
+      <tr><th>촬영지</th><th>어디 / 팁</th></tr>
+      <tr><td><b>조폐국 (강도 무대)</b></td><td>실제 외관은 마드리드 <b>CSIC</b>(국립연구위원회) 건물 · 메트로 República Argentina</td></tr>
+      <tr><td><b>스페인 은행</b> (시즌3~4)</td><td>시벨레스 광장 <b>Banco de España</b> 외관 (내부는 세트)</td></tr>
+      <tr><td><b>교수의 아지트</b></td><td>일부 장면 톨레도 인근 — Day 6 톨레도와 연계</td></tr>
+    </table>
+    <div class="bella">✊ 우하단 <b>벨라 차오</b> 버튼을 누르면 그 선율이 흐릅니다. <i>“Una mattina mi son svegliato…”</i></div>
+  </div>
+</section>
+
 <section id="budget">
   <h2>💰 예산 (1인 · 7박8일)</h2>
   <div class="card">
@@ -387,56 +448,82 @@
   <span style="opacity:.7">여행지·일정은 취향대로 자유롭게 수정하세요</span>
 </footer>
 
-<button id="music" title="알함브라 궁전의 추억" style="position:fixed;right:16px;bottom:16px;
-  z-index:40;border:0;border-radius:30px;padding:11px 16px;font-size:14px;cursor:pointer;
-  background:linear-gradient(135deg,#e07a5f,#d1495b);color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.25)">
-  🎵 알함브라의 추억</button>
+<div class="musicbar">
+  <button id="btnAlh" class="m-alh">🎸 알함브라의 추억</button>
+  <button id="btnBella" class="m-bella">✊ 벨라 차오</button>
+</div>
 
 <script>
-// Recuerdos de la Alhambra (Tárrega, 1899, 퍼블릭도메인) — 트레몰로 근사 연주
+// 클래식 기타 발현음 = Karplus-Strong 물리모델(줄 튕김). 외부 파일 없음.
 (function(){
-  const F={A2:110,E3:164.81,A3:220,C4:261.63,D4:293.66,E4:329.63,F4:349.23,
-    G4:392.00,'G#4':415.30,A4:440,B4:493.88,C5:523.25,D5:587.33,E5:659.25};
-  // [멜로디음, 베이스아르페지오 4음]  — Am | Am | Dm | Dm | Am | E | Am | E
-  const bars=[
-    ['C5',['A2','E3','A3','C4']], ['B4',['A2','E3','A3','C4']],
-    ['D5',['D4','A3','D4','F4']], ['A4',['D4','A3','D4','F4']],
-    ['C5',['A2','E3','A3','C4']], ['B4',['E3','B4','E4','G#4']],
-    ['A4',['A2','E3','A3','C4']], ['G#4',['E3','E4','B4','E4']],
-  ];
-  let ctx,master,playing=false,timer;
-  const btn=document.getElementById('music');
-  function pluck(freq,t,dur,g){
-    const o=ctx.createOscillator(),a=ctx.createGain();
-    o.type='triangle'; o.frequency.value=freq;
-    a.gain.setValueAtTime(0,t);
-    a.gain.linearRampToValueAtTime(g,t+0.006);
+  const F={E2:82.41,A2:110,B2:123.47,C3:130.81,E3:164.81,'G#3':207.65,A3:220,B3:246.94,
+    C4:261.63,D4:293.66,E4:329.63,'G#4':415.30,A4:440,B4:493.88,C5:523.25,D5:587.33,E5:659.25};
+  let ctx,master,active=null;   // 'alh' | 'bella' | null
+  let timer;
+  const bAlh=document.getElementById('btnAlh'), bBella=document.getElementById('btnBella');
+
+  function ensure(){
+    if(ctx) return;
+    ctx=new (window.AudioContext||window.webkitAudioContext)();
+    master=ctx.createGain(); master.gain.value=0.9;
+    const lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=3600;
+    master.connect(lp).connect(ctx.destination);
+  }
+  // Karplus-Strong 한 음을 버퍼로 합성 → 나일론 줄 발현음
+  function ks(freq,dur,decay){
+    const sr=ctx.sampleRate, N=Math.max(2,Math.floor(sr/freq)), len=Math.floor(sr*dur);
+    const buf=ctx.createBuffer(1,len,sr), d=buf.getChannelData(0);
+    const s=new Float32Array(N); for(let i=0;i<N;i++) s[i]=Math.random()*2-1;
+    let idx=0, prev=0; const dec=decay||0.9965;
+    for(let i=0;i<len;i++){ const cur=s[idx]; const out=(cur+prev)*0.5*dec;
+      d[i]=out; s[idx]=out; prev=out; idx=(idx+1)%N; }
+    return buf;
+  }
+  function pluck(freq,t,dur,g,decay){
+    const src=ctx.createBufferSource(); src.buffer=ks(freq,dur,decay);
+    const a=ctx.createGain(); a.gain.setValueAtTime(g,t);
     a.gain.exponentialRampToValueAtTime(0.0001,t+dur);
-    o.connect(a).connect(master); o.start(t); o.stop(t+dur+0.02);
+    src.connect(a).connect(master); src.start(t); src.stop(t+dur+0.02);
   }
-  function playBar(bar,t0){
-    const beat=0.5;              // 한 박
-    const [mel,bass]=bar;
-    // 베이스 아르페지오 (p-a-m-i 느낌)
-    bass.forEach((n,i)=>pluck(F[n]||220, t0+i*beat*0.5, 0.9, 0.05));
-    // 멜로디 트레몰로 (6연타)
-    for(let k=0;k<6;k++) pluck(F[mel]||440, t0+k*(beat*2/6), 0.22, 0.07);
-    return beat*2;               // 한 마디 = 2박
+
+  // ── 알함브라의 추억 (Tárrega) — 트레몰로 ──
+  const alh=[['A4','A2'],['B4','E3'],['C5','A3'],['B4','E2'],['A4','B2'],['G#4','G#3'],
+    ['A4','A2'],['B4','E3'],['C5','A3'],['D5','A2'],['C5','E3'],['B4','A3'],
+    ['A4','E2'],['G#4','B2'],['A4','A2']];
+  function loopAlh(){
+    const beat=0.55; let t=ctx.currentTime+0.06;
+    alh.forEach(([m,b])=>{ pluck(F[b],t,beat*1.9,0.5,0.997);
+      for(let k=0;k<4;k++) pluck(F[m],t+k*beat/4,0.5,0.34,0.996); t+=beat; });
+    if(active==='alh') timer=setTimeout(loopAlh,(t-ctx.currentTime)*1000-70);
   }
-  function loop(){
-    let t=ctx.currentTime+0.05;
-    bars.forEach(b=>{ t+=playBar(b,t); });
-    const total=(t-ctx.currentTime)*1000;
-    timer=setTimeout(loop,total-60);
+
+  // ── 벨라 차오 (전통, 퍼블릭도메인) — "Una mattina" 선율 (Am) ──
+  // [음, 길이(박)]  베이스는 마디별 Am/E7 루트
+  const bella=[['E4',.5],['A4',.5],['A4',.5],['A4',.75],['B4',.25],['C5',.5],['B4',.5],
+    ['A4',1],['E4',.5],['A4',.5],['A4',.5],['A4',.75],['B4',.25],['C5',.5],['B4',.5],
+    ['A4',1],['E4',.5],['A4',.5],['A4',.5],['A4',.75],['B4',.25],['C5',.5],['B4',.5],
+    ['A4',.75],['B4',.25],['C5',1],['B4',.5],['A4',.5],['B4',.5],['G#4',.5],['A4',1.5]];
+  const bellaBass=['A2','A2','E2','E2','A2','A2','E2','A2'];
+  function loopBella(){
+    const beat=0.42; let t=ctx.currentTime+0.06; let bi=0, acc=0;
+    bella.forEach(([n,len])=>{
+      if(acc%1===0){ pluck(F[bellaBass[bi%bellaBass.length]],t,beat*1.6,0.42,0.997); bi++; }
+      pluck(F[n],t,Math.max(0.3,len*beat*1.1),0.4,0.995);
+      t+=len*beat; acc+=len;
+    });
+    if(active==='bella') timer=setTimeout(loopBella,(t-ctx.currentTime)*1000-60);
   }
-  btn.addEventListener('click',()=>{
-    if(!ctx){ ctx=new (window.AudioContext||window.webkitAudioContext)();
-      master=ctx.createGain(); master.gain.value=0.5; master.connect(ctx.destination); }
-    if(playing){ playing=false; clearTimeout(timer); master.gain.value=0;
-      btn.textContent='🎵 알함브라의 추억'; }
-    else{ playing=true; ctx.resume(); master.gain.value=0.5; loop();
-      btn.textContent='⏸ 연주 중…'; }
-  });
+
+  function stop(){ active=null; clearTimeout(timer);
+    bAlh.classList.remove('on'); bBella.classList.remove('on');
+    bAlh.textContent='🎸 알함브라의 추억'; bBella.textContent='✊ 벨라 차오'; }
+  function toggle(which,btn,label,loop){
+    ensure(); ctx.resume();
+    if(active===which){ stop(); return; }
+    stop(); active=which; btn.classList.add('on'); btn.textContent='⏸ '+label; loop();
+  }
+  bAlh.addEventListener('click',()=>toggle('alh',bAlh,'연주 중…',loopAlh));
+  bBella.addEventListener('click',()=>toggle('bella',bBella,'연주 중…',loopBella));
 })();
 </script>
 
