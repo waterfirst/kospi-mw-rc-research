@@ -1,9 +1,30 @@
 #!/data/data/com.termux/files/usr/bin/bash
 # Termux(root 없음)에서 Tailscale 설치·기동 — userspace 모드
+# pkg에 tailscale이 없으므로 공식 정적 바이너리(arm64)를 직접 설치.
 # 사용: bash tailscale_setup.sh   (그다음 안내되는 URL로 인증)
 set -e
+PREFIX=${PREFIX:-/data/data/com.termux/files/usr}
+
 echo "== [1/4] 설치 =="
-pkg install -y tailscale
+if command -v tailscale >/dev/null 2>&1; then
+  echo "  이미 설치됨: $(tailscale version 2>/dev/null | head -1)"
+elif pkg install -y tailscale 2>/dev/null && command -v tailscale >/dev/null; then
+  echo "  pkg 설치 성공"
+else
+  echo "  pkg에 없음 → 공식 정적 바이너리 다운로드"
+  ARCH=arm64
+  case "$(uname -m)" in armv7l|arm) ARCH=arm;; x86_64) ARCH=amd64;; esac
+  VER=$(curl -s 'https://pkgs.tailscale.com/stable/?mode=json' \
+        | python -c "import sys,json;print(json.load(sys.stdin)['Version'])")
+  echo "  버전 $VER ($ARCH) 받는 중..."
+  cd ~
+  curl -fL -o ts.tgz "https://pkgs.tailscale.com/stable/tailscale_${VER}_${ARCH}.tgz"
+  tar xzf ts.tgz
+  install -m755 "tailscale_${VER}_${ARCH}/tailscale"  "$PREFIX/bin/tailscale"
+  install -m755 "tailscale_${VER}_${ARCH}/tailscaled" "$PREFIX/bin/tailscaled"
+  rm -rf ts.tgz "tailscale_${VER}_${ARCH}"
+  echo "  설치 완료: $(tailscale version | head -1)"
+fi
 
 echo "== [2/4] 데몬 기동 (SSH 끊겨도 유지: setsid) =="
 mkdir -p ~/.tailscale
