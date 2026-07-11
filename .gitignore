@@ -23,3 +23,5 @@ settings.local.json
 phone_server/weather.png
 logs/
 .env
+phone_server/drop_data/
+drop_data/
