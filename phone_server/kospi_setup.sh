@@ -39,6 +39,8 @@ crontab - <<EOF
 */10 * * * * pgrep -f news_shock_monitor >/dev/null || $WRAP $PY monitor/news_shock_monitor.py --interval 900 --telegram >> $REPO/logs/news.log 2>&1 &
 # 대시보드 생존 확인
 */10 * * * * pgrep -f "server.py" >/dev/null || (cd $REPO/phone_server && $PY server.py 8080 >> $REPO/logs/dashboard.log 2>&1 &)
+# Drop(기기간 전송, 8090) 생존 확인
+*/10 * * * * pgrep -f "drop.py" >/dev/null || (cd $REPO/phone_server && $PY drop.py 8090 >> $REPO/logs/drop.log 2>&1 &)
 EOF
 crontab -l | head -3
 

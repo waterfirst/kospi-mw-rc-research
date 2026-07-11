@@ -39,6 +39,17 @@ bash install.sh          # 설치 + 진단 + 서버 시작
 | `weather_card.py` | 출퇴근 날씨 카드 이미지 생성 + 텔레그램 전송 (Open-Meteo, 벡터 아이콘) |
 | `phone_extras.sh` | phantom killer 비활성화 + Tailscale(외부 접근) 안내 |
 | `run_with_env.sh` | cron용 `.env` 로더 |
+| `drop.py` + `drop.html` | 기기 간 텍스트·파일 전송 서비스(8090) |
+
+## Drop — 기기 간 텍스트·파일 전송 (8090)
+
+PC에서 텍스트/파일을 올리면 폰·다른 기기에서 바로 받는 개인 전송 서버.
+드래그앤드롭·붙여넣기 업로드, 최대 200MB. stdlib만 사용(멀티파트 대신 raw PUT).
+
+```bash
+python phone_server/drop.py 8090        # 수동 실행 (cron이 자동 유지도 함)
+```
+접속: `http://192.168.0.43:8090` (집 밖은 `http://100.x.y.z:8090`). 저장: `~/drop_data/`.
 
 ## 출퇴근 날씨 카드
 
