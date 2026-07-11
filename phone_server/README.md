@@ -35,6 +35,36 @@ bash install.sh          # 설치 + 진단 + 서버 시작
 | `server.py` | HTTP 서버 + termux-api 래퍼(타임아웃/원인 힌트 내장) |
 | `dashboard.html` | 다크테마 대시보드 (KPI·실시간 차트·카메라·자가진단) |
 | `install.sh` | 패키지 설치 + 환경 점검 + 서버 기동 |
+| `kospi_setup.sh` | KOSPI 모니터링 홈서버 전환 (cron 등록: 예측·watchdog·뉴스·날씨) |
+| `weather_card.py` | 출퇴근 날씨 카드 이미지 생성 + 텔레그램 전송 (Open-Meteo, 벡터 아이콘) |
+| `phone_extras.sh` | phantom killer 비활성화 + Tailscale(외부 접근) 안내 |
+| `run_with_env.sh` | cron용 `.env` 로더 |
+
+## 출퇴근 날씨 카드
+
+매일 05:10에 출근(05:30)·퇴근(18:00) 날씨를 이미지로 텔레그램 전송.
+
+```bash
+pkg install -y python-pillow
+python phone_server/weather_card.py --telegram   # 지금 바로 테스트
+```
+
+- 위치: 폰 GPS(`termux-location`) 자동 사용. 고정하려면 `.env`에
+  `WEATHER_LAT=`, `WEATHER_LON=`, `WEATHER_PLACE=` 추가.
+- 출퇴근 시각 변경: `.env`에 `WEATHER_MORNING=5`, `WEATHER_EVENING=18`.
+- 날씨 아이콘은 PIL로 직접 그려 이모지 폰트 없이도 안 깨짐.
+
+## 서버 안정화 · 외부 접근
+
+```bash
+bash phone_server/phone_extras.sh   # phantom killer + Tailscale 안내 출력
+```
+
+- **phantom killer**: Android 12+에서 장시간 뒤 서버가 죽는 것 방지.
+  PC USB(`adb ... settings_enable_monitor_phantom_procs false`)가 가장 확실.
+  안 해도 cron이 10분마다 자동 재기동함.
+- **Tailscale**: Play스토어 Tailscale 앱 설치 → 로그인 → 집 밖에서도
+  `ssh ...@100.x.y.z -p 8022`, `http://100.x.y.z:8080` 접속.
 
 ## API
 

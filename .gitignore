@@ -18,3 +18,8 @@ settings.local.json
 *token*
 
 .venv_backtest/
+
+# 생성물
+phone_server/weather.png
+logs/
+.env
