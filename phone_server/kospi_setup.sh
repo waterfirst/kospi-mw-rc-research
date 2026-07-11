@@ -9,7 +9,7 @@ chmod +x "$WRAP"
 mkdir -p "$REPO/logs"
 
 echo "== [1/5] 패키지 =="
-pkg install -y cronie termux-services python >/dev/null
+pkg install -y cronie termux-services python python-pillow >/dev/null
 pip install -q requests
 
 echo "== [2/5] .env (텔레그램) =="
@@ -33,6 +33,8 @@ crontab - <<EOF
 33 7  * * 1-5 $WRAP $PY monitor/forecast_watchdog.py --kind open --label 0730 --telegram >> $REPO/logs/watchdog.log 2>&1
 30 12 * * 1-5 $WRAP $PY monitor/kospi_1230_close_forecast.py --telegram >> $REPO/logs/close_1230.log 2>&1
 33 12 * * 1-5 $WRAP $PY monitor/forecast_watchdog.py --kind close --label 1230 --telegram >> $REPO/logs/watchdog.log 2>&1
+# 출퇴근 날씨 카드 (매일 05:10, 출근 전)
+10 5  * * * $WRAP $PY phone_server/weather_card.py --telegram >> $REPO/logs/weather.log 2>&1
 # 뉴스 모니터 생존 확인(10분마다, 죽어 있으면 재기동)
 */10 * * * * pgrep -f news_shock_monitor >/dev/null || $WRAP $PY monitor/news_shock_monitor.py --interval 900 --telegram >> $REPO/logs/news.log 2>&1 &
 # 대시보드 생존 확인
