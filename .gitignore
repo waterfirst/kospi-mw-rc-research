@@ -25,3 +25,5 @@ logs/
 .env
 phone_server/drop_data/
 drop_data/
+.phone_token
+!phone_server/set_token.sh

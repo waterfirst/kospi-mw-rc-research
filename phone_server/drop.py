@@ -92,9 +92,54 @@ def delete(rid):
     c = db(); c.execute("DELETE FROM items WHERE id=?", (rid,)); c.commit(); c.close()
 
 
+def load_token():
+    t = os.environ.get("PHONE_TOKEN", "").strip()
+    if t:
+        return t
+    for p in (os.path.expanduser("~/.phone_token"),
+              os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                           ".phone_token")):
+        try:
+            with open(p) as f:
+                v = f.read().strip()
+                if v:
+                    return v
+        except OSError:
+            pass
+    return ""
+
+
+TOKEN = load_token()
+
+
 class H(BaseHTTPRequestHandler):
     def log_message(self, *a):
         pass
+
+    def end_headers(self):
+        c = getattr(self, "_cookie", None)
+        if c:
+            self.send_header("Set-Cookie", c)
+            self._cookie = None
+        super().end_headers()
+
+    def _gate(self):
+        if not TOKEN:
+            return True
+        if ("pt=" + TOKEN) in self.headers.get("Cookie", ""):
+            return True
+        if urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query
+                                 ).get("k", [""])[0] == TOKEN:
+            self._cookie = ("pt=" + TOKEN +
+                            "; Max-Age=31536000; HttpOnly; SameSite=Lax; Path=/")
+            return True
+        return False
+
+    def _deny(self):
+        self._send(401, "text/html; charset=utf-8",
+                   "<meta charset=utf-8><body style='font-family:sans-serif;background:#1e1e2e;"
+                   "color:#fff;text-align:center;padding-top:20%'><h2>🔒 접근 토큰 필요</h2>"
+                   "<p>주소 뒤에 <b>?k=토큰</b> 을 붙여 접속하세요.</p></body>")
 
     def _send(self, code, ctype, body, extra=None):
         if isinstance(body, str):
@@ -112,6 +157,12 @@ class H(BaseHTTPRequestHandler):
                    json.dumps(obj, ensure_ascii=False))
 
     def do_GET(self):
+        if not self._gate():
+            try:
+                self._deny()
+            except Exception:
+                pass
+            return
         u = urllib.parse.urlparse(self.path)
         q = urllib.parse.parse_qs(u.query)
         try:
@@ -146,6 +197,12 @@ class H(BaseHTTPRequestHandler):
         return self.rfile.read(n)
 
     def do_POST(self):
+        if not self._gate():
+            try:
+                self._deny()
+            except Exception:
+                pass
+            return
         u = urllib.parse.urlparse(self.path)
         q = urllib.parse.parse_qs(u.query)
         try:

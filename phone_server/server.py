@@ -162,9 +162,60 @@ def take_photo(cam="0"):
                    "촬영 실패 → Termux:API 카메라 권한 확인, 화면 켠 상태에서 재시도")
 
 
+def load_token():
+    """접근 토큰: 환경변수 PHONE_TOKEN 또는 ~/.phone_token / repo/.phone_token.
+    미설정이면 '' → 게이트 비활성(하위호환)."""
+    t = os.environ.get("PHONE_TOKEN", "").strip()
+    if t:
+        return t
+    for p in (os.path.expanduser("~/.phone_token"),
+              os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                           ".phone_token")):
+        try:
+            with open(p) as f:
+                v = f.read().strip()
+                if v:
+                    return v
+        except OSError:
+            pass
+    return ""
+
+
+TOKEN = load_token()
+
+
 class Handler(BaseHTTPRequestHandler):
     def log_message(self, *a):  # 조용히
         pass
+
+    def end_headers(self):
+        c = getattr(self, "_cookie", None)
+        if c:
+            self.send_header("Set-Cookie", c)
+            self._cookie = None
+        super().end_headers()
+
+    def _gate(self):
+        """토큰 검사. ?k=토큰 최초 접속 시 쿠키 저장 → 이후 무프롬프트."""
+        if not TOKEN:
+            return True
+        if ("pt=" + TOKEN) in self.headers.get("Cookie", ""):
+            return True
+        if parse_qs(urlparse(self.path).query).get("k", [""])[0] == TOKEN:
+            self._cookie = ("pt=" + TOKEN +
+                            "; Max-Age=31536000; HttpOnly; SameSite=Lax; Path=/")
+            return True
+        return False
+
+    def _deny(self):
+        body = ("<meta charset=utf-8><body style='font-family:sans-serif;background:#1e1e2e;"
+                "color:#fff;text-align:center;padding-top:20%'><h2>🔒 접근 토큰 필요</h2>"
+                "<p>주소 뒤에 <b>?k=토큰</b> 을 붙여 한 번 접속하세요.</p></body>").encode()
+        self.send_response(401)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
 
     def _json(self, obj, code=200):
         body = json.dumps(obj, ensure_ascii=False).encode()
@@ -176,6 +227,12 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_GET(self):
+        if not self._gate():
+            try:
+                self._deny()
+            except Exception:
+                pass
+            return
         u = urlparse(self.path)
         q = parse_qs(u.query)
         try:
