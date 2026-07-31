@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KOSPI Claude vs Codex Weekly Report — 2026-07-31</title>
+  <style>
+    :root {
+      --bg:#fffdf9; --hero:#fff4d8; --card:#ffffff; --line:#eadfca; --ink:#1d2940; --sub:#627084;
+      --blue:#4e79ff; --orange:#f28b44; --green:#2eae6b; --red:#e75b52; --gold:#8a5b00;
+      --shadow:0 14px 34px rgba(145,112,32,.09);
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Inter,'Noto Sans KR',Arial,sans-serif; color:var(--ink); background:linear-gradient(180deg,var(--hero) 0, var(--bg) 240px); line-height:1.6; }
+    .wrap { max-width:1240px; margin:0 auto; padding:28px 18px 56px; }
+    .hero,.card { background:var(--card); border:1px solid var(--line); border-radius:24px; box-shadow:var(--shadow); }
+    .hero { padding:28px; background:rgba(255,255,255,.82); }
+    .card { padding:22px; }
+    .grid { display:grid; grid-template-columns:repeat(12,1fr); gap:16px; margin-top:16px; }
+    .span-12 { grid-column:span 12; } .span-6 { grid-column:span 6; } .span-4 { grid-column:span 4; }
+    h1,h2,h3 { margin:0 0 10px; } h1 { font-size:34px; } h2 { font-size:23px; } h3 { font-size:17px; }
+    .sub { color:var(--sub); } .small { color:var(--sub); font-size:13px; }
+    .kpi { font-size:36px; font-weight:800; } .tag { display:inline-block; padding:7px 10px; border-radius:999px; background:#fff2c7; color:#8a5b00; font-size:12px; font-weight:700; margin-right:8px; margin-top:6px; }
+    .legend { display:flex; gap:16px; flex-wrap:wrap; margin-top:8px; font-size:13px; color:var(--sub); }
+    .dot { width:11px; height:11px; border-radius:50%; display:inline-block; margin-right:6px; vertical-align:middle; }
+    table { width:100%; border-collapse:collapse; font-size:14px; }
+    th,td { padding:12px 10px; border-bottom:1px solid #eee5d5; text-align:left; vertical-align:top; }
+    th { background:#fff8ea; font-size:13px; }
+    .winner.codex { color:var(--blue); font-weight:800; }
+    .winner.claude { color:var(--orange); font-weight:800; }
+    .winner.draw { color:var(--sub); font-weight:800; }
+    .two { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .callout { padding:16px 18px; border-left:4px solid #d8a63d; background:#fff9eb; border-radius:14px; }
+    .mono { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13px; word-break:break-word; }
+    a { color:#2457d6; }
+    ul { margin:8px 0; padding-left:18px; }
+    @media (max-width: 920px) {
+      .span-6,.span-4 { grid-column:span 12; }
+      .two { grid-template-columns:1fr; }
+      h1 { font-size:28px; }
+      table { font-size:12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>KOSPI Claude vs Codex 주간 종합 보고서</h1>
+      <p class="sub">기준 주차: 2026-07-27 ~ 2026-07-31 · 생성시각: 2026-07-31 18:34 KST · 밝은 배경 반응형 · GitHub Pages 배포용 HTML</p>
+      <div>
+        <span class="tag">시가·종가 주간 데이터</span>
+        <span class="tag">날짜별 점수/승패</span>
+        <span class="tag">중요 모델 변경점</span>
+        <span class="tag">실측 대비 시계열 그래프</span>
+        <span class="tag">누적 점수 그래프</span>
+        <span class="tag">전기회로도 스타일 모델 변화</span>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card span-4"><div class="sub">Codex 공식 누적점수</div><div class="kpi" style="color:var(--blue)">3</div><div class="small">시가 0 + 종가 3</div></section>
+      <section class="card span-4"><div class="sub">Claude 누적 시가점수</div><div class="kpi" style="color:var(--orange)">0</div><div class="small">daily log 잔존 inferred open 기준</div></section>
+      <section class="card span-4"><div class="sub">주간 승부 해석</div><div class="kpi" style="font-size:26px">0일 Claude 시가 우위<br>5일 Codex/동률 우세</div><div class="small">공식 종가 기록은 Codex만 완전 보존</div></section>
+
+      <section class="card span-12">
+        <div class="callout">
+          <b>핵심 요약.</b> 이번 주 Codex는 <b>2026-07-30</b>에 3/10으로 최고점을 기록했고, <b>2026-07-27</b>에는 0/10으로 가장 약했다.
+          Claude는 저장소에 남은 <b>시가 inferred open</b> 기준으로만 비교 가능하다. 따라서 본 보고서는 <b>“Codex 공식 총점 + Claude 시가 비교 가능분”</b>을 결합한 전문가형 주간 리포트다.
+        </div>
+      </section>
+
+      <section class="card span-6">
+        <h2>실측 시가 vs 예측 시가</h2>
+        <div class="legend">
+          <span><span class="dot" style="background:#2eae6b"></span>실제 시가</span>
+          <span><span class="dot" style="background:#4e79ff"></span>Codex 시가</span>
+          <span><span class="dot" style="background:#f28b44"></span>Claude-style 시가</span>
+        </div>
+        <svg viewBox="0 0 760 320" aria-label="실측 시가 vs 예측 시가"><rect width="100%" height="100%" fill="#fffdfa"/><line x1="58" y1="28.0" x2="736" y2="28.0" stroke="#eee6d6" /><text x="10" y="32.0" fill="#7a8494" font-size="11">6,993</text><line x1="58" y1="90.0" x2="736" y2="90.0" stroke="#eee6d6" /><text x="10" y="94.0" fill="#7a8494" font-size="11">6,588</text><line x1="58" y1="152.0" x2="736" y2="152.0" stroke="#eee6d6" /><text x="10" y="156.0" fill="#7a8494" font-size="11">6,184</text><line x1="58" y1="214.0" x2="736" y2="214.0" stroke="#eee6d6" /><text x="10" y="218.0" fill="#7a8494" font-size="11">5,779</text><line x1="58" y1="276.0" x2="736" y2="276.0" stroke="#eee6d6" /><text x="10" y="280.0" fill="#7a8494" font-size="11">5,375</text><line x1="58" y1="28" x2="58" y2="276" stroke="#d9cfbd"/><line x1="58" y1="276" x2="736" y2="276" stroke="#d9cfbd"/><text x="58.0" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-27</text><text x="227.5" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-28</text><text x="397.0" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-29</text><text x="566.5" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-30</text><text x="736.0" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-31</text><polyline fill="none" stroke="#2eae6b" stroke-width="3.5" points="58.0,56.6 227.5,118.8 397.0,166.5 566.5,228.9 736.0,232.6"/><circle cx="58.0" cy="56.6" r="4.2" fill="#2eae6b"/><circle cx="227.5" cy="118.8" r="4.2" fill="#2eae6b"/><circle cx="397.0" cy="166.5" r="4.2" fill="#2eae6b"/><circle cx="566.5" cy="228.9" r="4.2" fill="#2eae6b"/><circle cx="736.0" cy="232.6" r="4.2" fill="#2eae6b"/><polyline fill="none" stroke="#4e79ff" stroke-width="3.5" points="58.0,92.8 227.5,78.2 397.0,193.2 566.5,247.4 736.0,212.4"/><circle cx="58.0" cy="92.8" r="4.2" fill="#4e79ff"/><circle cx="227.5" cy="78.2" r="4.2" fill="#4e79ff"/><circle cx="397.0" cy="193.2" r="4.2" fill="#4e79ff"/><circle cx="566.5" cy="247.4" r="4.2" fill="#4e79ff"/><circle cx="736.0" cy="212.4" r="4.2" fill="#4e79ff"/><polyline fill="none" stroke="#f28b44" stroke-width="3.5" points="58.0,111.6 227.5,70.8 397.0,208.9"/><circle cx="58.0" cy="111.6" r="4.2" fill="#f28b44"/><circle cx="227.5" cy="70.8" r="4.2" fill="#f28b44"/><circle cx="397.0" cy="208.9" r="4.2" fill="#f28b44"/><text x="380.0" y="18" text-anchor="middle" fill="#22314d" font-size="16" font-weight="700">실측 시가 vs 예측 시가</text><text x="16" y="20" fill="#8a5b00" font-size="11">KOSPI open</text></svg>
+      </section>
+
+      <section class="card span-6">
+        <h2>실측 종가 vs Codex 종가 예측</h2>
+        <div class="legend">
+          <span><span class="dot" style="background:#2eae6b"></span>실제 종가</span>
+          <span><span class="dot" style="background:#4e79ff"></span>Codex 12:30 종가 예측</span>
+        </div>
+        <svg viewBox="0 0 760 320" aria-label="실측 종가 vs Codex 12:30 종가 예측"><rect width="100%" height="100%" fill="#fffdfa"/><line x1="58" y1="28.0" x2="736" y2="28.0" stroke="#eee6d6" /><text x="10" y="32.0" fill="#7a8494" font-size="11">6,890</text><line x1="58" y1="90.0" x2="736" y2="90.0" stroke="#eee6d6" /><text x="10" y="94.0" fill="#7a8494" font-size="11">6,493</text><line x1="58" y1="152.0" x2="736" y2="152.0" stroke="#eee6d6" /><text x="10" y="156.0" fill="#7a8494" font-size="11">6,095</text><line x1="58" y1="214.0" x2="736" y2="214.0" stroke="#eee6d6" /><text x="10" y="218.0" fill="#7a8494" font-size="11">5,698</text><line x1="58" y1="276.0" x2="736" y2="276.0" stroke="#eee6d6" /><text x="10" y="280.0" fill="#7a8494" font-size="11">5,301</text><line x1="58" y1="28" x2="58" y2="276" stroke="#d9cfbd"/><line x1="58" y1="276" x2="736" y2="276" stroke="#d9cfbd"/><text x="58.0" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-27</text><text x="227.5" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-28</text><text x="397.0" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-29</text><text x="566.5" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-30</text><text x="736.0" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-31</text><polyline fill="none" stroke="#2eae6b" stroke-width="3.5" points="58.0,56.6 227.5,163.2 397.0,219.4 566.5,230.3 736.0,74.0"/><circle cx="58.0" cy="56.6" r="4.2" fill="#2eae6b"/><circle cx="227.5" cy="163.2" r="4.2" fill="#2eae6b"/><circle cx="397.0" cy="219.4" r="4.2" fill="#2eae6b"/><circle cx="566.5" cy="230.3" r="4.2" fill="#2eae6b"/><circle cx="736.0" cy="74.0" r="4.2" fill="#2eae6b"/><polyline fill="none" stroke="#4e79ff" stroke-width="3.5" points="58.0,77.1 227.5,186.1 397.0,247.4 566.5,225.7 736.0,106.2"/><circle cx="58.0" cy="77.1" r="4.2" fill="#4e79ff"/><circle cx="227.5" cy="186.1" r="4.2" fill="#4e79ff"/><circle cx="397.0" cy="247.4" r="4.2" fill="#4e79ff"/><circle cx="566.5" cy="225.7" r="4.2" fill="#4e79ff"/><circle cx="736.0" cy="106.2" r="4.2" fill="#4e79ff"/><text x="380.0" y="18" text-anchor="middle" fill="#22314d" font-size="16" font-weight="700">실측 종가 vs Codex 12:30 종가 예측</text><text x="16" y="20" fill="#8a5b00" font-size="11">KOSPI close</text></svg>
+      </section>
+
+      <section class="card span-6">
+        <h2>날짜별 점수 막대그래프</h2>
+        <p class="small">오렌지 = Claude 시가 추정 점수(0~5), 파랑 = Codex 공식 총점(0~10)</p>
+        <svg viewBox="0 0 760 320" aria-label="점수 막대그래프"><rect width="100%" height="100%" fill="#fffdfa"/><line x1="58" y1="28.0" x2="736" y2="28.0" stroke="#eee6d6" /><text x="18" y="32.0" fill="#7a8494" font-size="11">10</text><line x1="58" y1="77.6" x2="736" y2="77.6" stroke="#eee6d6" /><text x="18" y="81.6" fill="#7a8494" font-size="11">8</text><line x1="58" y1="127.2" x2="736" y2="127.2" stroke="#eee6d6" /><text x="18" y="131.2" fill="#7a8494" font-size="11">6</text><line x1="58" y1="176.8" x2="736" y2="176.8" stroke="#eee6d6" /><text x="18" y="180.8" fill="#7a8494" font-size="11">4</text><line x1="58" y1="226.4" x2="736" y2="226.4" stroke="#eee6d6" /><text x="18" y="230.4" fill="#7a8494" font-size="11">2</text><line x1="58" y1="276.0" x2="736" y2="276.0" stroke="#eee6d6" /><text x="18" y="280.0" fill="#7a8494" font-size="11">0</text><line x1="58" y1="28" x2="58" y2="276" stroke="#d9cfbd"/><line x1="58" y1="276" x2="736" y2="276" stroke="#d9cfbd"/><rect x="101.8" y="276.0" width="22.0" height="0.0" fill="#f28b44" rx="4"/><rect x="127.8" y="276.0" width="22.0" height="0.0" fill="#4e79ff" rx="4"/><text x="125.8" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-27</text><rect x="237.4" y="276.0" width="22.0" height="0.0" fill="#f28b44" rx="4"/><rect x="263.4" y="276.0" width="22.0" height="0.0" fill="#4e79ff" rx="4"/><text x="261.4" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-28</text><rect x="373.0" y="276.0" width="22.0" height="0.0" fill="#f28b44" rx="4"/><rect x="399.0" y="276.0" width="22.0" height="0.0" fill="#4e79ff" rx="4"/><text x="397.0" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-29</text><rect x="508.6" y="276.0" width="22.0" height="0.0" fill="#f28b44" rx="4"/><rect x="534.6" y="201.6" width="22.0" height="74.4" fill="#4e79ff" rx="4"/><text x="532.6" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-30</text><rect x="644.2" y="276.0" width="22.0" height="0.0" fill="#f28b44" rx="4"/><rect x="670.2" y="276.0" width="22.0" height="0.0" fill="#4e79ff" rx="4"/><text x="668.2" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-31</text><text x="380.0" y="18" text-anchor="middle" fill="#22314d" font-size="16" font-weight="700">날짜별 점수</text></svg>
+      </section>
+
+      <section class="card span-6">
+        <h2>누적 점수 그래프</h2>
+        <p class="small">Codex는 시가+종가 공식 누적점수, Claude는 inferred open 누적점수</p>
+        <svg viewBox="0 0 760 320" aria-label="누적 점수 그래프"><rect width="100%" height="100%" fill="#fffdfa"/><line x1="58" y1="28.0" x2="736" y2="28.0" stroke="#eee6d6" /><text x="10" y="32.0" fill="#7a8494" font-size="11">4</text><line x1="58" y1="90.0" x2="736" y2="90.0" stroke="#eee6d6" /><text x="10" y="94.0" fill="#7a8494" font-size="11">3</text><line x1="58" y1="152.0" x2="736" y2="152.0" stroke="#eee6d6" /><text x="10" y="156.0" fill="#7a8494" font-size="11">2</text><line x1="58" y1="214.0" x2="736" y2="214.0" stroke="#eee6d6" /><text x="10" y="218.0" fill="#7a8494" font-size="11">0</text><line x1="58" y1="276.0" x2="736" y2="276.0" stroke="#eee6d6" /><text x="10" y="280.0" fill="#7a8494" font-size="11">-1</text><line x1="58" y1="28" x2="58" y2="276" stroke="#d9cfbd"/><line x1="58" y1="276" x2="736" y2="276" stroke="#d9cfbd"/><text x="58.0" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-27</text><text x="227.5" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-28</text><text x="397.0" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-29</text><text x="566.5" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-30</text><text x="736.0" y="304" text-anchor="middle" fill="#7a8494" font-size="11">07-31</text><polyline fill="none" stroke="#4e79ff" stroke-width="3.5" points="58.0,226.4 227.5,226.4 397.0,226.4 566.5,77.6 736.0,77.6"/><circle cx="58.0" cy="226.4" r="4.2" fill="#4e79ff"/><circle cx="227.5" cy="226.4" r="4.2" fill="#4e79ff"/><circle cx="397.0" cy="226.4" r="4.2" fill="#4e79ff"/><circle cx="566.5" cy="77.6" r="4.2" fill="#4e79ff"/><circle cx="736.0" cy="77.6" r="4.2" fill="#4e79ff"/><polyline fill="none" stroke="#f28b44" stroke-width="3.5" points="58.0,226.4 227.5,226.4 397.0,226.4 566.5,226.4 736.0,226.4"/><circle cx="58.0" cy="226.4" r="4.2" fill="#f28b44"/><circle cx="227.5" cy="226.4" r="4.2" fill="#f28b44"/><circle cx="397.0" cy="226.4" r="4.2" fill="#f28b44"/><circle cx="566.5" cy="226.4" r="4.2" fill="#f28b44"/><circle cx="736.0" cy="226.4" r="4.2" fill="#f28b44"/><text x="380.0" y="18" text-anchor="middle" fill="#22314d" font-size="16" font-weight="700">누적 점수 그래프</text><text x="16" y="20" fill="#8a5b00" font-size="11">tier score</text></svg>
+      </section>
+
+      <section class="card span-12">
+        <h2>모델 변화 과정</h2>
+        
+<svg viewBox="0 0 900 520" aria-label="모델 변화 회로도">
+  <rect width="100%" height="100%" fill="#fffdfa"/>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6c7687"/>
+    </marker>
+  </defs>
+  <text x="32" y="38" fill="#22314d" font-size="22" font-weight="700">모델 변화 과정 — 전기회로도 스타일</text>
+  <text x="32" y="64" fill="#6b7585" font-size="13">Claude EWY 직결형 → Codex 다중 앵커·보정 소자 누적형</text>
+
+  <rect x="28" y="92" width="250" height="160" rx="18" fill="#eef4ff" stroke="#c9d9ff"/>
+  <text x="48" y="124" fill="#22314d" font-size="18" font-weight="700">1) Claude-style baseline</text>
+  <circle cx="76" cy="174" r="22" fill="#fff" stroke="#4e79ff" stroke-width="3"/>
+  <text x="76" y="179" text-anchor="middle" font-size="12" fill="#22314d" font-weight="700">EWY</text>
+  <line x1="98" y1="174" x2="130" y2="174" stroke="#22314d" stroke-width="3"/>
+  <polyline points="130,174 142,160 154,188 166,160 178,188 190,160 202,174" fill="none" stroke="#22314d" stroke-width="3"/>
+  <text x="166" y="148" text-anchor="middle" font-size="12" fill="#6b7585">R_fx</text>
+  <line x1="202" y1="174" x2="246" y2="174" stroke="#22314d" stroke-width="3"/>
+  <rect x="142" y="200" width="98" height="34" rx="12" fill="#fff" stroke="#d7d7d7"/>
+  <text x="191" y="222" text-anchor="middle" font-size="12" fill="#6b7585">직접 EWY 변환</text>
+
+  <rect x="324" y="92" width="250" height="160" rx="18" fill="#fff2e7" stroke="#ffd5bc"/>
+  <text x="344" y="124" fill="#22314d" font-size="18" font-weight="700">2) 중간 보정층</text>
+  <circle cx="372" cy="174" r="22" fill="#fff" stroke="#f28b44" stroke-width="3"/>
+  <text x="372" y="179" text-anchor="middle" font-size="11" fill="#22314d" font-weight="700">Shock</text>
+  <line x1="394" y1="174" x2="426" y2="174" stroke="#22314d" stroke-width="3"/>
+  <polygon points="426,156 456,174 426,192" fill="#ffe1cf" stroke="#22314d" stroke-width="3"/>
+  <line x1="456" y1="156" x2="456" y2="192" stroke="#22314d" stroke-width="3"/>
+  <text x="440" y="144" text-anchor="middle" font-size="12" fill="#6b7585">D_rebound</text>
+  <line x1="456" y1="174" x2="498" y2="174" stroke="#22314d" stroke-width="3"/>
+  <line x1="498" y1="150" x2="498" y2="198" stroke="#22314d" stroke-width="3"/>
+  <line x1="512" y1="150" x2="512" y2="198" stroke="#22314d" stroke-width="3"/>
+  <line x1="505" y1="198" x2="505" y2="220" stroke="#22314d" stroke-width="3"/>
+  <line x1="486" y1="220" x2="524" y2="220" stroke="#22314d" stroke-width="3"/>
+  <text x="505" y="238" text-anchor="middle" font-size="12" fill="#6b7585">C_relief</text>
+
+  <rect x="620" y="92" width="250" height="160" rx="18" fill="#eefaf3" stroke="#cdeed9"/>
+  <text x="640" y="124" fill="#22314d" font-size="18" font-weight="700">3) Codex current core</text>
+  <circle cx="668" cy="154" r="18" fill="#fff" stroke="#4e79ff" stroke-width="3"/>
+  <text x="668" y="159" text-anchor="middle" font-size="10" fill="#22314d" font-weight="700">EWY</text>
+  <circle cx="668" cy="198" r="18" fill="#fff" stroke="#f28b44" stroke-width="3"/>
+  <text x="668" y="203" text-anchor="middle" font-size="10" fill="#22314d" font-weight="700">SOX</text>
+  <line x1="686" y1="154" x2="718" y2="154" stroke="#22314d" stroke-width="3"/>
+  <line x1="686" y1="198" x2="718" y2="198" stroke="#22314d" stroke-width="3"/>
+  <line x1="718" y1="154" x2="718" y2="198" stroke="#22314d" stroke-width="3"/>
+  <line x1="718" y1="176" x2="752" y2="176" stroke="#22314d" stroke-width="3"/>
+  <polygon points="752,158 784,176 752,194" fill="#fff2ad" stroke="#22314d" stroke-width="3"/>
+  <line x1="784" y1="158" x2="784" y2="194" stroke="#22314d" stroke-width="3"/>
+  <text x="768" y="146" text-anchor="middle" font-size="12" fill="#6b7585">D_semi</text>
+  <line x1="784" y1="176" x2="826" y2="176" stroke="#22314d" stroke-width="3"/>
+  <polyline points="826,176 838,162 850,190 862,162 874,190 886,162 898,176" fill="none" stroke="#22314d" stroke-width="3"/>
+  <text x="862" y="150" text-anchor="middle" font-size="12" fill="#6b7585">R_flow</text>
+
+  <line x1="278" y1="172" x2="324" y2="172" stroke="#6c7687" stroke-width="3" marker-end="url(#arr)"/>
+  <line x1="574" y1="172" x2="620" y2="172" stroke="#6c7687" stroke-width="3" marker-end="url(#arr)"/>
+  <text x="122" y="278" fill="#8a5b00" font-size="13" text-anchor="middle">단일 EWY 앵커</text>
+  <text x="449" y="278" fill="#8a5b00" font-size="13" text-anchor="middle">급락·반등 보정층 삽입</text>
+  <text x="744" y="278" fill="#8a5b00" font-size="13" text-anchor="middle">반도체·수급·레짐 복합 결합</text>
+
+  <rect x="28" y="330" width="842" height="146" rx="18" fill="#fff" stroke="#eadfca"/>
+  <text x="48" y="360" fill="#22314d" font-size="16" font-weight="700">최신 주차 핵심 변경점</text>
+  <text x="52" y="390" fill="#5f6b7a" font-size="14">• 2026-07-29: crash_continuation이지만 avalanche_sell은 아니고 기관·프로그램이 강하게 받는 장에서 short-cover 반등을 계속 과소평…</text><text x="52" y="418" fill="#5f6b7a" font-size="14">• 2026-07-30: 전일 급락 뒤 환율 완화와 방어 흐름이 겹치는 날 시가 엔진이 -1.8% 하방 cap에 고정되던 반복 실패를 줄이기 위해, final_open_rese…</text><text x="52" y="446" fill="#5f6b7a" font-size="14">• 2026-07-31: 반복된 preopen daily log 미저장을 막기 위해 전일 로그의 next_session_open_forecast 복원 경로를 추가했고, 7/31…</text>
+</svg>
+
+      </section>
+
+      <section class="card span-12">
+        <h2>날짜별 점수·승패·중요 변경점</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>날짜</th>
+              <th>실제 시가</th>
+              <th>실제 종가</th>
+              <th>Claude</th>
+              <th>Codex</th>
+              <th>승패</th>
+              <th>중요 모델 변경점</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td>2026-07-27</td>
+              <td>6,806.27</td>
+              <td>6,706.54</td>
+              <td>
+                <div><b>시가</b> 6,447.31 · 0/5</div>
+                <div class="sub">종가 공식기록 부재</div>
+              </td>
+              <td>
+                <div><b>시가</b> 6,570.19 · 0/5</div>
+                <div><b>종가</b> 6,575.00 · 0/5</div>
+                <div class="sub">합계 0/10 · 시가:실패 · 수급:적중 · 종가:실패</div>
+              </td>
+              <td class="winner codex">시가 동률 / 종합은 Codex 자료 우세</td>
+              <td>
+                <div>반도체 상대강도 플러스·nowcast 3/3 일치·crash_continuation 부재인데 weak_drift가 오후 반등을 과소평가한 패턴을 줄이기 위해 semis_defensive_rebound_credit 규칙을 추가했다.</div>
+                <div class="small">failure_tags: F29_post_crash_relief_gapup_open_missed, F30_semis_defensive_rebound_credit_missing</div>
+                <div class="small">next: add_relief_gap_override_when_prior_day_crash_meets_fx_easing_and_sp500_flat, keep_semis_defensive_rebound_credit_when_nowcast_3of3_and_crash_continuation_false</div>
+              </td>
+            </tr>
+            
+            <tr>
+              <td>2026-07-28</td>
+              <td>6,400.27</td>
+              <td>6,023.66</td>
+              <td>
+                <div><b>시가</b> 6,713.43 · 0/5</div>
+                <div class="sub">종가 공식기록 부재</div>
+              </td>
+              <td>
+                <div><b>시가</b> 6,665.56 · 0/5</div>
+                <div><b>종가</b> 5,877.00 · 0/5</div>
+                <div class="sub">합계 0/10 · 시가:실패 · 수급:적중 · 종가:실패</div>
+              </td>
+              <td class="winner codex">시가 동률 / 종합은 Codex 자료 우세</td>
+              <td>
+                <div>avalanche_sell 급락일에서 12:30 현물보다 지나치게 낮은 종가를 반복 예측하던 패턴을 줄이기 위해, nowcast 3/3 일치·기관 순매수·최근 20분 하락 둔화가 함께 나오면 panic_stabilization_credit을 더하도록 보정했다.</div>
+                <div class="small">failure_tags: F31_extreme_crash_gapdown_open_underreaction, F32_avalanche_sell_close_overshoot_repeated</div>
+                <div class="small">next: add_preopen_crash_gapdown_override_when_sox_breaks_and_fx_pressure_high, keep_panic_stabilization_credit_when_avalanche_sell_nowcast_3of3_and_inst_positive</div>
+              </td>
+            </tr>
+            
+            <tr>
+              <td>2026-07-29</td>
+              <td>6,089.11</td>
+              <td>5,663.24</td>
+              <td>
+                <div><b>시가</b> 5,812.40 · 0/5</div>
+                <div class="sub">종가 공식기록 부재</div>
+              </td>
+              <td>
+                <div><b>시가</b> 5,915.23 · 0/5</div>
+                <div><b>종가</b> 5,484.00 · 0/5</div>
+                <div class="sub">합계 0/10 · 시가:실패 · 수급:부분적중 · 종가:실패</div>
+              </td>
+              <td class="winner codex">시가 동률 / 종합은 Codex 자료 우세</td>
+              <td>
+                <div>crash_continuation이지만 avalanche_sell은 아니고 기관·프로그램이 강하게 받는 장에서 short-cover 반등을 계속 과소평가하던 패턴을 줄이기 위해, 종가 엔진에 crash_shortcover_support / crash_shortcover_credit 규칙을 추가했다.</div>
+                <div class="small">failure_tags: F29_post_crash_relief_gapup_open_missed, F33_crash_continuation_shortcover_rebound_underread_repeated</div>
+                <div class="small">next: add_relief_gap_override_when_prior_day_crash_meets_fx_easing_and_inst_defense, add_crash_continuation_shortcover_credit_when_inst_program_positive_and_no_avalanche_sell</div>
+              </td>
+            </tr>
+            
+            <tr>
+              <td>2026-07-30</td>
+              <td>5,681.77</td>
+              <td>5,593.56</td>
+              <td>
+                <div><b>시가</b> — · N/A/5</div>
+                <div class="sub">종가 공식기록 부재</div>
+              </td>
+              <td>
+                <div><b>시가</b> 5,561.30 · 0/5</div>
+                <div><b>종가</b> 5,623.00 · 3/5</div>
+                <div class="sub">합계 3/10 · 시가:실패 · 수급:실패 · 종가:부분적중</div>
+              </td>
+              <td class="winner codex">Codex 공식 우위</td>
+              <td>
+                <div>전일 급락 뒤 환율 완화와 방어 흐름이 겹치는 날 시가 엔진이 -1.8% 하방 cap에 고정되던 반복 실패를 줄이기 위해, final_open_research에 relief_gap_rebound 보정 규칙을 추가했다.</div>
+                <div class="small">failure_tags: F29_post_crash_relief_gapup_open_missed, F19_post_damage_rebound_nowcast_inversion_repeated</div>
+                <div class="small">next: add_post_crash_relief_gap_rebound_credit_when_fx_eases_and_defense_survives, revive_post_damage_rebound_rotation_override_when_foreign_program_flip_positive</div>
+              </td>
+            </tr>
+            
+            <tr>
+              <td>2026-07-31</td>
+              <td>5,657.79</td>
+              <td>6,595.45</td>
+              <td>
+                <div><b>시가</b> — · N/A/5</div>
+                <div class="sub">종가 공식기록 부재</div>
+              </td>
+              <td>
+                <div><b>시가</b> 5,789.33 · 0/5</div>
+                <div><b>종가</b> 6,389.00 · 0/5</div>
+                <div class="sub">합계 0/10 · 시가:실패 · 수급:부분적중 · 종가:실패</div>
+              </td>
+              <td class="winner codex">Codex 공식 우위</td>
+              <td>
+                <div>반복된 preopen daily log 미저장을 막기 위해 전일 로그의 next_session_open_forecast 복원 경로를 추가했고, 7/31처럼 nowcast 3/3 + 반도체 초강세 + 고점권 유지인 날 종가 상방을 과소평가하던 편향을 줄이기 위해 semis_meltup_continuation credit 규칙을 추가했다.</div>
+                <div class="small">failure_tags: F26_preopen_daily_log_not_persisted_repeated, F34_positive_extreme_gapup_open_followthrough_overread</div>
+                <div class="small">next: restore_embedded_next_session_open_forecast_before_intraday_close_fallback, require_preopen_domestic_confirmation_before_using_positive_extreme_gapup_cap_above_3p5pct</div>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card span-12">
+        <h2>전문가 코멘트</h2>
+        <div class="two">
+          <div>
+            <h3>1) 구조적 관찰</h3>
+            <ul>
+              <li>이번 주는 급락 뒤 relief gap, avalanche sell, short-cover rebound, 반도체 melt-up이 한 주 안에 연속 출현했다.</li>
+              <li>Codex는 매일 postmortem을 통해 시가·종가 엔진의 반복 실패를 규칙 소자처럼 추가했다.</li>
+              <li>즉 핵심 우위는 단일 식보다 <b>실패 패턴을 빠르게 회로에 삽입하는 운영 적응성</b>에 있었다.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>2) 데이터 해석 주의</h3>
+            <ul>
+              <li>Claude 최신 주차 기록은 저장소에 <b>공식 종가 시계열로 보존되지 않았다.</b></li>
+              <li>따라서 양자 완전 대결이라기보다 <b>Codex 공식 리포트 + Claude 비교가능 시가</b> 형태다.</li>
+              <li>향후 금요일 자동 리포트의 완전성을 위해서는 Claude 시가/종가 고정값도 동일 경로에 저장하는 것이 바람직하다.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card span-12">
+        <h2>배포 경로</h2>
+        <ul>
+          <li>날짜 고정본: <a href="https://waterfirst.github.io/kospi-mw-rc-research/weekly_duel_report_2026-07-31.html">https://waterfirst.github.io/kospi-mw-rc-research/weekly_duel_report_2026-07-31.html</a></li>
+          <li>최신 alias: <a href="https://waterfirst.github.io/kospi-mw-rc-research/weekly_duel_report_latest.html">https://waterfirst.github.io/kospi-mw-rc-research/weekly_duel_report_latest.html</a></li>
+          <li>원천 로그: <span class="mono">contest/learning/daily_logs/2026-07-27.json</span> ~ <span class="mono">contest/learning/daily_logs/2026-07-31.json</span></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
