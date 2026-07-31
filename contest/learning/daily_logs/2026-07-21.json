@@ -1,0 +1,88 @@
+{
+  "date": "2026-07-21",
+  "as_of_kst": "2026-07-21T07:30:00+09:00",
+  "record_mode": "historical_replay_for_preopen_only",
+  "overnight_reference_date_us": "2026-07-20",
+  "domestic_reference_date_kr": "2026-07-20",
+  "model_version": "vFinal-open-2026-07-21-multi-anchor-residual-compress",
+  "regime": "mild_us_tailwind_but_domestic_damage_drag",
+  "inputs": {
+    "sp500_pct": -0.19,
+    "nasdaq_pct": -0.05,
+    "sox_pct": 0.6,
+    "ewy_pct": 0.2,
+    "usdkrw": 1475.38,
+    "usdkrw_pct": -0.807,
+    "prior_kospi_close": 6516.27,
+    "prior_kospi_ret_pct": -4.46,
+    "prior_intraday_reversal_pct": -1.92,
+    "foreign_flow_krw_bn": 52.0,
+    "inst_flow_krw_bn": -92.3,
+    "program_flow_krw_bn": 78.6,
+    "breadth_rise_ratio": 0.5,
+    "breadth_note": "historical breadth unavailable in replay; neutral proxy used",
+    "samsung_pct": -4.31,
+    "skhynix_pct": -4.23
+  },
+  "flags": [
+    "opening_semiconductor_lead_false",
+    "fx_pressure_high_false",
+    "extreme_compression_not_triggered",
+    "domestic_damage_high",
+    "breadth_proxy_neutral_assumed",
+    "historical_only_no_future_leakage"
+  ],
+  "components": {
+    "overnight_core_ret": 0.00305,
+    "domestic_damage_ret": 0.0053,
+    "residual_correction_ret": 0.0009,
+    "compression": 1.0,
+    "raw_open_ret": -0.00135,
+    "final_open_ret": -0.00135,
+    "defense_strength": -17097.0,
+    "extreme_score": 1.614
+  },
+  "predicate_view": {
+    "opening_semiconductor_lead": false,
+    "fx_pressure_high": false
+  },
+  "predictions": {
+    "open": 6507.5,
+    "close": 0.0,
+    "range_low": 6462.5,
+    "range_high": 6552.5,
+    "confidence": 0.57
+  },
+  "comparison": {
+    "duel_mode": "vs_claude",
+    "claude_style_assumption": "EWY_direct_transformer_k_0.58",
+    "claude_style_inferred_open": 6523.83,
+    "codex_edge_note": "EWY +0.20% 단독 추종이 아니라 SOX·Nasdaq·S&P·USDKRW와 전일 국내 손상도를 함께 반영해, 약한 미국 반등보다 국내 손상도 drag가 더 크다고 보았다."
+  },
+  "actuals": {
+    "open": 0.0,
+    "close": 0.0
+  },
+  "scores": {
+    "open": 0,
+    "close": 0,
+    "direction": 0,
+    "regime": 0,
+    "total": 0
+  },
+  "failure_tags": [],
+  "reflection": {
+    "summary": "미국발 반등은 약했지만 전일 국내 손상도가 컸다. 반도체 리드 부재와 기관 방어 부재를 확인해 EWY 추종형보다 보수적으로 시가를 낮췄다.",
+    "next_candidates": [
+      "replace_breadth_proxy_with_historical_updown_source",
+      "separate_positive_us_tailwind_from_domestic_damage_regime_more_explicitly",
+      "persist_preopen_log_before_intraday_modules_run"
+    ]
+  },
+  "rationale": [
+    "SOX +0.60%, Nasdaq -0.05%, S&P -0.19%, EWY +0.20%를 함께 본 멀티앵커 기준으론 미국발 상방이 강하지 않았다.",
+    "USD/KRW -0.81%는 우호적이지만, 전일 KOSPI -4.46%와 장중 역행 -1.92%, 기관 -92.3bn이 국내 손상도를 키웠다.",
+    "삼성전자 -4.31%, SK하이닉스 -4.23%로 opening_semiconductor_lead가 꺼져 있어 반도체 선도형 갭업 가산을 주지 않았다."
+  ],
+  "disclaimer": "투자자문이 아니라 연구·설명 목적입니다."
+}
