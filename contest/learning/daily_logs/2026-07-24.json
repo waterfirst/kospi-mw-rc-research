@@ -1,0 +1,295 @@
+{
+  "date": "2026-07-24",
+  "as_of_kst": "2026-07-24T12:31:56+09:00",
+  "record_mode": "auto_generated_from_open_research_for_intraday_close_run",
+  "model_version": "vFinal-open-2026-07-24-multi-anchor-residual-compress",
+  "regime": "preopen_generated_pending_intraday_close",
+  "inputs": {
+    "sp500_pct": -1.21,
+    "nasdaq_pct": -2.15,
+    "sox_pct": -0.54,
+    "ewy_pct": 2.01,
+    "usdkrw": 1463.78,
+    "usdkrw_pct": -0.803,
+    "reference_mode": "previous_completed_session",
+    "reference_kospi_date": "20260723",
+    "prior_kospi_close_date": "20260722",
+    "prior_kospi_close": 7096.89,
+    "prior_kospi_ret_pct": 4.4,
+    "prior_intraday_reversal_pct": 1.92,
+    "foreign_flow_krw_bn": -214.2,
+    "inst_flow_krw_bn": -131.0,
+    "program_flow_krw_bn": -231.3,
+    "breadth_rise_ratio": 0.289,
+    "samsung_pct": -7.31,
+    "skhynix_pct": -6.98
+  },
+  "flags": [
+    "opening_semiconductor_lead_false",
+    "fx_pressure_high_false",
+    "split_semi_downside_false",
+    "semiconductor_super_gapup_false",
+    "positive_extreme_gapup_false",
+    "negative_extreme_unwind_false"
+  ],
+  "components": {
+    "overnight_core_ret": 0.00097,
+    "domestic_damage_ret": 0.0033,
+    "residual_correction_ret": 0.0009,
+    "compression": 0.84,
+    "raw_open_ret": -0.00143,
+    "final_open_ret": -0.0012,
+    "defense_strength": -46940.0,
+    "extreme_score": 2.15
+  },
+  "predicate_view": {
+    "opening_semiconductor_lead": false,
+    "fx_pressure_high": false,
+    "split_semi_downside": false,
+    "semiconductor_super_gapup": false,
+    "positive_extreme_gapup": false,
+    "negative_extreme_unwind": false
+  },
+  "predictions": {
+    "open": 7088.34,
+    "close": 0.0,
+    "range_low": 7043.34,
+    "range_high": 7133.34,
+    "confidence": 0.57
+  },
+  "actuals": {
+    "open": 7000.78,
+    "close": 6690.62
+  },
+  "scores": {
+    "open": 1,
+    "close": 2,
+    "direction": 0,
+    "regime": 0,
+    "total": 3
+  },
+  "score_details": {
+    "open": {
+      "forecast": 7088.34,
+      "actual": 7000.78,
+      "absolute_error": 87.56,
+      "error_pct": 1.2507,
+      "tier_score": 1
+    },
+    "close_1230_final_model": {
+      "forecast": 6634.0,
+      "actual": 6690.62,
+      "absolute_error": 56.62,
+      "error_pct": 0.8463,
+      "tier_score": 2
+    }
+  },
+  "engine_review": {
+    "open_engine": {
+      "status": "partial_hit",
+      "reason": "하락 방향 자체는 맞았지만 전일 종가 복원과 EWY +2.01%를 상대적으로 더 반영해 장초 동반 매도 압력을 덜 봤다. 실제 시가 7000.78 대비 87.56pt 높게 예측해 tier 1에 그쳤다."
+    },
+    "flow_nowcast": {
+      "status": "miss",
+      "reason": "예측은 foreign negative / institution positive / program negative였고 실제 12:31 기준은 foreign negative / institution negative / program negative였다. breadth 0.289, foreign -214.2bn, program -231.3bn, 삼성전자 -7.31%, SK하이닉스 -6.98%의 동반 붕괴에서도 institution을 positive로 본 편향이 반복됐다."
+    },
+    "intraday_close_engine": {
+      "status": "partial_hit",
+      "reason": "12:30 종가 엔진은 avalanche_sell·crash_continuation 레짐을 맞혔고 실제 종가 6690.62와의 오차도 56.62pt로 줄였다. 다만 저가권 반등폭을 조금 덜 열어 6634로 낮게 봐 tier 2에 머물렀다."
+    }
+  },
+  "failure_tags": [
+    "F26_preopen_daily_log_not_persisted_repeated",
+    "F28_broad_selloff_institution_positive_bias_repeated"
+  ],
+  "reflection": {
+    "summary": "오늘은 시가 엔진 tier 1, 12:30 종가 엔진 tier 2였다. 시가와 종가 레짐은 둘 다 약세 쪽으로 맞았지만, flow nowcast는 breadth 붕괴·반도체 동반 급락 구간에서도 institution을 positive로 본 오판이 반복됐다.",
+    "next_candidates": [
+      "persist_preopen_daily_log_before_intraday_close_engine",
+      "keep_broad_selloff_institution_derisk_override",
+      "add_small_rebound_credit_when_avalanche_sell_has_no_new_low_after_1230"
+    ]
+  },
+  "actual_source": {
+    "verified_at_kst": "2026-07-24T16:36:00+09:00",
+    "open": 7000.78,
+    "close": 6690.62,
+    "source_urls": [
+      "https://m.stock.naver.com/api/index/KOSPI/basic",
+      "https://api.finance.naver.com/siseJson.naver?symbol=KOSPI&requestType=1&startTime=20260715&endTime=20260724&timeframe=day",
+      "https://query1.finance.yahoo.com/v8/finance/chart/%5EKS11?range=10d&interval=1d"
+    ]
+  },
+  "code_change": {
+    "changed": true,
+    "scope": "small_rule_patch",
+    "why": "today broad selloff 조건에서 institution nowcast의 과잉 양수 편향을 줄이기 위해 broad_selloff_institution_derisk 규칙을 추가했다.",
+    "tests": {
+      "before_2026_07_24": {
+        "institution_score": 4.284,
+        "institution_sign": "positive"
+      },
+      "after_2026_07_24": {
+        "institution_score": -0.966,
+        "institution_sign": "negative"
+      }
+    }
+  },
+  "rationale": [
+    "EWY +2.01% 단독 추종이 아니라 SOX -0.54%, Nasdaq -2.15%, S&P -1.21%를 함께 반영",
+    "USD/KRW 1,463.78, 전일대비 -0.80%로 환율 압박 완화",
+    "전일 국내 손상도는 외인 -214.2bn, 기관 -131.0bn, 프로그램 -231.3bn, 상승비율 0.289이며 잔차보정 +0.09% 반영"
+  ],
+  "disclaimer": "투자자문이 아니라 연구·설명 목적입니다.",
+  "intraday_close_1230": {
+    "as_of_kst": "2026-07-24T12:31:56+09:00",
+    "snapshot": {
+      "realtime": {
+        "close": 6724.1,
+        "open": 7000.78,
+        "high": 7000.78,
+        "low": 6665.17,
+        "change_pct": -5.25,
+        "market_status": "OPEN",
+        "local_traded_at": "2026-07-24T12:31:55+09:00"
+      },
+      "integration": {
+        "bizdate": "20260724",
+        "prev_close": 7096.89,
+        "open": 7000.78,
+        "high": 7000.78,
+        "low": 6665.17,
+        "deal": {
+          "personal": 34241.0,
+          "foreign": -21418.0,
+          "institution": -13104.0
+        },
+        "program": {
+          "index_diff": -4446.0,
+          "non_index_diff": -18681.0,
+          "total": -23127.0
+        },
+        "updown": {
+          "upper": 0,
+          "rise": 256,
+          "lower": 0,
+          "fall": 630,
+          "steady": 30
+        },
+        "stocks": {
+          "삼성전자": {
+            "close": 250250.0,
+            "change_pct": -7.31,
+            "local_traded_at": "2026-07-24T12:31:21+09:00"
+          },
+          "SK하이닉스": {
+            "close": 1785000.0,
+            "change_pct": -6.98,
+            "local_traded_at": "2026-07-24T12:31:21+09:00"
+          },
+          "SK스퀘어": {
+            "close": 1120000.0,
+            "change_pct": -8.27,
+            "local_traded_at": "2026-07-24T12:31:19+09:00"
+          },
+          "삼성전자우": {
+            "close": 179600.0,
+            "change_pct": -6.02,
+            "local_traded_at": "2026-07-24T12:31:19+09:00"
+          },
+          "삼성전기": {
+            "close": 1331000.0,
+            "change_pct": -8.08,
+            "local_traded_at": "2026-07-24T12:31:23+09:00"
+          },
+          "현대차": {
+            "close": 394000.0,
+            "change_pct": -8.8,
+            "local_traded_at": "2026-07-24T12:31:22+09:00"
+          },
+          "LG에너지솔루션": {
+            "close": 328500.0,
+            "change_pct": -5.6,
+            "local_traded_at": "2026-07-24T12:31:18+09:00"
+          },
+          "삼성바이오로직스": {
+            "close": 1512000.0,
+            "change_pct": 9.64,
+            "local_traded_at": "2026-07-24T12:31:22+09:00"
+          },
+          "삼성생명": {
+            "close": 311000.0,
+            "change_pct": -5.61,
+            "local_traded_at": "2026-07-24T12:31:21+09:00"
+          },
+          "KB금융": {
+            "close": 167800.0,
+            "change_pct": -4.82,
+            "local_traded_at": "2026-07-24T12:31:20+09:00"
+          }
+        }
+      }
+    },
+    "nowcast_check": {
+      "predicted_signs": {
+        "foreign": {
+          "score": -1.1031,
+          "sign": "negative"
+        },
+        "institution": {
+          "score": 4.284,
+          "sign": "positive"
+        },
+        "program": {
+          "score": -35.5425,
+          "sign": "negative"
+        }
+      },
+      "actual_signs": {
+        "foreign": "negative",
+        "institution": "negative",
+        "program": "negative"
+      },
+      "mismatch": {
+        "foreign": false,
+        "institution": true,
+        "program": false
+      },
+      "mismatch_count": 1
+    },
+    "features": {
+      "breadth": -0.4221,
+      "samsung_relative_strength": -2.06,
+      "skhynix_relative_strength": -1.73,
+      "semis_relative_strength_weighted": -1.8785,
+      "low_recovery_ratio": 0.1756,
+      "institution_absorption": false,
+      "avalanche_sell": true,
+      "crash_continuation": true,
+      "program_drag_risk": false,
+      "flow_reversal_squeeze": false,
+      "parabolic_exhaustion_risk": false,
+      "midday_blowoff_reversal_risk": false,
+      "rebound_credit": 0.0,
+      "exhaustion_drag": 0.0,
+      "recent_price_acceleration_10m_pts": 2.52,
+      "recent_price_acceleration_20m_pts": 26.77,
+      "samsung_acceleration_10m_krw": 1000.0,
+      "skhynix_acceleration_10m_krw": 1000.0
+    },
+    "prediction": {
+      "model_version": "vFinal-close-2026-07-22-nowcast-accel-breadth-semis-v2",
+      "forecast_close": 6634,
+      "range_low": 6564,
+      "range_high": 6699,
+      "regime": "avalanche_sell",
+      "confidence": 0.51,
+      "reasons_top3": [
+        "외국인 순매도·기관 순매도·프로그램 순매도, nowcast 부호 일치 2/3로 신뢰도 조정",
+        "breadth -0.42로 시장 전반은 약하지만 삼성전자 상대강도 -2.06pt, SK하이닉스 상대강도 -1.73pt로 반도체 내부 차별화가 큼",
+        "저가 회복률 0.18, 최근 10~20분 가속도 +2.5/+26.8pt, institution_absorption=False, crash_continuation=True, program_drag_risk=False, flow_reversal_squeeze=False, parabolic_exhaustion_risk=False"
+      ]
+    },
+    "disclaimer": "투자자문이 아니라 연구·설명 목적입니다."
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "date": "2026-07-13",
+  "as_of_kst": "2026-07-13T07:34:28+09:00",
+  "overnight_reference_date_us": "2026-07-10",
+  "domestic_reference_date_kr": "2026-07-10",
+  "model_version": "vFinal-open-2026-07-13-multi-anchor-residual-compress",
+  "regime": "tight_range_with_domestic_absorption",
+  "inputs": {
+    "sp500_pct": 0.42,
+    "nasdaq_pct": 0.29,
+    "sox_pct": 0.06,
+    "ewy_pct": -0.67,
+    "usdkrw": 1498.8,
+    "usdkrw_pct": -0.472,
+    "prior_kospi_close": 7475.94,
+    "prior_kospi_ret_pct": 2.52,
+    "prior_intraday_reversal_pct": -1.01,
+    "foreign_flow_krw_bn": -32.3,
+    "inst_flow_krw_bn": 113.1,
+    "program_flow_krw_bn": -0.8,
+    "breadth_rise_ratio": 0.897,
+    "samsung_pct": 2.52,
+    "skhynix_pct": -0.27
+  },
+  "flags": [
+    "opening_semiconductor_lead",
+    "fx_pressure_eased",
+    "residual_correction_up",
+    "extreme_compression_not_triggered"
+  ],
+  "components": {
+    "overnight_core_ret": 0.0,
+    "domestic_damage_ret": 0.0035,
+    "residual_correction_ret": 0.0023,
+    "compression": 1.0,
+    "raw_open_ret": -0.0012,
+    "final_open_ret": -0.0005,
+    "defense_strength": 9617.0,
+    "extreme_score": 0.944
+  },
+  "predicate_view": {
+    "opening_semiconductor_lead": true,
+    "fx_pressure_high": false
+  },
+  "predictions": {
+    "open": 7472.19,
+    "range_low": 7427.19,
+    "range_high": 7517.19,
+    "confidence": 0.73
+  },
+  "comparison": {
+    "duel_mode": "vs_claude",
+    "claude_style_assumption": "EWY_direct_transformer_k_0.58",
+    "claude_style_inferred_open": 7446.89,
+    "codex_edge_note": "EWY 단독 하방을 SOX·Nasdaq·S&P·USDKRW 완화와 전일 국내 흡수력으로 일부 상쇄"
+  },
+  "actuals": {
+    "open": 7412.03,
+    "close": 6806.93
+  },
+  "scores": {
+    "open": 2,
+    "close": 5,
+    "direction": 0,
+    "regime": 0,
+    "total": 7
+  },
+  "score_details": {
+    "open": {
+      "forecast": 7472.19,
+      "actual": 7412.03,
+      "absolute_error": 60.16,
+      "error_pct": 0.8117,
+      "tier_score": 2
+    },
+    "close_1230_final_model": {
+      "forecast": 6804,
+      "actual": 6806.93,
+      "absolute_error": 2.93,
+      "error_pct": 0.043,
+      "tier_score": 5
+    }
+  },
+  "engine_review": {
+    "open_engine": {
+      "status": "miss",
+      "reason": "EWY 음수와 SK하이닉스 비확인을 전일 국내 흡수력 잔차가 과도하게 상쇄했다."
+    },
+    "flow_nowcast": {
+      "status": "miss",
+      "reason": "foreign/institution 부호를 모두 positive로 봤지만 실제는 둘 다 negative였다."
+    },
+    "intraday_close_engine": {
+      "status": "hit",
+      "reason": "avalanche_sell·breadth 붕괴·반도체 상대약세·가속도 둔화를 잘 반영해 종가 오차를 2.93pt로 억제했다."
+    }
+  },
+  "reflection": {
+    "summary": "시가 엔진은 EWY 음수와 하이닉스 비확인보다 전일 국내 흡수력 잔차를 더 크게 봐서 60.16pt 높게 예측했다. 반면 12:30 종가 엔진은 avalanche_sell 레짐을 정확히 잡아냈다.",
+    "next_candidates": [
+      "if_ewy_negative_and_skhynix_nonconfirm_disable_positive_open_residual",
+      "add_split_semi_downside_penalty_after_prior_reversal_day",
+      "flip_nowcast_to_negative_when_ewy_negative_and_program_nonpositive_after_reversal"
+    ]
+  },
+  "failure_tags": [
+    "F3_ewy_negative_underweighted_repeated",
+    "F6_split_semi_nonconfirmation_missed",
+    "F9_nowcast_false_positive_foreign_institution"
+  ],
+  "code_change_review": {
+    "files": [
+      "monitor/final_open_research.py",
+      "monitor/kospi_1230_final_model_run.py"
+    ],
+    "why": "EWY 음수 + 하이닉스 비확인 + 전일 되밀림 조합에서 시가 하방 복원을 강화하고, 같은 조건에서 nowcast 부호 낙관을 억제했다.",
+    "replay_test": {
+      "open_pred_before": 7472.19,
+      "open_pred_after": 7427.33,
+      "open_actual": 7412.03,
+      "open_abs_error_before": 60.16,
+      "open_abs_error_after": 15.3,
+      "open_tier_before": 2,
+      "open_tier_after": 5,
+      "nowcast_signs_before": {
+        "foreign": "positive",
+        "institution": "positive",
+        "program": "negative"
+      },
+      "nowcast_signs_after": {
+        "foreign": "negative",
+        "institution": "negative",
+        "program": "negative"
+      }
+    }
+  },
+  "intraday_close_1230": {
+    "as_of_kst": "2026-07-13T12:37:12+09:00",
+    "snapshot": {
+      "realtime": {
+        "close": 6935.91,
+        "open": 7412.03,
+        "high": 7529.07,
+        "low": 6934.37,
+        "change_pct": -7.22,
+        "market_status": "OPEN",
+        "local_traded_at": "2026-07-13T12:37:12+09:00"
+      },
+      "integration": {
+        "prev_close": 7475.94,
+        "open": 7412.03,
+        "high": 7529.07,
+        "low": 6934.37,
+        "deal": {
+          "personal": 21802.0,
+          "foreign": -17033.0,
+          "institution": -5422.0
+        },
+        "program": {
+          "index_diff": 1933.0,
+          "non_index_diff": -15610.0,
+          "total": -13677.0
+        },
+        "updown": {
+          "upper": 2,
+          "rise": 197,
+          "lower": 0,
+          "fall": 686,
+          "steady": 30
+        },
+        "stocks": {
+          "삼성전자": {
+            "close": 262000.0,
+            "change_pct": -8.07,
+            "local_traded_at": "2026-07-13T12:37:00+09:00"
+          },
+          "SK하이닉스": {
+            "close": 1899000.0,
+            "change_pct": -12.89,
+            "local_traded_at": "2026-07-13T12:37:00+09:00"
+          },
+          "SK스퀘어": {
+            "close": 1194000.0,
+            "change_pct": -15.26,
+            "local_traded_at": "2026-07-13T12:37:00+09:00"
+          },
+          "삼성전자우": {
+            "close": 178700.0,
+            "change_pct": -8.03,
+            "local_traded_at": "2026-07-13T12:37:07+09:00"
+          },
+          "삼성전기": {
+            "close": 1305000.0,
+            "change_pct": -17.61,
+            "local_traded_at": "2026-07-13T12:37:00+09:00"
+          },
+          "현대차": {
+            "close": 448000.0,
+            "change_pct": -2.08,
+            "local_traded_at": "2026-07-13T12:37:00+09:00"
+          },
+          "LG에너지솔루션": {
+            "close": 332000.0,
+            "change_pct": 1.84,
+            "local_traded_at": "2026-07-13T12:36:56+09:00"
+          },
+          "KB금융": {
+            "close": 189000.0,
+            "change_pct": 2.49,
+            "local_traded_at": "2026-07-13T12:37:00+09:00"
+          },
+          "삼성바이오로직스": {
+            "close": 1403000.0,
+            "change_pct": 0.57,
+            "local_traded_at": "2026-07-13T12:36:47+09:00"
+          },
+          "삼성생명": {
+            "close": 319000.0,
+            "change_pct": -6.31,
+            "local_traded_at": "2026-07-13T12:37:00+09:00"
+          }
+        }
+      }
+    },
+    "nowcast_check": {
+      "predicted_signs": {
+        "foreign": {
+          "score": 0.5276,
+          "sign": "positive"
+        },
+        "institution": {
+          "score": 0.5683,
+          "sign": "positive"
+        },
+        "program": {
+          "score": -0.286,
+          "sign": "negative"
+        }
+      },
+      "actual_signs": {
+        "foreign": "negative",
+        "institution": "negative",
+        "program": "negative"
+      },
+      "mismatch": {
+        "foreign": true,
+        "institution": true,
+        "program": false
+      },
+      "mismatch_count": 2
+    },
+    "features": {
+      "breadth": -0.5538,
+      "samsung_relative_strength": -0.85,
+      "skhynix_relative_strength": -5.67,
+      "semis_relative_strength_weighted": -3.501,
+      "low_recovery_ratio": 0.0026,
+      "institution_absorption": false,
+      "avalanche_sell": true,
+      "crash_continuation": true,
+      "program_drag_risk": true,
+      "recent_price_acceleration_10m_pts": -29.86,
+      "recent_price_acceleration_20m_pts": -23.66,
+      "samsung_acceleration_10m_krw": -750.0,
+      "skhynix_acceleration_10m_krw": -5000.0
+    },
+    "prediction": {
+      "model_version": "vFinal-close-2026-07-13-nowcast-accel-breadth-semis",
+      "forecast_close": 6804,
+      "range_low": 6734,
+      "range_high": 6869,
+      "regime": "avalanche_sell",
+      "confidence": 0.4,
+      "reasons_top3": [
+        "외국인·기관·프로그램이 모두 순매도이고 프로그램 음수 확대가 지속됨",
+        "breadth 붕괴와 삼성전자·SK하이닉스 상대약세로 대형주 방어가 약함",
+        "12:10~12:30 가속도와 저가 회복률이 모두 약해 crash continuation 확률이 높음"
+      ]
+    },
+    "disclaimer": "투자자문이 아니라 연구·설명 목적입니다."
+  }
+}
