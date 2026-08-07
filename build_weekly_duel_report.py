@@ -11,6 +11,7 @@ from typing import Iterable
 ROOT = Path("/home/waterfirst/kospi-mw-rc-research")
 LOG_DIR = ROOT / "contest" / "learning" / "daily_logs"
 POSTMORTEM_DIR = ROOT / "contest" / "learning"
+INTRADAY_DIR = ROOT / "contest" / "intraday"
 DOCS_DIR = ROOT / "docs"
 PAGES_BASE = "https://waterfirst.github.io/kospi-mw-rc-research"
 
@@ -193,8 +194,22 @@ def build_rows(week_dates: list[str]) -> list[dict]:
         actual_close = data.get("actuals", {}).get("close")
         codex_open = data.get("predictions", {}).get("open")
         codex_close = data.get("score_details", {}).get("close_1230_final_model", {}).get("forecast")
-        codex_open_score = data.get("score_details", {}).get("open", {}).get("tier_score")
-        codex_close_score = data.get("score_details", {}).get("close_1230_final_model", {}).get("tier_score")
+        # Daily logs are the score ledger.  The intraday artifact is the
+        # immutable source for the 12:30 forecast when older log schemas omit
+        # score_details.
+        intraday_path = INTRADAY_DIR / f"{date_str.replace('-', '')}_1230_final_model_forecast.json"
+        if codex_close is None and intraday_path.exists():
+            intraday = json.loads(intraday_path.read_text(encoding="utf-8"))
+            codex_close = intraday.get("prediction", {}).get("forecast_close")
+
+        codex_open_score = (
+            data.get("score_details", {}).get("open", {}).get("tier_score")
+            if data.get("score_details") else data.get("scores", {}).get("open")
+        )
+        codex_close_score = (
+            data.get("score_details", {}).get("close_1230_final_model", {}).get("tier_score")
+            if data.get("score_details") else data.get("scores", {}).get("close")
+        )
         codex_total_score = (codex_open_score or 0) + (codex_close_score or 0)
 
         claude_open = data.get("comparison", {}).get("claude_style_inferred_open")
@@ -399,7 +414,7 @@ def build_html(rows: list[dict], week_dates: list[str], report_filename: str, la
       --shadow:0 14px 34px rgba(145,112,32,.09);
     }}
     * {{ box-sizing:border-box; }}
-    body {{ margin:0; font-family:Inter,'Noto Sans KR',Arial,sans-serif; color:var(--ink); background:linear-gradient(180deg,var(--hero) 0, var(--bg) 240px); line-height:1.6; }}
+    body {{ margin:0; font-family:'Noto Sans KR','Malgun Gothic',sans-serif; color:var(--ink); background:linear-gradient(180deg,var(--hero) 0, var(--bg) 240px); line-height:1.6; }}
     .wrap {{ max-width:1240px; margin:0 auto; padding:28px 18px 56px; }}
     .hero,.card {{ background:var(--card); border:1px solid var(--line); border-radius:24px; box-shadow:var(--shadow); }}
     .hero {{ padding:28px; background:rgba(255,255,255,.82); }}
@@ -418,7 +433,7 @@ def build_html(rows: list[dict], week_dates: list[str], report_filename: str, la
     .winner.claude {{ color:var(--orange); font-weight:800; }}
     .winner.draw {{ color:var(--sub); font-weight:800; }}
     .two {{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }}
-    .callout {{ padding:16px 18px; border-left:4px solid #d8a63d; background:#fff9eb; border-radius:14px; }}
+    .callout {{ padding:16px 18px; background:#fff9eb; border:1px solid #ebcf88; border-radius:14px; }}
     .mono {{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13px; word-break:break-word; }}
     a {{ color:#2457d6; }}
     ul {{ margin:8px 0; padding-left:18px; }}
