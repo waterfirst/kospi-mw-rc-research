@@ -199,6 +199,46 @@ def post_crash_relief_gap_rebound(
     )
 
 
+def extreme_ewy_gapup_underreaction_watch(us: dict[str, Any], fx: dict[str, Any]) -> bool:
+    """Observation-only flag for the two scored EWY-led gap-up underreactions.
+
+    This deliberately does not change the forecast level: two observations are
+    insufficient to relax the compression or the upper cap safely.
+    """
+    return (
+        us["ewy"]["change_pct"] >= 5.0
+        and us["sox"]["change_pct"] >= 2.0
+        and us["nasdaq"]["change_pct"] >= 0.5
+        and us["sp500"]["change_pct"] >= 0.2
+        and fx["change_pct"] <= 0.35
+    )
+
+
+def post_rally_risk_on_open_underreaction_watch(
+    us: dict[str, Any],
+    fx: dict[str, Any],
+    domestic: dict[str, Any],
+    prior_ret: float,
+) -> bool:
+    """Observe, but do not retune for, the two 2026-08 risk-on gap misses.
+
+    The condition deliberately has no effect on the forecast.  Two scored
+    observations are enough to preserve the cohort, not enough to fit a
+    residual correction or relax an existing cap.
+    """
+    return (
+        prior_ret >= 0.020
+        and us["ewy"]["change_pct"] >= 1.50
+        and us["nasdaq"]["change_pct"] >= 0.50
+        and us["sp500"]["change_pct"] >= 0.20
+        and fx["change_pct"] <= 0.35
+        and domestic["foreign"] > 0
+        and domestic["institution"] > 0
+        and domestic["samsung_pct"] >= 4.5
+        and domestic["skhynix_pct"] >= 5.0
+    )
+
+
 def build_daily_log_payload(result: dict[str, Any], date_str: str) -> dict[str, Any]:
     flags = [f"{key}_{str(value).lower()}" for key, value in (result.get("flags") or {}).items()]
     prediction = result.get("prediction") or {}
@@ -302,6 +342,10 @@ def predict() -> dict[str, Any]:
         breadth,
         defense_strength,
     )
+    extreme_ewy_gapup_watch = extreme_ewy_gapup_underreaction_watch(us, fx)
+    post_rally_risk_on_watch = post_rally_risk_on_open_underreaction_watch(
+        us, fx, domestic, prior_ret
+    )
 
     residual_correction = 0.0
     if defense_strength > 8000 and breadth > 0.80:
@@ -381,7 +425,7 @@ def predict() -> dict[str, Any]:
         ),
         (
             f"USD/KRW {round(fx['current'], 2):,.2f}, 전일대비 {pct_text(fx['change_pct'])}로 "
-            f"{'환율 압박 완화' if not fx_pressure_high else '환율 압박 지속'}"
+            f"{'고환율 압박 기준 미충족' if not fx_pressure_high else '환율 압박 지속'}"
         ),
         (
             f"전일 국내 손상도는 외인 {bn_text(domestic['foreign'])}, 기관 {bn_text(domestic['institution'])}, "
@@ -434,6 +478,8 @@ def predict() -> dict[str, Any]:
             "positive_extreme_gapup": positive_extreme_gapup,
             "negative_extreme_unwind": negative_extreme_unwind,
             "relief_gap_rebound": relief_gap_rebound,
+            "extreme_ewy_gapup_underreaction_watch": extreme_ewy_gapup_watch,
+            "post_rally_risk_on_open_underreaction_watch": post_rally_risk_on_watch,
         },
         "prediction": {
             "open": open_pred,

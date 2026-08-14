@@ -163,10 +163,14 @@ def summarize_change_note(data: dict, date_str: str) -> str:
     if not path.exists():
         return "기록 없음"
     text = path.read_text(encoding="utf-8")
-    m = re.search(r"## (?:소규모 코드 수정|규칙 수정)\n([\s\S]*?)(?:\n## |\Z)", text)
+    m = re.search(
+        r"## (?:소규모 코드 수정|규칙 수정|학습·규칙|반복 학습·수정)\n([\s\S]*?)(?:\n## |\Z)",
+        text,
+    )
     if m:
-        section = " ".join(line.strip("- ").strip() for line in m.group(1).splitlines() if line.strip())
-        return section[:220]
+        bullets = [line.strip("- ").strip() for line in m.group(1).splitlines() if line.strip()]
+        section = " ".join(bullets[:2])
+        return section[:320]
     return "기록 있음"
 
 
@@ -334,6 +338,8 @@ def build_html(rows: list[dict], week_dates: list[str], report_filename: str, la
     best_day = max(rows, key=lambda r: r["codex_total_score"])
     worst_day = min(rows, key=lambda r: r["codex_total_score"])
     claude_adv_days = sum(1 for r in rows if "Claude" in r["winner"])
+    failure_tags = list(dict.fromkeys(tag for row in rows for tag in row["failure_tags"]))
+    failure_summary = ", ".join(failure_tags) if failure_tags else "신규 반복 실패 태그 없음"
     labels = [d[5:] for d in week_dates]
 
     open_chart = line_chart_svg(
@@ -505,7 +511,7 @@ def build_html(rows: list[dict], week_dates: list[str], report_filename: str, la
 
       <section class="card span-12">
         <h2>모델 변화 과정</h2>
-        {circuit_svg(rows)}
+        {circuit_svg(rows).strip()}
       </section>
 
       <section class="card span-12">
@@ -523,7 +529,7 @@ def build_html(rows: list[dict], week_dates: list[str], report_filename: str, la
             </tr>
           </thead>
           <tbody>
-            {''.join(table_rows)}
+            {'\n'.join(row.strip() for row in table_rows)}
           </tbody>
         </table>
       </section>
@@ -534,8 +540,8 @@ def build_html(rows: list[dict], week_dates: list[str], report_filename: str, la
           <div>
             <h3>1) 구조적 관찰</h3>
             <ul>
-              <li>이번 주는 급락 뒤 relief gap, avalanche sell, short-cover rebound, 반도체 melt-up이 한 주 안에 연속 출현했다.</li>
-              <li>Codex는 매일 postmortem을 통해 시가·종가 엔진의 반복 실패를 규칙 소자처럼 추가했다.</li>
+              <li>Codex 일일 합계는 <b>{best_day["date"]} {best_day["codex_total_score"]}/10</b>에서 <b>{worst_day["date"]} {worst_day["codex_total_score"]}/10</b>까지 변동해 레짐별 편차가 컸다.</li>
+              <li>이번 주 반복 실패 태그: <span class="mono">{svg_escape(failure_summary)}</span></li>
               <li>즉 핵심 우위는 단일 식보다 <b>실패 패턴을 빠르게 회로에 삽입하는 운영 적응성</b>에 있었다.</li>
             </ul>
           </div>

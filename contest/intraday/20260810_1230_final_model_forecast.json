@@ -1,0 +1,12 @@
+{
+  "as_of_kst": "2026-08-10T12:30:58+09:00",
+  "snapshot": {
+    "realtime": {"close": 6291.04, "open": 6306.33, "high": 6394.06, "low": 6264.62, "change_pct": 0.52, "market_status": "OPEN", "local_traded_at": "2026-08-10T12:30:57+09:00"},
+    "integration": {"bizdate": "20260810", "deal": {"personal": 4070.0, "foreign": -8183.0, "institution": 3867.0}, "program": {"total": -8495.0}, "updown": {"rise": 634, "fall": 245, "steady": 31}, "stocks": {"삼성전자": {"close": 230750.0, "change_pct": -0.11}, "SK하이닉스": {"close": 1434000.0, "change_pct": 0.84}}}
+  },
+  "nowcast_check": {"predicted_signs": {"foreign": {"score": 2.9014, "sign": "positive"}, "institution": {"score": 2.2043, "sign": "positive"}, "program": {"score": -8.482, "sign": "negative"}}, "actual_signs": {"foreign": "negative", "institution": "positive", "program": "negative"}, "mismatch": {"foreign": true, "institution": false, "program": false}, "mismatch_count": 1},
+  "features": {"breadth": 0.4425, "samsung_relative_strength": -0.63, "skhynix_relative_strength": 0.32, "semis_relative_strength_weighted": -0.1075, "low_recovery_ratio": 0.2041, "institution_absorption": false, "avalanche_sell": false, "crash_continuation": false, "program_drag_risk": false, "recent_price_acceleration_10m_pts": -6.42, "recent_price_acceleration_20m_pts": -3.16, "samsung_acceleration_10m_krw": -250.0, "skhynix_acceleration_10m_krw": -4000.0},
+  "prediction": {"model_version": "vFinal-close-2026-07-29-crash-shortcover-v3", "forecast_close": 6287, "range_low": 6217, "range_high": 6316, "regime": "weak_drift", "confidence": 0.54, "reasons_top3": ["외국인 순매도·기관 순매수·프로그램 순매도, nowcast 부호 일치 2/3로 신뢰도 조정", "breadth +0.44, 삼성전자 상대강도 -0.63pt, SK하이닉스 상대강도 +0.32pt", "저가 회복률 0.20, 최근 10~20분 가속도 -6.4/-3.2pt, institution_absorption=False, avalanche_sell=False, crash_continuation=False, program_drag_risk=False"]},
+  "comparison": {"duel_mode": "vs_claude", "nowcast_mismatch_penalty_applied": true},
+  "disclaimer": "투자자문이 아니라 연구·설명 목적입니다."
+}

@@ -416,6 +416,25 @@ def detect_midday_blowoff_reversal_risk(
     )
 
 
+def detect_concentrated_rally_late_fade_risk(
+    it: dict[str, Any],
+    breadth: float,
+    semis_rel: float,
+    low_recovery_ratio: float,
+    price_accel_10m: float,
+    price_accel_20m: float,
+) -> bool:
+    """Flag a narrow, fully recovered noon rally that has faded late twice."""
+    return (
+        breadth <= 0.25
+        and semis_rel >= 1.0
+        and low_recovery_ratio >= 0.95
+        and price_accel_10m > 0.0
+        and price_accel_20m > 0.0
+        and it["program"]["total"] >= 2500
+    )
+
+
 def compute_rebound_credit(rt: dict[str, Any], it: dict[str, Any]) -> float:
     credit = (
         max(0.0, rt["open"] - rt["close"]) * 0.55
@@ -584,6 +603,14 @@ def compute_forecast(morning: dict[str, Any]) -> dict[str, Any]:
         price_accel_10m,
         price_accel_20m,
     )
+    concentrated_rally_late_fade_risk = detect_concentrated_rally_late_fade_risk(
+        it,
+        breadth,
+        semis_rel,
+        low_recovery_ratio,
+        price_accel_10m,
+        price_accel_20m,
+    )
     semis_meltup_continuation = (
         not avalanche_sell
         and not crash_continuation
@@ -678,6 +705,12 @@ def compute_forecast(morning: dict[str, Any]) -> dict[str, Any]:
         )
         exhaustion_drag = max(exhaustion_drag, round(blowoff_drag, 2))
         raw_forecast -= blowoff_drag
+    concentrated_rally_fade_drag = 0.0
+    if concentrated_rally_late_fade_risk:
+        # Only two observations (2026-08-11/12): keep this a small, fixed
+        # correction rather than fitting a level-specific formula.
+        concentrated_rally_fade_drag = 55.0
+        raw_forecast -= concentrated_rally_fade_drag
 
     upper_extension = (
         260.0 if flow_reversal_squeeze
@@ -735,6 +768,8 @@ def compute_forecast(morning: dict[str, Any]) -> dict[str, Any]:
         confidence -= 0.04
     if midday_blowoff_reversal_risk:
         confidence -= 0.04
+    if concentrated_rally_late_fade_risk:
+        confidence -= 0.03
     if crash_continuation:
         confidence -= 0.03
     if low_recovery_ratio <= 0.05:
@@ -802,12 +837,14 @@ def compute_forecast(morning: dict[str, Any]) -> dict[str, Any]:
             "flow_reversal_squeeze": flow_reversal_squeeze,
             "parabolic_exhaustion_risk": parabolic_exhaustion_risk,
             "midday_blowoff_reversal_risk": midday_blowoff_reversal_risk,
+            "concentrated_rally_late_fade_risk": concentrated_rally_late_fade_risk,
             "rebound_credit": round(rebound_credit, 2),
             "panic_stabilization_credit": round(panic_stabilization_credit, 2),
             "crash_shortcover_credit": round(crash_shortcover_credit, 2),
             "semis_defensive_credit": round(semis_defensive_credit, 2),
             "semis_meltup_credit": round(semis_meltup_credit, 2),
             "exhaustion_drag": round(exhaustion_drag, 2),
+            "concentrated_rally_fade_drag": round(concentrated_rally_fade_drag, 2),
             "recent_price_acceleration_10m_pts": round(price_accel_10m, 2),
             "recent_price_acceleration_20m_pts": round(price_accel_20m, 2),
             "samsung_acceleration_10m_krw": round(samsung_accel_10m, 2),
