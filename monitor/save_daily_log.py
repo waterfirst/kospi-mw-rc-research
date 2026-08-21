@@ -23,8 +23,9 @@ def load_template() -> dict:
         "inputs": {},
         "flags": [],
         "predictions": {"open": 0.0, "close": 0.0},
-        "actuals": {"open": 0.0, "close": 0.0},
-        "scores": {"open": 0, "close": 0, "direction": 0, "regime": 0, "total": 0},
+        "evaluation_status": "pending_actuals",
+        "actuals": {"open": None, "close": None},
+        "scores": {"open": None, "close": None, "direction": None, "regime": None, "total": None},
         "failure_tags": [],
         "reflection": {"summary": "", "next_candidates": []},
     }

@@ -153,17 +153,9 @@ def restore_embedded_preopen_log(date_str: str) -> dict[str, Any] | None:
                 "range_high": pred.get("range_high", 0.0),
                 "confidence": pred.get("confidence", 0.0),
             },
-            "actuals": {
-                "open": 0.0,
-                "close": 0.0,
-            },
-            "scores": {
-                "open": 0,
-                "close": 0,
-                "direction": 0,
-                "regime": 0,
-                "total": 0,
-            },
+            "evaluation_status": "pending_actuals",
+            "actuals": {"open": None, "close": None},
+            "scores": {"open": None, "close": None, "direction": None, "regime": None, "total": None},
             "failure_tags": [],
             "reflection": {
                 "summary": "전일 daily log에 내장된 next_session_open_forecast를 복원해 preopen daily log를 생성했다.",
@@ -209,17 +201,9 @@ def ensure_daily_log(date_str: str) -> dict[str, Any]:
             "range_high": (open_result.get("prediction") or {}).get("range_high", 0.0),
             "confidence": (open_result.get("prediction") or {}).get("confidence", 0.0),
         },
-        "actuals": {
-            "open": 0.0,
-            "close": 0.0,
-        },
-        "scores": {
-            "open": 0,
-            "close": 0,
-            "direction": 0,
-            "regime": 0,
-            "total": 0,
-        },
+        "evaluation_status": "pending_actuals",
+        "actuals": {"open": None, "close": None},
+        "scores": {"open": None, "close": None, "direction": None, "regime": None, "total": None},
         "failure_tags": [],
         "reflection": {
             "summary": "오늘 morning daily log가 없어서 open 연구 엔진 출력으로 기본 기록을 자동 생성했다.",

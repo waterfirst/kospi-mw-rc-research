@@ -4,6 +4,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from final_open_research import (
+    extreme_overnight_selloff_underreaction_watch,
     extreme_ewy_gapup_underreaction_watch,
     post_rally_risk_on_open_underreaction_watch,
 )
@@ -51,3 +52,15 @@ def test_post_rally_risk_on_watch_rejects_low_ewy_control():
     us = {"ewy": {"change_pct": 1.49}, "nasdaq": {"change_pct": 0.81}, "sp500": {"change_pct": 0.65}}
     domestic = {"foreign": 21100, "institution": 6830, "samsung_pct": 4.89, "skhynix_pct": 5.92}
     assert not post_rally_risk_on_open_underreaction_watch(us, {"change_pct": 0.117}, domestic, 0.0356)
+
+
+def test_extreme_overnight_selloff_watch_matches_aug_19_cohort():
+    us = {"ewy": {"change_pct": -8.13}, "sox": {"change_pct": -4.98}, "nasdaq": {"change_pct": -1.33}}
+    domestic = {"institution": -79.5, "program": -107.0}
+    assert extreme_overnight_selloff_underreaction_watch(us, domestic, -0.0362, 0.222)
+
+
+def test_extreme_overnight_selloff_watch_rejects_non_synchronized_control():
+    us = {"ewy": {"change_pct": -4.99}, "sox": {"change_pct": -4.98}, "nasdaq": {"change_pct": -1.33}}
+    domestic = {"institution": -79.5, "program": -107.0}
+    assert not extreme_overnight_selloff_underreaction_watch(us, domestic, -0.0362, 0.222)

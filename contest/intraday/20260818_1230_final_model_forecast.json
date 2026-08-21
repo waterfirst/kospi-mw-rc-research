@@ -1,0 +1,40 @@
+{
+  "as_of_kst": "2026-08-18T12:30:56+09:00",
+  "nowcast_check": {
+    "predicted_signs": {
+      "foreign": {"score": 3.0465, "sign": "positive"},
+      "institution": {"score": 0.5027, "sign": "positive"},
+      "program": {"score": 0.442, "sign": "positive"}
+    },
+    "actual_signs": {"foreign": "positive", "institution": "negative", "program": "negative"},
+    "mismatch": {"foreign": false, "institution": true, "program": true},
+    "mismatch_count": 2
+  },
+  "features": {
+    "breadth": -0.6251,
+    "samsung_relative_strength": -0.23,
+    "skhynix_relative_strength": 2.57,
+    "semis_relative_strength_weighted": 1.31,
+    "low_recovery_ratio": 0.0533,
+    "institution_absorption": false,
+    "avalanche_sell": false,
+    "crash_continuation": false,
+    "program_drag_risk": false,
+    "recent_price_acceleration_10m_pts": 42.0,
+    "recent_price_acceleration_20m_pts": -2.69
+  },
+  "prediction": {
+    "model_version": "vFinal-close-2026-07-29-crash-shortcover-v3",
+    "forecast_close": 6864,
+    "range_low": 6794,
+    "range_high": 6917,
+    "regime": "weak_drift",
+    "confidence": 0.46,
+    "reasons_top3": [
+      "외국인 순매수·기관 순매도·프로그램 순매도, nowcast 부호 일치 1/3로 신뢰도 조정",
+      "breadth -0.63, 삼성전자 상대강도 -0.23pt, SK하이닉스 상대강도 +2.57pt",
+      "저가 회복률 0.05, 최근 10~20분 가속도 +42.0/-2.7pt"
+    ]
+  },
+  "disclaimer": "투자자문이 아니라 연구·설명 목적입니다."
+}

@@ -44,21 +44,38 @@ def svg_escape(text: str) -> str:
     )
 
 
+def strip_markdown(text: str) -> str:
+    text = re.sub(r"[`*_]", "", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
 def polyline(points: Iterable[tuple[float, float]]) -> str:
     return " ".join(f"{x:.1f},{y:.1f}" for x, y in points)
 
 
 def latest_week_dates() -> list[str]:
     date_paths = [p for p in LOG_DIR.glob("*.json") if re.fullmatch(r"\d{4}-\d{2}-\d{2}", p.stem)]
-    dates = sorted(datetime.strptime(p.stem, "%Y-%m-%d").date() for p in date_paths)
+    scored_paths = []
+    for path in date_paths:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        actuals = data.get("actuals") or {}
+        # Forecast-only logs (holidays or sessions awaiting settlement) must
+        # not be rendered as zero-point trading days in the weekly scorecard.
+        if actuals.get("open") is not None and actuals.get("close") is not None:
+            scored_paths.append(path)
+    dates = sorted(datetime.strptime(p.stem, "%Y-%m-%d").date() for p in scored_paths)
     if not dates:
-        raise FileNotFoundError("No daily logs found.")
+        raise FileNotFoundError("No settled daily logs found.")
     latest = dates[-1]
     monday = latest - timedelta(days=latest.weekday())
-    expected = [(monday + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(5)]
-    existing = {p.stem for p in date_paths}
-    if all(d in existing for d in expected):
-        return expected
+    expected = [
+        (monday + timedelta(days=i)).strftime("%Y-%m-%d")
+        for i in range((latest - monday).days + 1)
+    ]
+    existing = {p.stem for p in scored_paths}
+    settled_this_week = [d for d in expected if d in existing]
+    if settled_this_week:
+        return settled_this_week
     return [d.strftime("%Y-%m-%d") for d in dates[-5:]]
 
 
@@ -96,16 +113,19 @@ def line_chart_svg(
 
     parts = [
         f'<svg viewBox="0 0 {width} {height}" aria-label="{svg_escape(title)}">',
+        f'<title>{svg_escape(title)}</title>',
+        f'<desc>{svg_escape(y_label)} 기준으로 날짜별 실측값과 예측값을 비교한 선 그래프</desc>',
         '<rect width="100%" height="100%" fill="#fffdfa"/>',
     ]
     for gy, val in grid:
+        shown_val = 0.0 if abs(val) < 0.5 else val
         parts.append(f'<line x1="{margin["l"]}" y1="{gy:.1f}" x2="{width-margin["r"]}" y2="{gy:.1f}" stroke="#eee6d6" />')
-        parts.append(f'<text x="10" y="{gy+4:.1f}" fill="#7a8494" font-size="11">{val:,.0f}</text>')
+        parts.append(f'<text x="10" y="{gy+4:.1f}" fill="#576274" font-size="11">{shown_val:,.0f}</text>')
     parts.append(f'<line x1="{margin["l"]}" y1="{margin["t"]}" x2="{margin["l"]}" y2="{height-margin["b"]}" stroke="#d9cfbd"/>')
     parts.append(f'<line x1="{margin["l"]}" y1="{height-margin["b"]}" x2="{width-margin["r"]}" y2="{height-margin["b"]}" stroke="#d9cfbd"/>')
     for idx, label in enumerate(labels):
         x, _ = xy(idx, ymin)
-        parts.append(f'<text x="{x:.1f}" y="{height-16}" text-anchor="middle" fill="#7a8494" font-size="11">{svg_escape(label)}</text>')
+        parts.append(f'<text x="{x:.1f}" y="{height-16}" text-anchor="middle" fill="#576274" font-size="11">{svg_escape(label)}</text>')
     for s in series:
         pts = [xy(i, v) for i, v in enumerate(s["values"]) if v is not None]
         parts.append(f'<polyline fill="none" stroke="{s["color"]}" stroke-width="3.5" points="{polyline(pts)}"/>')
@@ -124,7 +144,7 @@ def bar_chart_svg(labels: list[str], rows: list[dict], width: int = 760, height:
     margin = {"l": 58, "r": 24, "t": 28, "b": 44}
     plot_w = width - margin["l"] - margin["r"]
     plot_h = height - margin["t"] - margin["b"]
-    max_y = 10
+    max_y = 5
 
     def y_of(v: float) -> float:
         return margin["t"] + plot_h * (1 - v / max_y)
@@ -132,24 +152,26 @@ def bar_chart_svg(labels: list[str], rows: list[dict], width: int = 760, height:
     group_w = plot_w / max(len(rows), 1)
     bw = min(22, group_w * 0.24)
     parts = [
-        f'<svg viewBox="0 0 {width} {height}" aria-label="점수 막대그래프">',
+        f'<svg viewBox="0 0 {width} {height}" aria-label="날짜별 시가 점수 막대그래프">',
+        '<title>날짜별 시가 점수</title>',
+        '<desc>동일한 5점 척도로 Claude와 Codex의 시가 예측 점수를 비교</desc>',
         '<rect width="100%" height="100%" fill="#fffdfa"/>',
     ]
     for n in range(6):
         gy = margin["t"] + plot_h * n / 5
         val = max_y - max_y * n / 5
         parts.append(f'<line x1="{margin["l"]}" y1="{gy:.1f}" x2="{width-margin["r"]}" y2="{gy:.1f}" stroke="#eee6d6" />')
-        parts.append(f'<text x="18" y="{gy+4:.1f}" fill="#7a8494" font-size="11">{val:.0f}</text>')
+        parts.append(f'<text x="18" y="{gy+4:.1f}" fill="#576274" font-size="11">{val:.0f}</text>')
     parts.append(f'<line x1="{margin["l"]}" y1="{margin["t"]}" x2="{margin["l"]}" y2="{height-margin["b"]}" stroke="#d9cfbd"/>')
     parts.append(f'<line x1="{margin["l"]}" y1="{height-margin["b"]}" x2="{width-margin["r"]}" y2="{height-margin["b"]}" stroke="#d9cfbd"/>')
     for i, row in enumerate(rows):
         gx = margin["l"] + group_w * i + group_w / 2
         claude = row["claude_open_score"] or 0
-        codex = row["codex_total_score"]
+        codex = row["codex_open_score"] or 0
         parts.append(f'<rect x="{gx-bw-2:.1f}" y="{y_of(claude):.1f}" width="{bw:.1f}" height="{height-margin["b"]-y_of(claude):.1f}" fill="#f28b44" rx="4"/>')
         parts.append(f'<rect x="{gx+2:.1f}" y="{y_of(codex):.1f}" width="{bw:.1f}" height="{height-margin["b"]-y_of(codex):.1f}" fill="#4e79ff" rx="4"/>')
-        parts.append(f'<text x="{gx:.1f}" y="{height-16}" text-anchor="middle" fill="#7a8494" font-size="11">{svg_escape(labels[i])}</text>')
-    parts.append(f'<text x="{width/2:.1f}" y="18" text-anchor="middle" fill="#22314d" font-size="16" font-weight="700">날짜별 점수</text>')
+        parts.append(f'<text x="{gx:.1f}" y="{height-16}" text-anchor="middle" fill="#576274" font-size="11">{svg_escape(labels[i])}</text>')
+    parts.append(f'<text x="{width/2:.1f}" y="18" text-anchor="middle" fill="#22314d" font-size="16" font-weight="700">날짜별 시가 점수 · 동일 5점 척도</text>')
     parts.append("</svg>")
     return "".join(parts)
 
@@ -164,13 +186,13 @@ def summarize_change_note(data: dict, date_str: str) -> str:
         return "기록 없음"
     text = path.read_text(encoding="utf-8")
     m = re.search(
-        r"## (?:소규모 코드 수정|규칙 수정|학습·규칙|반복 학습·수정)\n([\s\S]*?)(?:\n## |\Z)",
+        r"## (?:소규모 코드 수정|규칙 수정|학습·규칙|학습·수정|반복 학습·수정)\n([\s\S]*?)(?:\n## |\Z)",
         text,
     )
     if m:
-        bullets = [line.strip("- ").strip() for line in m.group(1).splitlines() if line.strip()]
-        section = " ".join(bullets[:2])
-        return section[:320]
+        bullets = [strip_markdown(line.strip("- ").strip()) for line in m.group(1).splitlines() if line.strip()]
+        section = " ".join(bullets[:3])
+        return section[:520]
     return "기록 있음"
 
 
@@ -220,13 +242,13 @@ def build_rows(week_dates: list[str]) -> list[dict]:
         claude_open_score, claude_open_abs, claude_open_pct = tier_score(claude_open, actual_open)
 
         if claude_open_score is None:
-            winner = "Codex 공식 우위"
+            winner = "시가 비교 불가"
         elif claude_open_score > (codex_open_score or 0):
             winner = "Claude 시가 우위"
         elif claude_open_score == (codex_open_score or 0):
-            winner = "시가 동률 / 종합은 Codex 자료 우세"
+            winner = "시가 동률"
         else:
-            winner = "Codex 우위"
+            winner = "Codex 시가 우위"
 
         rows.append(
             {
@@ -257,13 +279,19 @@ def circuit_svg(rows: list[dict]) -> str:
     bullet_y = 390
     bullets = []
     for row in rows[-3:]:
-        short = row["change_note"][:84] + ("…" if len(row["change_note"]) > 84 else "")
+        codes = ", ".join(tag.split("_", 1)[0] for tag in row["failure_tags"][:3]) or "신규 태그 없음"
+        if "predicate" in row["change_note"] or "관측 predicate" in row["change_note"]:
+            short = f"{codes} 관찰 predicate 추가 · 예측 레벨/계수는 유지"
+        else:
+            short = f"{codes} 관찰 회로 등록 · 예측 레벨/계수 변경 없음"
         bullets.append(
             f'<text x="52" y="{bullet_y}" fill="#5f6b7a" font-size="14">• {row["date"]}: {svg_escape(short)}</text>'
         )
         bullet_y += 28
     return f"""
 <svg viewBox="0 0 900 520" aria-label="모델 변화 회로도">
+  <title>모델 변화 과정</title>
+  <desc>Claude EWY 직결형에서 Codex 다중 앵커와 보정 소자 누적형으로 이어진 구조 변화</desc>
   <rect width="100%" height="100%" fill="#fffdfa"/>
   <defs>
     <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
@@ -338,6 +366,8 @@ def build_html(rows: list[dict], week_dates: list[str], report_filename: str, la
     best_day = max(rows, key=lambda r: r["codex_total_score"])
     worst_day = min(rows, key=lambda r: r["codex_total_score"])
     claude_adv_days = sum(1 for r in rows if "Claude" in r["winner"])
+    codex_adv_days = sum(1 for r in rows if "Codex" in r["winner"])
+    draw_days = sum(1 for r in rows if "동률" in r["winner"])
     failure_tags = list(dict.fromkeys(tag for row in rows for tag in row["failure_tags"]))
     failure_summary = ", ".join(failure_tags) if failure_tags else "신규 반복 실패 태그 없음"
     labels = [d[5:] for d in week_dates]
@@ -365,11 +395,11 @@ def build_html(rows: list[dict], week_dates: list[str], report_filename: str, la
     cum_chart = line_chart_svg(
         labels,
         [
-            {"name": "Codex 누적 총점", "color": "#4e79ff", "values": [sum(rows[j]["codex_total_score"] for j in range(i + 1)) for i in range(len(rows))]},
+            {"name": "Codex 누적 시가점수", "color": "#4e79ff", "values": [sum((rows[j]["codex_open_score"] or 0) for j in range(i + 1)) for i in range(len(rows))]},
             {"name": "Claude 누적 시가점수", "color": "#f28b44", "values": [sum((rows[j]["claude_open_score"] or 0) for j in range(i + 1)) for i in range(len(rows))]},
         ],
-        "누적 점수 그래프",
-        "tier score",
+        "누적 시가 점수 · 동일 5점 척도",
+        "open tier score",
     )
 
     table_rows = []
@@ -422,7 +452,7 @@ def build_html(rows: list[dict], week_dates: list[str], report_filename: str, la
     * {{ box-sizing:border-box; }}
     body {{ margin:0; font-family:'Noto Sans KR','Malgun Gothic',sans-serif; color:var(--ink); background:linear-gradient(180deg,var(--hero) 0, var(--bg) 240px); line-height:1.6; }}
     .wrap {{ max-width:1240px; margin:0 auto; padding:28px 18px 56px; }}
-    .hero,.card {{ background:var(--card); border:1px solid var(--line); border-radius:24px; box-shadow:var(--shadow); }}
+    .hero,.card {{ background:var(--card); border-radius:24px; box-shadow:var(--shadow); }}
     .hero {{ padding:28px; background:rgba(255,255,255,.82); }}
     .card {{ padding:22px; }}
     .grid {{ display:grid; grid-template-columns:repeat(12,1fr); gap:16px; margin-top:16px; }}
@@ -435,24 +465,30 @@ def build_html(rows: list[dict], week_dates: list[str], report_filename: str, la
     table {{ width:100%; border-collapse:collapse; font-size:14px; }}
     th,td {{ padding:12px 10px; border-bottom:1px solid #eee5d5; text-align:left; vertical-align:top; }}
     th {{ background:#fff8ea; font-size:13px; }}
-    .winner.codex {{ color:var(--blue); font-weight:800; }}
-    .winner.claude {{ color:var(--orange); font-weight:800; }}
+    .winner.codex {{ color:#244fc4; font-weight:800; }}
+    .winner.claude {{ color:#9b4600; font-weight:800; }}
     .winner.draw {{ color:var(--sub); font-weight:800; }}
     .two {{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }}
     .callout {{ padding:16px 18px; background:#fff9eb; border:1px solid #ebcf88; border-radius:14px; }}
     .mono {{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13px; word-break:break-word; }}
     a {{ color:#2457d6; }}
     ul {{ margin:8px 0; padding-left:18px; }}
+    svg {{ display:block; width:100%; height:auto; }}
+    .table-wrap {{ width:100%; overflow-x:auto; overscroll-behavior-inline:contain; }}
+    .viz-scroll {{ width:100%; overflow-x:auto; overscroll-behavior-inline:contain; }}
+    :focus-visible {{ outline:3px solid #2457d6; outline-offset:3px; }}
     @media (max-width: 920px) {{
       .span-6,.span-4 {{ grid-column:span 12; }}
       .two {{ grid-template-columns:1fr; }}
       h1 {{ font-size:28px; }}
       table {{ font-size:12px; }}
+      .viz-scroll svg {{ min-width:760px; }}
+      .viz-scroll.circuit svg {{ min-width:900px; }}
     }}
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <main class="wrap">
     <section class="hero">
       <h1>KOSPI Claude vs Codex 주간 종합 보고서</h1>
       <p class="sub">기준 주차: {week_start} ~ {week_end} · 생성시각: {generated} KST · 밝은 배경 반응형 · GitHub Pages 배포용 HTML</p>
@@ -467,14 +503,14 @@ def build_html(rows: list[dict], week_dates: list[str], report_filename: str, la
     </section>
 
     <div class="grid">
-      <section class="card span-4"><div class="sub">Codex 공식 누적점수</div><div class="kpi" style="color:var(--blue)">{codex_total}</div><div class="small">시가 {codex_open_total} + 종가 {codex_close_total}</div></section>
-      <section class="card span-4"><div class="sub">Claude 누적 시가점수</div><div class="kpi" style="color:var(--orange)">{claude_open_total}</div><div class="small">daily log 잔존 inferred open 기준</div></section>
-      <section class="card span-4"><div class="sub">주간 승부 해석</div><div class="kpi" style="font-size:26px">{claude_adv_days}일 Claude 시가 우위<br>{len(rows)-claude_adv_days}일 Codex/동률 우세</div><div class="small">공식 종가 기록은 Codex만 완전 보존</div></section>
+      <section class="card span-4"><div class="sub">동일 기준 시가 누적점수</div><div class="kpi" style="color:#244fc4">Codex {codex_open_total}</div><div class="kpi" style="color:#9b4600">Claude {claude_open_total}</div><div class="small">각 일 0~5점의 같은 척도</div></section>
+      <section class="card span-4"><div class="sub">Codex 종가 보조 지표</div><div class="kpi" style="color:#244fc4">{codex_close_total} / {len(rows)*5}</div><div class="small">Claude 종가 공식 원장이 없어 대결 점수에는 미포함</div></section>
+      <section class="card span-4"><div class="sub">비교 가능한 시가 승부</div><div class="kpi" style="font-size:26px">Claude {claude_adv_days}승 · 동률 {draw_days}<br>Codex {codex_adv_days}승</div><div class="small">종가 성적은 승패 판정과 분리</div></section>
 
       <section class="card span-12">
         <div class="callout">
-          <b>핵심 요약.</b> 이번 주 Codex는 <b>{best_day["date"]}</b>에 {best_day["codex_total_score"]}/10으로 최고점을 기록했고, <b>{worst_day["date"]}</b>에는 {worst_day["codex_total_score"]}/10으로 가장 약했다.
-          Claude는 저장소에 남은 <b>시가 inferred open</b> 기준으로만 비교 가능하다. 따라서 본 보고서는 <b>“Codex 공식 총점 + Claude 시가 비교 가능분”</b>을 결합한 전문가형 주간 리포트다.
+          <b>핵심 요약.</b> 동일한 시가 5점 척도에서 Claude가 <b>{claude_adv_days}승 {draw_days}무</b>, Codex가 <b>{codex_adv_days}승</b>을 기록했다. Codex 종가 엔진은 별도 보조 지표로 <b>{codex_close_total}/{len(rows)*5}점</b>이었다.
+          Claude 종가 공식 원장이 없어 종가를 양자 승패에 섞지 않았으며, 서로 다른 만점의 합계를 직접 비교하지 않는다.
         </div>
       </section>
 
@@ -485,7 +521,8 @@ def build_html(rows: list[dict], week_dates: list[str], report_filename: str, la
           <span><span class="dot" style="background:#4e79ff"></span>Codex 시가</span>
           <span><span class="dot" style="background:#f28b44"></span>Claude-style 시가</span>
         </div>
-        {open_chart}
+        <div class="viz-scroll" role="region" aria-label="시가 실측과 예측 그래프, 가로로 탐색 가능" tabindex="0">{open_chart}</div>
+        <p class="small">주간 시가 누적: Claude {claude_open_total}/{len(rows)*5}, Codex {codex_open_total}/{len(rows)*5}. Claude {claude_adv_days}승, 동률 {draw_days}, Codex {codex_adv_days}승.</p>
       </section>
 
       <section class="card span-6">
@@ -494,29 +531,30 @@ def build_html(rows: list[dict], week_dates: list[str], report_filename: str, la
           <span><span class="dot" style="background:#2eae6b"></span>실제 종가</span>
           <span><span class="dot" style="background:#4e79ff"></span>Codex 12:30 종가 예측</span>
         </div>
-        {close_chart}
+        <div class="viz-scroll" role="region" aria-label="종가 실측과 Codex 예측 그래프, 가로로 탐색 가능" tabindex="0">{close_chart}</div>
+        <p class="small">Codex 종가 점수는 {codex_close_total}/{len(rows)*5}. Claude 종가 공식 기록 부재로 단독 보조 지표다.</p>
       </section>
 
       <section class="card span-6">
         <h2>날짜별 점수 막대그래프</h2>
-        <p class="small">오렌지 = Claude 시가 추정 점수(0~5), 파랑 = Codex 공식 총점(0~10)</p>
-        {score_chart}
+        <p class="small">오렌지 = Claude 시가 추정 점수, 파랑 = Codex 시가 공식 점수. 모두 0~5의 동일 척도다.</p>
+        <div class="viz-scroll" role="region" aria-label="날짜별 시가 점수 그래프, 가로로 탐색 가능" tabindex="0">{score_chart}</div>
       </section>
 
       <section class="card span-6">
         <h2>누적 점수 그래프</h2>
-        <p class="small">Codex는 시가+종가 공식 누적점수, Claude는 inferred open 누적점수</p>
-        {cum_chart}
+        <p class="small">Claude와 Codex 모두 시가 점수만 누적해 직접 비교한다. Codex 종가 점수는 위 보조 지표로 분리했다.</p>
+        <div class="viz-scroll" role="region" aria-label="누적 시가 점수 그래프, 가로로 탐색 가능" tabindex="0">{cum_chart}</div>
       </section>
 
       <section class="card span-12">
         <h2>모델 변화 과정</h2>
-        {circuit_svg(rows).strip()}
+        <div class="viz-scroll circuit" role="region" aria-label="모델 변화 회로도, 가로로 탐색 가능" tabindex="0">{circuit_svg(rows).strip()}</div>
       </section>
 
       <section class="card span-12">
         <h2>날짜별 점수·승패·중요 변경점</h2>
-        <table>
+        <div class="table-wrap" role="region" aria-label="날짜별 점수와 모델 변경점" tabindex="0"><table>
           <thead>
             <tr>
               <th>날짜</th>
@@ -531,7 +569,7 @@ def build_html(rows: list[dict], week_dates: list[str], report_filename: str, la
           <tbody>
             {'\n'.join(row.strip() for row in table_rows)}
           </tbody>
-        </table>
+        </table></div>
       </section>
 
       <section class="card span-12">
@@ -565,7 +603,7 @@ def build_html(rows: list[dict], week_dates: list[str], report_filename: str, la
         </ul>
       </section>
     </div>
-  </div>
+  </main>
 </body>
 </html>
 """

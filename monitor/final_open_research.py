@@ -239,6 +239,29 @@ def post_rally_risk_on_open_underreaction_watch(
     )
 
 
+def extreme_overnight_selloff_underreaction_watch(
+    us: dict[str, Any],
+    domestic: dict[str, Any],
+    intraday_reversal: float,
+    breadth: float,
+) -> bool:
+    """Record a rare synchronized selloff cohort without retuning its level.
+
+    A single scored case is not enough to relax the existing extreme-value
+    compression.  Persisting the predicate lets subsequent failures be
+    compared to the same, narrow cohort instead of broadening F31.
+    """
+    return (
+        us["ewy"]["change_pct"] <= -5.0
+        and us["sox"]["change_pct"] <= -3.0
+        and us["nasdaq"]["change_pct"] <= -1.0
+        and intraday_reversal <= -0.02
+        and breadth <= 0.30
+        and domestic["institution"] <= -50.0
+        and domestic["program"] <= -80.0
+    )
+
+
 def build_daily_log_payload(result: dict[str, Any], date_str: str) -> dict[str, Any]:
     flags = [f"{key}_{str(value).lower()}" for key, value in (result.get("flags") or {}).items()]
     prediction = result.get("prediction") or {}
@@ -259,8 +282,11 @@ def build_daily_log_payload(result: dict[str, Any], date_str: str) -> dict[str, 
             "range_high": prediction.get("range_high", 0.0),
             "confidence": prediction.get("confidence", 0.0),
         },
-        "actuals": {"open": 0.0, "close": 0.0},
-        "scores": {"open": 0, "close": 0, "direction": 0, "regime": 0, "total": 0},
+        # 0 is a valid score, not a pending-state marker.  Keep unevaluated
+        # pre-open forecasts distinct so holidays cannot pollute score history.
+        "evaluation_status": "pending_actuals",
+        "actuals": {"open": None, "close": None},
+        "scores": {"open": None, "close": None, "direction": None, "regime": None, "total": None},
         "failure_tags": [],
         "reflection": {
             "summary": "final_open_research 실행 시 preopen daily log를 즉시 저장했다.",
@@ -345,6 +371,9 @@ def predict() -> dict[str, Any]:
     extreme_ewy_gapup_watch = extreme_ewy_gapup_underreaction_watch(us, fx)
     post_rally_risk_on_watch = post_rally_risk_on_open_underreaction_watch(
         us, fx, domestic, prior_ret
+    )
+    extreme_overnight_selloff_watch = extreme_overnight_selloff_underreaction_watch(
+        us, domestic, intraday_reversal, breadth
     )
 
     residual_correction = 0.0
@@ -480,6 +509,7 @@ def predict() -> dict[str, Any]:
             "relief_gap_rebound": relief_gap_rebound,
             "extreme_ewy_gapup_underreaction_watch": extreme_ewy_gapup_watch,
             "post_rally_risk_on_open_underreaction_watch": post_rally_risk_on_watch,
+            "extreme_overnight_selloff_underreaction_watch": extreme_overnight_selloff_watch,
         },
         "prediction": {
             "open": open_pred,

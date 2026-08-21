@@ -1,0 +1,138 @@
+{
+  "date": "2026-08-17",
+  "as_of_kst": "2026-08-17T12:30:27+09:00",
+  "record_mode": "persisted_from_final_open_research",
+  "model_version": "vFinal-open-2026-08-17-multi-anchor-residual-compress",
+  "regime": "preopen_open_forecast_locked",
+  "evaluation_status": "not_evaluable_non_trading_day",
+  "inputs": {
+    "sp500_pct": -0.17,
+    "nasdaq_pct": -0.28,
+    "sox_pct": -0.31,
+    "ewy_pct": 0.63,
+    "usdkrw": 1416.48,
+    "usdkrw_pct": -0.026,
+    "reference_mode": "latest_completed_session",
+    "reference_kospi_date": "20260814",
+    "prior_kospi_close_date": "20260813",
+    "prior_kospi_close": 6977.94,
+    "prior_kospi_ret_pct": 2.42,
+    "prior_intraday_reversal_pct": -0.25,
+    "foreign_flow_krw_bn": 303.9,
+    "inst_flow_krw_bn": -103.0,
+    "program_flow_krw_bn": 4.7,
+    "breadth_rise_ratio": 0.768,
+    "samsung_pct": 2.43,
+    "skhynix_pct": 3.26
+  },
+  "flags": [
+    "opening_semiconductor_lead_false",
+    "fx_pressure_high_false",
+    "split_semi_downside_false",
+    "semiconductor_super_gapup_false",
+    "positive_extreme_gapup_false",
+    "negative_extreme_unwind_false",
+    "relief_gap_rebound_false",
+    "extreme_ewy_gapup_underreaction_watch_false",
+    "post_rally_risk_on_open_underreaction_watch_false"
+  ],
+  "components": {
+    "overnight_core_ret": 0.00055,
+    "domestic_damage_ret": 0.00189,
+    "residual_correction_ret": 0.0,
+    "compression": 1.0,
+    "raw_open_ret": -0.00134,
+    "final_open_ret": -0.00134,
+    "defense_strength": -10767.0,
+    "extreme_score": 0.63,
+    "relief_gap_rebound": false
+  },
+  "predicate_view": {
+    "opening_semiconductor_lead": false,
+    "fx_pressure_high": false,
+    "split_semi_downside": false,
+    "semiconductor_super_gapup": false,
+    "positive_extreme_gapup": false,
+    "negative_extreme_unwind": false,
+    "relief_gap_rebound": false,
+    "extreme_ewy_gapup_underreaction_watch": false,
+    "post_rally_risk_on_open_underreaction_watch": false
+  },
+  "predictions": {
+    "open": 6968.59,
+    "close": 0.0,
+    "range_low": 6923.59,
+    "range_high": 7013.59,
+    "confidence": 0.65
+  },
+  "actuals": {"open": null, "close": null},
+  "scores": {"open": null, "close": null, "direction": null, "regime": null, "total": null},
+  "failure_tags": [],
+  "reflection": {
+    "summary": "광복절 대체공휴일 휴장으로 실제 시가·종가가 없어 채점하지 않았다. 0점이 아닌 미평가(null)로 유지한다.",
+    "next_candidates": ["non_trading_day_keep_scores_null"]
+  },
+  "comparison": {
+    "duel_mode": "vs_claude",
+    "claude_style_assumption": "EWY_direct_transformer_k_0.58",
+    "claude_style_inferred_open": 7003.44,
+    "codex_edge_note": "EWY 단독 앵커가 아니라 SOX·Nasdaq·S&P·USDKRW·전일 국내 손상도·잔차보정·극단값 압축을 함께 반영"
+  },
+  "summary_ko": {
+    "forecast_open": 6968.59,
+    "range_low": 6923.59,
+    "range_high": 7013.59,
+    "confidence": 0.65,
+    "opening_semiconductor_lead": false,
+    "fx_pressure_high": false
+  },
+  "message_ko": "예측값 6968.59 / 범위 6923.59~7013.59 / confidence 0.65. opening_semiconductor_lead는 false, fx_pressure_high는 false로 판단했다.",
+  "rationale": [
+    "EWY +0.63% 단독 추종이 아니라 SOX -0.31%, Nasdaq -0.28%, S&P -0.17%를 함께 반영",
+    "USD/KRW 1,416.48, 전일대비 -0.03%로 고환율 압박 기준 미충족",
+    "전일 국내 손상도는 외인 +303.9bn, 기관 -103.0bn, 프로그램 +4.7bn, 상승비율 0.768이며 잔차보정 +0.00% 반영"
+  ],
+  "disclaimer": "투자자문이 아니라 연구·설명 목적입니다.",
+  "intraday_close_1230": {
+    "as_of_kst": "2026-08-17T12:30:27+09:00",
+    "status": "withheld_non_trading_day_stale_market_data",
+    "market_check": {
+      "expected_date": "2026-08-17",
+      "realtime_traded_date": "2026-08-14",
+      "integration_bizdate": "2026-08-14",
+      "reason": "2026-08-17 is Sunday; no KOSPI cash-session intraday data exists."
+    },
+    "nowcast_check": {
+      "status": "not_evaluable",
+      "reason": "Foreign, institutional, and program actual flows are unavailable for the non-trading day.",
+      "mismatch_count": null,
+      "confidence_adjustment": null
+    },
+    "features": {
+      "recent_price_acceleration_10m_pts": null,
+      "recent_price_acceleration_20m_pts": null,
+      "breadth": null,
+      "samsung_relative_strength": null,
+      "skhynix_relative_strength": null,
+      "low_recovery_ratio": null,
+      "institution_absorption": null,
+      "avalanche_sell": null,
+      "crash_continuation": null,
+      "program_drag_risk": null
+    },
+    "prediction": {
+      "model_version": "vFinal-close-2026-07-29-crash-shortcover-v3",
+      "forecast_close": null,
+      "range_low": null,
+      "range_high": null,
+      "regime": "non_trading_day_withheld",
+      "confidence": 0.0,
+      "reasons_top3": [
+        "일요일로 KOSPI 정규장이 휴장이다.",
+        "최신 실시간 체결일과 수급 기준일이 모두 2026-08-14로 검증돼 2026-08-17 12:30 입력이 아니다.",
+        "nowcast 대 실제 수급 부호 비교가 불가하므로 confidence를 산출하지 않는다."
+      ]
+    },
+    "disclaimer": "투자자문이 아니라 연구·설명 목적입니다."
+  }
+}

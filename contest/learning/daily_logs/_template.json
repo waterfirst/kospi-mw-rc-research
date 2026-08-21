@@ -17,16 +17,17 @@
     "open": 0.0,
     "close": 0.0
   },
+  "evaluation_status": "pending_actuals",
   "actuals": {
-    "open": 0.0,
-    "close": 0.0
+    "open": null,
+    "close": null
   },
   "scores": {
-    "open": 0,
-    "close": 0,
-    "direction": 0,
-    "regime": 0,
-    "total": 0
+    "open": null,
+    "close": null,
+    "direction": null,
+    "regime": null,
+    "total": null
   },
   "failure_tags": [],
   "reflection": {

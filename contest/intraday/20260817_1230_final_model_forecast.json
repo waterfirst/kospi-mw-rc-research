@@ -1,0 +1,24 @@
+{
+  "as_of_kst": "2026-08-17T12:30:27+09:00",
+  "status": "withheld_non_trading_day_stale_market_data",
+  "market_check": {
+    "expected_date": "2026-08-17",
+    "realtime_traded_date": "2026-08-14",
+    "integration_bizdate": "2026-08-14",
+    "reason": "2026-08-17 is Sunday; no KOSPI cash-session intraday data exists."
+  },
+  "nowcast_check": {
+    "status": "not_evaluable",
+    "mismatch_count": null,
+    "confidence_adjustment": null
+  },
+  "prediction": {
+    "model_version": "vFinal-close-2026-07-29-crash-shortcover-v3",
+    "forecast_close": null,
+    "range_low": null,
+    "range_high": null,
+    "regime": "non_trading_day_withheld",
+    "confidence": 0.0
+  },
+  "disclaimer": "투자자문이 아니라 연구·설명 목적입니다."
+}
