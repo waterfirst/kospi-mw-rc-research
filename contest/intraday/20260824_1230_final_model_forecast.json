@@ -1,0 +1,8 @@
+{
+  "as_of_kst": "2026-08-24T12:30:50+09:00",
+  "model_version": "vFinal-close-2026-07-29-crash-shortcover-v3",
+  "prediction": {"forecast_close": 6592, "range_low": 6522, "range_high": 6657, "regime": "weak_drift", "confidence": 0.43},
+  "nowcast_check": {"predicted_signs": {"foreign": "positive", "institution": "positive", "program": "negative"}, "actual_signs": {"foreign": "negative", "institution": "negative", "program": "negative"}, "mismatch_count": 2, "agreement": "1/3"},
+  "features": {"breadth": 0.1114, "samsung_relative_strength_pt": -5.35, "skhynix_relative_strength_pt": 0.23, "low_recovery_ratio": 0.0247, "price_acceleration_10m_pts": -11.83, "price_acceleration_20m_pts": -32.85, "institution_absorption": false, "avalanche_sell": false, "crash_continuation": false, "program_drag_risk": true},
+  "disclaimer": "투자자문이 아니라 연구·설명 목적입니다."
+}

@@ -20,9 +20,10 @@ def now_kst() -> dt.datetime:
 
 
 def num(x: Any) -> float:
-    if x in (None, ""):
+    if x in (None, "", "-"):
         return 0.0
-    return float(str(x).replace(",", "").replace("%", "").replace("+", "").strip() or 0)
+    cleaned = str(x).replace(",", "").replace("%", "").replace("+", "").strip()
+    return float(cleaned) if cleaned not in ("", "-") else 0.0
 
 
 def fetch_us() -> dict[str, Any]:
@@ -126,6 +127,37 @@ def fetch_domestic() -> dict[str, Any]:
         "samsung_pct": stocks.get("삼성전자", {}).get("change_pct", 0.0),
         "skhynix_pct": stocks.get("SK하이닉스", {}).get("change_pct", 0.0),
     }
+
+
+def previous_domestic_from_log(reference_date: str) -> dict[str, Any] | None:
+    """Use the prior session's persisted intraday snapshot when pre-open API is blank.
+
+    Naver's integration endpoint returns '-' before the new KOSPI session begins.
+    The saved prior-session snapshot is explicitly marked as provisional, but is
+    preferable to treating the previous domestic damage signal as zero.
+    """
+    path = DAILY_LOG_DIR / f"{reference_date[:4]}-{reference_date[4:6]}-{reference_date[6:8]}.json"
+    if not path.exists():
+        return None
+    try:
+        log = json.loads(path.read_text(encoding="utf-8"))
+        integration = log["intraday_close_1230"]["snapshot"]["integration"]
+        deal = integration.get("deal", {})
+        program = integration.get("program", {})
+        updown = integration.get("updown", {})
+        stocks = integration.get("stocks", {})
+        return {
+            "foreign": num(deal.get("foreign")),
+            "institution": num(deal.get("institution")),
+            "program": num(program.get("total")),
+            "rise": int(num(updown.get("rise"))),
+            "fall": int(num(updown.get("fall"))),
+            "samsung_pct": num((stocks.get("삼성전자") or {}).get("change_pct")),
+            "skhynix_pct": num((stocks.get("SK하이닉스") or {}).get("change_pct")),
+            "source": "previous_daily_log_intraday_1230_provisional",
+        }
+    except (KeyError, TypeError, ValueError, json.JSONDecodeError):
+        return None
 
 
 def clamp(x: float, lo: float, hi: float) -> float:
@@ -312,9 +344,17 @@ def predict() -> dict[str, Any]:
     us = fetch_us()
     fx = fetch_usdkrw()
     day = fetch_kospi_day()
-    domestic = fetch_domestic()
 
     reference_day, prior_day, reference_mode = select_open_reference(day)
+    domestic = fetch_domestic()
+    domestic_source = "naver_integration"
+    # Before the open, the live endpoint has no investor/breadth values.  Pull
+    # the persisted prior-session snapshot rather than silently zeroing damage.
+    if domestic["foreign"] == domestic["institution"] == domestic["program"] == 0.0:
+        prior_domestic = previous_domestic_from_log(reference_day["date"])
+        if prior_domestic is not None:
+            domestic = {**domestic, **prior_domestic}
+            domestic_source = str(domestic.pop("source"))
     close = reference_day["close"]
     prior_close = (prior_day or {}).get("close") or 0.0
     prior_ret = (close / prior_close - 1.0) if prior_close else 0.0
@@ -487,6 +527,7 @@ def predict() -> dict[str, Any]:
             "breadth_rise_ratio": round(breadth, 3),
             "samsung_pct": round(domestic["samsung_pct"], 2),
             "skhynix_pct": round(domestic["skhynix_pct"], 2),
+            "domestic_damage_source": domestic_source,
         },
         "components": {
             "overnight_core_ret": round(overnight_core, 5),

@@ -1,0 +1,10 @@
+[Codex 새로운 최종모델] KOSPI 12:30 종가 예측 (12:30 KST)
+예측 종가: 6,592
+범위: 6,522 ~ 6,657
+레짐: weak_drift
+confidence: 0.43
+nowcast 부호 일치: 1/3 (외국인·기관 불일치 → confidence 하향)
+핵심 1: 외국인 -24.839bn, 기관 -7.701bn, 프로그램 -19.804bn 순매도.
+핵심 2: breadth +0.11이나 삼성전자 상대강도 -5.35pt, 반도체 가중 상대강도 -2.28pt.
+핵심 3: 저가 회복률 2.5%, 최근 10/20분 -11.8/-32.9pt; institution_absorption=False, avalanche_sell=False, crash_continuation=False, program_drag_risk=True.
+투자자문이 아니라 연구·설명 목적입니다.

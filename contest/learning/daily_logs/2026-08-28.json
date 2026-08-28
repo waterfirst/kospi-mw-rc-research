@@ -1,0 +1,135 @@
+{
+  "date": "2026-08-28",
+  "as_of_kst": "2026-08-28T12:31:30+09:00",
+  "record_mode": "auto_generated_from_open_research_for_intraday_close_run",
+  "model_version": "vFinal-open-2026-08-28-multi-anchor-residual-compress",
+  "regime": "preopen_generated_pending_intraday_close",
+  "inputs": {
+    "sp500_pct": 0.72,
+    "nasdaq_pct": 1.57,
+    "sox_pct": 2.33,
+    "ewy_pct": 1.65,
+    "usdkrw": 1376.88,
+    "usdkrw_pct": -0.478,
+    "reference_mode": "previous_completed_session",
+    "reference_kospi_date": "20260827",
+    "prior_kospi_close_date": "20260826",
+    "prior_kospi_close": 6912.37,
+    "prior_kospi_ret_pct": 1.53,
+    "prior_intraday_reversal_pct": -1.2,
+    "foreign_flow_krw_bn": -93.8,
+    "inst_flow_krw_bn": -0.5,
+    "program_flow_krw_bn": -85.2,
+    "breadth_rise_ratio": 0.633,
+    "samsung_pct": -2.44,
+    "skhynix_pct": -2.2,
+    "domestic_damage_source": "naver_integration"
+  },
+  "flags": [
+    "opening_semiconductor_lead_false",
+    "fx_pressure_high_false",
+    "split_semi_downside_false",
+    "semiconductor_super_gapup_false",
+    "positive_extreme_gapup_false",
+    "negative_extreme_unwind_false",
+    "relief_gap_rebound_false",
+    "extreme_ewy_gapup_underreaction_watch_false",
+    "post_rally_risk_on_open_underreaction_watch_false",
+    "extreme_overnight_selloff_underreaction_watch_false"
+  ],
+  "components": {
+    "overnight_core_ret": 0.01463,
+    "domestic_damage_ret": 0.006,
+    "residual_correction_ret": 0.0009,
+    "compression": 0.84,
+    "raw_open_ret": 0.00953,
+    "final_open_ret": 0.008,
+    "defense_strength": -13259.5,
+    "extreme_score": 2.33,
+    "relief_gap_rebound": false
+  },
+  "predictions": {"open": 6967.68, "close": 0.0, "range_low": 6915.83, "range_high": 7019.53, "confidence": 0.57},
+  "evaluation_status": "scored_final_close",
+  "actuals": {"open": 6846.54, "close": 6788.88, "high": 6901.78, "low": 6780.13, "foreign_flow_krw_bn": -85.25, "institution_flow_krw_bn": -118.76, "program_flow_krw_bn": -149.5, "source": "Naver KOSPI daily/realtime/integration API, market_status=CLOSE, 2026-08-28T18:27:15+09:00"},
+  "scores": {
+    "open": 0,
+    "close": 3,
+    "direction": null,
+    "regime": null,
+    "total": 3,
+    "open_detail": {"forecast": 6967.68, "actual": 6846.54, "absolute_error": 121.14, "error_pct": 1.7694, "tier_score": 0, "range_hit": false},
+    "close_1230_final_model": {"forecast": 6836.0, "actual": 6788.88, "absolute_error": 47.12, "error_pct": 0.6941, "tier_score": 3, "range_hit": true},
+    "flow_nowcast": {"hits": 1, "total": 3, "mismatch": ["foreign_positive_to_negative_at_1230_and_close", "institution_positive_to_negative_at_1230_and_close"]}
+  },
+  "failure_tags": [],
+  "reflection": {
+    "summary": "시가 엔진은 실제 시가를 121.14pt(1.7694%, tier 0) 과대예측했고 범위를 벗어났다. 12:30 종가 엔진은 47.12pt(0.6941%, tier 3) 및 범위 내 마감으로 부분 적중했다. 프로그램 음(-)만 맞고 외국인·기관은 양(+) 예측에서 음(-)으로 반전해 수급 nowcast는 1/3이었다.",
+    "next_candidates": ["persist_preopen_daily_log_before_intraday_close_engine", "observe_only: EWY·SOX·Nasdaq·S&P 동반 상승에도 국내 반도체 약세와 외국인·프로그램 순매도가 겹친 시가 과대예측 사례를 추가 축적한다.", "no_parameter_change: 단일 사례이며 종가가 범위 내 tier 3이므로 계수는 유지한다."]
+  },
+  "comparison": {"duel_mode": "vs_claude", "claude_style_assumption": "EWY_direct_transformer_k_0.58", "claude_style_inferred_open": 6978.52, "codex_edge_note": "EWY 단독 앵커가 아니라 SOX·Nasdaq·S&P·USDKRW·전일 국내 손상도·잔차보정·극단값 압축을 함께 반영"},
+  "rationale": [
+    "EWY +1.65% 단독 추종이 아니라 SOX +2.33%, Nasdaq +1.57%, S&P +0.72%를 함께 반영",
+    "USD/KRW 1,376.88, 전일대비 -0.48%로 고환율 압박 기준 미충족",
+    "전일 국내 손상도는 외인 -93.8bn, 기관 -0.5bn, 프로그램 -85.2bn, 상승비율 0.633이며 잔차보정 +0.09% 반영"
+  ],
+  "disclaimer": "투자자문이 아니라 연구·설명 목적입니다.",
+  "intraday_close_1230": {
+    "as_of_kst": "2026-08-28T12:31:30+09:00",
+    "snapshot": {
+      "realtime": {"close": 6840.17, "open": 6846.54, "high": 6901.78, "low": 6805.01, "change_pct": -1.04, "market_status": "OPEN", "local_traded_at": "2026-08-28T12:31:30+09:00"},
+      "integration": {
+        "bizdate": "20260828",
+        "prev_close": 6912.37,
+        "open": 6846.54,
+        "high": 6901.78,
+        "low": 6805.01,
+        "deal": {"personal": 139.0, "foreign": -9379.0, "institution": -49.0},
+        "program": {"index_diff": 38.0, "non_index_diff": -8559.0, "total": -8521.0},
+        "updown": {"upper": 1, "rise": 544, "lower": 0, "fall": 315, "steady": 50},
+        "stocks": {
+          "삼성전자": {"close": 259500.0, "change_pct": -2.44, "local_traded_at": "2026-08-28T12:31:20+09:00"},
+          "SK하이닉스": {"close": 1692000.0, "change_pct": -2.2, "local_traded_at": "2026-08-28T12:31:20+09:00"}
+        }
+      }
+    },
+    "nowcast_check": {
+      "predicted_signs": {
+        "foreign": {"score": 2.5664, "sign": "positive"},
+        "institution": {"score": 2.669, "sign": "positive"},
+        "program": {"score": -11.5, "sign": "negative"}
+      },
+      "actual_signs": {"foreign": "negative", "institution": "negative", "program": "negative"},
+      "mismatch": {"foreign": true, "institution": true, "program": false},
+      "mismatch_count": 2
+    },
+    "features": {
+      "breadth": 0.2666,
+      "samsung_relative_strength": -1.4,
+      "skhynix_relative_strength": -1.16,
+      "semis_relative_strength_weighted": -1.268,
+      "low_recovery_ratio": 0.3633,
+      "institution_absorption": false,
+      "avalanche_sell": false,
+      "crash_continuation": false,
+      "program_drag_risk": false,
+      "recent_price_acceleration_10m_pts": 1.48,
+      "recent_price_acceleration_20m_pts": 0.14,
+      "samsung_acceleration_10m_krw": 500.0,
+      "skhynix_acceleration_10m_krw": 0.0
+    },
+    "prediction": {
+      "model_version": "vFinal-close-2026-07-29-crash-shortcover-v3",
+      "forecast_close": 6836,
+      "range_low": 6766,
+      "range_high": 6865,
+      "regime": "weak_drift",
+      "confidence": 0.46,
+      "reasons_top3": [
+        "외국인 -9,379억·기관 -49억·프로그램 -8,521억 순매도이며, nowcast 부호 일치가 1/3에 그쳐 confidence를 하향",
+        "breadth +0.27로 상승 종목은 우세하지만 삼성전자 상대강도 -1.40pt, SK하이닉스 -1.16pt로 지수 핵심 반도체는 열위",
+        "저가 회복률 0.36, 최근 10~20분 가속도 +1.5/+0.1pt로 미약한 안정; institution_absorption·avalanche_sell·crash_continuation·program_drag_risk는 모두 false"
+      ]
+    },
+    "disclaimer": "투자자문이 아니라 연구·설명 목적입니다."
+  }
+}

@@ -44,6 +44,13 @@ def sign_label(value: float) -> str:
     return "flat"
 
 
+def nowcast_sign_label(value: float, uncertainty_band: float = 0.75) -> str:
+    """Label weak directional nowcasts as uncertain, without changing price level."""
+    if 0.0 < value < uncertainty_band:
+        return "uncertain"
+    return sign_label(value)
+
+
 def fetch_realtime() -> dict[str, Any]:
     data = requests.get(
         "https://polling.finance.naver.com/api/realtime/domestic/index/KOSPI",
@@ -322,9 +329,9 @@ def compute_nowcast(morning: dict[str, Any]) -> dict[str, Any]:
     if broad_selloff_institution_derisk:
         inst_score -= 5.25
     return {
-        "foreign": {"score": round(foreign_score, 4), "sign": sign_label(foreign_score)},
-        "institution": {"score": round(inst_score, 4), "sign": sign_label(inst_score)},
-        "program": {"score": round(program_score, 4), "sign": sign_label(program_score)},
+        "foreign": {"score": round(foreign_score, 4), "sign": nowcast_sign_label(foreign_score)},
+        "institution": {"score": round(inst_score, 4), "sign": nowcast_sign_label(inst_score)},
+        "program": {"score": round(program_score, 4), "sign": nowcast_sign_label(program_score)},
     }
 
 
@@ -514,6 +521,10 @@ def compute_forecast(morning: dict[str, Any]) -> dict[str, Any]:
         for key in ("foreign", "institution", "program")
     }
     mismatch_count = sum(1 for v in mismatch.values() if v)
+    uncertain_count = sum(
+        1 for key in ("foreign", "institution", "program")
+        if nowcast[key]["sign"] == "uncertain"
+    )
 
     breadth = (it["updown"]["rise"] - it["updown"]["fall"]) / max(it["updown"]["rise"] + it["updown"]["fall"], 1)
     low_recovery_ratio = (rt["close"] - rt["low"]) / max(rt["high"] - rt["low"], 1.0)
@@ -744,6 +755,7 @@ def compute_forecast(morning: dict[str, Any]) -> dict[str, Any]:
     )
     confidence = 0.62
     confidence -= 0.08 * mismatch_count
+    confidence -= 0.05 * uncertain_count
     if flow_reversal_squeeze:
         confidence += 0.10
     if semis_meltup_continuation:

@@ -1,0 +1,160 @@
+{
+  "as_of_kst": "2026-08-26T12:30:36+09:00",
+  "snapshot": {
+    "realtime": {
+      "close": 6836.96,
+      "open": 6727.25,
+      "high": 6878.94,
+      "low": 6704.1,
+      "change_pct": 1.4,
+      "market_status": "OPEN",
+      "local_traded_at": "2026-08-26T12:30:36+09:00"
+    },
+    "integration": {
+      "bizdate": "20260826",
+      "prev_close": 6742.74,
+      "open": 6727.25,
+      "high": 6878.94,
+      "low": 6704.1,
+      "deal": {
+        "personal": -11441.0,
+        "foreign": -2868.0,
+        "institution": 5189.0
+      },
+      "program": {
+        "index_diff": 977.0,
+        "non_index_diff": -7186.0,
+        "total": -6209.0
+      },
+      "updown": {
+        "upper": 1,
+        "rise": 466,
+        "lower": 0,
+        "fall": 399,
+        "steady": 42
+      },
+      "stocks": {
+        "삼성전자": {
+          "close": 263750.0,
+          "change_pct": 2.63,
+          "local_traded_at": "2026-08-26T12:30:21+09:00"
+        },
+        "SK하이닉스": {
+          "close": 1716000.0,
+          "change_pct": 2.26,
+          "local_traded_at": "2026-08-26T12:30:21+09:00"
+        },
+        "삼성전자우": {
+          "close": 198000.0,
+          "change_pct": 1.8,
+          "local_traded_at": "2026-08-26T12:30:20+09:00"
+        },
+        "SK스퀘어": {
+          "close": 1066000.0,
+          "change_pct": 0.57,
+          "local_traded_at": "2026-08-26T12:30:19+09:00"
+        },
+        "삼성전기": {
+          "close": 1345000.0,
+          "change_pct": -1.25,
+          "local_traded_at": "2026-08-26T12:30:23+09:00"
+        },
+        "현대차": {
+          "close": 421500.0,
+          "change_pct": 0.12,
+          "local_traded_at": "2026-08-26T12:30:22+09:00"
+        },
+        "LG에너지솔루션": {
+          "close": 349500.0,
+          "change_pct": 0.0,
+          "local_traded_at": "2026-08-26T12:30:19+09:00"
+        },
+        "삼성바이오로직스": {
+          "close": 1601000.0,
+          "change_pct": 1.01,
+          "local_traded_at": "2026-08-26T12:30:22+09:00"
+        },
+        "삼성물산": {
+          "close": 386000.0,
+          "change_pct": 5.18,
+          "local_traded_at": "2026-08-26T12:30:20+09:00"
+        },
+        "삼성생명": {
+          "close": 308500.0,
+          "change_pct": 8.25,
+          "local_traded_at": "2026-08-26T12:30:21+09:00"
+        }
+      }
+    }
+  },
+  "nowcast_check": {
+    "predicted_signs": {
+      "foreign": {
+        "score": 2.5846,
+        "sign": "positive"
+      },
+      "institution": {
+        "score": 4.471,
+        "sign": "positive"
+      },
+      "program": {
+        "score": -25.039,
+        "sign": "negative"
+      }
+    },
+    "actual_signs": {
+      "foreign": "negative",
+      "institution": "positive",
+      "program": "negative"
+    },
+    "mismatch": {
+      "foreign": true,
+      "institution": false,
+      "program": false
+    },
+    "mismatch_count": 1
+  },
+  "features": {
+    "breadth": 0.0775,
+    "samsung_relative_strength": 1.23,
+    "skhynix_relative_strength": 0.86,
+    "semis_relative_strength_weighted": 1.0265,
+    "low_recovery_ratio": 0.7599,
+    "institution_absorption": false,
+    "avalanche_sell": false,
+    "crash_continuation": false,
+    "program_drag_risk": false,
+    "semis_defensive_rebound": false,
+    "semis_meltup_continuation": false,
+    "crash_shortcover_support": false,
+    "flow_reversal_squeeze": false,
+    "parabolic_exhaustion_risk": false,
+    "midday_blowoff_reversal_risk": false,
+    "concentrated_rally_late_fade_risk": false,
+    "rebound_credit": 0.0,
+    "panic_stabilization_credit": 0.0,
+    "crash_shortcover_credit": 0.0,
+    "semis_defensive_credit": 0.0,
+    "semis_meltup_credit": 0.0,
+    "exhaustion_drag": 0.0,
+    "concentrated_rally_fade_drag": 0.0,
+    "recent_price_acceleration_10m_pts": -13.81,
+    "recent_price_acceleration_20m_pts": -15.31,
+    "samsung_acceleration_10m_krw": -1000.0,
+    "skhynix_acceleration_10m_krw": -5000.0
+  },
+  "prediction": {
+    "model_version": "vFinal-close-2026-07-29-crash-shortcover-v3",
+    "forecast_close": 6825,
+    "range_low": 6755,
+    "range_high": 6862,
+    "regime": "weak_drift",
+    "confidence": 0.54,
+    "reasons_top3": [
+      "외국인 순매도·기관 순매수·프로그램 순매도, nowcast 부호 일치 2/3로 신뢰도 조정",
+      "breadth 0.08로 시장 전반은 약하지만 삼성전자 상대강도 +1.23pt, SK하이닉스 상대강도 +0.86pt로 반도체 내부 차별화가 큼",
+      "저가 회복률 0.76, 최근 10~20분 가속도 -13.8/-15.3pt, institution_absorption=False, crash_continuation=False, program_drag_risk=False, crash_shortcover_support=False, flow_reversal_squeeze=False, parabolic_exhaustion_risk=False"
+    ]
+  },
+  "disclaimer": "투자자문이 아니라 연구·설명 목적입니다."
+}

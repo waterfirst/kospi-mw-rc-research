@@ -8,7 +8,16 @@ from final_open_research import (
     extreme_ewy_gapup_underreaction_watch,
     post_rally_risk_on_open_underreaction_watch,
 )
-from kospi_1230_final_model_run import detect_concentrated_rally_late_fade_risk
+from kospi_1230_final_model_run import (
+    detect_concentrated_rally_late_fade_risk,
+    nowcast_sign_label,
+)
+
+
+def test_weak_positive_nowcast_is_uncertain_but_strong_positive_is_not():
+    assert nowcast_sign_label(0.2588) == "uncertain"
+    assert nowcast_sign_label(0.75) == "positive"
+    assert nowcast_sign_label(-0.01) == "negative"
 
 
 def test_concentrated_rally_late_fade_guard_matches_two_scored_cases():
