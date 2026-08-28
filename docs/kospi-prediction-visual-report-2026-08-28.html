@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="2026년 8월 24~28일 KOSPI 12시 30분 종가 예측 실험을 한눈에 설명하는 비주얼 보고서">
+  <title>KOSPI 12:30 종가 예측 실험 · 비주얼 보고서</title>
+  <style>
+    :root{--navy:#10263f;--navy2:#173a5e;--ivory:#fffaf0;--paper:#fffef9;--cyan:#2a9dbe;--cyan2:#dff5f8;--amber:#e8a13a;--amber2:#fff0cf;--green:#2f9c6a;--red:#c85454;--ink:#172334;--muted:#667085;--line:#dbe4e8;--shadow:0 18px 50px rgba(16,38,63,.10)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ivory);color:var(--ink);font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;line-height:1.65;word-break:keep-all;overflow-wrap:break-word}
+    a{color:#126a86;text-underline-offset:3px}main{width:min(1180px,calc(100% - 32px));margin:auto}.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--navy),var(--navy2));color:white;padding:58px 0 48px}.hero:after{content:"";position:absolute;right:-120px;top:-160px;width:430px;height:430px;border:70px solid rgba(65,202,224,.14);border-radius:50%}.eyebrow{display:inline-flex;gap:9px;align-items:center;font-size:13px;font-weight:800;letter-spacing:.06em;color:#9feaf4}.dot{width:8px;height:8px;background:#55d6e8;border-radius:50%;box-shadow:0 0 0 6px rgba(85,214,232,.14)}h1{font-size:clamp(34px,6vw,72px);line-height:1.06;letter-spacing:-.045em;margin:18px 0 16px;max-width:900px}.thesis{max-width:780px;font-size:clamp(18px,2.5vw,26px);line-height:1.45;color:#d9edf4}.hero-note{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}.pill{padding:8px 13px;border:1px solid rgba(255,255,255,.23);border-radius:999px;background:rgba(255,255,255,.07);font-size:13px}.section{padding:52px 0}.section-title{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:22px}.section-title h2{font-size:clamp(26px,4vw,42px);line-height:1.15;letter-spacing:-.035em;margin:0}.section-title p{margin:0;color:var(--muted);max-width:470px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:23px;box-shadow:var(--shadow)}.kpi{grid-column:span 3;min-height:170px}.kpi .label{font-size:13px;color:var(--muted);font-weight:800}.kpi .value{font-size:clamp(36px,5vw,58px);font-weight:900;letter-spacing:-.055em;line-height:1.05;margin:12px 0 4px}.kpi .unit{font-size:16px;color:var(--muted)}.good{color:var(--green)}.warn{color:#b36c0f}.bad{color:var(--red)}.wide{grid-column:span 8}.side{grid-column:span 4}.full{grid-column:1/-1}.mini{font-size:13px;color:var(--muted)}.chart-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}.chart-title h3,.card h3{margin:0;font-size:20px;letter-spacing:-.02em}.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted)}.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}.chart-wrap{width:100%;overflow:hidden}.chart-wrap svg{display:block;width:100%;height:auto}.callout{padding:18px;border-left:5px solid var(--cyan);background:var(--cyan2);border-radius:0 14px 14px 0;font-size:17px}.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;position:relative}.step{position:relative;padding:18px 15px;background:var(--paper);border:1px solid var(--line);border-radius:16px}.step:not(:last-child):after{content:"→";position:absolute;right:-12px;top:40%;z-index:2;color:var(--cyan);font-weight:900;font-size:22px}.step time{font-size:12px;color:var(--cyan);font-weight:900}.step b{display:block;margin:4px 0}.step small{color:var(--muted)}.days{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.day{padding:17px;border:1px solid var(--line);border-radius:16px;background:var(--paper)}.day header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.score{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--cyan2);font-weight:900;color:#126a86}.day dl{margin:0;display:grid;grid-template-columns:1fr auto;gap:5px 8px;font-size:13px}.day dt{color:var(--muted)}.day dd{margin:0;font-weight:800}.errorbar{height:7px;background:#eef2f3;border-radius:9px;margin-top:12px;overflow:hidden}.errorbar span{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--amber));border-radius:9px}.friday{background:linear-gradient(145deg,#f3fbfc,#fffaf0)}.flow{display:grid;grid-template-columns:1.1fr 46px 1.1fr 46px 1.1fr;align-items:stretch;gap:8px}.flow-box{border:1px solid var(--line);background:white;border-radius:16px;padding:18px}.flow-arrow{display:grid;place-items:center;color:var(--cyan);font-size:28px;font-weight:900}.flow-box strong{display:block;font-size:17px;margin-bottom:7px}.signal-list{list-style:none;padding:0;margin:0}.signal-list li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13px}.signal-list li:last-child{border:0}.traffic{display:inline-flex;align-items:center;gap:6px;font-weight:800}.traffic:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--red)}.traffic.ok:before{background:var(--green)}.layers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.layer{padding:20px;border-radius:18px;border:1px solid var(--line);background:var(--paper)}.layer .tag{display:inline-block;font-size:11px;font-weight:900;padding:5px 9px;border-radius:99px;background:var(--cyan2);color:#126a86}.layer.analysis .tag{background:var(--amber2);color:#945b08}.layer.unknown .tag{background:#f3e7e7;color:#944}.layer h3{margin:12px 0 8px}.limits{background:var(--navy);color:white}.limits .section-title p{color:#bdd0dd}.limit-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.limit{border:1px solid rgba(255,255,255,.17);background:rgba(255,255,255,.06);border-radius:17px;padding:20px}.limit b{color:#9feaf4}.source-list{display:grid;gap:9px;font-size:14px}.footer{padding:30px 0 50px;color:var(--muted);font-size:13px}.mobile-only{display:none}
+    @media(max-width:900px){.kpi{grid-column:span 6}.wide,.side{grid-column:1/-1}.timeline{grid-template-columns:1fr}.step:not(:last-child):after{content:"↓";right:auto;left:50%;top:auto;bottom:-19px}.days{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.flow-arrow{transform:rotate(90deg)}.layers{grid-template-columns:1fr}.section-title{align-items:start;flex-direction:column}.limit-grid{grid-template-columns:1fr}}
+    @media(max-width:560px){main{width:min(100% - 22px,1180px)}.hero{padding:42px 0 34px}.section{padding:38px 0}.kpi{grid-column:1/-1;min-height:auto}.card{padding:18px;border-radius:16px}.days{grid-template-columns:1fr}.desktop-only{display:none}.mobile-only{display:block}.chart-wrap{margin-inline:-8px;width:calc(100% + 16px)}.hero-note{gap:6px}.pill{font-size:12px;padding:7px 10px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <main>
+      <div class="eyebrow"><span class="dot"></span>2026.08.24—08.28 · LIVE RESEARCH</div>
+      <h1>KOSPI를 맞히는 기계가 아니라<br>틀린 이유를 배우는 실험</h1>
+      <p class="thesis">매일 12시 30분까지 보이는 수급과 가격을 얼리고 종가를 예측한다. 장이 끝나면 오차를 숨기지 않고 다음 날의 판단 규칙으로 되돌린다.</p>
+      <div class="hero-note"><span class="pill">모의 연구</span><span class="pill">5거래일</span><span class="pill">동일 5점 척도</span><span class="pill">투자자문 아님</span></div>
+    </main>
+  </header>
+
+  <main>
+    <section class="section" aria-labelledby="one-glance">
+      <div class="section-title"><h2 id="one-glance">한눈에 본 이번 주</h2><p>점수 하나보다 오차·범위·수급 신뢰도를 함께 봐야 모델이 실제로 무엇을 배웠는지 알 수 있다.</p></div>
+      <div class="grid">
+        <article class="card kpi"><div class="label">종가 예측 점수</div><div class="value warn">12<span class="unit">/25</span></div><div class="mini">0·0·5·4·3점</div></article>
+        <article class="card kpi"><div class="label">평균 절대오차</div><div class="value">69.8<span class="unit">pt</span></div><div class="mini">5일 MAE</div></article>
+        <article class="card kpi"><div class="label">예측 범위 적중</div><div class="value good">3<span class="unit">/5일</span></div><div class="mini">8월 26~28일 연속</div></article>
+        <article class="card kpi"><div class="label">수급 부호 적중</div><div class="value bad">7<span class="unit">/15</span></div><div class="mini">외국인·기관·프로그램</div></article>
+
+        <article class="card wide">
+          <div class="chart-title"><h3>12:30 예측 종가 vs 실제 종가</h3><div class="legend"><span><i style="background:#2a9dbe"></i>예측</span><span><i style="background:#2f9c6a"></i>실제</span></div></div>
+          <div class="chart-wrap">
+            <svg viewBox="0 0 900 360" role="img" aria-labelledby="chart-title chart-desc">
+              <title id="chart-title">8월 24일부터 28일까지 KOSPI 예측 종가와 실제 종가</title><desc id="chart-desc">초반 이틀 오차가 컸고 26일과 27일에는 예측과 실제가 가까워졌으며 28일은 47.12포인트 차이로 범위 안에 들었다.</desc>
+              <rect width="900" height="360" rx="18" fill="#fffef9"/>
+              <g stroke="#dbe4e8" stroke-width="1"><line x1="72" y1="62" x2="842" y2="62"/><line x1="72" y1="122" x2="842" y2="122"/><line x1="72" y1="182" x2="842" y2="182"/><line x1="72" y1="242" x2="842" y2="242"/><line x1="72" y1="302" x2="842" y2="302"/></g>
+              <g fill="#667085" font-size="12"><text x="18" y="66">6,960</text><text x="18" y="126">6,858</text><text x="18" y="186">6,755</text><text x="18" y="246">6,652</text><text x="18" y="306">6,550</text></g>
+              <path d="M100 275 L275 281 L450 139 L625 76 L800 133" fill="none" stroke="#2a9dbe" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M100 214 L275 187 L450 149 L625 88 L800 160" fill="none" stroke="#2f9c6a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <g fill="#2a9dbe"><circle cx="100" cy="275" r="7"/><circle cx="275" cy="281" r="7"/><circle cx="450" cy="139" r="7"/><circle cx="625" cy="76" r="7"/><circle cx="800" cy="133" r="7"/></g>
+              <g fill="#2f9c6a"><circle cx="100" cy="214" r="7"/><circle cx="275" cy="187" r="7"/><circle cx="450" cy="149" r="7"/><circle cx="625" cy="88" r="7"/><circle cx="800" cy="160" r="7"/></g>
+              <g fill="#172334" font-size="13" text-anchor="middle"><text x="100" y="334">08.24</text><text x="275" y="334">08.25</text><text x="450" y="334">08.26</text><text x="625" y="334">08.27</text><text x="800" y="334">08.28</text></g>
+            </svg>
+          </div>
+          <p class="mini">예측: 6,592 → 6,582 → 6,825 → 6,932 → 6,836 · 실제: 6,696.96 → 6,742.74 → 6,808.21 → 6,912.37 → 6,788.88</p>
+        </article>
+        <aside class="card side">
+          <h3>이번 주의 진짜 결론</h3>
+          <p class="callout">모델은 “늘 맞는가?”보다 <b>틀렸을 때 스스로 신뢰도를 낮추고 기록하는가?</b>로 평가해야 한다.</p>
+          <p class="mini">8월 25일은 수급 부호를 3/3 맞혔지만 종가를 160.74pt 빗나갔다. 수급 방향 적중과 종가 수준 적중은 같은 문제가 아니다.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="daily-loop">
+      <div class="section-title"><h2 id="daily-loop">매일 같은 시각, 같은 절차</h2><p>나중에 안 정보를 예측에 몰래 넣지 않도록 각 시점의 정보를 고정한다.</p></div>
+      <div class="timeline">
+        <article class="step"><time>07:30</time><b>장전 예측 잠금</b><small>미국 지수·SOX·EWY·환율·전일 국내 손상도</small></article>
+        <article class="step"><time>09:05</time><b>시가 채점</b><small>예측값·범위와 실제 시가의 오차 기록</small></article>
+        <article class="step"><time>10:30</time><b>장중 점검</b><small>수급·시장 폭·반도체 상대강도 변화</small></article>
+        <article class="step"><time>12:30</time><b>종가 예측 잠금</b><small>최근 가속도와 위험 신호까지 반영</small></article>
+        <article class="step"><time>15:30+</time><b>실측·회고</b><small>오차, 범위 적중, 실패 태그를 원장에 저장</small></article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="five-days">
+      <div class="section-title"><h2 id="five-days">5일을 점으로 보지 않고 흐름으로 본다</h2><p>초반 이틀의 큰 실패 뒤 3일 연속 범위 적중. 그러나 표본 5일은 성능 확정에 턱없이 부족하다.</p></div>
+      <div class="days">
+        <article class="day"><header><b>08.24</b><span class="score">0</span></header><dl><dt>예측</dt><dd>6,592</dd><dt>실제</dt><dd>6,696.96</dd><dt>오차</dt><dd>104.96pt</dd><dt>범위</dt><dd class="bad">실패</dd></dl><div class="errorbar"><span style="width:65%"></span></div></article>
+        <article class="day"><header><b>08.25</b><span class="score">0</span></header><dl><dt>예측</dt><dd>6,582</dd><dt>실제</dt><dd>6,742.74</dd><dt>오차</dt><dd>160.74pt</dd><dt>범위</dt><dd class="bad">실패</dd></dl><div class="errorbar"><span style="width:100%"></span></div></article>
+        <article class="day"><header><b>08.26</b><span class="score">5</span></header><dl><dt>예측</dt><dd>6,825</dd><dt>실제</dt><dd>6,808.21</dd><dt>오차</dt><dd>16.79pt</dd><dt>범위</dt><dd class="good">적중</dd></dl><div class="errorbar"><span style="width:10%"></span></div></article>
+        <article class="day"><header><b>08.27</b><span class="score">4</span></header><dl><dt>예측</dt><dd>6,932</dd><dt>실제</dt><dd>6,912.37</dd><dt>오차</dt><dd>19.63pt</dd><dt>범위</dt><dd class="good">적중</dd></dl><div class="errorbar"><span style="width:12%"></span></div></article>
+        <article class="day"><header><b>08.28</b><span class="score">3</span></header><dl><dt>예측</dt><dd>6,836</dd><dt>실제</dt><dd>6,788.88</dd><dt>오차</dt><dd>47.12pt</dd><dt>범위</dt><dd class="good">적중</dd></dl><div class="errorbar"><span style="width:29%"></span></div></article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="friday-autopsy">
+      <div class="section-title"><h2 id="friday-autopsy">8월 28일 예측을 해부하면</h2><p>수급을 잘못 읽었기 때문에 모델이 스스로 confidence를 0.46으로 낮췄다.</p></div>
+      <article class="card friday">
+        <div class="flow">
+          <div class="flow-box"><strong>① 12:31에 본 장</strong><ul class="signal-list"><li><span>외국인</span><b>−9,379억</b></li><li><span>기관</span><b>−49억</b></li><li><span>프로그램</span><b>−8,521억</b></li><li><span>Breadth</span><b>+0.27</b></li><li><span>반도체 상대강도</span><b>열위</b></li></ul></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box"><strong>② 신뢰도 게이트</strong><ul class="signal-list"><li><span>외국인 부호</span><span class="traffic">불일치</span></li><li><span>기관 부호</span><span class="traffic">불일치</span></li><li><span>프로그램 부호</span><span class="traffic ok">일치</span></li><li><span>Nowcast</span><b>1/3</b></li><li><span>Confidence</span><b>0.46</b></li></ul></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box"><strong>③ 잠근 예측과 결과</strong><ul class="signal-list"><li><span>예측 종가</span><b>6,836</b></li><li><span>예측 범위</span><b>6,766~6,865</b></li><li><span>실제 종가</span><b>6,788.88</b></li><li><span>절대오차</span><b>47.12pt</b></li><li><span>판정</span><b class="good">범위 적중·3점</b></li></ul></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="evidence-layers">
+      <div class="section-title"><h2 id="evidence-layers">사실과 해석을 분리한다</h2><p>예쁜 차트가 불확실성을 감추지 않도록 세 층으로 나눈다.</p></div>
+      <div class="layers">
+        <article class="layer"><span class="tag">확인된 사실</span><h3>원장에 남은 숫자</h3><p>5일 예측·실제 종가·오차·점수·범위 적중 여부가 날짜별 JSON에 저장돼 있다. 이번 주 종가 점수는 12/25, 범위 적중은 3/5다.</p></article>
+        <article class="layer analysis"><span class="tag">분석</span><h3>초반 실패 후 개선</h3><p>26~28일 오차는 초반 이틀보다 작았다. 다만 이것이 모델 개선의 인과적 결과인지, 단지 시장 국면이 쉬웠는지는 아직 구분할 수 없다.</p></article>
+        <article class="layer unknown"><span class="tag">아직 모르는 것</span><h3>다음 주에 검증할 질문</h3><p>수급 부호 적중률이 종가 수준 오차를 실제로 줄이는가? 급락·급반등·갭상승 같은 다른 레짐에서도 범위가 유효한가?</p></article>
+      </div>
+    </section>
+  </main>
+
+  <section class="section limits" aria-labelledby="limits-title">
+    <main>
+      <div class="section-title"><h2 id="limits-title">단순화의 한계</h2><p>이 보고서는 모델의 작동 방식을 설명하는 연구 기록이며 매수·매도 신호가 아니다.</p></div>
+      <div class="limit-grid">
+        <div class="limit"><b>표본이 너무 작다.</b><br>5거래일 성적만으로 일반화 성능이나 수익성을 판단할 수 없다.</div>
+        <div class="limit"><b>점수와 돈은 다르다.</b><br>지수 수준 오차가 작아도 거래비용·슬리피지·포지션 크기를 반영한 전략 수익은 나쁠 수 있다.</div>
+        <div class="limit"><b>원천 데이터가 완전하지 않다.</b><br>실험 원장은 Naver KOSPI API 계열 값을 기록했다. 공식 재현 시 KRX 자료와 교차확인이 필요하다.</div>
+        <div class="limit"><b>사후 과적합을 경계한다.</b><br>한 번의 실패 뒤 곧바로 계수를 바꾸지 않고 동일 실패가 반복되는지 전향적으로 확인해야 한다.</div>
+      </div>
+    </main>
+  </section>
+
+  <main>
+    <section class="section" aria-labelledby="sources-title">
+      <div class="section-title"><h2 id="sources-title">근거와 더 깊은 보고서</h2><p>숫자는 원장으로, 설명 방식은 Threads의 시각화 아이디어로 추적할 수 있다.</p></div>
+      <div class="card source-list">
+        <a href="https://www.threads.com/@choi.openai/post/DcioVqJDghO" target="_blank" rel="noopener">Threads · 복잡한 정보를 시각 자료로 바꾸는 $visualize 소개</a>
+        <a href="https://waterfirst.github.io/kospi-mw-rc-research/weekly_duel_report_2026-08-28.html" target="_blank" rel="noopener">전문가형 주간 보고서 · Claude vs Codex 시가 대결과 종가 보조지표</a>
+        <a href="https://github.com/waterfirst/kospi-mw-rc-research/tree/claude/vibrant-ritchie-6rji3a/contest/learning/daily_logs" target="_blank" rel="noopener">날짜별 실험 원장 · 예측·실측·오차·회고 JSON</a>
+        <a href="https://data.krx.co.kr/" target="_blank" rel="noopener">KRX 정보데이터시스템 · 공식 시장 데이터 교차확인</a>
+      </div>
+    </section>
+    <footer class="footer">작성 기준: 2026-08-28 장 마감 · 연구 및 설명 목적 · 실제 투자 판단은 공식 데이터와 개인의 위험 한도를 별도로 확인해야 합니다.</footer>
+  </main>
+</body>
+</html>
