@@ -7,6 +7,7 @@ from final_open_research import (
     extreme_overnight_selloff_underreaction_watch,
     extreme_ewy_gapup_underreaction_watch,
     post_rally_risk_on_open_underreaction_watch,
+    sp500_lag_correlation_adjustment,
 )
 from kospi_1230_final_model_run import (
     detect_concentrated_rally_late_fade_risk,
@@ -73,3 +74,24 @@ def test_extreme_overnight_selloff_watch_rejects_non_synchronized_control():
     us = {"ewy": {"change_pct": -4.99}, "sox": {"change_pct": -4.98}, "nasdaq": {"change_pct": -1.33}}
     domestic = {"institution": -79.5, "program": -107.0}
     assert not extreme_overnight_selloff_underreaction_watch(us, domestic, -0.0362, 0.222)
+
+
+def test_sp500_lag_correlation_adjustment_adds_small_confirmed_risk_on_nudge():
+    us = {
+        "sp500": {"change_pct": 1.0},
+        "nasdaq": {"change_pct": 0.6},
+        "sox": {"change_pct": 0.2},
+        "ewy": {"change_pct": 0.4},
+    }
+    adj = sp500_lag_correlation_adjustment(us, {"change_pct": 0.0})
+    assert 0.0004 < adj < 0.0007
+
+
+def test_sp500_lag_correlation_adjustment_blocks_korea_specific_disagreement():
+    us = {
+        "sp500": {"change_pct": 1.0},
+        "nasdaq": {"change_pct": 0.6},
+        "sox": {"change_pct": 0.2},
+        "ewy": {"change_pct": -1.2},
+    }
+    assert sp500_lag_correlation_adjustment(us, {"change_pct": 0.0}) == 0.0

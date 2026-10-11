@@ -271,6 +271,45 @@ def post_rally_risk_on_open_underreaction_watch(
     )
 
 
+def sp500_lag_correlation_adjustment(us: dict[str, Any], fx: dict[str, Any]) -> float:
+    """Small causal anchor from the prior US close to the next KOSPI open.
+
+    The user-facing KOSPI/SPX comparison showed a high positive level
+    correlation (~0.80) and the strongest relationship at a 1-session lag.
+    This term is deliberately small because the open model already uses EWY,
+    SOX, Nasdaq and FX.  It only adds an S&P-led nudge when broad US risk-on/off
+    is confirmed; otherwise it returns zero and lets the richer anchors decide.
+    """
+    sp500 = float((us.get("sp500") or {}).get("change_pct") or 0.0)
+    nasdaq = float((us.get("nasdaq") or {}).get("change_pct") or 0.0)
+    sox = float((us.get("sox") or {}).get("change_pct") or 0.0)
+    ewy = float((us.get("ewy") or {}).get("change_pct") or 0.0)
+    fx_pct = float((fx.get("change_pct") or 0.0))
+
+    if abs(sp500) < 0.20:
+        return 0.0
+
+    risk_on_confirmed = sp500 > 0 and nasdaq >= 0 and sox >= -0.40
+    risk_off_confirmed = sp500 < 0 and nasdaq <= 0 and sox <= 0.40
+    if not (risk_on_confirmed or risk_off_confirmed):
+        return 0.0
+
+    # EWY is still the Korea-specific ADR anchor.  If it strongly disagrees
+    # with S&P, avoid double-counting a weak broad-market correlation.
+    if sp500 * ewy < 0 and abs(ewy) >= 0.80:
+        return 0.0
+
+    # 0.00055 per 1% S&P move: visible enough to break ties, too small to
+    # overpower EWY/SOX/FX or the extreme-event guards.  FX appreciation
+    # against KRW (positive USDKRW pct) damps risk-on and amplifies risk-off.
+    adj = 0.00055 * sp500
+    if sp500 > 0:
+        adj -= 0.00020 * max(0.0, fx_pct)
+    else:
+        adj -= 0.00015 * max(0.0, fx_pct)
+    return clamp(adj, -0.0018, 0.0018)
+
+
 def extreme_overnight_selloff_underreaction_watch(
     us: dict[str, Any],
     domestic: dict[str, Any],
@@ -415,6 +454,7 @@ def predict() -> dict[str, Any]:
     extreme_overnight_selloff_watch = extreme_overnight_selloff_underreaction_watch(
         us, domestic, intraday_reversal, breadth
     )
+    sp500_lag_corr_adj = sp500_lag_correlation_adjustment(us, fx)
 
     residual_correction = 0.0
     if defense_strength > 8000 and breadth > 0.80:
@@ -433,6 +473,7 @@ def predict() -> dict[str, Any]:
         residual_correction -= 0.0007
     if split_semi_downside:
         residual_correction -= 0.0012
+    residual_correction += sp500_lag_corr_adj
 
     extreme_score = max(
         abs(us["ewy"]["change_pct"]),
@@ -499,6 +540,7 @@ def predict() -> dict[str, Any]:
         (
             f"전일 국내 손상도는 외인 {bn_text(domestic['foreign'])}, 기관 {bn_text(domestic['institution'])}, "
             f"프로그램 {bn_text(domestic['program'])}, 상승비율 {breadth:.3f}이며 "
+            f"S&P 1일 지연 상관 보정 {pct_text(sp500_lag_corr_adj * 100.0)}, "
             f"잔차보정 {pct_text(residual_correction * 100.0)} 반영"
         ),
     ]
@@ -536,6 +578,7 @@ def predict() -> dict[str, Any]:
             "compression": round(compression, 2),
             "raw_open_ret": round(raw_open_ret, 5),
             "final_open_ret": round(open_ret, 5),
+            "sp500_lag_correlation_adjustment_ret": round(sp500_lag_corr_adj, 5),
             "defense_strength": round(defense_strength, 1),
             "extreme_score": round(extreme_score, 3),
             "relief_gap_rebound": relief_gap_rebound,
